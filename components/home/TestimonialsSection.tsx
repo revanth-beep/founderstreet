@@ -55,11 +55,11 @@ export default function TestimonialsSection() {
   const t = testimonials[current];
 
   return (
-    <section style={{ background: "#0d1f16" }} className="section-padding">
+    <section style={{ background: "#3d4246" }} className="section-padding">
       <div className="container-custom">
         <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
           <span className="label-tag-dark" style={{ marginBottom: "1rem" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#74C69D", display: "inline-block" }} />
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#9FE670", display: "inline-block" }} />
             Founder Stories
           </span>
           <h2 style={{
@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
                 <img
                   src={t.avatar}
                   alt={t.name}
-                  style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(64,145,108,0.4)" }}
+                  style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(123,201,90,0.4)" }}
                 />
                 <div>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, color: "#FFFFFF", fontSize: "0.9375rem" }}>
@@ -121,13 +121,13 @@ export default function TestimonialsSection() {
 
               {/* Result pill */}
               <div style={{
-                background: "rgba(27,67,50,0.6)",
-                border: "1px solid rgba(64,145,108,0.3)",
+                background: "rgba(102,187,63,0.6)",
+                border: "1px solid rgba(123,201,90,0.3)",
                 borderRadius: "8px",
                 padding: "0.75rem 1.25rem",
                 textAlign: "center" as const
               }}>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#74C69D", marginBottom: "0.25rem" }}>Result</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#9FE670", marginBottom: "0.25rem" }}>Result</p>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.125rem", fontWeight: 700, color: "#FFFFFF" }}>{t.result}</p>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
                   style={{
                     height: "4px", borderRadius: "99px",
                     width: i === current ? "24px" : "8px",
-                    background: i === current ? "#40916C" : "rgba(255,255,255,0.2)",
+                    background: i === current ? "#7BC95A" : "rgba(255,255,255,0.2)",
                     border: "none", cursor: "pointer",
                     transition: "all 0.3s ease",
                   }}
@@ -167,9 +167,9 @@ export default function TestimonialsSection() {
                     transition: "all 0.25s ease",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(64,145,108,0.2)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(64,145,108,0.4)";
-                    (e.currentTarget as HTMLElement).style.color = "#74C69D";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(123,201,90,0.2)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(123,201,90,0.4)";
+                    (e.currentTarget as HTMLElement).style.color = "#9FE670";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";

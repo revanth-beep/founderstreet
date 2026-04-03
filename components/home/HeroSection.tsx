@@ -36,7 +36,7 @@ export default function HeroSection() {
 
   return (
     <section
-      style={{ background: "linear-gradient(160deg, #081810 0%, #0d2b1c 40%, #0e2318 100%)" }}
+      style={{ background: "linear-gradient(160deg, #3d4246 0%, #4A5056 40%, #3d5240 100%)" }}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
       {/* Ambient blobs */}
@@ -44,13 +44,13 @@ export default function HeroSection() {
         <div style={{
           position: "absolute", width: "45vw", height: "45vw",
           top: "-10%", left: "-8%",
-          background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(102,187,63,0.5) 0%, transparent 70%)",
           borderRadius: "50%", filter: "blur(40px)"
         }} />
         <div style={{
           position: "absolute", width: "35vw", height: "35vw",
           bottom: "-5%", right: "-5%",
-          background: "radial-gradient(circle, rgba(64,145,108,0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(123,201,90,0.25) 0%, transparent 70%)",
           borderRadius: "50%", filter: "blur(50px)"
         }} />
         {/* Dot grid */}
@@ -58,7 +58,7 @@ export default function HeroSection() {
         {/* Subtle border at bottom */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.4), transparent)"
+          background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.4), transparent)"
         }} />
       </div>
 
@@ -66,13 +66,13 @@ export default function HeroSection() {
       <div style={{
         position: "absolute", top: "30%", right: "8%",
         width: "180px", height: "180px",
-        border: "1px solid rgba(64,145,108,0.15)",
+        border: "1px solid rgba(123,201,90,0.15)",
         borderRadius: "50%", animation: "float 7s ease-in-out infinite"
       }} />
       <div style={{
         position: "absolute", top: "28%", right: "9.5%",
         width: "90px", height: "90px",
-        border: "1px solid rgba(64,145,108,0.25)",
+        border: "1px solid rgba(123,201,90,0.25)",
         borderRadius: "50%"
       }} />
 
@@ -83,7 +83,7 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <div className="hero-eyebrow" style={{ marginBottom: "1.75rem", opacity: 0 }}>
             <span className="label-tag-dark">
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#74C69D", display: "inline-block" }} />
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#9FE670", display: "inline-block" }} />
               India&apos;s Startup Infrastructure Platform
             </span>
           </div>
@@ -106,7 +106,7 @@ export default function HeroSection() {
             Behind India&apos;s{" "}
             <span style={{
               fontStyle: "italic",
-              background: "linear-gradient(135deg, #74C69D 0%, #B7E4C7 100%)",
+              background: "linear-gradient(135deg, #9FE670 0%, #CEEAB8 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"
@@ -225,7 +225,7 @@ export default function HeroSection() {
         </span>
         <div style={{
           width: "1px", height: "40px",
-          background: "linear-gradient(to bottom, rgba(64,145,108,0.6), transparent)"
+          background: "linear-gradient(to bottom, rgba(123,201,90,0.6), transparent)"
         }} />
       </div>
 

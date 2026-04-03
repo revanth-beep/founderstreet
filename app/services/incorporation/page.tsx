@@ -70,7 +70,7 @@ const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
   fontWeight: 700 as const,
-  color: "#111111",
+  color: "#3d4246",
   lineHeight: 1.2 as const,
   letterSpacing: "-0.01em" as const,
 };
@@ -92,7 +92,7 @@ export default function IncorporationPage() {
         ]}
       />
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 2.5rem" }}>
             <ServicePageEyebrow>Entity Comparison</ServicePageEyebrow>
@@ -134,13 +134,13 @@ export default function IncorporationPage() {
                       boxShadow: "0 2px 15px -3px rgba(0,0,0,0.07)",
                     }}
                   >
-                    <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.875rem", color: "#1B4332" }}>{p.step}</span>
+                    <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.875rem", color: "#66BB3F" }}>{p.step}</span>
                   </div>
                 </div>
                 <div style={{ flex: "1 1 280px", minWidth: 0 }}>
                   <div style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.25rem" }}>
                     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem 1rem", marginBottom: "0.5rem" }}>
-                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.0625rem", color: "#111111" }}>{p.title}</h3>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.0625rem", color: "#3d4246" }}>{p.title}</h3>
                       <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", fontWeight: 500 }}>
                         <Clock size={12} />
                         {p.time}
@@ -155,21 +155,21 @@ export default function IncorporationPage() {
         </div>
       </section>
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1.5rem" }}>
             {bundles.map((bundle) => {
               const Icon = bundle.icon;
               return (
                 <div key={bundle.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.5rem" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
-                    <Icon size={20} color="#1B4332" />
+                  <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                    <Icon size={20} color="#66BB3F" />
                   </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#111111", marginBottom: "1rem" }}>{bundle.title}</h3>
+                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246", marginBottom: "1rem" }}>{bundle.title}</h3>
                   <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     {bundle.items.map((item) => (
                       <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A" }}>
-                        <CheckCircle2 size={16} color="#1B4332" style={{ flexShrink: 0, marginTop: "2px" }} />
+                        <CheckCircle2 size={16} color="#66BB3F" style={{ flexShrink: 0, marginTop: "2px" }} />
                         {item}
                       </li>
                     ))}
@@ -190,7 +190,7 @@ export default function IncorporationPage() {
         </div>
       </section>
 
-      <section style={{ background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Start your incorporation today</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>

@@ -58,7 +58,7 @@ const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.25rem, 2vw, 1.375rem)",
   fontWeight: 700 as const,
-  color: "#111111",
+  color: "#3d4246",
 };
 
 export default function MarketingPage() {
@@ -78,7 +78,7 @@ export default function MarketingPage() {
         ]}
       />
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ marginBottom: "2.5rem" }}>
             <ServicePageEyebrow>Growth capabilities</ServicePageEyebrow>
@@ -100,8 +100,8 @@ export default function MarketingPage() {
             return (
               <div key={category.category} style={{ marginBottom: idx < services.length - 1 ? "3.5rem" : 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "6px", background: "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <CategoryIcon size={16} color="#1B4332" />
+                  <div style={{ width: "32px", height: "32px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <CategoryIcon size={16} color="#66BB3F" />
                   </div>
                   <h2 style={h2}>{category.category}</h2>
                   <div style={{ flex: "1 1 120px", height: "1px", background: "#E0E0DC", minWidth: "40px" }} />
@@ -110,11 +110,11 @@ export default function MarketingPage() {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
                   {category.items.map((item) => (
                     <div key={item.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.25rem" }}>
-                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.0625rem", color: "#111111", marginBottom: "0.5rem" }}>{item.title}</h3>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.0625rem", color: "#3d4246", marginBottom: "0.5rem" }}>{item.title}</h3>
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, marginBottom: "1rem" }}>{item.desc}</p>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                         {item.metrics.map((m) => (
-                          <span key={m} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 600, color: "#1B4332", background: "#EDFAF2", padding: "0.25rem 0.625rem", borderRadius: "999px" }}>
+                          <span key={m} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 600, color: "#66BB3F", background: "#E9F6E4", padding: "0.25rem 0.625rem", borderRadius: "999px" }}>
                             {m}
                           </span>
                         ))}
@@ -128,14 +128,14 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#0A0A0A", paddingBlock: "clamp(4rem, 8vw, 6rem)", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 20%, rgba(27,67,50,0.35) 0%, transparent 50%)", pointerEvents: "none" }} />
+      <section style={{ background: "#4A5056", paddingBlock: "clamp(4rem, 8vw, 6rem)", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 20%, rgba(102,187,63,0.35) 0%, transparent 50%)", pointerEvents: "none" }} />
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.5rem" }}>
             {results.map((result) => (
               <div key={result.metric} style={{ background: "rgba(17,17,17,0.72)", border: "1px solid #2a2a2a", borderRadius: "8px", padding: "1.5rem", textAlign: "center" }}>
                 <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: "#FFFFFF", marginBottom: "0.25rem" }}>{result.metric}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#74C69D", marginBottom: "0.75rem" }}>{result.context}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#9FE670", marginBottom: "0.75rem" }}>{result.context}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", lineHeight: 1.65 }}>{result.detail}</p>
               </div>
             ))}
@@ -143,16 +143,16 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#111111" }}>Frequently Asked Questions</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246" }}>Frequently Asked Questions</h2>
           </div>
           <Accordion items={faqs} />
         </div>
       </section>
 
-      <section style={{ background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Ready to engineer your growth?</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>

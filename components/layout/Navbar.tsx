@@ -47,7 +47,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
           {/* Logo */}
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
             <div style={{
-              width: "32px", height: "32px", background: "#1B4332",
+              width: "32px", height: "32px", background: "#66BB3F",
               borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
             }}>
               <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
@@ -55,7 +55,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
             <span style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontWeight: 700, fontSize: "1.1875rem",
-              color: solid ? "#111111" : "#FFFFFF",
+              color: solid ? "#3d4246" : "#FFFFFF",
               letterSpacing: "-0.01em",
               transition: "color 0.3s ease"
             }}>
@@ -115,13 +115,13 @@ function NavbarContent({ solid }: NavbarContentProps) {
                       >
                         <div style={{
                           width: "34px", height: "34px",
-                          background: "#EDFAF2", borderRadius: "7px",
+                          background: "#E9F6E4", borderRadius: "7px",
                           display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
                         }}>
-                          <Icon size={16} color="#1B4332" />
+                          <Icon size={16} color="#66BB3F" />
                         </div>
                         <div>
-                          <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem", color: "#111111", marginBottom: "2px" }}>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem", color: "#3d4246", marginBottom: "2px" }}>
                             {svc.name}
                           </p>
                           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878", lineHeight: 1.5 }}>
@@ -138,19 +138,19 @@ function NavbarContent({ solid }: NavbarContentProps) {
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "space-between",
                         padding: "12px 14px",
-                        background: "#EDFAF2",
+                        background: "#E9F6E4",
                         borderRadius: "8px",
                         textDecoration: "none",
                         transition: "background 0.2s ease"
                       }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#D8F3DC"; }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#EDFAF2"; }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#DEF3D4"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#E9F6E4"; }}
                     >
                       <div>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#1B4332" }}>Free Startup Health Check</p>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#2D6A4F", marginTop: "2px" }}>5 questions. Get a free SWOT report instantly.</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#66BB3F" }}>Free Startup Health Check</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#56AD32", marginTop: "2px" }}>5 questions. Get a free SWOT report instantly.</p>
                       </div>
-                      <ArrowRight size={15} color="#1B4332" />
+                      <ArrowRight size={15} color="#66BB3F" />
                     </Link>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.background = solid ? "#F0F0ED" : "rgba(255,255,255,0.1)";
-                  (e.currentTarget as HTMLElement).style.color = solid ? "#111111" : "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.color = solid ? "#3d4246" : "#FFFFFF";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.background = "transparent";
@@ -197,7 +197,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
                 textDecoration: "none", padding: "8px 4px",
                 transition: "color 0.2s ease"
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#1B4332" : "#FFFFFF"; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#66BB3F" : "#FFFFFF"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#5A5A5A" : "rgba(255,255,255,0.7)"; }}
             >
               Free Health Check
@@ -215,7 +215,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
               display: "flex", alignItems: "center", justifyContent: "center",
               width: "40px", height: "40px",
               background: "transparent", border: "none", cursor: "pointer",
-              color: solid ? "#111111" : "#FFFFFF",
+              color: solid ? "#3d4246" : "#FFFFFF",
             }}
             className="mobile-burger"
             aria-label="Toggle menu"
@@ -249,10 +249,10 @@ function NavbarContent({ solid }: NavbarContentProps) {
         {/* Drawer header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 1.5rem", borderBottom: "1px solid #F0F0ED" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
-            <div style={{ width: "28px", height: "28px", background: "#1B4332", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ width: "28px", height: "28px", background: "#66BB3F", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "11px" }}>FS</span>
             </div>
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#111111", fontSize: "1rem" }}>Founderstreet</span>
+            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>Founderstreet</span>
           </Link>
           <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#787878" }}>
             <X size={20} />
@@ -267,7 +267,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
               width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
               padding: "0.75rem 0.5rem",
               fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.9375rem",
-              color: "#111111", background: "none", border: "none", cursor: "pointer",
+              color: "#3d4246", background: "none", border: "none", cursor: "pointer",
               borderBottom: "1px solid #F0F0ED"
             }}
           >
@@ -286,7 +286,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
                     style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0.625rem 0.5rem", textDecoration: "none", borderRadius: "6px" }}
                     onClick={() => setMobileOpen(false)}
                   >
-                    <Icon size={15} color="#1B4332" />
+                    <Icon size={15} color="#66BB3F" />
                     <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3D3D3D" }}>{svc.name}</span>
                   </Link>
                 );
@@ -306,7 +306,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
               style={{
                 display: "block", padding: "0.75rem 0.5rem",
                 fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.9375rem",
-                color: "#111111", textDecoration: "none",
+                color: "#3d4246", textDecoration: "none",
                 borderBottom: "1px solid #F0F0ED"
               }}
               onClick={() => setMobileOpen(false)}

@@ -36,22 +36,22 @@ export default function StartupHealthCheckPage() {
       {/* ── Hero ─────────────────────────────── */}
       <section style={{
         position: "relative",
-        background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)",
+        background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
         paddingTop: "8rem", paddingBottom: "4.5rem",
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
           <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "36px 36px", opacity: 0.5 }} />
-          <div style={{ position: "absolute", width: "45vw", height: "45vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent)" }} />
+          <div style={{ position: "absolute", width: "45vw", height: "45vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(102,187,63,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.35), transparent)" }} />
         </div>
 
         <div className="container-custom" style={{ position: "relative", zIndex: 1, textAlign: "center", maxWidth: "680px", marginInline: "auto" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.875rem", marginBottom: "1.5rem" }}>
-            <div style={{ width: "44px", height: "44px", background: "rgba(64,145,108,0.2)", border: "1px solid rgba(64,145,108,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <ClipboardList size={20} color="#74C69D" />
+            <div style={{ width: "44px", height: "44px", background: "rgba(123,201,90,0.2)", border: "1px solid rgba(123,201,90,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <ClipboardList size={20} color="#9FE670" />
             </div>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#74C69D" }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670" }}>
               Free Startup Health Check
             </span>
           </div>
@@ -74,7 +74,7 @@ export default function StartupHealthCheckPage() {
 
             {/* What you get */}
             <div>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.375rem", fontWeight: 700, color: "#111111", marginBottom: "1.25rem" }}>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.375rem", fontWeight: 700, color: "#3d4246", marginBottom: "1.25rem" }}>
                 What You&apos;ll Receive
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -82,20 +82,20 @@ export default function StartupHealthCheckPage() {
                   const Icon = item.icon;
                   return (
                     <div key={item.title} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem", padding: "1rem", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "10px" }}>
-                      <div style={{ width: "36px", height: "36px", background: "#EDFAF2", border: "1px solid #D8F3DC", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon size={16} color="#1B4332" />
+                      <div style={{ width: "36px", height: "36px", background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon size={16} color="#66BB3F" />
                       </div>
                       <div>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#111111", marginBottom: "0.25rem" }}>{item.title}</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#3d4246", marginBottom: "0.25rem" }}>{item.title}</p>
                         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.6, color: "#787878" }}>{item.desc}</p>
                       </div>
                     </div>
                   );
                 })}
 
-                <div style={{ padding: "1rem", background: "#EDFAF2", border: "1px solid #D8F3DC", borderRadius: "10px", marginTop: "0.25rem" }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#1B4332", marginBottom: "0.25rem" }}>100% Free. No credit card.</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.65, color: "#2D6A4F" }}>
+                <div style={{ padding: "1rem", background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "10px", marginTop: "0.25rem" }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#66BB3F", marginBottom: "0.25rem" }}>100% Free. No credit card.</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.65, color: "#56AD32" }}>
                     This report is our gift to the Indian startup ecosystem. No strings attached. We just ask for your email to send the report.
                   </p>
                 </div>

@@ -32,23 +32,23 @@ export default function ResourcesPage() {
       {/* Hero */}
       <section style={{
         position: "relative",
-        background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)",
+        background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
         paddingTop: "8rem", paddingBottom: "5rem",
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
           <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "36px 36px", opacity: 0.5 }} />
-          <div style={{ position: "absolute", width: "45vw", height: "45vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
-          <div style={{ position: "absolute", width: "30vw", height: "30vw", bottom: "-5%", right: "5%", background: "radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent)" }} />
+          <div style={{ position: "absolute", width: "45vw", height: "45vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(102,187,63,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+          <div style={{ position: "absolute", width: "30vw", height: "30vw", bottom: "-5%", right: "5%", background: "radial-gradient(circle, rgba(123,201,90,0.2) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.35), transparent)" }} />
         </div>
 
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.5rem" }}>
-            <div style={{ width: "44px", height: "44px", background: "rgba(64,145,108,0.2)", border: "1px solid rgba(64,145,108,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <BookOpen size={20} color="#74C69D" />
+            <div style={{ width: "44px", height: "44px", background: "rgba(123,201,90,0.2)", border: "1px solid rgba(123,201,90,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <BookOpen size={20} color="#9FE670" />
             </div>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#74C69D" }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670" }}>
               The Founder&apos;s Brief
             </span>
           </div>
@@ -74,7 +74,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Content */}
-      <section className="section-padding" style={{ background: "#FAFAF8" }}>
+      <section className="section-padding" style={{ background: "#FAFAFA" }}>
         <div className="container-custom">
 
           {/* Category filter */}
@@ -93,7 +93,7 @@ export default function ResourcesPage() {
                   cursor: "pointer",
                   transition: "all 0.2s ease",
                   ...(activeCategory === cat
-                    ? { background: "#1B4332", color: "#fff", borderColor: "#1B4332" }
+                    ? { background: "#66BB3F", color: "#fff", borderColor: "#66BB3F" }
                     : { background: "#fff", color: "#5A5A5A", borderColor: "#E0E0DC" }),
                 }}
               >
@@ -120,7 +120,7 @@ export default function ResourcesPage() {
                   {/* Content overlay on desktop */}
                   <div style={{ position: "absolute", inset: 0, padding: "2.5rem 3rem", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#1B4332", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#66BB3F", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
                         Featured
                       </span>
                       {categoryColors[featuredPost.category] && (
@@ -141,7 +141,7 @@ export default function ResourcesPage() {
                         {featuredPost.readingTime} min read
                       </span>
                       <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.6)" }}>{featuredPost.author}</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#74C69D", marginLeft: "auto" }}>
+                      <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#9FE670", marginLeft: "auto" }}>
                         Read article <ArrowRight style={{ width: "14px", height: "14px" }} />
                       </span>
                     </div>
@@ -183,13 +183,13 @@ export default function ResourcesPage() {
                           {post.readingTime} min
                         </span>
                       </div>
-                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.0625rem", fontWeight: 700, color: "#111111", lineHeight: 1.4, marginBottom: "0.5rem" }}>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.0625rem", fontWeight: 700, color: "#3d4246", lineHeight: 1.4, marginBottom: "0.5rem" }}>
                         {post.title}
                       </h3>
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                         {post.excerpt}
                       </p>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#1B4332", marginTop: "1rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#66BB3F", marginTop: "1rem" }}>
                         Read article <ArrowRight style={{ width: "14px", height: "14px" }} />
                       </div>
                     </div>
@@ -213,9 +213,9 @@ export default function ResourcesPage() {
         <div className="container-custom">
           <div style={{ maxWidth: "520px", margin: "0 auto", textAlign: "center" }}>
             <div style={{ width: "48px", height: "48px", background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
-              <BookOpen style={{ width: "22px", height: "22px", color: "#1B4332" }} />
+              <BookOpen style={{ width: "22px", height: "22px", color: "#66BB3F" }} />
             </div>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: "#111111", marginBottom: "0.75rem", lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.75rem", lineHeight: 1.2 }}>
               Get the Founder&apos;s Edge, Every Week.
             </h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", lineHeight: 1.7, marginBottom: "2rem" }}>
@@ -228,7 +228,7 @@ export default function ResourcesPage() {
               <input
                 type="email"
                 placeholder="your@email.com"
-                style={{ flex: 1, padding: "0.75rem 1rem", border: "1px solid #E0E0DC", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#111111", background: "#fff", outline: "none" }}
+                style={{ flex: 1, padding: "0.75rem 1rem", border: "1px solid #E0E0DC", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246", background: "#fff", outline: "none" }}
               />
               <button
                 type="submit"

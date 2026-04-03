@@ -28,7 +28,7 @@ const posts = [
 ];
 
 const catColor: Record<string, { bg: string; text: string }> = {
-  Strategy:    { bg: "#EDFAF2", text: "#1B4332" },
+  Strategy:    { bg: "#E9F6E4", text: "#66BB3F" },
   Finance:     { bg: "#EFF6FF", text: "#1E40AF" },
   Fundraising: { bg: "#FEF9C3", text: "#92400E" },
 };
@@ -41,7 +41,7 @@ export default function ResourcesTeaser() {
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "1rem", marginBottom: "3rem" }}>
           <div>
             <span className="label-tag" style={{ marginBottom: "0.875rem", display: "inline-flex" }}>
-              <BookOpen size={11} color="#1B4332" />
+              <BookOpen size={11} color="#66BB3F" />
               The Founder&apos;s Brief
             </span>
             <h2 className="heading-lg" style={{ marginTop: "0.5rem" }}>
@@ -52,13 +52,13 @@ export default function ResourcesTeaser() {
           <Link href="/resources" style={{
             display: "inline-flex", alignItems: "center", gap: "6px",
             fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem",
-            color: "#1B4332", textDecoration: "none",
+            color: "#66BB3F", textDecoration: "none",
             padding: "0.5rem 0",
-            borderBottom: "1.5px solid #D8F3DC",
+            borderBottom: "1.5px solid #DEF3D4",
             transition: "border-color 0.2s ease",
           }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#1B4332"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#D8F3DC"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#66BB3F"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#DEF3D4"; }}
           >
             All articles <ArrowRight size={14} />
           </Link>
@@ -81,11 +81,11 @@ export default function ResourcesTeaser() {
                   position: "relative",
                   overflow: "hidden",
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#FAFAF8"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#FAFAFA"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#FFFFFF"; }}
               >
                 {/* Top accent line */}
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: i === 0 ? "#1B4332" : "#E0E0DC" }} />
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: i === 0 ? "#66BB3F" : "#E0E0DC" }} />
 
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
                   <span style={{
@@ -108,7 +108,7 @@ export default function ResourcesTeaser() {
                 <h3 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "1.125rem", fontWeight: 700,
-                  color: "#111111", lineHeight: 1.4,
+                  color: "#3d4246", lineHeight: 1.4,
                   marginBottom: "0.75rem"
                 }}>
                   {post.title}
@@ -127,7 +127,7 @@ export default function ResourcesTeaser() {
                   display: "inline-flex", alignItems: "center", gap: "4px",
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.8125rem", fontWeight: 600,
-                  color: "#1B4332",
+                  color: "#66BB3F",
                 }}>
                   Read article <ArrowRight size={13} />
                 </span>

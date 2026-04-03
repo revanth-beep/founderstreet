@@ -40,17 +40,17 @@ export default async function BlogPostPage({ params }: Props) {
     <article style={{ paddingTop: "6rem" }}>
 
       {/* Hero */}
-      <div style={{ background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)", paddingBottom: 0, position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)", paddingBottom: 0, position: "relative", overflow: "hidden" }}>
         {/* Ambient */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
           <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "32px 32px", opacity: 0.4 }} />
-          <div style={{ position: "absolute", width: "40vw", height: "40vw", top: "-10%", right: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+          <div style={{ position: "absolute", width: "40vw", height: "40vw", top: "-10%", right: "-5%", background: "radial-gradient(circle, rgba(102,187,63,0.4) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
         </div>
 
         <div className="container-custom" style={{ paddingTop: "3rem", paddingBottom: "2.5rem", position: "relative", zIndex: 1 }}>
           <Link
             href="/resources"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "#74C69D", fontSize: "0.8125rem", fontWeight: 600, textDecoration: "none", marginBottom: "2rem", transition: "color 0.2s ease", fontFamily: "'Inter', sans-serif" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "#9FE670", fontSize: "0.8125rem", fontWeight: 600, textDecoration: "none", marginBottom: "2rem", transition: "color 0.2s ease", fontFamily: "'Inter', sans-serif" }}
           >
             <ArrowLeft style={{ width: "14px", height: "14px" }} />
             Back to Resources
@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div style={{ maxWidth: "760px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#1B4332", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#66BB3F", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
                 {post.category}
               </span>
               <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", color: "#A0A0A0", fontSize: "0.75rem" }}>
@@ -76,8 +76,8 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
 
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: "40px", height: "40px", background: "rgba(27,67,50,0.6)", border: "1px solid rgba(64,145,108,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <BookOpen style={{ width: "18px", height: "18px", color: "#74C69D" }} />
+              <div style={{ width: "40px", height: "40px", background: "rgba(102,187,63,0.6)", border: "1px solid rgba(123,201,90,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <BookOpen style={{ width: "18px", height: "18px", color: "#9FE670" }} />
               </div>
               <div>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, color: "#FFFFFF", fontSize: "0.875rem" }}>{post.author}</p>
@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       {/* Content */}
-      <section style={{ background: "#FAFAF8", paddingBlock: "4rem 5rem" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "4rem 5rem" }}>
         <div className="container-custom">
           <div style={{ maxWidth: "720px", margin: "0 auto" }}>
 
@@ -123,16 +123,16 @@ export default async function BlogPostPage({ params }: Props) {
               style={{ fontFamily: "'Inter', sans-serif", color: "#3D3D3D", lineHeight: 1.8, fontSize: "1rem" }}
               dangerouslySetInnerHTML={{
                 __html: post.content
-                  .replace(/^# (.+)$/gm, '<h2 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.625rem;font-weight:700;color:#111111;margin-top:2.5rem;margin-bottom:1rem;line-height:1.2;letter-spacing:-0.01em;">$1</h2>')
-                  .replace(/^## (.+)$/gm, '<h3 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.25rem;font-weight:700;color:#111111;margin-top:2rem;margin-bottom:0.75rem;">$1</h3>')
+                  .replace(/^# (.+)$/gm, '<h2 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.625rem;font-weight:700;color:#3d4246;margin-top:2.5rem;margin-bottom:1rem;line-height:1.2;letter-spacing:-0.01em;">$1</h2>')
+                  .replace(/^## (.+)$/gm, '<h3 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.25rem;font-weight:700;color:#3d4246;margin-top:2rem;margin-bottom:0.75rem;">$1</h3>')
                   .replace(/\n\n/g, '</p><p style="margin-bottom:1.25rem;">')
                   .replace(/^/, '<p style="margin-bottom:1.25rem;">'),
               }}
             />
 
             {/* CTA Box */}
-            <div style={{ marginTop: "3rem", padding: "2.25rem 2.5rem", background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", borderRadius: "8px", color: "#fff" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#74C69D", marginBottom: "0.75rem" }}>
+            <div style={{ marginTop: "3rem", padding: "2.25rem 2.5rem", background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", borderRadius: "8px", color: "#fff" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9FE670", marginBottom: "0.75rem" }}>
                 Ready to act on this?
               </p>
               <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "#fff", marginBottom: "0.75rem", lineHeight: 1.25 }}>
@@ -143,7 +143,7 @@ export default async function BlogPostPage({ params }: Props) {
               </p>
               <Link
                 href="/contact"
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", background: "#fff", color: "#1B4332", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", borderRadius: "4px", textDecoration: "none", transition: "background 0.2s ease" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", background: "#fff", color: "#66BB3F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", borderRadius: "4px", textDecoration: "none", transition: "background 0.2s ease" }}
               >
                 Book a Free Call
               </Link>
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: Props) {
       {related.length > 0 && (
         <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", paddingBlock: "4rem" }}>
           <div className="container-custom">
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.375rem", fontWeight: 700, color: "#111111", marginBottom: "1.75rem" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.375rem", fontWeight: 700, color: "#3d4246", marginBottom: "1.75rem" }}>
               Related Articles
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", maxWidth: "720px" }}>
@@ -174,8 +174,8 @@ export default async function BlogPostPage({ params }: Props) {
                     />
                   </div>
                   <div style={{ padding: "1rem 1.25rem" }}>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#1B4332" }}>{p.category}</span>
-                    <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, color: "#111111", fontSize: "0.9375rem", marginTop: "0.25rem", lineHeight: 1.4 }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#66BB3F" }}>{p.category}</span>
+                    <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, color: "#3d4246", fontSize: "0.9375rem", marginTop: "0.25rem", lineHeight: 1.4 }}>
                       {p.title}
                     </h3>
                   </div>

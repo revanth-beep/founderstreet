@@ -78,7 +78,7 @@ export default function ValidationPage() {
         ]}
       />
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>What You Get</ServicePageEyebrow>
@@ -87,7 +87,7 @@ export default function ValidationPage() {
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
                 fontWeight: 700,
-                color: "#111111",
+                color: "#3d4246",
                 marginTop: "1rem",
                 lineHeight: 1.2,
                 letterSpacing: "-0.01em",
@@ -121,13 +121,13 @@ export default function ValidationPage() {
                           width: "36px",
                           height: "36px",
                           borderRadius: "6px",
-                          background: "#EDFAF2",
+                          background: "#E9F6E4",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                         }}
                       >
-                        <Icon size={20} color="#1B4332" />
+                        <Icon size={20} color="#66BB3F" />
                       </div>
                       <span
                         style={{
@@ -147,7 +147,7 @@ export default function ValidationPage() {
                         fontFamily: "'Playfair Display', Georgia, serif",
                         fontWeight: 700,
                         fontSize: "1.125rem",
-                        color: "#111111",
+                        color: "#3d4246",
                         lineHeight: 1.3,
                       }}
                     >
@@ -177,13 +177,13 @@ export default function ValidationPage() {
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.75rem",
                             fontWeight: 600,
-                            color: "#1B4332",
-                            background: "#EDFAF2",
+                            color: "#66BB3F",
+                            background: "#E9F6E4",
                             padding: "0.35rem 0.75rem",
                             borderRadius: "999px",
                           }}
                         >
-                          <CheckCircle2 size={12} color="#1B4332" />
+                          <CheckCircle2 size={12} color="#66BB3F" />
                           {p}
                         </span>
                       ))}
@@ -205,7 +205,7 @@ export default function ValidationPage() {
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
                 fontWeight: 700,
-                color: "#111111",
+                color: "#3d4246",
                 marginTop: "1rem",
                 lineHeight: 1.2,
               }}
@@ -230,7 +230,7 @@ export default function ValidationPage() {
         </div>
       </section>
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <ServicePageEyebrow>FAQ</ServicePageEyebrow>
@@ -239,7 +239,7 @@ export default function ValidationPage() {
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
                 fontWeight: 700,
-                color: "#111111",
+                color: "#3d4246",
                 marginTop: "1rem",
               }}
             >
@@ -252,7 +252,7 @@ export default function ValidationPage() {
 
       <section
         style={{
-          background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)",
+          background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)",
           paddingBlock: "clamp(4rem, 8vw, 5.5rem)",
           textAlign: "center",
         }}

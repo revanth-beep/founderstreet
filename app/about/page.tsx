@@ -46,24 +46,24 @@ export default function AboutPage() {
       {/* ── Hero ─────────────────────────────────────── */}
       <section style={{
         position: "relative",
-        background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)",
+        background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
         paddingTop: "8rem", paddingBottom: "5rem",
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
           <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "36px 36px", opacity: 0.5 }} />
-          <div style={{ position: "absolute", width: "50vw", height: "50vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent)" }} />
+          <div style={{ position: "absolute", width: "50vw", height: "50vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(102,187,63,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.35), transparent)" }} />
         </div>
 
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: "780px" }}>
-            <span style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#74C69D", marginBottom: "1.25rem" }}>
+            <span style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1.25rem" }}>
               About Founderstreet
             </span>
             <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4.5vw, 4rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1.25rem" }}>
               We&apos;re the team that builds the scaffolding{" "}
-              <em style={{ fontStyle: "italic", background: "linear-gradient(135deg, #74C69D, #B7E4C7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <em style={{ fontStyle: "italic", background: "linear-gradient(135deg, #9FE670, #CEEAB8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 while you build the skyscraper.
               </em>
             </h1>
@@ -80,10 +80,10 @@ export default function AboutPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }} className="about-story-grid">
             <div>
               <span className="label-tag" style={{ marginBottom: "1rem", display: "inline-flex" }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
                 Our Story
               </span>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.75rem)", fontWeight: 700, color: "#111111", marginBottom: "1.25rem", marginTop: "0.75rem", lineHeight: 1.15, letterSpacing: "-0.015em" }}>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.75rem)", fontWeight: 700, color: "#3d4246", marginBottom: "1.25rem", marginTop: "0.75rem", lineHeight: 1.15, letterSpacing: "-0.015em" }}>
                 Built by Founders,{" "}
                 <span className="gradient-text">for Founders</span>
               </h2>
@@ -105,8 +105,8 @@ export default function AboutPage() {
                 { value: "₹40Cr+", label: "Funding Facilitated" },
                 { value: "4", label: "Cities Present" },
               ].map((stat) => (
-                <div key={stat.label} style={{ background: "#FAFAF8", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "1.75rem", textAlign: "center" }}>
-                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "2.5rem", fontWeight: 800, color: "#1B4332", lineHeight: 1, marginBottom: "0.375rem" }}>{stat.value}</p>
+                <div key={stat.label} style={{ background: "#FAFAFA", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "1.75rem", textAlign: "center" }}>
+                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "2.5rem", fontWeight: 800, color: "#66BB3F", lineHeight: 1, marginBottom: "0.375rem" }}>{stat.value}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#787878", fontWeight: 500 }}>{stat.label}</p>
                 </div>
               ))}
@@ -121,10 +121,10 @@ export default function AboutPage() {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 3rem" }}>
             <span className="label-tag" style={{ marginBottom: "0.875rem" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               Our Values
             </span>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 700, color: "#111111", marginTop: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.015em" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 700, color: "#3d4246", marginTop: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.015em" }}>
               What Drives Us
             </h2>
           </div>
@@ -133,10 +133,10 @@ export default function AboutPage() {
               const Icon = val.icon;
               return (
                 <div key={val.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "2rem" }}>
-                  <div style={{ width: "44px", height: "44px", background: "#EDFAF2", border: "1px solid #D8F3DC", borderRadius: "9px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.125rem" }}>
-                    <Icon size={20} color="#1B4332" />
+                  <div style={{ width: "44px", height: "44px", background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "9px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.125rem" }}>
+                    <Icon size={20} color="#66BB3F" />
                   </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#111111", marginBottom: "0.625rem" }}>{val.title}</h3>
+                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.625rem" }}>{val.title}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A" }}>{val.desc}</p>
                 </div>
               );
@@ -151,10 +151,10 @@ export default function AboutPage() {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 3rem" }}>
             <span className="label-tag" style={{ marginBottom: "0.875rem" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               The Team
             </span>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 700, color: "#111111", marginTop: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.015em" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 700, color: "#3d4246", marginTop: "0.75rem", lineHeight: 1.2, letterSpacing: "-0.015em" }}>
               The People Behind the Platform
             </h2>
           </div>
@@ -165,8 +165,8 @@ export default function AboutPage() {
                   <img src={member.image} alt={member.name} className="team-img" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#111111", marginBottom: "0.25rem" }}>{member.name}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1B4332", marginBottom: "0.5rem" }}>{member.role}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.25rem" }}>{member.name}</h3>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#66BB3F", marginBottom: "0.5rem" }}>{member.role}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.6, color: "#787878" }}>{member.background}</p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section-padding" style={{ background: "linear-gradient(135deg, #1B4332 0%, #0d2b1c 100%)", position: "relative", overflow: "hidden" }}>
+      <section className="section-padding" style={{ background: "linear-gradient(135deg, #66BB3F 0%, #4A5056 100%)", position: "relative", overflow: "hidden" }}>
         <div className="dot-grid-dark" style={{ position: "absolute", inset: 0, opacity: 0.4 }} />
         <div className="container-custom" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.75rem)", fontWeight: 800, color: "#FFFFFF", marginBottom: "1rem", lineHeight: 1.2 }}>

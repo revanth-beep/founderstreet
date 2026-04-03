@@ -6,7 +6,7 @@ import { ArrowRight, CalendarCheck } from "lucide-react";
 export default function CTASection() {
   return (
     <section
-      style={{ background: "linear-gradient(135deg, #1B4332 0%, #0d2b1c 100%)", position: "relative", overflow: "hidden" }}
+      style={{ background: "linear-gradient(135deg, #66BB3F 0%, #4A5056 100%)", position: "relative", overflow: "hidden" }}
       className="section-padding"
     >
       {/* Background pattern */}
@@ -15,13 +15,13 @@ export default function CTASection() {
       <div style={{
         position: "absolute", top: "-30%", right: "-10%",
         width: "60vw", height: "60vw",
-        background: "radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(123,201,90,0.2) 0%, transparent 70%)",
         borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none"
       }} />
       <div style={{
         position: "absolute", bottom: "-30%", left: "-10%",
         width: "40vw", height: "40vw",
-        background: "radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(102,187,63,0.4) 0%, transparent 70%)",
         borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none"
       }} />
 
@@ -35,7 +35,7 @@ export default function CTASection() {
             letterSpacing: "-0.02em"
           }}>
             Ready to Build Something{" "}
-            <span style={{ fontStyle: "italic", color: "#95D5B2" }}>Extraordinary?</span>
+            <span style={{ fontStyle: "italic", color: "#B5E890" }}>Extraordinary?</span>
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",

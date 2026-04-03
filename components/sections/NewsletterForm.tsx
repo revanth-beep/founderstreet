@@ -29,12 +29,12 @@ export default function NewsletterForm() {
       <div style={{
         display: "flex", alignItems: "center", gap: "10px",
         padding: "0.875rem 1rem",
-        background: "rgba(64,145,108,0.15)",
-        border: "1px solid rgba(64,145,108,0.3)",
+        background: "rgba(123,201,90,0.15)",
+        border: "1px solid rgba(123,201,90,0.3)",
         borderRadius: "6px"
       }}>
-        <CheckCircle2 size={16} color="#74C69D" />
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#74C69D" }}>
+        <CheckCircle2 size={16} color="#9FE670" />
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#9FE670" }}>
           You&apos;re in! Check your inbox.
         </p>
       </div>
@@ -62,7 +62,7 @@ export default function NewsletterForm() {
             outline: "none",
             transition: "border-color 0.2s ease"
           }}
-          onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "rgba(64,145,108,0.5)"; }}
+          onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "rgba(123,201,90,0.5)"; }}
           onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.1)"; }}
         />
         <button
@@ -70,7 +70,7 @@ export default function NewsletterForm() {
           disabled={status === "loading"}
           style={{
             padding: "0.6875rem 1rem",
-            background: "#1B4332",
+            background: "#66BB3F",
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
@@ -78,8 +78,8 @@ export default function NewsletterForm() {
             transition: "background 0.2s ease",
             flexShrink: 0,
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#2D6A4F"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#1B4332"; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#56AD32"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#66BB3F"; }}
         >
           {status === "loading"
             ? <Loader2 size={15} color="#FFFFFF" style={{ animation: "spin 1s linear infinite" }} />

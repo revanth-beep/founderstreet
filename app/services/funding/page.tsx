@@ -36,7 +36,7 @@ const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
   fontWeight: 700 as const,
-  color: "#111111",
+  color: "#3d4246",
   lineHeight: 1.2 as const,
 };
 
@@ -57,24 +57,24 @@ export default function FundingPage() {
         ]}
       />
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1.5rem" }}>
             {coreServices.map((service) => {
               const Icon = service.icon;
               return (
                 <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.5rem" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
-                    <Icon size={20} color="#1B4332" />
+                  <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                    <Icon size={20} color="#66BB3F" />
                   </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#111111", marginBottom: "0.5rem" }}>{service.title}</h3>
+                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246", marginBottom: "0.5rem" }}>{service.title}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, marginBottom: "1.25rem" }}>{service.desc}</p>
                   <div style={{ borderTop: "1px solid #E0E0DC", paddingTop: "1rem" }}>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.75rem" }}>Deliverables</p>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.35rem" }}>
                       {service.deliverables.map((d) => (
                         <li key={d} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#5A5A5A" }}>
-                          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#1B4332", flexShrink: 0 }} />
+                          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#66BB3F", flexShrink: 0 }} />
                           {d}
                         </li>
                       ))}
@@ -102,15 +102,15 @@ export default function FundingPage() {
               <div key={template.name} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden" }}>
                 <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#F0F0ED", position: "relative" }}>
                   <img src={template.image} alt={template.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.85 }} />
-                  <div style={{ position: "absolute", top: "0.5rem", left: "0.5rem", background: "#1B4332", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, padding: "0.2rem 0.5rem", borderRadius: "999px" }}>
+                  <div style={{ position: "absolute", top: "0.5rem", left: "0.5rem", background: "#66BB3F", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, padding: "0.2rem 0.5rem", borderRadius: "999px" }}>
                     {template.slides} slides
                   </div>
                 </div>
                 <div style={{ padding: "1rem" }}>
-                  <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#111111", marginBottom: "0.25rem" }}>{template.name}</h3>
+                  <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#3d4246", marginBottom: "0.25rem" }}>{template.name}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878", marginBottom: "0.25rem" }}>Best for: {template.best}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#1B4332", marginBottom: "0.75rem" }}>Target raise: {template.raise}</p>
-                  <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#1B4332", textDecoration: "none" }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#66BB3F", marginBottom: "0.75rem" }}>Target raise: {template.raise}</p>
+                  <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#66BB3F", textDecoration: "none" }}>
                     <Download size={14} />
                     Download Free Template
                   </Link>
@@ -129,7 +129,7 @@ export default function FundingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <h2 style={h2}>Frequently Asked Questions</h2>
@@ -138,7 +138,7 @@ export default function FundingPage() {
         </div>
       </section>
 
-      <section style={{ background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Your funding round starts with one deck.</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>

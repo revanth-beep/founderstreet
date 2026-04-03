@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           <h2 className="heading-sm mt-8 mb-3">Contact Us</h2>
           <p>
             For privacy-related inquiries, contact us at{" "}
-            <a href="mailto:privacy@founderstreet.in" className="text-[#1B4332] underline">
+            <a href="mailto:privacy@founderstreet.in" className="text-[#66BB3F] underline">
               privacy@founderstreet.in
             </a>
           </p>

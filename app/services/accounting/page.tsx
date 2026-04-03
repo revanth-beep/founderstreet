@@ -56,7 +56,7 @@ const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
   fontWeight: 700 as const,
-  color: "#111111",
+  color: "#3d4246",
   lineHeight: 1.2 as const,
 };
 
@@ -77,7 +77,7 @@ export default function AccountingPage() {
         ]}
       />
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Services</ServicePageEyebrow>
@@ -90,11 +90,11 @@ export default function AccountingPage() {
               return (
                 <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "clamp(1.25rem, 3vw, 2rem)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.25rem" }}>
-                    <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <Icon size={20} color="#1B4332" />
+                    <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Icon size={20} color="#66BB3F" />
                     </div>
                     <div>
-                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#111111" }}>{service.title}</h3>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246" }}>{service.title}</h3>
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.35rem", lineHeight: 1.65 }}>{service.desc}</p>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ export default function AccountingPage() {
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.35rem" }}>
                       {service.features.map((f) => (
                         <div key={f} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#5A5A5A" }}>
-                          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#1B4332", flexShrink: 0 }} />
+                          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#66BB3F", flexShrink: 0 }} />
                           {f}
                         </div>
                       ))}
@@ -129,11 +129,11 @@ export default function AccountingPage() {
                 key={plan.name}
                 style={{
                   borderRadius: "8px",
-                  border: plan.highlight ? "1px solid #1B4332" : "1px solid #E0E0DC",
+                  border: plan.highlight ? "1px solid #66BB3F" : "1px solid #E0E0DC",
                   padding: "1.5rem",
-                  background: plan.highlight ? "#1B4332" : "#FFFFFF",
+                  background: plan.highlight ? "#66BB3F" : "#FFFFFF",
                   color: plan.highlight ? "#FFFFFF" : "inherit",
-                  boxShadow: plan.highlight ? "0 0 40px rgba(27,67,50,0.35), 0 10px 40px rgba(0,0,0,0.2)" : "0 1px 3px rgba(0,0,0,0.04)",
+                  boxShadow: plan.highlight ? "0 0 40px rgba(102,187,63,0.35), 0 10px 40px rgba(0,0,0,0.2)" : "0 1px 3px rgba(0,0,0,0.04)",
                 }}
               >
                 {plan.highlight && (
@@ -141,17 +141,17 @@ export default function AccountingPage() {
                     Most Popular
                   </span>
                 )}
-                <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.25rem", color: plan.highlight ? "#FFFFFF" : "#111111" }}>{plan.name}</h3>
+                <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.25rem", color: plan.highlight ? "#FFFFFF" : "#3d4246" }}>{plan.name}</h3>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", marginBottom: "1rem", color: plan.highlight ? "rgba(255,255,255,0.75)" : "#787878" }}>{plan.desc}</p>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "0.125rem", marginBottom: "1.25rem" }}>
-                  <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: plan.highlight ? "#FFFFFF" : "#111111" }}>{plan.price}</span>
+                  <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: plan.highlight ? "#FFFFFF" : "#3d4246" }}>{plan.price}</span>
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: plan.highlight ? "rgba(255,255,255,0.7)" : "#787878" }}>{plan.period}</span>
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {plan.features.map((f) => (
                     <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: plan.highlight ? "rgba(255,255,255,0.92)" : "#5A5A5A" }}>
-                      <span style={{ width: "16px", height: "16px", borderRadius: "50%", background: plan.highlight ? "rgba(255,255,255,0.2)" : "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: plan.highlight ? "#FFFFFF" : "#1B4332" }} />
+                      <span style={{ width: "16px", height: "16px", borderRadius: "50%", background: plan.highlight ? "rgba(255,255,255,0.2)" : "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: plan.highlight ? "#FFFFFF" : "#66BB3F" }} />
                       </span>
                       {f}
                     </li>
@@ -168,8 +168,8 @@ export default function AccountingPage() {
                     fontSize: "0.875rem",
                     fontWeight: 600,
                     textDecoration: "none",
-                    background: plan.highlight ? "#FFFFFF" : "#1B4332",
-                    color: plan.highlight ? "#1B4332" : "#FFFFFF",
+                    background: plan.highlight ? "#FFFFFF" : "#66BB3F",
+                    color: plan.highlight ? "#66BB3F" : "#FFFFFF",
                   }}
                 >
                   {plan.cta === "Most Popular" ? "Get Started" : plan.cta}
@@ -180,7 +180,7 @@ export default function AccountingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <h2 style={h2}>Frequently Asked Questions</h2>
@@ -189,7 +189,7 @@ export default function AccountingPage() {
         </div>
       </section>
 
-      <section style={{ background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Get investor-grade financials from Day One</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>

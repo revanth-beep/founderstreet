@@ -32,7 +32,7 @@ export default function TermsPage() {
           <h2 className="heading-sm mt-8 mb-3">Contact</h2>
           <p>
             For queries, contact{" "}
-            <a href="mailto:legal@founderstreet.in" className="text-[#1B4332] underline">
+            <a href="mailto:legal@founderstreet.in" className="text-[#66BB3F] underline">
               legal@founderstreet.in
             </a>
           </p>

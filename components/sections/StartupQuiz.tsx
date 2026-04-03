@@ -65,7 +65,7 @@ const inputSt: React.CSSProperties = {
   borderRadius: "6px",
   fontFamily: "'Inter', sans-serif",
   fontSize: "0.875rem",
-  color: "#111111",
+  color: "#3d4246",
   outline: "none",
   background: "#FFFFFF",
   transition: "border-color 0.2s ease",
@@ -122,19 +122,19 @@ export default function StartupQuiz() {
   if (step === "done") {
     return (
       <div style={{ ...cardSt, textAlign: "center" }}>
-        <div style={{ width: "56px", height: "56px", background: "#D8F3DC", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-          <CheckCircle2 size={28} color="#1B4332" />
+        <div style={{ width: "56px", height: "56px", background: "#DEF3D4", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+          <CheckCircle2 size={28} color="#66BB3F" />
         </div>
-        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.5rem" }}>
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.5rem" }}>
           Your SWOT Report is on its way!
         </h3>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A", marginBottom: "1.5rem" }}>
           Check your inbox within 5 minutes. We&apos;ve also tagged your profile so our team can follow up with personalised insights.
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", padding: "1rem", background: "#FAFAF8", borderRadius: "8px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", padding: "1rem", background: "#FAFAFA", borderRadius: "8px" }}>
           {["Market Sizing", "SWOT Analysis", "Competitor Map"].map((item) => (
             <div key={item} style={{ textAlign: "center" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#1B4332", marginBottom: "0.25rem" }}>✓ Included</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#66BB3F", marginBottom: "0.25rem" }}>✓ Included</p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878" }}>{item}</p>
             </div>
           ))}
@@ -147,14 +147,14 @@ export default function StartupQuiz() {
     return (
       <div style={cardSt}>
         <div style={barSt}>
-          <div style={{ height: "100%", background: "#1B4332", width: "100%", borderRadius: "99px", transition: "width 0.4s ease" }} />
+          <div style={{ height: "100%", background: "#66BB3F", width: "100%", borderRadius: "99px", transition: "width 0.4s ease" }} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1.5rem" }}>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>All done!</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#66BB3F" }}>All done!</span>
           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>5 / 5 questions</span>
         </div>
 
-        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.375rem" }}>
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.375rem" }}>
           Where should we send your report?
         </h3>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#787878", marginBottom: "1.5rem" }}>
@@ -163,11 +163,11 @@ export default function StartupQuiz() {
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           <input type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required style={inputSt}
-            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#1B4332"; }}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
             onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />
           <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required style={inputSt}
-            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#1B4332"; }}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
             onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />
           <button type="submit" disabled={loading} className="btn-primary" style={{ justifyContent: "center" }}>
@@ -188,7 +188,7 @@ export default function StartupQuiz() {
     <div style={cardSt}>
       {/* Progress bar */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.625rem" }}>
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#66BB3F" }}>
           Startup Health Check
         </span>
         <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>
@@ -196,11 +196,11 @@ export default function StartupQuiz() {
         </span>
       </div>
       <div style={barSt}>
-        <div style={{ height: "100%", background: "#1B4332", width: `${progress}%`, borderRadius: "99px", transition: "width 0.4s ease" }} />
+        <div style={{ height: "100%", background: "#66BB3F", width: `${progress}%`, borderRadius: "99px", transition: "width 0.4s ease" }} />
       </div>
 
       {/* Question */}
-      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#111111", marginBottom: "1.25rem" }}>
+      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#3d4246", marginBottom: "1.25rem" }}>
         {q.question}
       </h3>
 
@@ -215,20 +215,20 @@ export default function StartupQuiz() {
               style={{
                 textAlign: "left",
                 padding: "0.875rem 1rem",
-                border: selected ? "1.5px solid #1B4332" : "1.5px solid #E0E0DC",
+                border: selected ? "1.5px solid #66BB3F" : "1.5px solid #E0E0DC",
                 borderRadius: "8px",
-                background: selected ? "#EDFAF2" : "#FFFFFF",
+                background: selected ? "#E9F6E4" : "#FFFFFF",
                 cursor: "pointer",
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: selected ? 600 : 400,
-                color: selected ? "#1B4332" : "#3D3D3D",
+                color: selected ? "#66BB3F" : "#3D3D3D",
                 transition: "all 0.2s ease",
               }}
               onMouseEnter={e => {
                 if (!selected) {
-                  (e.currentTarget as HTMLElement).style.borderColor = "#1B4332";
-                  (e.currentTarget as HTMLElement).style.background = "#FAFAF8";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#66BB3F";
+                  (e.currentTarget as HTMLElement).style.background = "#FAFAFA";
                 }
               }}
               onMouseLeave={e => {

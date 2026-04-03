@@ -10,7 +10,7 @@ const steps = [
     title: "Idea Validation",
     desc: "Market sizing, SWOT, and unit economics before a single rupee is spent. We stress-test the concept with investor-grade rigour.",
     duration: "Week 1–2",
-    color: "#1B4332",
+    color: "#66BB3F",
   },
   {
     icon: Rocket,
@@ -18,7 +18,7 @@ const steps = [
     title: "Foundation Build",
     desc: "Company incorporated, bank accounts open, IP registered, and accounting setup live — legally ready to operate.",
     duration: "Week 2–4",
-    color: "#2D6A4F",
+    color: "#56AD32",
   },
   {
     icon: BarChart3,
@@ -26,7 +26,7 @@ const steps = [
     title: "Growth Execution",
     desc: "Full-stack marketing, e-commerce, and retail distribution activated simultaneously for maximum early momentum.",
     duration: "Month 2–6",
-    color: "#40916C",
+    color: "#7BC95A",
   },
   {
     icon: Users,
@@ -34,7 +34,7 @@ const steps = [
     title: "Investor Readiness",
     desc: "Pitch deck, 5-year financial models, and direct warm introductions to our vetted angel and VC network.",
     duration: "Month 4–8",
-    color: "#1B4332",
+    color: "#66BB3F",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function ProcessSection() {
       <div className="container-custom">
         <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 4rem" }}>
           <span className="label-tag" style={{ marginBottom: "1rem" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
             Our Process
           </span>
           <h2 className="heading-lg" style={{ marginTop: "0.75rem" }}>
@@ -116,7 +116,7 @@ export default function ProcessSection() {
                     fontSize: "0.6875rem", fontWeight: 700,
                     letterSpacing: "0.1em", textTransform: "uppercase" as const,
                     color: step.color,
-                    background: "#EDFAF2",
+                    background: "#E9F6E4",
                     padding: "0.2rem 0.625rem", borderRadius: "99px"
                   }}>
                     {step.duration}
@@ -126,7 +126,7 @@ export default function ProcessSection() {
                 <h3 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "1.25rem", fontWeight: 700,
-                  color: "#111111",
+                  color: "#3d4246",
                 }}>
                   {step.title}
                 </h3>

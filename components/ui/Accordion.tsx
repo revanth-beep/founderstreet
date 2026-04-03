@@ -39,13 +39,13 @@ export default function Accordion({ items, className }: AccordionProps) {
               gap: "1rem",
               padding: "1.25rem 1.5rem",
               textAlign: "left",
-              background: open === i ? "#FAFAF8" : "#FFFFFF",
+              background: open === i ? "#FAFAFA" : "#FFFFFF",
               border: "none",
               cursor: "pointer",
               transition: "background 0.2s ease",
             }}
             onMouseEnter={e => {
-              if (open !== i) (e.currentTarget as HTMLElement).style.background = "#FAFAF8";
+              if (open !== i) (e.currentTarget as HTMLElement).style.background = "#FAFAFA";
             }}
             onMouseLeave={e => {
               if (open !== i) (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
@@ -55,7 +55,7 @@ export default function Accordion({ items, className }: AccordionProps) {
               fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: "0.9375rem",
-              color: open === i ? "#111111" : "#3D3D3D",
+              color: open === i ? "#3d4246" : "#3D3D3D",
               lineHeight: 1.5,
               transition: "color 0.2s ease",
             }}>
@@ -64,7 +64,7 @@ export default function Accordion({ items, className }: AccordionProps) {
             <span style={{
               flexShrink: 0,
               width: "24px", height: "24px",
-              background: open === i ? "#1B4332" : "#F0F0ED",
+              background: open === i ? "#66BB3F" : "#F0F0ED",
               borderRadius: "50%",
               display: "flex", alignItems: "center", justifyContent: "center",
               transition: "all 0.25s ease",
@@ -84,7 +84,7 @@ export default function Accordion({ items, className }: AccordionProps) {
             overflow: "hidden",
             transition: "max-height 0.35s ease, opacity 0.3s ease",
           }}>
-            <div style={{ padding: "0 1.5rem 1.375rem", background: "#FAFAF8" }}>
+            <div style={{ padding: "0 1.5rem 1.375rem", background: "#FAFAFA" }}>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",

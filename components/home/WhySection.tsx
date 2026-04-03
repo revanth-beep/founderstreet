@@ -63,7 +63,7 @@ export default function WhySection() {
           {/* Left */}
           <div>
             <span className="label-tag" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               Why Founderstreet
             </span>
             <h2 className="heading-lg" style={{ marginBottom: "1.25rem", marginTop: "0.5rem" }}>
@@ -78,7 +78,7 @@ export default function WhySection() {
 
             {/* Comparison table */}
             <div style={{
-              background: "#0d1f16",
+              background: "#3d4246",
               borderRadius: "10px",
               overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.06)"
@@ -94,7 +94,7 @@ export default function WhySection() {
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F87171", textAlign: "center" as const }}>
                   Traditional CA
                 </span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#74C69D", textAlign: "center" as const }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9FE670", textAlign: "center" as const }}>
                   Founderstreet
                 </span>
               </div>
@@ -114,7 +114,7 @@ export default function WhySection() {
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#F87171", textAlign: "center" as const, fontWeight: 500 }}>
                     {row.them}
                   </span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#74C69D", textAlign: "center" as const, fontWeight: 600 }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#9FE670", textAlign: "center" as const, fontWeight: 600 }}>
                     {row.us}
                   </span>
                 </div>
@@ -132,14 +132,14 @@ export default function WhySection() {
                   className="why-item"
                   style={{
                     padding: "1.625rem",
-                    background: "#FAFAF8",
+                    background: "#FAFAFA",
                     border: "1px solid #E0E0DC",
                     borderRadius: "10px",
                     transition: "box-shadow 0.3s ease, border-color 0.3s ease",
                   }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 30px rgba(0,0,0,0.08)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "#B7E4C7";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#CEEAB8";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.boxShadow = "none";
@@ -148,18 +148,18 @@ export default function WhySection() {
                 >
                   <div style={{
                     width: "40px", height: "40px",
-                    background: "#EDFAF2",
-                    border: "1px solid #D8F3DC",
+                    background: "#E9F6E4",
+                    border: "1px solid #DEF3D4",
                     borderRadius: "8px",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     marginBottom: "1rem"
                   }}>
-                    <Icon size={18} color="#1B4332" />
+                    <Icon size={18} color="#66BB3F" />
                   </div>
                   <h3 style={{
                     fontFamily: "'Playfair Display', Georgia, serif",
                     fontSize: "1rem", fontWeight: 700,
-                    color: "#111111", marginBottom: "0.5rem"
+                    color: "#3d4246", marginBottom: "0.5rem"
                   }}>
                     {r.title}
                   </h3>

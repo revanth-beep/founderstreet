@@ -25,8 +25,8 @@ function Cell({ value, highlight }: { value: CellValue; highlight?: boolean }) {
   if (value === true)
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: highlight ? "#D8F3DC" : "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Check size={13} color="#1B4332" />
+        <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: highlight ? "#DEF3D4" : "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Check size={13} color="#66BB3F" />
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ function Cell({ value, highlight }: { value: CellValue; highlight?: boolean }) {
       </div>
     );
   return (
-    <div style={{ textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: highlight ? 600 : 400, color: highlight ? "#111111" : "#5A5A5A" }}>
+    <div style={{ textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: highlight ? 600 : 400, color: highlight ? "#3d4246" : "#5A5A5A" }}>
       {value}
     </div>
   );
@@ -57,8 +57,8 @@ export default function ComparisonTable({ columns, rows, title, subtitle }: Comp
   return (
     <div style={{ overflow: "hidden", borderRadius: "10px", border: "1px solid #E0E0DC" }}>
       {(title || subtitle) && (
-        <div style={{ padding: "1.25rem 1.5rem", background: "#FAFAF8", borderBottom: "1px solid #E0E0DC" }}>
-          {title && <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#111111" }}>{title}</h3>}
+        <div style={{ padding: "1.25rem 1.5rem", background: "#FAFAFA", borderBottom: "1px solid #E0E0DC" }}>
+          {title && <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246" }}>{title}</h3>}
           {subtitle && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.25rem" }}>{subtitle}</p>}
         </div>
       )}
@@ -71,7 +71,7 @@ export default function ComparisonTable({ columns, rows, title, subtitle }: Comp
                 Feature
               </th>
               {columns.map((col) => (
-                <th key={col.key} style={{ padding: "1rem 1.25rem", textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 700, background: col.highlight ? "#1B4332" : "#FFFFFF", color: col.highlight ? "#FFFFFF" : "#3D3D3D" }}>
+                <th key={col.key} style={{ padding: "1rem 1.25rem", textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 700, background: col.highlight ? "#66BB3F" : "#FFFFFF", color: col.highlight ? "#FFFFFF" : "#3D3D3D" }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
                     {col.highlight && (
                       <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "2px 8px", borderRadius: "99px", fontWeight: 600 }}>
@@ -89,17 +89,17 @@ export default function ComparisonTable({ columns, rows, title, subtitle }: Comp
               <>
                 {row.category && (
                   <tr key={`cat-${rIdx}`}>
-                    <td colSpan={columns.length + 1} style={{ padding: "0.625rem 1.25rem", background: "#F7F7F5", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>
+                    <td colSpan={columns.length + 1} style={{ padding: "0.625rem 1.25rem", background: "#F7F7F5", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#66BB3F" }}>
                       {row.category}
                     </td>
                   </tr>
                 )}
-                <tr key={`row-${rIdx}`} style={{ borderBottom: rIdx < rows.length - 1 ? "1px solid #F0F0ED" : "none", background: rIdx % 2 === 0 ? "#FFFFFF" : "#FAFAF8" }}>
+                <tr key={`row-${rIdx}`} style={{ borderBottom: rIdx < rows.length - 1 ? "1px solid #F0F0ED" : "none", background: rIdx % 2 === 0 ? "#FFFFFF" : "#FAFAFA" }}>
                   <td style={{ padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 500, color: "#3D3D3D" }}>
                     {row.feature}
                   </td>
                   {row.values.map((val, vIdx) => (
-                    <td key={vIdx} style={{ padding: "1rem 1.25rem", background: columns[vIdx]?.highlight ? "rgba(27,67,50,0.03)" : "inherit" }}>
+                    <td key={vIdx} style={{ padding: "1rem 1.25rem", background: columns[vIdx]?.highlight ? "rgba(102,187,63,0.03)" : "inherit" }}>
                       <Cell value={val} highlight={columns[vIdx]?.highlight} />
                     </td>
                   ))}

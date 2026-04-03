@@ -27,20 +27,20 @@ function PartnerPill({ name, cat }: { name: string; cat: string }) {
     }}>
       <div style={{
         width: "28px", height: "28px",
-        background: "#EDFAF2", borderRadius: "6px",
+        background: "#E9F6E4", borderRadius: "6px",
         display: "flex", alignItems: "center", justifyContent: "center",
         flexShrink: 0
       }}>
         <span style={{
           fontFamily: "'Inter', sans-serif",
           fontWeight: 800, fontSize: "0.625rem",
-          color: "#1B4332"
+          color: "#66BB3F"
         }}>
           {name.charAt(0)}
         </span>
       </div>
       <div>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem", color: "#111111", whiteSpace: "nowrap" }}>{name}</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem", color: "#3d4246", whiteSpace: "nowrap" }}>{name}</p>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", color: "#A0A0A0", whiteSpace: "nowrap" }}>{cat}</p>
       </div>
     </div>

@@ -4,46 +4,46 @@
    THEME — Tailwind v4 CSS-first configuration
    ============================================================ */
 @theme {
-  /* Palette — LEK Forest Green */
-  --color-green-950: oklch(15% 0.05 152);
-  --color-green-900: oklch(26% 0.07 152);
-  --color-green-800: oklch(36% 0.09 152);
-  --color-green-700: oklch(48% 0.11 152);
-  --color-green-600: oklch(60% 0.12 152);
-  --color-green-500: oklch(72% 0.12 152);
-  --color-green-400: oklch(82% 0.1 152);
-  --color-green-300: oklch(88% 0.07 152);
-  --color-green-200: oklch(93% 0.05 152);
-  --color-green-100: oklch(97% 0.03 152);
-  --color-green-50:  oklch(99% 0.01 152);
+  /* Palette — Founder Street brand (lime green + slate grey) */
+  --color-green-950: #2d4a22;
+  --color-green-900: #3d5f2e;
+  --color-green-800: #4a7538;
+  --color-green-700: #56AD32;
+  --color-green-600: #66BB3F;
+  --color-green-500: #7BC95A;
+  --color-green-400: #9FE670;
+  --color-green-300: #B5E890;
+  --color-green-200: #CEEAB8;
+  --color-green-100: #E9F6E4;
+  --color-green-50:  #F4FBF1;
 
-  /* Exact hex values for key brand colors */
-  --color-primary:        #1B4332;
-  --color-primary-hover:  #2D6A4F;
-  --color-primary-light:  #40916C;
+  /* Brand primaries */
+  --color-primary:        #66BB3F;
+  --color-primary-hover:  #56AD32;
+  --color-primary-light:  #7BC95A;
 
-  /* Greys */
-  --color-grey-950: #0A0A0A;
-  --color-grey-900: #111111;
-  --color-grey-800: #1E1E1E;
-  --color-grey-700: #3D3D3D;
-  --color-grey-600: #5A5A5A;
+  /* Greys — anchored to brand ink #4A5056 */
+  --color-grey-950: #2F353A;
+  --color-grey-900: #3d4246;
+  --color-grey-800: #4A5056;
+  --color-grey-700: #5C6369;
+  --color-grey-600: #6B7280;
   --color-grey-500: #787878;
-  --color-grey-400: #A0A0A0;
+  --color-grey-400: #9CA3A8;
   --color-grey-300: #C4C4C4;
-  --color-grey-200: #E0E0DC;
-  --color-grey-100: #F0F0ED;
-  --color-grey-50:  #FAFAF8;
+  --color-grey-200: #E8E8E6;
+  --color-grey-100: #F2F2F0;
+  --color-grey-50:  #FAFAFA;
 
   /* Semantic — covers bg-*, text-*, border-* utilities */
   --color-border:           #E0E0DC;
-  --color-bg:               #FAFAF8;
-  --color-bg-dark:          #08160F;
+  --color-bg:               #FAFAFA;
+  --color-bg-dark:          #4A5056;
   --color-surface:          #FFFFFF;
   /* Aliases used in older page components */
-  --color-background:       #FAFAF8;
-  --color-background-dark:  #08160F;
-  --color-foreground:       #111111;
+  --color-background:       #FAFAFA;
+  --color-background-dark:  #4A5056;
+  --color-foreground:       #3d4246;
 
   /* Fonts — generates font-serif, font-sans, font-display, font-body utilities */
   --font-serif:   'Playfair Display', Georgia, serif;
@@ -57,8 +57,8 @@
   --shadow-medium:        0 4px 24px rgba(0,0,0,0.10), 0 1px 6px rgba(0,0,0,0.06);
   --shadow-large:         0 10px 50px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.08);
   --shadow-strong:        0 20px 50px -10px rgba(0,0,0,0.30), 0 8px 20px rgba(0,0,0,0.15);
-  --shadow-green-glow:    0 0 20px rgba(27,67,50,0.25), 0 4px 16px rgba(0,0,0,0.15);
-  --shadow-green-glow-lg: 0 0 40px rgba(27,67,50,0.40), 0 10px 40px rgba(0,0,0,0.25);
+  --shadow-green-glow:    0 0 20px rgba(102,187,63,0.35), 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-green-glow-lg: 0 0 40px rgba(102,187,63,0.45), 0 10px 40px rgba(0,0,0,0.18);
 
   /* Animations */
   --animate-marquee:         marquee 35s linear infinite;
@@ -95,8 +95,8 @@ html {
 }
 
 body {
-  background-color: #FAFAF8;
-  color: #111111;
+  background-color: #FAFAFA;
+  color: #3d4246;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
 }
@@ -107,19 +107,19 @@ h1, h2, h3, h4, h5, h6,
 }
 
 ::selection {
-  background: #B7E4C7;
-  color: #1B4332;
+  background: #CEEAB8;
+  color: #3d4246;
 }
 
 :focus-visible {
-  outline: 2px solid #40916C;
+  outline: 2px solid #66BB3F;
   outline-offset: 3px;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar        { width: 5px; }
-::-webkit-scrollbar-track  { background: #F0F0ED; }
-::-webkit-scrollbar-thumb  { background: #2D6A4F; border-radius: 99px; }
+::-webkit-scrollbar-track  { background: #F2F2F0; }
+::-webkit-scrollbar-thumb  { background: #66BB3F; border-radius: 99px; }
 
 img, video { max-width: 100%; display: block; }
 
@@ -191,12 +191,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Legacy helpers used in components */
-.heading-xl  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: #111111; }
-.heading-lg  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.5vw, 3rem); line-height: 1.15; font-weight: 700; letter-spacing: -0.015em; color: #111111; }
-.heading-md  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: #111111; }
-.heading-sm  { font-family: 'Inter', sans-serif; font-size: clamp(1.125rem, 1.5vw, 1.375rem); line-height: 1.35; font-weight: 600; color: #111111; }
-.body-lg     { font-family: 'Inter', sans-serif; font-size: 1.0625rem; line-height: 1.75; color: #3D3D3D; }
-.body-md     { font-family: 'Inter', sans-serif; font-size: 0.9375rem; line-height: 1.7; color: #5A5A5A; }
+.heading-xl  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: #3d4246; }
+.heading-lg  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.5vw, 3rem); line-height: 1.15; font-weight: 700; letter-spacing: -0.015em; color: #3d4246; }
+.heading-md  { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: #3d4246; }
+.heading-sm  { font-family: 'Inter', sans-serif; font-size: clamp(1.125rem, 1.5vw, 1.375rem); line-height: 1.35; font-weight: 600; color: #4A5056; }
+.body-lg     { font-family: 'Inter', sans-serif; font-size: 1.0625rem; line-height: 1.75; color: #5C6369; }
+.body-md     { font-family: 'Inter', sans-serif; font-size: 0.9375rem; line-height: 1.7; color: #6B7280; }
 
 /* ============================================================
    COMPONENT PRIMITIVES
@@ -209,8 +209,8 @@ a { text-decoration: none; color: inherit; }
   gap: 0.5rem;
   padding: 0.3rem 0.875rem;
   border-radius: 999px;
-  background: #EDFAF2;
-  color: #1B4332;
+  background: #E9F6E4;
+  color: #3d5f2e;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -224,8 +224,8 @@ a { text-decoration: none; color: inherit; }
   gap: 0.5rem;
   padding: 0.3rem 0.875rem;
   border-radius: 999px;
-  background: rgba(64,145,108,0.2);
-  color: #95D5B2;
+  background: rgba(102,187,63,0.22);
+  color: #CEEAB8;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -240,8 +240,8 @@ a { text-decoration: none; color: inherit; }
   gap: 0.5rem;
   padding: 0.3rem 0.875rem;
   border-radius: 999px;
-  background: #EDFAF2;
-  color: #1B4332;
+  background: #E9F6E4;
+  color: #3d5f2e;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -267,7 +267,7 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8125rem 1.75rem;
-  background: #1B4332;
+  background: #66BB3F;
   color: #fff;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
@@ -281,8 +281,8 @@ a { text-decoration: none; color: inherit; }
   white-space: nowrap;
 }
 .btn-primary:hover {
-  background: #2D6A4F;
-  box-shadow: 0 6px 28px rgba(27,67,50,0.28);
+  background: #56AD32;
+  box-shadow: 0 6px 28px rgba(102,187,63,0.35);
   transform: translateY(-2px);
 }
 .btn-primary:active { transform: translateY(0); }
@@ -294,11 +294,11 @@ a { text-decoration: none; color: inherit; }
   gap: 0.5rem;
   padding: 0.8125rem 1.75rem;
   background: transparent;
-  color: #1B4332;
+  color: #66BB3F;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  border: 1.5px solid #1B4332;
+  border: 1.5px solid #66BB3F;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
@@ -306,7 +306,7 @@ a { text-decoration: none; color: inherit; }
   white-space: nowrap;
 }
 .btn-secondary:hover {
-  background: #1B4332;
+  background: #66BB3F;
   color: #fff;
 }
 
@@ -327,7 +327,7 @@ a { text-decoration: none; color: inherit; }
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.btn-ghost:hover { color: #1B4332; }
+.btn-ghost:hover { color: #66BB3F; }
 
 .btn-white {
   display: inline-flex;
@@ -336,7 +336,7 @@ a { text-decoration: none; color: inherit; }
   gap: 0.5rem;
   padding: 0.8125rem 1.75rem;
   background: #fff;
-  color: #1B4332;
+  color: #3d5f2e;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 700;
@@ -348,7 +348,7 @@ a { text-decoration: none; color: inherit; }
   white-space: nowrap;
 }
 .btn-white:hover {
-  background: #EDFAF2;
+  background: #E9F6E4;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
@@ -369,14 +369,14 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Gradient text ─────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #1B4332 0%, #40916C 100%);
+  background: linear-gradient(135deg, #56AD32 0%, #66BB3F 55%, #7BC95A 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-light {
-  background: linear-gradient(135deg, #74C69D 0%, #B7E4C7 100%);
+  background: linear-gradient(135deg, #9FE670 0%, #CEEAB8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -388,7 +388,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ── Dot pattern background ────────────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(64,145,108,0.18) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(102,187,63,0.22) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 .dot-grid-dark {

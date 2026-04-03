@@ -25,7 +25,7 @@ export default function ServiceHero({
   return (
     <section style={{
       position: "relative",
-      background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)",
+      background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
       paddingTop: "8rem",
       paddingBottom: "5rem",
       overflow: "hidden",
@@ -35,13 +35,13 @@ export default function ServiceHero({
         <div style={{
           position: "absolute", width: "50vw", height: "50vw",
           top: "-10%", left: "-5%",
-          background: "radial-gradient(circle, rgba(27,67,50,0.55) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(102,187,63,0.55) 0%, transparent 70%)",
           borderRadius: "50%", filter: "blur(50px)",
         }} />
         <div style={{
           position: "absolute", width: "30vw", height: "30vw",
           bottom: "-10%", right: "5%",
-          background: "radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(123,201,90,0.2) 0%, transparent 70%)",
           borderRadius: "50%", filter: "blur(40px)",
         }} />
         {/* Dot grid */}
@@ -53,7 +53,7 @@ export default function ServiceHero({
         {/* Bottom border */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.35), transparent)",
         }} />
       </div>
 
@@ -63,19 +63,19 @@ export default function ServiceHero({
           <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.75rem" }}>
             <div style={{
               width: "44px", height: "44px",
-              background: "rgba(64,145,108,0.2)",
-              border: "1px solid rgba(64,145,108,0.3)",
+              background: "rgba(123,201,90,0.2)",
+              border: "1px solid rgba(123,201,90,0.3)",
               borderRadius: "10px",
               display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0,
             }}>
-              <Icon size={20} color="#74C69D" />
+              <Icon size={20} color="#9FE670" />
             </div>
             <span style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.6875rem", fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase" as const,
-              color: "#74C69D",
+              color: "#9FE670",
             }}>
               {label}
             </span>
@@ -95,7 +95,7 @@ export default function ServiceHero({
             {titleHighlight && (
               <span style={{
                 fontStyle: "italic",
-                background: "linear-gradient(135deg, #74C69D 0%, #B7E4C7 100%)",
+                background: "linear-gradient(135deg, #9FE670 0%, #CEEAB8 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

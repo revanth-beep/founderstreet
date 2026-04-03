@@ -29,7 +29,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "6px",
   fontFamily: "'Inter', sans-serif",
   fontSize: "0.875rem",
-  color: "#111111",
+  color: "#3d4246",
   background: "#FFFFFF",
   outline: "none",
   transition: "border-color 0.2s ease",
@@ -63,8 +63,8 @@ export default function ContactForm() {
   }
 
   const focusIn = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    (e.target as HTMLElement).style.borderColor = "#1B4332";
-    (e.target as HTMLElement).style.boxShadow = "0 0 0 3px rgba(27,67,50,0.08)";
+    (e.target as HTMLElement).style.borderColor = "#66BB3F";
+    (e.target as HTMLElement).style.boxShadow = "0 0 0 3px rgba(102,187,63,0.08)";
   };
   const focusOut = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     (e.target as HTMLElement).style.borderColor = "#E0E0DC";
@@ -73,11 +73,11 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div style={{ background: "#EDFAF2", border: "1px solid #D8F3DC", borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
-        <div style={{ width: "56px", height: "56px", background: "#D8F3DC", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-          <CheckCircle2 size={28} color="#1B4332" />
+      <div style={{ background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
+        <div style={{ width: "56px", height: "56px", background: "#DEF3D4", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+          <CheckCircle2 size={28} color="#66BB3F" />
         </div>
-        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.5rem" }}>
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.5rem" }}>
           We&apos;ve received your message!
         </h3>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A" }}>

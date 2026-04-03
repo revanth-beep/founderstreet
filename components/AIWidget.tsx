@@ -27,18 +27,18 @@ const WELCOME_MESSAGE: Message = {
 };
 
 const c = {
-  ink: "#111111",
+  ink: "#3d4246",
   muted: "#5A5A5A",
   subtle: "#787878",
   border: "#E0E0DC",
   panel: "#F0F0ED",
   white: "#FFFFFF",
-  green: "#1B4332",
-  greenHover: "#2D6A4F",
-  greenSoft: "#EDFAF2",
-  headerBg: "#0A0A0A",
+  green: "#66BB3F",
+  greenHover: "#56AD32",
+  greenSoft: "#E9F6E4",
+  headerBg: "#4A5056",
   headerMuted: "#A0A0A0",
-  online: "#74C69D",
+  online: "#9FE670",
 };
 
 export default function AIWidget() {
@@ -509,7 +509,7 @@ export default function AIWidget() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 0 40px rgba(27,67,50,0.40), 0 10px 40px rgba(0,0,0,0.25)",
+            boxShadow: "0 0 40px rgba(102,187,63,0.40), 0 10px 40px rgba(0,0,0,0.25)",
             transition: "transform 0.2s ease, background 0.2s ease",
           }}
           aria-label="Open Founder AI chat"

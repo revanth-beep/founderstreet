@@ -40,14 +40,14 @@ const colLink: React.CSSProperties = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#080f0a", color: "#FFFFFF" }}>
+    <footer style={{ background: "#4A5056", color: "#FFFFFF" }}>
       <div className="container-custom" style={{ paddingTop: "4.5rem", paddingBottom: "3rem" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem 2rem" }} className="footer-grid">
 
           {/* Brand */}
           <div>
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "1.25rem" }}>
-              <div style={{ width: "32px", height: "32px", background: "#1B4332", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "32px", height: "32px", background: "#66BB3F", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
               </div>
               <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
@@ -79,8 +79,8 @@ export default function Footer() {
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(27,67,50,0.6)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(64,145,108,0.3)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(102,187,63,0.6)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(123,201,90,0.3)";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";

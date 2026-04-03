@@ -56,7 +56,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAF8", color: "#111111" }}>
+      <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAFA", color: "#3d4246" }}>
         <Navbar />
         <main>{children}</main>
         <Footer />

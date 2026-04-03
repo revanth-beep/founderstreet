@@ -5,47 +5,81 @@ import { ArrowRight, CalendarCheck } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="section-padding bg-primary relative overflow-hidden">
-      {/* Background decoration */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-green-800/30 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-700/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl" />
+    <section
+      style={{ background: "linear-gradient(135deg, #1B4332 0%, #0d2b1c 100%)", position: "relative", overflow: "hidden" }}
+      className="section-padding"
+    >
+      {/* Background pattern */}
+      <div className="dot-grid-dark" style={{ position: "absolute", inset: 0, opacity: 0.5 }} />
+      {/* Ambient glow */}
+      <div style={{
+        position: "absolute", top: "-30%", right: "-10%",
+        width: "60vw", height: "60vw",
+        background: "radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 70%)",
+        borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none"
+      }} />
+      <div style={{
+        position: "absolute", bottom: "-30%", left: "-10%",
+        width: "40vw", height: "40vw",
+        background: "radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%)",
+        borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none"
+      }} />
 
-      <div className="container-custom relative z-10">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+      <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
+          <h2 style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
+            fontWeight: 800, lineHeight: 1.1,
+            color: "#FFFFFF", marginBottom: "1.25rem",
+            letterSpacing: "-0.02em"
+          }}>
             Ready to Build Something{" "}
-            <span className="italic text-green-300">Extraordinary?</span>
+            <span style={{ fontStyle: "italic", color: "#95D5B2" }}>Extraordinary?</span>
           </h2>
-          <p className="text-white/75 text-lg leading-relaxed mb-10">
-            Schedule a free 30-minute strategy call. We&apos;ll review your idea, identify
-            your biggest execution gaps, and show you exactly how we can help.
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.0625rem", lineHeight: 1.7,
+            color: "rgba(255,255,255,0.65)",
+            marginBottom: "2.5rem", maxWidth: "520px", margin: "0 auto 2.5rem"
+          }}>
+            Book a free 30-minute strategy call. We&apos;ll review your idea, identify your
+            biggest execution gaps, and show you exactly how we can help.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-primary font-bold text-sm rounded-sm hover:bg-green-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-            >
-              <CalendarCheck className="w-4 h-4" />
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", justifyContent: "center" }}>
+            <Link href="/contact" className="btn-white">
+              <CalendarCheck size={16} />
               Book a Free Strategy Call
             </Link>
             <Link
               href="/startup-health-check"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-transparent border border-white/40 text-white font-semibold text-sm rounded-sm hover:border-white hover:bg-white/10 transition-all duration-300"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                padding: "0.8125rem 1.75rem",
+                background: "rgba(255,255,255,0.08)",
+                border: "1.5px solid rgba(255,255,255,0.2)",
+                borderRadius: "4px",
+                color: "rgba(255,255,255,0.9)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem", fontWeight: 600,
+                textDecoration: "none",
+                transition: "all 0.25s ease",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
             >
               Take the Health Check
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight size={15} />
             </Link>
           </div>
 
-          <p className="mt-6 text-white/50 text-sm">
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.8125rem",
+            color: "rgba(255,255,255,0.35)",
+            marginTop: "1.5rem"
+          }}>
             No commitment required · Response within 24 hours
           </p>
         </div>

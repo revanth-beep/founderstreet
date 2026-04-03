@@ -22,6 +22,30 @@ const stages = [
   "Scaling",
 ];
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "0.75rem 1rem",
+  border: "1.5px solid #E0E0DC",
+  borderRadius: "6px",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.875rem",
+  color: "#111111",
+  background: "#FFFFFF",
+  outline: "none",
+  transition: "border-color 0.2s ease",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.6875rem",
+  fontWeight: 700,
+  letterSpacing: "0.1em",
+  textTransform: "uppercase",
+  color: "#787878",
+  marginBottom: "0.5rem",
+};
+
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -29,10 +53,8 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
-
     try {
-      await new Promise((r) => setTimeout(r, 1000)); // Simulate API call
+      await new Promise((r) => setTimeout(r, 900));
       setStatus("success");
       form.reset();
     } catch {
@@ -40,124 +62,81 @@ export default function ContactForm() {
     }
   }
 
+  const focusIn = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    (e.target as HTMLElement).style.borderColor = "#1B4332";
+    (e.target as HTMLElement).style.boxShadow = "0 0 0 3px rgba(27,67,50,0.08)";
+  };
+  const focusOut = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    (e.target as HTMLElement).style.borderColor = "#E0E0DC";
+    (e.target as HTMLElement).style.boxShadow = "none";
+  };
+
   if (status === "success") {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-sm p-8 text-center">
-        <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle2 className="w-7 h-7 text-primary" />
+      <div style={{ background: "#EDFAF2", border: "1px solid #D8F3DC", borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
+        <div style={{ width: "56px", height: "56px", background: "#D8F3DC", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+          <CheckCircle2 size={28} color="#1B4332" />
         </div>
-        <h3 className="font-serif text-xl font-bold text-grey-900 mb-2">
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.5rem" }}>
           We&apos;ve received your message!
         </h3>
-        <p className="text-grey-600 text-sm leading-relaxed">
-          A senior team member will reach out within 24 hours. In the meantime, take our
-          free Startup Health Check for instant insights.
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A" }}>
+          A senior team member will reach out within 24 hours. In the meantime, take our free Startup Health Check for instant insights.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid sm:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.125rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
         <div>
-          <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-            First Name *
-          </label>
-          <input
-            type="text"
-            name="firstName"
-            required
-            placeholder="Rahul"
-            className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white"
-          />
+          <label style={labelStyle}>First Name *</label>
+          <input type="text" name="firstName" required placeholder="Rahul" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-            Last Name *
-          </label>
-          <input
-            type="text"
-            name="lastName"
-            required
-            placeholder="Sharma"
-            className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white"
-          />
+          <label style={labelStyle}>Last Name *</label>
+          <input type="text" name="lastName" required placeholder="Sharma" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-          Email Address *
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="rahul@startup.in"
-          className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white"
-        />
+        <label style={labelStyle}>Email Address *</label>
+        <input type="email" name="email" required placeholder="rahul@startup.in" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-          Phone Number
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          placeholder="+91 98765 43210"
-          className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white"
-        />
+        <label style={labelStyle}>Phone Number</label>
+        <input type="tel" name="phone" placeholder="+91 98765 43210" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-          Service You Need *
-        </label>
-        <select
-          name="service"
-          required
-          className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white text-grey-700 appearance-none"
-        >
-          <option value="">Select a service...</option>
-          {services.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
+        <label style={labelStyle}>Service You Need *</label>
+        <select name="service" required style={{ ...inputStyle, appearance: "none", cursor: "pointer" }} onFocus={focusIn} onBlur={focusOut}>
+          <option value="">Select a service…</option>
+          {services.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-          Startup Stage *
-        </label>
-        <select
-          name="stage"
-          required
-          className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white text-grey-700 appearance-none"
-        >
+        <label style={labelStyle}>Startup Stage *</label>
+        <select name="stage" required style={{ ...inputStyle, appearance: "none", cursor: "pointer" }} onFocus={focusIn} onBlur={focusOut}>
           <option value="">Where are you right now?</option>
-          {stages.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
+          {stages.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold text-grey-600 uppercase tracking-wider mb-1.5">
-          Tell Us About Your Startup *
-        </label>
-        <textarea
-          name="message"
-          required
-          rows={4}
-          placeholder="Brief description of your idea, current challenges, and what you're looking for..."
-          className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors bg-white resize-none"
+        <label style={labelStyle}>Tell Us About Your Startup *</label>
+        <textarea name="message" required rows={4} placeholder="Brief description of your idea, current challenges, and what you're looking for…"
+          style={{ ...inputStyle, resize: "none" as const }}
+          onFocus={focusIn as unknown as React.FocusEventHandler<HTMLTextAreaElement>}
+          onBlur={focusOut as unknown as React.FocusEventHandler<HTMLTextAreaElement>}
         />
       </div>
 
       {status === "error" && (
-        <p className="text-red-600 text-sm">
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#DC2626" }}>
           Something went wrong. Please email us directly at hello@founderstreet.in.
         </p>
       )}
@@ -165,19 +144,16 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary w-full justify-center py-3.5"
+        className="btn-primary"
+        style={{ width: "100%", justifyContent: "center", padding: "0.9375rem", fontSize: "0.9375rem", marginTop: "0.25rem" }}
       >
-        {status === "loading" ? (
-          <Loader2 className="w-4 h-4 animate-spin" />
-        ) : (
-          <>
-            Send My Enquiry
-            <ArrowRight className="w-4 h-4" />
-          </>
-        )}
+        {status === "loading"
+          ? <><Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} /> Sending…</>
+          : <>Send My Enquiry <ArrowRight size={16} /></>
+        }
       </button>
 
-      <p className="text-grey-400 text-xs text-center">
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center" }}>
         By submitting, you agree to our Privacy Policy. We never share your data.
       </p>
     </form>

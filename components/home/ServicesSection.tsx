@@ -3,105 +3,75 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import {
-  FlaskConical,
-  Building2,
-  Calculator,
-  Megaphone,
-  Code2,
-  TrendingUp,
-  ArrowRight,
+  FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, ArrowRight
 } from "lucide-react";
 
 const services = [
   {
-    number: "01",
-    icon: FlaskConical,
+    n: "01", icon: FlaskConical,
+    tag: "Validation",
     name: "Test Your Idea",
-    tagline: "Validation & Strategy",
-    desc: "Stress-test your concept before capital is deployed. Market sizing, SWOT analysis, and unit economics modelling.",
+    desc: "Stress-test the concept before capital is deployed. Market sizing, SWOT, and unit economics built from first principles.",
     href: "/services/validation",
-    color: "from-green-900 to-green-800",
-    accent: "bg-green-700",
+    accent: "#1B4332",
   },
   {
-    number: "02",
-    icon: Building2,
-    name: "Incorporation & Compliance",
-    tagline: "Company Formation",
-    desc: "End-to-end entity registration. DIN, DSC, MOA, AOA filings and IP protection handled in under 10 days.",
+    n: "02", icon: Building2,
+    tag: "Legal & Compliance",
+    name: "Incorporation",
+    desc: "End-to-end company registration in under 10 days. DIN, DSC, MOA, AOA, trademark — completely handled.",
     href: "/services/incorporation",
-    color: "from-grey-900 to-grey-800",
-    accent: "bg-grey-700",
+    accent: "#1B4332",
   },
   {
-    number: "03",
-    icon: Calculator,
-    name: "Accounting & Taxation",
-    tagline: "Virtual CFO",
-    desc: "Institutional-grade financial plumbing. Bookkeeping, payroll, GST compliance, and strategic runway management.",
+    n: "03", icon: Calculator,
+    tag: "Finance",
+    name: "Virtual CFO",
+    desc: "Institutional-grade bookkeeping, GST compliance, payroll, and strategic financial forecasting.",
     href: "/services/accounting",
-    color: "from-green-900 to-green-800",
-    accent: "bg-green-700",
+    accent: "#1B4332",
   },
   {
-    number: "04",
-    icon: Megaphone,
+    n: "04", icon: Megaphone,
+    tag: "Growth",
     name: "Marketing & Retail",
-    tagline: "Full-Funnel Growth",
-    desc: "SEO, Google Ads, Meta Ads, OOH billboards, mall kiosks, and retail distribution through our stockist network.",
+    desc: "Full-funnel performance marketing. SEO, Google Ads, Meta Ads, OOH billboards, and retail distribution.",
     href: "/services/marketing",
-    color: "from-grey-900 to-grey-800",
-    accent: "bg-grey-700",
+    accent: "#1B4332",
   },
   {
-    number: "05",
-    icon: Code2,
-    name: "Web & Tech Development",
-    tagline: "Digital Storefronts",
-    desc: "Shopify builds, custom web apps, and SaaS platforms designed for high conversion and rapid scale.",
+    n: "05", icon: Code2,
+    tag: "Technology",
+    name: "Web & App Dev",
+    desc: "Shopify stores, custom SaaS platforms, and mobile apps engineered for conversion and scale.",
     href: "/services/web-development",
-    color: "from-green-900 to-green-800",
-    accent: "bg-green-700",
+    accent: "#1B4332",
   },
   {
-    number: "06",
-    icon: TrendingUp,
+    n: "06", icon: TrendingUp,
+    tag: "Fundraising",
     name: "Investor Funding",
-    tagline: "Pitch & Matchmaking",
-    desc: "12-slide master decks, 5-year financial models, and direct introductions to angels, VCs, and accelerators.",
+    desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 200+ vetted angels and VCs.",
     href: "/services/funding",
-    color: "from-grey-900 to-grey-800",
-    accent: "bg-grey-700",
+    accent: "#1B4332",
   },
 ];
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const init = async () => {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      const cards = sectionRef.current?.querySelectorAll(".service-card");
-      if (!cards) return;
-
-      cards.forEach((card, i) => {
-        gsap.fromTo(
-          card,
+      const cards = sectionRef.current?.querySelectorAll(".svc-card");
+      cards?.forEach((card, i) => {
+        gsap.fromTo(card,
           { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: "power3.out",
-            delay: (i % 3) * 0.1,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              once: true,
-            },
+          { y: 0, opacity: 1, duration: 0.65, ease: "power3.out",
+            delay: (i % 3) * 0.08,
+            scrollTrigger: { trigger: card, start: "top 88%", once: true }
           }
         );
       });
@@ -110,83 +80,177 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-padding bg-background">
+    <section ref={sectionRef} id="services" className="section-padding" style={{ background: "#FAFAF8" }}>
       <div className="container-custom">
+
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-          <div className="max-w-2xl">
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-              What We Do
-            </span>
-            <h2 className="heading-lg mt-3">
-              Six Pillars of{" "}
-              <span className="gradient-text">Startup Infrastructure</span>
-            </h2>
-          </div>
-          <p className="text-grey-600 text-base max-w-sm leading-relaxed">
-            Every service is designed to remove execution bottlenecks so you can move
-            faster, raise smarter, and scale further.
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "3.5rem" }}>
+          <span className="label-tag" style={{ alignSelf: "flex-start" }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
+            What We Do
+          </span>
+          <h2 className="heading-lg" style={{ maxWidth: "600px" }}>
+            Six Pillars of{" "}
+            <span className="gradient-text">Startup Infrastructure</span>
+          </h2>
+          <p className="body-lg" style={{ maxWidth: "460px" }}>
+            Every service eliminates an execution bottleneck so you move faster, raise smarter, and scale further.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border rounded-sm overflow-hidden">
-          {services.map((service, idx) => {
-            const Icon = service.icon;
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(1, 1fr)",
+          gap: "1px",
+          background: "#E0E0DC",
+          border: "1px solid #E0E0DC",
+          borderRadius: "12px",
+          overflow: "hidden",
+        }} className="svc-grid">
+          {services.map((svc) => {
+            const Icon = svc.icon;
             return (
               <Link
-                key={service.href}
-                href={service.href}
-                className={`service-card relative group p-8 lg:p-10 bg-white hover:bg-grey-950 transition-all duration-500 border-r border-b border-border last:border-r-0 ${
-                  idx % 3 === 2 ? "border-r-0" : ""
-                } ${idx >= 3 ? "border-b-0" : ""}`}
+                key={svc.href}
+                href={svc.href}
+                className="svc-card"
+                style={{
+                  display: "block",
+                  background: "#FFFFFF",
+                  padding: "2.25rem 2rem",
+                  position: "relative",
+                  textDecoration: "none",
+                  transition: "background 0.35s ease",
+                  overflow: "hidden",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#0d2b1c";
+                  const num = el.querySelector(".svc-num") as HTMLElement;
+                  const tag = el.querySelector(".svc-tag") as HTMLElement;
+                  const name = el.querySelector(".svc-name") as HTMLElement;
+                  const desc = el.querySelector(".svc-desc") as HTMLElement;
+                  const arrow = el.querySelector(".svc-arrow") as HTMLElement;
+                  const iconWrap = el.querySelector(".svc-icon") as HTMLElement;
+                  if (num) num.style.color = "rgba(255,255,255,0.07)";
+                  if (tag) { tag.style.color = "#74C69D"; tag.style.background = "rgba(64,145,108,0.15)"; }
+                  if (name) name.style.color = "#FFFFFF";
+                  if (desc) desc.style.color = "rgba(255,255,255,0.55)";
+                  if (arrow) { arrow.style.color = "#74C69D"; arrow.style.transform = "translateX(5px)"; }
+                  if (iconWrap) { iconWrap.style.background = "rgba(64,145,108,0.2)"; iconWrap.style.borderColor = "rgba(64,145,108,0.3)"; }
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#FFFFFF";
+                  const num = el.querySelector(".svc-num") as HTMLElement;
+                  const tag = el.querySelector(".svc-tag") as HTMLElement;
+                  const name = el.querySelector(".svc-name") as HTMLElement;
+                  const desc = el.querySelector(".svc-desc") as HTMLElement;
+                  const arrow = el.querySelector(".svc-arrow") as HTMLElement;
+                  const iconWrap = el.querySelector(".svc-icon") as HTMLElement;
+                  if (num) num.style.color = "#F0F0ED";
+                  if (tag) { tag.style.color = "#1B4332"; tag.style.background = "#EDFAF2"; }
+                  if (name) name.style.color = "#111111";
+                  if (desc) desc.style.color = "#5A5A5A";
+                  if (arrow) { arrow.style.color = "#1B4332"; arrow.style.transform = "translateX(0)"; }
+                  if (iconWrap) { iconWrap.style.background = "#F0F0ED"; iconWrap.style.borderColor = "#E0E0DC"; }
+                }}
               >
-                {/* Number */}
-                <span className="absolute top-6 right-8 font-serif text-5xl font-bold text-grey-100 group-hover:text-grey-800 transition-colors duration-500 select-none leading-none">
-                  {service.number}
+                {/* Big number */}
+                <span className="svc-num" style={{
+                  position: "absolute", top: "1.25rem", right: "1.5rem",
+                  fontFamily: "'Playfair Display', serif", fontSize: "4.5rem",
+                  fontWeight: 800, color: "#F0F0ED",
+                  lineHeight: 1, userSelect: "none",
+                  transition: "color 0.35s ease"
+                }}>
+                  {svc.n}
                 </span>
 
                 {/* Icon */}
-                <div className="relative z-10 w-12 h-12 bg-green-100 group-hover:bg-primary rounded-sm flex items-center justify-center mb-6 transition-colors duration-500">
-                  <Icon className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-500" />
+                <div className="svc-icon" style={{
+                  width: "44px", height: "44px",
+                  background: "#F0F0ED",
+                  border: "1px solid #E0E0DC",
+                  borderRadius: "8px",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  marginBottom: "1.25rem",
+                  transition: "background 0.35s ease, border-color 0.35s ease",
+                }}>
+                  <Icon size={20} color="#1B4332" />
                 </div>
 
-                {/* Content */}
-                <div className="relative z-10">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-green-700 group-hover:text-green-400 mb-2 transition-colors duration-500">
-                    {service.tagline}
-                  </p>
-                  <h3 className="font-serif text-xl font-bold text-grey-900 group-hover:text-white mb-3 transition-colors duration-500">
-                    {service.name}
-                  </h3>
-                  <p className="text-grey-600 group-hover:text-grey-400 text-sm leading-relaxed transition-colors duration-500">
-                    {service.desc}
-                  </p>
-                </div>
+                {/* Tag */}
+                <span className="svc-tag" style={{
+                  display: "inline-block",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.6875rem", fontWeight: 700,
+                  letterSpacing: "0.1em", textTransform: "uppercase",
+                  color: "#1B4332", background: "#EDFAF2",
+                  padding: "0.2rem 0.625rem", borderRadius: "99px",
+                  marginBottom: "0.625rem",
+                  transition: "color 0.35s ease, background 0.35s ease",
+                }}>
+                  {svc.tag}
+                </span>
+
+                {/* Name */}
+                <h3 className="svc-name" style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "1.25rem", fontWeight: 700,
+                  color: "#111111",
+                  marginBottom: "0.625rem",
+                  transition: "color 0.35s ease",
+                }}>
+                  {svc.name}
+                </h3>
+
+                {/* Desc */}
+                <p className="svc-desc" style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.875rem", lineHeight: 1.65,
+                  color: "#5A5A5A",
+                  transition: "color 0.35s ease",
+                  marginBottom: "1.5rem",
+                }}>
+                  {svc.desc}
+                </p>
 
                 {/* Arrow */}
-                <div className="relative z-10 mt-8 flex items-center gap-2 text-primary group-hover:text-green-400 text-sm font-semibold transition-colors duration-500">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-                </div>
+                <span className="svc-arrow" style={{
+                  display: "inline-flex", alignItems: "center", gap: "0.375rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.8125rem", fontWeight: 600,
+                  color: "#1B4332",
+                  transition: "color 0.35s ease, transform 0.3s ease",
+                }}>
+                  Learn more <ArrowRight size={14} />
+                </span>
               </Link>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <p className="text-grey-600 text-sm">Not sure where to start?</p>
-          <Link
-            href="/startup-health-check"
-            className="btn-secondary text-sm"
-          >
+        {/* Bottom strip */}
+        <div style={{
+          display: "flex", flexDirection: "column", alignItems: "center",
+          gap: "0.75rem", marginTop: "3rem"
+        }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A" }}>
+            Not sure where to start?
+          </p>
+          <Link href="/startup-health-check" className="btn-secondary" style={{ fontSize: "0.875rem" }}>
             Take the 5-minute Health Check
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight size={15} />
           </Link>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 640px)  { .svc-grid { grid-template-columns: repeat(2,1fr) !important; } }
+        @media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(3,1fr) !important; } }
+      `}</style>
     </section>
   );
 }

@@ -6,24 +6,32 @@ import { ShieldCheck, Zap, Users2, Target } from "lucide-react";
 const reasons = [
   {
     icon: ShieldCheck,
-    title: "Compliance-First Architecture",
+    title: "Compliance-First",
     desc: "Every structure we build passes due diligence. Our playbooks are designed for investors, not just regulators.",
   },
   {
     icon: Zap,
-    title: "Speed Without Compromise",
-    desc: "Incorporation in 10 days. MVP in 4 weeks. Pitch deck in 5 days. We move at startup velocity with enterprise rigour.",
+    title: "Startup Velocity",
+    desc: "Incorporation in 10 days. MVP in 4 weeks. Pitch deck in 5 days. We move fast without sacrificing rigour.",
   },
   {
     icon: Users2,
     title: "Embedded, Not Outsourced",
-    desc: "We integrate directly with your founding team—Slack, Notion, weekly calls. You get a co-founder, not a vendor.",
+    desc: "We integrate directly with your team — Slack, Notion, weekly calls. You get a co-founder, not a vendor.",
   },
   {
     icon: Target,
-    title: "Outcome-Aligned Pricing",
-    desc: "No retainers for mediocrity. Our model is built on milestone delivery so our incentives are always aligned with yours.",
+    title: "Outcome-Aligned",
+    desc: "No retainers for mediocrity. Our model is built on milestone delivery — our incentives align with yours.",
   },
+];
+
+const comparison = [
+  { label: "Incorporation speed", them: "4–6 weeks", us: "< 10 days" },
+  { label: "Financial reporting", them: "Quarterly PDFs", us: "Live dashboards" },
+  { label: "Investor intro access", them: "None", us: "200+ vetted contacts" },
+  { label: "Pitch deck quality", them: "Template-based", us: "Bespoke narrative" },
+  { label: "Pricing model", them: "Monthly retainer", us: "Milestone-based" },
 ];
 
 export default function WhySection() {
@@ -34,22 +42,12 @@ export default function WhySection() {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
       const items = sectionRef.current?.querySelectorAll(".why-item");
       items?.forEach((item, i) => {
-        gsap.fromTo(
-          item,
-          { x: i % 2 === 0 ? -30 : 30, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.7,
-            delay: i * 0.1,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              once: true,
-            },
+        gsap.fromTo(item,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, delay: i * 0.1,
+            scrollTrigger: { trigger: sectionRef.current, start: "top 70%", once: true }
           }
         );
       });
@@ -58,79 +56,132 @@ export default function WhySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding bg-white">
+    <section ref={sectionRef} className="section-padding" style={{ background: "#FFFFFF" }}>
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left: content */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", alignItems: "center" }} className="why-grid">
+
+          {/* Left */}
           <div>
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+            <span className="label-tag" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#1B4332", display: "inline-block" }} />
               Why Founderstreet
             </span>
-            <h2 className="heading-lg mt-3 mb-5">
+            <h2 className="heading-lg" style={{ marginBottom: "1.25rem", marginTop: "0.5rem" }}>
               The Infrastructure Layer{" "}
               <span className="gradient-text">Investors Expect</span>
             </h2>
-            <p className="body-lg mb-8">
-              Most early-stage startups fail not because of bad ideas—but because of
-              bad execution. We remove every operational, legal, and financial blocker
-              that slows founders down before they can prove their concept.
+            <p className="body-lg" style={{ marginBottom: "2.5rem", maxWidth: "480px" }}>
+              Most early-stage startups fail not because of bad ideas — but because of bad
+              execution. We remove every operational, legal, and financial blocker before
+              they slow you down.
             </p>
 
-            {/* Differentiator box */}
-            <div className="bg-grey-950 text-white p-6 rounded-sm">
-              <p className="text-green-400 text-xs font-semibold uppercase tracking-widest mb-3">
-                The Founderstreet Difference
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  ["Traditional CA Firm", "Founderstreet"],
-                  ["Monthly retainer, no outcomes", "Milestone-based, outcome-aligned"],
-                  ["Compliance only", "Full-stack infrastructure"],
-                  ["3–6 month timelines", "10-day incorporation"],
-                  ["No investor network", "Vetted VC + angel access"],
-                ].map(([left, right], i) =>
-                  i === 0 ? (
-                    <div key={i} className="col-span-2 grid grid-cols-2 pb-3 border-b border-grey-800">
-                      <span className="text-grey-500 text-xs font-semibold uppercase tracking-wider">{left}</span>
-                      <span className="text-green-400 text-xs font-semibold uppercase tracking-wider">{right}</span>
-                    </div>
-                  ) : (
-                    <div key={i} className="col-span-2 grid grid-cols-2 py-2 border-b border-grey-800/50 last:border-0">
-                      <span className="text-grey-500 text-sm flex items-center gap-2">
-                        <span className="w-1 h-1 bg-red-500 rounded-full" />
-                        {left}
-                      </span>
-                      <span className="text-white text-sm flex items-center gap-2">
-                        <span className="w-1 h-1 bg-green-500 rounded-full" />
-                        {right}
-                      </span>
-                    </div>
-                  )
-                )}
+            {/* Comparison table */}
+            <div style={{
+              background: "#0d1f16",
+              borderRadius: "10px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.06)"
+            }}>
+              <div style={{
+                display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
+                padding: "0.875rem 1.25rem",
+                borderBottom: "1px solid rgba(255,255,255,0.08)"
+              }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+                  Feature
+                </span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F87171", textAlign: "center" as const }}>
+                  Traditional CA
+                </span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#74C69D", textAlign: "center" as const }}>
+                  Founderstreet
+                </span>
               </div>
+              {comparison.map((row, i) => (
+                <div
+                  key={row.label}
+                  style={{
+                    display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
+                    padding: "0.875rem 1.25rem",
+                    borderBottom: i < comparison.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                    alignItems: "center",
+                  }}
+                >
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)" }}>
+                    {row.label}
+                  </span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#F87171", textAlign: "center" as const, fontWeight: 500 }}>
+                    {row.them}
+                  </span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#74C69D", textAlign: "center" as const, fontWeight: 600 }}>
+                    {row.us}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right: reasons grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {reasons.map((reason) => {
-              const Icon = reason.icon;
+          {/* Right — 4 reasons */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
+            {reasons.map((r) => {
+              const Icon = r.icon;
               return (
-                <div key={reason.title} className="why-item">
-                  <div className="w-10 h-10 bg-green-100 rounded-sm flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-primary" />
+                <div
+                  key={r.title}
+                  className="why-item"
+                  style={{
+                    padding: "1.625rem",
+                    background: "#FAFAF8",
+                    border: "1px solid #E0E0DC",
+                    borderRadius: "10px",
+                    transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 30px rgba(0,0,0,0.08)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#B7E4C7";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#E0E0DC";
+                  }}
+                >
+                  <div style={{
+                    width: "40px", height: "40px",
+                    background: "#EDFAF2",
+                    border: "1px solid #D8F3DC",
+                    borderRadius: "8px",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: "1rem"
+                  }}>
+                    <Icon size={18} color="#1B4332" />
                   </div>
-                  <h3 className="font-serif font-semibold text-base text-grey-900 mb-2">
-                    {reason.title}
+                  <h3 style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "1rem", fontWeight: 700,
+                    color: "#111111", marginBottom: "0.5rem"
+                  }}>
+                    {r.title}
                   </h3>
-                  <p className="text-grey-600 text-sm leading-relaxed">{reason.desc}</p>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.8125rem", lineHeight: 1.65,
+                    color: "#5A5A5A"
+                  }}>
+                    {r.desc}
+                  </p>
                 </div>
               );
             })}
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .why-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; }
+        }
+      `}</style>
     </section>
   );
 }

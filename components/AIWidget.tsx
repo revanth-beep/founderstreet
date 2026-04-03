@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Loader2, Bot, Minimize2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface Message {
@@ -25,6 +24,21 @@ const WELCOME_MESSAGE: Message = {
   content:
     "Hi! I'm Founder AI, powered by Founderstreet's knowledge base. I can help you with questions about company incorporation, fundraising, accounting, marketing, and more. What's on your mind?",
   timestamp: new Date(),
+};
+
+const c = {
+  ink: "#111111",
+  muted: "#5A5A5A",
+  subtle: "#787878",
+  border: "#E0E0DC",
+  panel: "#F0F0ED",
+  white: "#FFFFFF",
+  green: "#1B4332",
+  greenHover: "#2D6A4F",
+  greenSoft: "#EDFAF2",
+  headerBg: "#0A0A0A",
+  headerMuted: "#A0A0A0",
+  online: "#74C69D",
 };
 
 export default function AIWidget() {
@@ -50,7 +64,6 @@ export default function AIWidget() {
     }
   }, [messages, open, minimised]);
 
-  // Show notification dot after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!open) setHasUnread(true);
@@ -111,79 +124,198 @@ export default function AIWidget() {
     }
   }
 
+  const panelVisible = open && !minimised;
+
   return (
     <>
+      <style>{`
+        @keyframes fs-chat-bounce {
+          0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+          40% { transform: translateY(-4px); opacity: 1; }
+        }
+        @keyframes fs-spin {
+          to { transform: rotate(360deg); }
+        }
+        @media (min-width: 640px) {
+          .ai-widget-anchor { right: 1.5rem !important; }
+        }
+      `}</style>
       {/* Chat window */}
       <div
-        className={cn(
-          "fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 transition-all duration-300 origin-bottom-right",
-          open && !minimised
-            ? "opacity-100 scale-100 pointer-events-auto"
-            : "opacity-0 scale-95 pointer-events-none"
-        )}
+        className="ai-widget-anchor"
+        style={{
+          position: "fixed",
+          bottom: "5.5rem",
+          right: "1rem",
+          zIndex: 50,
+          width: "min(calc(100vw - 2rem), 24rem)",
+          transition: "opacity 0.3s ease, transform 0.3s ease",
+          transformOrigin: "bottom right",
+          opacity: panelVisible ? 1 : 0,
+          transform: panelVisible ? "scale(1)" : "scale(0.96)",
+          pointerEvents: panelVisible ? "auto" : "none",
+        }}
       >
-        <div className="bg-white rounded-sm shadow-strong border border-border flex flex-col h-[500px] overflow-hidden">
+        <div
+          style={{
+            background: c.white,
+            borderRadius: "8px",
+            border: `1px solid ${c.border}`,
+            boxShadow: "0 20px 50px -10px rgba(0,0,0,0.30), 0 8px 20px rgba(0,0,0,0.15)",
+            display: "flex",
+            flexDirection: "column",
+            height: "500px",
+            overflow: "hidden",
+            fontFamily: "'Inter', system-ui, sans-serif",
+          }}
+        >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-grey-950 flex-shrink-0">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <Bot className="w-4 h-4 text-white" />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0.75rem 1rem",
+              background: c.headerBg,
+              flexShrink: 0,
+              borderBottom: `1px solid ${c.border}`,
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
+              <div
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  background: c.green,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Bot size={16} color={c.white} />
               </div>
               <div>
-                <p className="text-white font-semibold text-sm">Founder AI</p>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                  <p className="text-grey-400 text-xs">Online now</p>
+                <p style={{ color: c.white, fontWeight: 600, fontSize: "0.875rem", margin: 0 }}>Founder AI</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", marginTop: "2px" }}>
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: c.online,
+                      flexShrink: 0,
+                    }}
+                  />
+                  <p style={{ color: c.headerMuted, fontSize: "0.75rem", margin: 0 }}>Online now</p>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
               <button
+                type="button"
                 onClick={() => setMinimised(true)}
-                className="w-7 h-7 text-grey-400 hover:text-white transition-colors flex items-center justify-center"
+                style={{
+                  width: "28px",
+                  height: "28px",
+                  border: "none",
+                  background: "transparent",
+                  color: c.headerMuted,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "4px",
+                }}
                 aria-label="Minimise"
               >
-                <Minimize2 className="w-3.5 h-3.5" />
+                <Minimize2 size={14} />
               </button>
               <button
+                type="button"
                 onClick={() => setOpen(false)}
-                className="w-7 h-7 text-grey-400 hover:text-white transition-colors flex items-center justify-center"
+                style={{
+                  width: "28px",
+                  height: "28px",
+                  border: "none",
+                  background: "transparent",
+                  color: c.headerMuted,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "4px",
+                }}
                 aria-label="Close"
               >
-                <X className="w-4 h-4" />
+                <X size={16} />
               </button>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-grey-50">
+          <div
+            style={{
+              flex: 1,
+              overflowY: "auto",
+              padding: "1rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.75rem",
+              background: c.panel,
+            }}
+          >
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={cn(
-                  "flex gap-2",
-                  msg.role === "user" ? "justify-end" : "justify-start"
-                )}
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  justifyContent: msg.role === "user" ? "flex-end" : "flex-start",
+                }}
               >
                 {msg.role === "assistant" && (
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Bot className="w-3.5 h-3.5 text-white" />
+                  <div
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      borderRadius: "50%",
+                      background: c.green,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      marginTop: "2px",
+                    }}
+                  >
+                    <Bot size={12} color={c.white} />
                   </div>
                 )}
                 <div
-                  className={cn(
-                    "max-w-[80%] rounded-sm px-3 py-2 text-sm leading-relaxed",
-                    msg.role === "user"
-                      ? "bg-primary text-white"
-                      : "bg-white border border-border text-grey-700"
-                  )}
+                  style={{
+                    maxWidth: "80%",
+                    borderRadius: "6px",
+                    padding: "0.5rem 0.75rem",
+                    fontSize: "0.875rem",
+                    lineHeight: 1.55,
+                    background: msg.role === "user" ? c.green : c.white,
+                    color: msg.role === "user" ? c.white : c.muted,
+                    border: msg.role === "user" ? "none" : `1px solid ${c.border}`,
+                  }}
                 >
                   {msg.content}
                   {msg.content.includes("book a call") && (
                     <Link
                       href="/contact"
-                      className="block mt-2 text-xs font-semibold underline"
                       onClick={() => setOpen(false)}
+                      style={{
+                        display: "block",
+                        marginTop: "0.5rem",
+                        fontSize: "0.75rem",
+                        fontWeight: 600,
+                        textDecoration: "underline",
+                        color: msg.role === "user" ? "rgba(255,255,255,0.95)" : c.green,
+                      }}
                     >
                       Book a free call →
                     </Link>
@@ -192,36 +324,76 @@ export default function AIWidget() {
               </div>
             ))}
             {loading && (
-              <div className="flex gap-2 justify-start">
-                <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-3.5 h-3.5 text-white" />
+              <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-start" }}>
+                <div
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    borderRadius: "50%",
+                    background: c.green,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <Bot size={12} color={c.white} />
                 </div>
-                <div className="bg-white border border-border rounded-sm px-3 py-2">
-                  <div className="flex gap-1">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="w-1.5 h-1.5 bg-grey-400 rounded-full animate-bounce"
-                        style={{ animationDelay: `${i * 0.15}s` }}
-                      />
-                    ))}
-                  </div>
+                <div
+                  style={{
+                    background: c.white,
+                    border: `1px solid ${c.border}`,
+                    borderRadius: "6px",
+                    padding: "0.5rem 0.75rem",
+                    display: "flex",
+                    gap: "0.25rem",
+                    alignItems: "center",
+                  }}
+                >
+                  {[0, 1, 2].map((i) => (
+                    <span
+                      key={i}
+                      style={{
+                        width: "6px",
+                        height: "6px",
+                        borderRadius: "50%",
+                        background: c.subtle,
+                        animation: `fs-chat-bounce 1.2s ease-in-out ${i * 0.15}s infinite`,
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             )}
             <div ref={bottomRef} />
           </div>
 
-          {/* Suggested questions (only on fresh chat) */}
           {messages.length === 1 && (
-            <div className="px-3 py-2 border-t border-border bg-white flex-shrink-0">
-              <p className="text-grey-400 text-xs mb-2 font-medium">Suggested questions:</p>
-              <div className="flex flex-wrap gap-1.5">
+            <div
+              style={{
+                padding: "0.5rem 0.75rem",
+                borderTop: `1px solid ${c.border}`,
+                background: c.white,
+                flexShrink: 0,
+              }}
+            >
+              <p style={{ color: c.subtle, fontSize: "0.75rem", marginBottom: "0.5rem", fontWeight: 500 }}>Suggested questions:</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
                 {SUGGESTED_QUESTIONS.map((q) => (
                   <button
                     key={q}
+                    type="button"
                     onClick={() => sendMessage(q)}
-                    className="text-xs bg-grey-50 border border-border text-grey-600 hover:border-primary hover:text-primary px-2.5 py-1 rounded-full transition-colors"
+                    style={{
+                      fontSize: "0.75rem",
+                      background: c.panel,
+                      border: `1px solid ${c.border}`,
+                      color: c.muted,
+                      padding: "0.25rem 0.625rem",
+                      borderRadius: "999px",
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                    }}
                   >
                     {q}
                   </button>
@@ -231,7 +403,17 @@ export default function AIWidget() {
           )}
 
           {/* Input */}
-          <div className="flex items-center gap-2 p-3 border-t border-border bg-white flex-shrink-0">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.75rem",
+              borderTop: `1px solid ${c.border}`,
+              background: c.white,
+              flexShrink: 0,
+            }}
+          >
             <input
               ref={inputRef}
               type="text"
@@ -239,51 +421,128 @@ export default function AIWidget() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
               placeholder="Ask me anything about your startup..."
-              className="flex-1 text-sm px-3 py-2 border border-border rounded-sm focus:outline-none focus:border-primary transition-colors"
               disabled={loading}
+              style={{
+                flex: 1,
+                fontSize: "0.875rem",
+                padding: "0.5rem 0.75rem",
+                border: `1px solid ${c.border}`,
+                borderRadius: "6px",
+                outline: "none",
+                fontFamily: "inherit",
+                color: c.ink,
+              }}
             />
             <button
+              type="button"
               onClick={() => sendMessage(input)}
               disabled={loading || !input.trim()}
-              className="w-8 h-8 bg-primary text-white rounded-sm flex items-center justify-center hover:bg-primary-light disabled:opacity-50 transition-colors flex-shrink-0"
+              style={{
+                width: "36px",
+                height: "36px",
+                background: loading || !input.trim() ? "#C4C4C4" : c.green,
+                color: c.white,
+                border: "none",
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: loading || !input.trim() ? "not-allowed" : "pointer",
+                flexShrink: 0,
+              }}
               aria-label="Send"
             >
-              {loading ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <Send className="w-3.5 h-3.5" />
-              )}
+              {loading ? <Loader2 size={16} style={{ animation: "fs-spin 0.8s linear infinite" }} /> : <Send size={16} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Minimised bar */}
       {open && minimised && (
-        <div className="fixed bottom-4 right-4 sm:right-6 z-50">
+        <div className="ai-widget-anchor" style={{ position: "fixed", bottom: "1rem", right: "1rem", zIndex: 50 }}>
           <button
+            type="button"
             onClick={() => setMinimised(false)}
-            className="flex items-center gap-2.5 bg-grey-950 text-white px-4 py-2.5 rounded-sm shadow-strong hover:bg-grey-800 transition-colors"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.625rem",
+              background: c.headerBg,
+              color: c.white,
+              padding: "0.625rem 1rem",
+              borderRadius: "8px",
+              border: `1px solid ${c.border}`,
+              boxShadow: "0 20px 50px -10px rgba(0,0,0,0.30), 0 8px 20px rgba(0,0,0,0.15)",
+              cursor: "pointer",
+              fontFamily: "'Inter', system-ui, sans-serif",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
           >
-            <Bot className="w-4 h-4 text-green-400" />
-            <span className="text-sm font-medium">Founder AI</span>
-            <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+            <Bot size={16} color={c.online} />
+            <span>Founder AI</span>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: c.online }} />
           </button>
         </div>
       )}
 
-      {/* Toggle button */}
       {!open && (
         <button
-          onClick={() => { setOpen(true); setMinimised(false); }}
-          className="fixed bottom-4 right-4 sm:right-6 z-50 w-14 h-14 bg-primary hover:bg-primary-light text-white rounded-full shadow-green-glow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setMinimised(false);
+          }}
+          className="ai-widget-anchor"
+          style={{
+            position: "fixed",
+            bottom: "1rem",
+            right: "1rem",
+            zIndex: 50,
+            width: "56px",
+            height: "56px",
+            borderRadius: "50%",
+            background: c.green,
+            color: c.white,
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 0 40px rgba(27,67,50,0.40), 0 10px 40px rgba(0,0,0,0.25)",
+            transition: "transform 0.2s ease, background 0.2s ease",
+          }}
           aria-label="Open Founder AI chat"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = c.greenHover;
+            e.currentTarget.style.transform = "scale(1.08)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = c.green;
+            e.currentTarget.style.transform = "scale(1)";
+          }}
         >
-          <MessageSquare className="w-6 h-6" />
+          <MessageSquare size={24} />
           {hasUnread && (
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-[9px] font-bold">1</span>
-            </div>
+            <span
+              style={{
+                position: "absolute",
+                top: "-4px",
+                right: "-4px",
+                width: "16px",
+                height: "16px",
+                background: "#DC2626",
+                borderRadius: "50%",
+                fontSize: "9px",
+                fontWeight: 700,
+                color: c.white,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              1
+            </span>
           )}
         </button>
       )}

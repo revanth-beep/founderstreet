@@ -4,6 +4,7 @@ import { FlaskConical, ArrowRight, CheckCircle2, BarChart3, Target, TrendingUp }
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import StartupQuiz from "@/components/sections/StartupQuiz";
+import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 
 export const metadata: Metadata = {
   title: "Startup Idea Validation & Strategy",
@@ -77,49 +78,112 @@ export default function ValidationPage() {
         ]}
       />
 
-      {/* Deliverables */}
-      <section className="section-padding bg-background">
+      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-              What You Get
-            </span>
-            <h2 className="heading-md mt-3">
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>What You Get</ServicePageEyebrow>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
+                fontWeight: 700,
+                color: "#111111",
+                marginTop: "1rem",
+                lineHeight: 1.2,
+                letterSpacing: "-0.01em",
+              }}
+            >
               Three Reports. Zero Guesswork.
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             {deliverables.map((d, i) => {
               const Icon = d.icon;
               return (
                 <div
                   key={d.title}
-                  className="flex flex-col lg:flex-row gap-6 p-6 lg:p-8 bg-white border border-border rounded-sm hover:shadow-medium transition-all duration-300"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "1.5rem",
+                    padding: "clamp(1.25rem, 3vw, 2rem)",
+                    background: "#FFFFFF",
+                    border: "1px solid #E0E0DC",
+                    borderRadius: "8px",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                  }}
                 >
-                  <div className="lg:w-64 flex-shrink-0">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 bg-green-100 rounded-sm flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
+                  <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                      <div
+                        style={{
+                          width: "36px",
+                          height: "36px",
+                          borderRadius: "6px",
+                          background: "#EDFAF2",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Icon size={20} color="#1B4332" />
                       </div>
-                      <span className="text-xs font-semibold text-grey-400 uppercase tracking-wider">
+                      <span
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.6875rem",
+                          fontWeight: 600,
+                          color: "#A0A0A0",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                        }}
+                      >
                         Deliverable {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <h3 className="font-serif font-bold text-grey-900 text-lg">
+                    <h3
+                      style={{
+                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontWeight: 700,
+                        fontSize: "1.125rem",
+                        color: "#111111",
+                        lineHeight: 1.3,
+                      }}
+                    >
                       {d.title}
                     </h3>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-grey-600 text-sm leading-relaxed mb-4">{d.desc}</p>
-                    <div className="flex flex-wrap gap-2">
+                  <div style={{ flex: "2 1 280px", minWidth: 0 }}>
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.875rem",
+                        lineHeight: 1.7,
+                        color: "#5A5A5A",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {d.desc}
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                       {d.points.map((p) => (
                         <span
                           key={p}
-                          className="flex items-center gap-1.5 text-xs font-medium text-primary bg-green-100 px-3 py-1.5 rounded-full"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "0.35rem",
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "#1B4332",
+                            background: "#EDFAF2",
+                            padding: "0.35rem 0.75rem",
+                            borderRadius: "999px",
+                          }}
                         >
-                          <CheckCircle2 className="w-3 h-3" />
+                          <CheckCircle2 size={12} color="#1B4332" />
                           {p}
                         </span>
                       ))}
@@ -132,55 +196,94 @@ export default function ValidationPage() {
         </div>
       </section>
 
-      {/* Interactive Quiz */}
-      <section className="section-padding bg-grey-50">
+      <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-              Free Startup Health Check
-            </span>
-            <h2 className="heading-md mt-3">
+          <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 2.5rem" }}>
+            <ServicePageEyebrow>Free Startup Health Check</ServicePageEyebrow>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
+                fontWeight: 700,
+                color: "#111111",
+                marginTop: "1rem",
+                lineHeight: 1.2,
+              }}
+            >
               Get a Free SWOT Report
             </h2>
-            <p className="text-grey-600 mt-3 text-sm leading-relaxed">
-              Answer 5 questions about your idea. We&apos;ll send a personalised sample SWOT
-              report to your inbox instantly.
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                color: "#5A5A5A",
+                marginTop: "0.75rem",
+                lineHeight: 1.7,
+              }}
+            >
+              Answer 5 questions about your idea. We&apos;ll send a personalised sample SWOT report to your inbox instantly.
             </p>
           </div>
-          <div className="max-w-2xl mx-auto">
+          <div style={{ maxWidth: "42rem", margin: "0 auto" }}>
             <StartupQuiz />
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="section-padding bg-background">
-        <div className="container-custom max-w-3xl">
-          <div className="text-center mb-10">
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-              FAQ
-            </span>
-            <h2 className="heading-md mt-3">Common Questions</h2>
+      <section style={{ background: "#FAFAF8", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <ServicePageEyebrow>FAQ</ServicePageEyebrow>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
+                fontWeight: 700,
+                color: "#111111",
+                marginTop: "1rem",
+              }}
+            >
+              Common Questions
+            </h2>
           </div>
           <Accordion items={faqs} />
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-primary">
-        <div className="container-custom text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">
+      <section
+        style={{
+          background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)",
+          paddingBlock: "clamp(4rem, 8vw, 5.5rem)",
+          textAlign: "center",
+        }}
+      >
+        <div className="container-custom">
+          <h2
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "clamp(1.75rem, 3vw, 2rem)",
+              fontWeight: 700,
+              color: "#FFFFFF",
+              marginBottom: "1rem",
+            }}
+          >
             Ready to validate your idea?
           </h2>
-          <p className="text-white/70 mb-8 max-w-lg mx-auto">
-            Book a free 30-minute discovery call and we&apos;ll scope out your validation
-            project within 24 hours.
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.9375rem",
+              color: "rgba(255,255,255,0.72)",
+              maxWidth: "28rem",
+              margin: "0 auto 2rem",
+              lineHeight: 1.7,
+            }}
+          >
+            Book a free 30-minute discovery call and we&apos;ll scope out your validation project within 24 hours.
           </p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-sm rounded-sm hover:bg-green-50 transition-colors">
+          <Link href="/contact" className="btn-white">
             Start My Validation
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight size={16} />
           </Link>
         </div>
       </section>

@@ -2,177 +2,238 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Play, ChevronDown } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
+
+const stats = [
+  { value: "150+", label: "Startups Launched" },
+  { value: "₹40Cr+", label: "Funding Facilitated" },
+  { value: "98%", label: "Compliance Rate" },
+  { value: "< 10 Days", label: "Avg. Incorporation" },
+];
 
 export default function HeroSection() {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Dynamic import GSAP only on client
-    const initGSAP = async () => {
+    const init = async () => {
       const { gsap } = await import("gsap");
-
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(
-        headlineRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1 }
-      )
-        .fromTo(
-          subRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8 },
-          "-=0.5"
-        )
-        .fromTo(
-          ctaRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7 },
-          "-=0.4"
-        )
-        .fromTo(
-          statsRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7 },
-          "-=0.3"
-        );
+      const el = wrapRef.current;
+      if (!el) return;
+      const tl = gsap.timeline({ delay: 0.1 });
+      tl.fromTo(el.querySelector(".hero-eyebrow"),
+        { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" })
+        .fromTo(el.querySelector(".hero-h1"),
+          { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, "-=0.45")
+        .fromTo(el.querySelector(".hero-sub"),
+          { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.5")
+        .fromTo(el.querySelector(".hero-ctas"),
+          { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+        .fromTo(el.querySelector(".hero-stats"),
+          { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3");
     };
-
-    initGSAP();
+    init();
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background-dark">
-      {/* Background texture */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(27, 67, 50, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(45, 106, 79, 0.3) 0%, transparent 40%),
-              radial-gradient(circle at 60% 80%, rgba(64, 145, 108, 0.2) 0%, transparent 40%)
-            `,
-          }}
-        />
-        {/* Dot grid overlay */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(184, 228, 199, 0.4) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+    <section
+      style={{ background: "linear-gradient(160deg, #081810 0%, #0d2b1c 40%, #0e2318 100%)" }}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+    >
+      {/* Ambient blobs */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+        <div style={{
+          position: "absolute", width: "45vw", height: "45vw",
+          top: "-10%", left: "-8%",
+          background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)",
+          borderRadius: "50%", filter: "blur(40px)"
+        }} />
+        <div style={{
+          position: "absolute", width: "35vw", height: "35vw",
+          bottom: "-5%", right: "-5%",
+          background: "radial-gradient(circle, rgba(64,145,108,0.25) 0%, transparent 70%)",
+          borderRadius: "50%", filter: "blur(50px)"
+        }} />
+        {/* Dot grid */}
+        <div className="dot-grid-dark" style={{ position: "absolute", inset: 0, opacity: 0.6 }} />
+        {/* Subtle border at bottom */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.4), transparent)"
+        }} />
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-10 w-40 h-40 border border-green-800/30 rounded-full opacity-40 animate-pulse-slow" />
-      <div className="absolute bottom-1/4 left-10 w-24 h-24 border border-green-700/30 rounded-sm rotate-45 opacity-30" />
-      <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-green-500 rounded-full opacity-60 animate-float" />
-      <div
-        className="absolute top-1/3 left-1/4 w-1.5 h-1.5 bg-green-400 rounded-full opacity-40"
-        style={{ animationDelay: "2s" }}
-      />
+      {/* Floating decoration */}
+      <div style={{
+        position: "absolute", top: "30%", right: "8%",
+        width: "180px", height: "180px",
+        border: "1px solid rgba(64,145,108,0.15)",
+        borderRadius: "50%", animation: "float 7s ease-in-out infinite"
+      }} />
+      <div style={{
+        position: "absolute", top: "28%", right: "9.5%",
+        width: "90px", height: "90px",
+        border: "1px solid rgba(64,145,108,0.25)",
+        borderRadius: "50%"
+      }} />
 
-      {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container-custom pt-24 pb-16">
-        <div className="max-w-4xl">
+      {/* Main content */}
+      <div ref={wrapRef} className="container-custom relative z-10" style={{ paddingTop: "9rem", paddingBottom: "6rem" }}>
+        <div style={{ maxWidth: "820px" }}>
+
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6">
-            <div className="w-8 h-px bg-green-500" />
-            <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.2em]">
+          <div className="hero-eyebrow" style={{ marginBottom: "1.75rem", opacity: 0 }}>
+            <span className="label-tag-dark">
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#74C69D", display: "inline-block" }} />
               India&apos;s Startup Infrastructure Platform
             </span>
           </div>
 
           {/* Headline */}
           <h1
-            ref={headlineRef}
-            className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-display-xl font-bold text-white leading-[1.05] tracking-tight mb-6"
+            className="hero-h1"
+            style={{
+              opacity: 0,
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
+              fontWeight: 800,
+              lineHeight: 1.06,
+              letterSpacing: "-0.025em",
+              color: "#FFFFFF",
+              marginBottom: "1.75rem",
+            }}
           >
-            The Unseen Engine Behind India&apos;s{" "}
-            <em className="italic text-green-400 not-italic" style={{ fontStyle: "italic" }}>
+            The Unseen Engine<br />
+            Behind India&apos;s{" "}
+            <span style={{
+              fontStyle: "italic",
+              background: "linear-gradient(135deg, #74C69D 0%, #B7E4C7 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}>
               Next Great
-            </em>{" "}
+            </span>{" "}
             Startups.
           </h1>
 
-          {/* Sub-headline */}
+          {/* Subheadline */}
           <p
-            ref={subRef}
-            className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl mb-10"
+            className="hero-sub"
+            style={{
+              opacity: 0,
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(1rem, 1.5vw, 1.1875rem)",
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.65)",
+              maxWidth: "600px",
+              marginBottom: "2.5rem",
+            }}
           >
             From Day Zero to Pre-Seed, we provide the elite operational, financial, and
             digital infrastructure founders need to launch, scale, and secure funding.{" "}
-            <span className="text-white/90 font-medium">
+            <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 500 }}>
               You build the vision; we handle the execution.
             </span>
           </p>
 
           {/* CTAs */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 px-7 py-4 bg-primary hover:bg-primary-light text-white font-semibold text-sm rounded-sm transition-all duration-300 hover:shadow-green-glow-lg hover:-translate-y-0.5"
-            >
+          <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", marginBottom: "4rem", opacity: 0 }}>
+            <Link href="/contact" className="btn-primary" style={{ fontSize: "0.9375rem", padding: "0.9375rem 2rem" }}>
               Pitch Your Idea
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight size={16} />
             </Link>
             <Link
               href="/startup-health-check"
-              className="inline-flex items-center gap-2.5 px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-sm border border-white/20 transition-all duration-300"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.75rem",
+                padding: "0.9375rem 1.75rem",
+                background: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                color: "rgba(255,255,255,0.9)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.9375rem", fontWeight: 600,
+                borderRadius: "4px",
+                textDecoration: "none",
+                transition: "all 0.25s ease",
+                backdropFilter: "blur(8px)",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.12)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"; }}
             >
-              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                <Play className="w-3 h-3 text-white fill-white" />
-              </div>
+              <span style={{
+                width: "28px", height: "28px", borderRadius: "50%",
+                background: "rgba(255,255,255,0.15)",
+                display: "flex", alignItems: "center", justifyContent: "center"
+              }}>
+                <Play size={12} fill="white" color="white" />
+              </span>
               Free Startup Health Check
             </Link>
           </div>
 
-          {/* Trust indicators */}
-          <p className="mt-6 text-white/40 text-xs font-medium tracking-wider">
-            TRUSTED BY FOUNDERS ACROSS DELHI · MUMBAI · BENGALURU · HYDERABAD
-          </p>
-        </div>
-
-        {/* Stats strip */}
-        <div
-          ref={statsRef}
-          className="mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-green-800/50"
-        >
-          {[
-            { value: "150+", label: "Startups Launched" },
-            { value: "₹40Cr+", label: "Funding Facilitated" },
-            { value: "98%", label: "Compliance Rate" },
-            { value: "< 10 Days", label: "Avg. Incorporation Time" },
-          ].map((stat) => (
-            <div key={stat.label} className="lg:px-8 first:pl-0 last:pr-0">
-              <div className="text-3xl lg:text-4xl font-serif font-bold text-white mb-1">
-                {stat.value}
-              </div>
-              <div className="text-green-400/80 text-sm font-medium">{stat.label}</div>
+          {/* Stats row */}
+          <div className="hero-stats" style={{ opacity: 0 }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.6875rem", fontWeight: 600,
+              letterSpacing: "0.14em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.3)",
+              marginBottom: "1.25rem"
+            }}>
+              Trusted by founders across India
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem 2.5rem" }} className="sm-stats-grid">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <div style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    lineHeight: 1.1,
+                    marginBottom: "0.25rem"
+                  }}>
+                    {s.value}
+                  </div>
+                  <div style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "rgba(148,213,178,0.8)",
+                    fontWeight: 500
+                  }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="relative z-10 flex justify-center pb-8">
-        <button
-          onClick={() => {
-            document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors group"
-          aria-label="Scroll down"
-        >
-          <span className="text-xs tracking-widest uppercase">Explore</span>
-          <ChevronDown className="w-4 h-4 animate-bounce" />
-        </button>
+      {/* Scroll cue */}
+      <div style={{
+        position: "absolute", bottom: "2.5rem", left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem"
+      }}>
+        <span style={{
+          fontFamily: "'Inter', sans-serif", fontSize: "0.625rem",
+          letterSpacing: "0.15em", textTransform: "uppercase",
+          color: "rgba(255,255,255,0.25)"
+        }}>
+          Scroll
+        </span>
+        <div style={{
+          width: "1px", height: "40px",
+          background: "linear-gradient(to bottom, rgba(64,145,108,0.6), transparent)"
+        }} />
       </div>
+
+      <style>{`
+        @media (min-width: 640px) {
+          .sm-stats-grid { grid-template-columns: repeat(4, 1fr) !important; }
+        }
+      `}</style>
     </section>
   );
 }

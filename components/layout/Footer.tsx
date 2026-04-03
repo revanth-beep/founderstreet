@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
@@ -20,139 +22,154 @@ const company = [
   { name: "Careers", href: "/careers" },
 ];
 
+const colHead: React.CSSProperties = {
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.6875rem", fontWeight: 700,
+  letterSpacing: "0.12em", textTransform: "uppercase",
+  color: "rgba(255,255,255,0.35)",
+  marginBottom: "1.25rem"
+};
+
+const colLink: React.CSSProperties = {
+  display: "flex", alignItems: "center", gap: "6px",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.875rem", color: "rgba(255,255,255,0.5)",
+  textDecoration: "none", marginBottom: "0.625rem",
+  transition: "color 0.2s ease"
+};
+
 export default function Footer() {
   return (
-    <footer className="bg-grey-950 text-white">
-      <div className="container-custom py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Column 1 — Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-5">
-              <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center">
-                <span className="text-white font-bold text-sm font-serif">FS</span>
+    <footer style={{ background: "#080f0a", color: "#FFFFFF" }}>
+      <div className="container-custom" style={{ paddingTop: "4.5rem", paddingBottom: "3rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem 2rem" }} className="footer-grid">
+
+          {/* Brand */}
+          <div>
+            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "1.25rem" }}>
+              <div style={{ width: "32px", height: "32px", background: "#1B4332", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
               </div>
-              <span className="font-serif font-bold text-xl text-white">Founderstreet</span>
+              <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
+                Founderstreet
+              </span>
             </Link>
-            <p className="text-grey-400 text-sm leading-relaxed mb-6">
-              The unseen engine behind India&apos;s next great startups. From Day Zero to
-              Pre-Seed, we build the infrastructure you need to scale.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", maxWidth: "240px" }}>
+              The unseen engine behind India&apos;s next great startups. From Day Zero to Pre-Seed.
             </p>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 bg-grey-800 rounded-sm flex items-center justify-center text-grey-400 hover:bg-primary hover:text-white transition-all duration-200"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 bg-grey-800 rounded-sm flex items-center justify-center text-grey-400 hover:bg-primary hover:text-white transition-all duration-200"
-                aria-label="Twitter"
-              >
-                <XIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 bg-grey-800 rounded-sm flex items-center justify-center text-grey-400 hover:bg-primary hover:text-white transition-all duration-200"
-                aria-label="Instagram"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
+            {/* Social */}
+            <div style={{ display: "flex", gap: "8px" }}>
+              {[
+                { href: "https://linkedin.com", Icon: LinkedInIcon, label: "LinkedIn" },
+                { href: "https://twitter.com", Icon: XIcon, label: "X" },
+                { href: "https://instagram.com", Icon: InstagramIcon, label: "Instagram" },
+              ].map(({ href, Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    width: "36px", height: "36px",
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: "6px",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.background = "rgba(27,67,50,0.6)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(64,145,108,0.3)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2 — Services */}
+          {/* Services */}
           <div>
-            <h4 className="font-semibold text-white text-sm uppercase tracking-widest mb-5">
-              Core Services
-            </h4>
-            <ul className="space-y-3">
-              {services.map((s) => (
-                <li key={s.href}>
-                  <Link
-                    href={s.href}
-                    className="text-grey-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1.5 group"
-                  >
-                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200">
-                      <ArrowRight className="w-3 h-3 text-primary" />
-                    </span>
-                    {s.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p style={colHead}>Core Services</p>
+            {services.map(s => (
+              <Link key={s.href} href={s.href} style={colLink}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+              >
+                <ArrowRight size={12} style={{ opacity: 0.4 }} />
+                {s.name}
+              </Link>
+            ))}
           </div>
 
-          {/* Column 3 — Company */}
+          {/* Company */}
           <div>
-            <h4 className="font-semibold text-white text-sm uppercase tracking-widest mb-5">
-              Company & Insights
-            </h4>
-            <ul className="space-y-3">
-              {company.map((c) => (
-                <li key={c.href}>
-                  <Link
-                    href={c.href}
-                    className="text-grey-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1.5 group"
-                  >
-                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200">
-                      <ArrowRight className="w-3 h-3 text-primary" />
-                    </span>
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p style={colHead}>Company &amp; Insights</p>
+            {company.map(c => (
+              <Link key={c.href} href={c.href} style={colLink}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+              >
+                <ArrowRight size={12} style={{ opacity: 0.4 }} />
+                {c.name}
+              </Link>
+            ))}
           </div>
 
-          {/* Column 4 — Newsletter CTA */}
+          {/* Newsletter */}
           <div>
-            <h4 className="font-serif font-semibold text-white text-lg mb-2">
+            <h4 style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "1.125rem", fontWeight: 700,
+              color: "#FFFFFF", marginBottom: "0.625rem"
+            }}>
               Get the Founder&apos;s Edge.
             </h4>
-            <p className="text-grey-400 text-sm leading-relaxed mb-4">
-              Join founders receiving our weekly breakdown on unit economics, pitch
-              tear-downs, and growth tactics.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.65, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>
+              Weekly breakdown on unit economics, pitch tear-downs, and growth tactics.
             </p>
             <NewsletterForm />
           </div>
         </div>
 
+        {/* Divider */}
+        <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "2.5rem 0 1.5rem" }} />
+
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-grey-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-grey-500 text-sm">
-            © {new Date().getFullYear()} Founderstreet. All rights reserved.
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.2)" }}>
+            © {new Date().getFullYear()} Founderstreet Consulting Pvt. Ltd. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/privacy"
-              className="text-grey-500 hover:text-grey-300 text-xs transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-grey-500 hover:text-grey-300 text-xs transition-colors"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="/admin"
-              className="text-grey-600 hover:text-grey-400 text-xs transition-colors"
-            >
-              Admin
-            </Link>
+          <div style={{ display: "flex", gap: "1.25rem" }}>
+            {[
+              { name: "Privacy Policy", href: "/privacy" },
+              { name: "Terms of Service", href: "/terms" },
+              { name: "Admin", href: "/admin" },
+            ].map(link => (
+              <Link key={link.href} href={link.href} style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.2)", textDecoration: "none",
+                transition: "color 0.2s ease"
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.2)"; }}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 640px)  { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.25fr !important; } }
+      `}</style>
     </footer>
   );
 }
-

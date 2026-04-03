@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const questions = [
   {
@@ -59,6 +58,19 @@ const questions = [
 
 type Step = "quiz" | "email" | "done";
 
+const inputSt: React.CSSProperties = {
+  width: "100%",
+  padding: "0.75rem 1rem",
+  border: "1.5px solid #E0E0DC",
+  borderRadius: "6px",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.875rem",
+  color: "#111111",
+  outline: "none",
+  background: "#FFFFFF",
+  transition: "border-color 0.2s ease",
+};
+
 export default function StartupQuiz() {
   const [step, setStep] = useState<Step>("quiz");
   const [currentQ, setCurrentQ] = useState(0);
@@ -74,11 +86,8 @@ export default function StartupQuiz() {
     const newAnswers = { ...answers, [q.id]: value };
     setAnswers(newAnswers);
     setTimeout(() => {
-      if (currentQ < questions.length - 1) {
-        setCurrentQ((c) => c + 1);
-      } else {
-        setStep("email");
-      }
+      if (currentQ < questions.length - 1) setCurrentQ((c) => c + 1);
+      else setStep("email");
     }, 250);
   }
 
@@ -91,37 +100,42 @@ export default function StartupQuiz() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, answers }),
       });
-      setStep("done");
-    } catch {
-      // Fail silently, show done anyway
-      setStep("done");
-    } finally {
-      setLoading(false);
-    }
+    } catch {}
+    setLoading(false);
+    setStep("done");
   }
+
+  const cardSt: React.CSSProperties = {
+    background: "#FFFFFF",
+    border: "1px solid #E0E0DC",
+    borderRadius: "12px",
+    padding: "2rem",
+  };
+
+  const barSt: React.CSSProperties = {
+    height: "4px", borderRadius: "99px",
+    background: "#F0F0ED",
+    marginBottom: "1.5rem",
+    overflow: "hidden",
+  };
 
   if (step === "done") {
     return (
-      <div className="bg-white border border-border rounded-sm p-8 lg:p-10 text-center">
-        <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
-          <CheckCircle2 className="w-7 h-7 text-primary" />
+      <div style={{ ...cardSt, textAlign: "center" }}>
+        <div style={{ width: "56px", height: "56px", background: "#D8F3DC", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+          <CheckCircle2 size={28} color="#1B4332" />
         </div>
-        <h3 className="font-serif text-xl font-bold text-grey-900 mb-2">
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.5rem" }}>
           Your SWOT Report is on its way!
         </h3>
-        <p className="text-grey-600 text-sm leading-relaxed mb-6">
-          Check your inbox within 5 minutes. We&apos;ve also tagged your profile so our team
-          can follow up with personalised insights for your specific stage and sector.
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A", marginBottom: "1.5rem" }}>
+          Check your inbox within 5 minutes. We&apos;ve also tagged your profile so our team can follow up with personalised insights.
         </p>
-        <div className="grid grid-cols-3 gap-4 p-4 bg-grey-50 rounded-sm">
-          {[
-            { label: "Market Sizing", status: "Included" },
-            { label: "SWOT Analysis", status: "Included" },
-            { label: "Competitor Map", status: "Included" },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
-              <p className="text-xs font-semibold text-primary">{item.status}</p>
-              <p className="text-xs text-grey-500 mt-0.5">{item.label}</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", padding: "1rem", background: "#FAFAF8", borderRadius: "8px" }}>
+          {["Market Sizing", "SWOT Analysis", "Competitor Map"].map((item) => (
+            <div key={item} style={{ textAlign: "center" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#1B4332", marginBottom: "0.25rem" }}>✓ Included</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878" }}>{item}</p>
             </div>
           ))}
         </div>
@@ -131,59 +145,39 @@ export default function StartupQuiz() {
 
   if (step === "email") {
     return (
-      <div className="bg-white border border-border rounded-sm p-8 lg:p-10">
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-              All done!
-            </span>
-            <span className="text-xs text-grey-400">5 / 5 questions</span>
-          </div>
-          <div className="h-1.5 bg-grey-100 rounded-full">
-            <div className="h-full bg-primary rounded-full w-full transition-all duration-500" />
-          </div>
+      <div style={cardSt}>
+        <div style={barSt}>
+          <div style={{ height: "100%", background: "#1B4332", width: "100%", borderRadius: "99px", transition: "width 0.4s ease" }} />
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1.5rem" }}>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>All done!</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>5 / 5 questions</span>
         </div>
 
-        <h3 className="font-serif text-xl font-bold text-grey-900 mb-1">
+        <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#111111", marginBottom: "0.375rem" }}>
           Where should we send your report?
         </h3>
-        <p className="text-grey-600 text-sm mb-6">
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#787878", marginBottom: "1.5rem" }}>
           Get your free personalised SWOT report instantly.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            placeholder="Your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors"
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          <input type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required style={inputSt}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#1B4332"; }}
+            onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />
-          <input
-            type="email"
-            placeholder="Your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors"
+          <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required style={inputSt}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#1B4332"; }}
+            onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn-primary w-full justify-center"
-          >
-            {loading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <>
-                Send My Free SWOT Report
-                <ArrowRight className="w-4 h-4" />
-              </>
-            )}
+          <button type="submit" disabled={loading} className="btn-primary" style={{ justifyContent: "center" }}>
+            {loading
+              ? <><Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} /> Sending…</>
+              : <>Send My Free SWOT Report <ArrowRight size={15} /></>
+            }
           </button>
-          <p className="text-grey-400 text-xs text-center">
-            No spam. Your data is private. Unsubscribe anytime.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center" }}>
+            No spam. Your data is private.
           </p>
         </form>
       </div>
@@ -191,51 +185,69 @@ export default function StartupQuiz() {
   }
 
   return (
-    <div className="bg-white border border-border rounded-sm p-6 lg:p-8">
-      {/* Progress */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-1.5">
-          <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-            Startup Health Check
-          </span>
-          <span className="text-xs text-grey-400">
-            {currentQ + 1} / {questions.length}
-          </span>
-        </div>
-        <div className="h-1.5 bg-grey-100 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-primary rounded-full transition-all duration-500"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+    <div style={cardSt}>
+      {/* Progress bar */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.625rem" }}>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>
+          Startup Health Check
+        </span>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>
+          {currentQ + 1} / {questions.length}
+        </span>
+      </div>
+      <div style={barSt}>
+        <div style={{ height: "100%", background: "#1B4332", width: `${progress}%`, borderRadius: "99px", transition: "width 0.4s ease" }} />
       </div>
 
       {/* Question */}
-      <h3 className="font-serif text-lg font-bold text-grey-900 mb-5">{q.question}</h3>
+      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#111111", marginBottom: "1.25rem" }}>
+        {q.question}
+      </h3>
 
       {/* Options */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-        {q.options.map((opt) => (
-          <button
-            key={opt.value}
-            onClick={() => selectAnswer(opt.value)}
-            className={cn(
-              "text-left p-4 border rounded-sm text-sm font-medium transition-all duration-200",
-              answers[q.id] === opt.value
-                ? "border-primary bg-green-50 text-primary"
-                : "border-border bg-white text-grey-700 hover:border-primary hover:bg-grey-50"
-            )}
-          >
-            {opt.label}
-          </button>
-        ))}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.625rem" }}>
+        {q.options.map((opt) => {
+          const selected = answers[q.id] === opt.value;
+          return (
+            <button
+              key={opt.value}
+              onClick={() => selectAnswer(opt.value)}
+              style={{
+                textAlign: "left",
+                padding: "0.875rem 1rem",
+                border: selected ? "1.5px solid #1B4332" : "1.5px solid #E0E0DC",
+                borderRadius: "8px",
+                background: selected ? "#EDFAF2" : "#FFFFFF",
+                cursor: "pointer",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                fontWeight: selected ? 600 : 400,
+                color: selected ? "#1B4332" : "#3D3D3D",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={e => {
+                if (!selected) {
+                  (e.currentTarget as HTMLElement).style.borderColor = "#1B4332";
+                  (e.currentTarget as HTMLElement).style.background = "#FAFAF8";
+                }
+              }}
+              onMouseLeave={e => {
+                if (!selected) {
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E0E0DC";
+                  (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+                }
+              }}
+            >
+              {opt.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Back button */}
       {currentQ > 0 && (
-        <button
-          onClick={() => setCurrentQ((c) => c - 1)}
-          className="mt-4 text-grey-400 hover:text-grey-600 text-xs transition-colors"
+        <button onClick={() => setCurrentQ(c => c - 1)} style={{ marginTop: "1rem", background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#A0A0A0", transition: "color 0.2s ease" }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#3D3D3D"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#A0A0A0"; }}
         >
           ← Back
         </button>

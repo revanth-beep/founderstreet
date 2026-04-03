@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface AccordionItem {
   question: string;
@@ -18,33 +17,82 @@ export default function Accordion({ items, className }: AccordionProps) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className={cn("divide-y divide-border rounded-sm border border-border", className)}>
+    <div
+      className={className}
+      style={{
+        border: "1px solid #E0E0DC",
+        borderRadius: "10px",
+        overflow: "hidden",
+        background: "#FFFFFF",
+      }}
+    >
       {items.map((item, i) => (
-        <div key={i} className="group">
+        <div key={i} style={{ borderBottom: i < items.length - 1 ? "1px solid #F0F0ED" : "none" }}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-start justify-between gap-4 p-5 lg:p-6 text-left bg-white hover:bg-grey-50 transition-colors first:rounded-t-sm last:rounded-b-sm"
             aria-expanded={open === i}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+              gap: "1rem",
+              padding: "1.25rem 1.5rem",
+              textAlign: "left",
+              background: open === i ? "#FAFAF8" : "#FFFFFF",
+              border: "none",
+              cursor: "pointer",
+              transition: "background 0.2s ease",
+            }}
+            onMouseEnter={e => {
+              if (open !== i) (e.currentTarget as HTMLElement).style.background = "#FAFAF8";
+            }}
+            onMouseLeave={e => {
+              if (open !== i) (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+            }}
           >
-            <span className="font-semibold text-grey-900 text-sm lg:text-base leading-relaxed">
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.9375rem",
+              color: open === i ? "#111111" : "#3D3D3D",
+              lineHeight: 1.5,
+              transition: "color 0.2s ease",
+            }}>
               {item.question}
             </span>
-            <ChevronDown
-              className={cn(
-                "w-5 h-5 text-grey-400 flex-shrink-0 mt-0.5 transition-transform duration-300",
-                open === i && "rotate-180 text-primary"
-              )}
-            />
+            <span style={{
+              flexShrink: 0,
+              width: "24px", height: "24px",
+              background: open === i ? "#1B4332" : "#F0F0ED",
+              borderRadius: "50%",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all 0.25s ease",
+              marginTop: "1px",
+            }}>
+              <ChevronDown
+                size={14}
+                color={open === i ? "#FFFFFF" : "#787878"}
+                style={{ transform: open === i ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.3s ease" }}
+              />
+            </span>
           </button>
 
-          <div
-            className={cn(
-              "overflow-hidden transition-all duration-300 ease-in-out",
-              open === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-            )}
-          >
-            <div className="px-5 lg:px-6 pb-5 lg:pb-6 bg-white">
-              <p className="text-grey-600 text-sm leading-relaxed">{item.answer}</p>
+          <div style={{
+            maxHeight: open === i ? "500px" : "0px",
+            opacity: open === i ? 1 : 0,
+            overflow: "hidden",
+            transition: "max-height 0.35s ease, opacity 0.3s ease",
+          }}>
+            <div style={{ padding: "0 1.5rem 1.375rem", background: "#FAFAF8" }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                lineHeight: 1.75,
+                color: "#5A5A5A",
+              }}>
+                {item.answer}
+              </p>
             </div>
           </div>
         </div>

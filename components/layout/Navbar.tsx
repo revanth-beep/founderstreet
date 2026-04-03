@@ -3,336 +3,348 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import {
-  ChevronDown,
-  Menu,
-  X,
-  ArrowRight,
-  FlaskConical,
-  Building2,
-  Calculator,
-  Megaphone,
-  Code2,
-  TrendingUp,
-} from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp } from "lucide-react";
 
 const services = [
-  {
-    name: "Test Your Idea",
-    href: "/services/validation",
-    icon: FlaskConical,
-    desc: "Market sizing, SWOT & unit economics",
-  },
-  {
-    name: "Incorporation & Compliance",
-    href: "/services/incorporation",
-    icon: Building2,
-    desc: "End-to-end company registration",
-  },
-  {
-    name: "Accounting & Virtual CFO",
-    href: "/services/accounting",
-    icon: Calculator,
-    desc: "Financial plumbing for founders",
-  },
-  {
-    name: "Marketing & Retail",
-    href: "/services/marketing",
-    icon: Megaphone,
-    desc: "Full-funnel digital and offline growth",
-  },
-  {
-    name: "Web & Tech Development",
-    href: "/services/web-development",
-    icon: Code2,
-    desc: "Scalable storefronts and platforms",
-  },
-  {
-    name: "Investor Funding",
-    href: "/services/funding",
-    icon: TrendingUp,
-    desc: "Pitch decks, projections & matchmaking",
-  },
+  { name: "Test Your Idea", href: "/services/validation", icon: FlaskConical, desc: "Market sizing, SWOT & unit economics" },
+  { name: "Incorporation & Compliance", href: "/services/incorporation", icon: Building2, desc: "End-to-end company registration" },
+  { name: "Accounting & Virtual CFO", href: "/services/accounting", icon: Calculator, desc: "Financial plumbing for founders" },
+  { name: "Marketing & Retail", href: "/services/marketing", icon: Megaphone, desc: "Full-funnel digital and offline growth" },
+  { name: "Web & Tech Development", href: "/services/web-development", icon: Code2, desc: "Scalable storefronts and platforms" },
+  { name: "Investor Funding", href: "/services/funding", icon: TrendingUp, desc: "Pitch decks, projections & matchmaking" },
 ];
 
-const navLinks = [
-  { name: "Services", href: "#", hasDropdown: true },
-  { name: "About", href: "/about" },
-  { name: "Resources", href: "/resources" },
-  { name: "Contact", href: "/contact" },
-];
+type NavbarContentProps = {
+  solid: boolean;
+};
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+function NavbarContent({ solid }: NavbarContentProps) {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const pathname = usePathname();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-    setServicesOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setServicesOpen(false);
-      }
+    const fn = (e: MouseEvent) => {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) setServicesOpen(false);
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
   }, []);
-
-  const isHomePage = pathname === "/";
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled || !isHomePage
-            ? "bg-white/95 backdrop-blur-md border-b border-border shadow-soft"
-            : "bg-transparent"
-        )}
-      >
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-16 lg:h-18">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex items-center gap-1.5">
-                <div className="w-7 h-7 bg-primary rounded-sm flex items-center justify-center">
-                  <span className="text-white font-bold text-xs font-serif">FS</span>
-                </div>
-                <span
-                  className={cn(
-                    "font-serif font-bold text-lg tracking-tight transition-colors duration-300",
-                    scrolled || !isHomePage ? "text-grey-900" : "text-white"
-                  )}
-                >
-                  Founderstreet
-                </span>
-              </div>
-            </Link>
+      <header style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+        background: solid ? "rgba(255,255,255,0.97)" : "transparent",
+        backdropFilter: solid ? "blur(16px)" : "none",
+        borderBottom: solid ? "1px solid #E0E0DC" : "none",
+        boxShadow: solid ? "0 1px 20px rgba(0,0,0,0.06)" : "none",
+        transition: "all 0.4s ease",
+      }}>
+        <div className="container-custom" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) =>
-                link.hasDropdown ? (
-                  <div key={link.name} ref={dropdownRef} className="relative">
-                    <button
-                      onClick={() => setServicesOpen((o) => !o)}
-                      className={cn(
-                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-sm transition-colors duration-200",
-                        scrolled || !isHomePage
-                          ? "text-grey-700 hover:text-primary"
-                          : "text-white/90 hover:text-white"
-                      )}
-                    >
-                      {link.name}
-                      <ChevronDown
-                        className={cn(
-                          "w-3.5 h-3.5 transition-transform duration-200",
-                          servicesOpen && "rotate-180"
-                        )}
-                      />
-                    </button>
-
-                    {/* Dropdown */}
-                    {servicesOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] bg-white rounded-sm border border-border shadow-strong p-4 grid grid-cols-2 gap-2">
-                        {services.map((service) => {
-                          const Icon = service.icon;
-                          return (
-                            <Link
-                              key={service.href}
-                              href={service.href}
-                              className="flex items-start gap-3 p-3 rounded-sm hover:bg-grey-50 transition-colors group"
-                            >
-                              <div className="w-8 h-8 bg-green-100 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary transition-colors">
-                                <Icon className="w-4 h-4 text-primary group-hover:text-white transition-colors" />
-                              </div>
-                              <div>
-                                <p className="font-semibold text-sm text-grey-900 group-hover:text-primary transition-colors">
-                                  {service.name}
-                                </p>
-                                <p className="text-xs text-grey-500 mt-0.5 leading-relaxed">
-                                  {service.desc}
-                                </p>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                        <div className="col-span-2 pt-2 mt-1 border-t border-border">
-                          <Link
-                            href="/startup-health-check"
-                            className="flex items-center justify-between p-3 rounded-sm bg-green-100 hover:bg-green-200 transition-colors group"
-                          >
-                            <div>
-                              <p className="font-semibold text-sm text-primary">
-                                Free Startup Health Check
-                              </p>
-                              <p className="text-xs text-primary/70 mt-0.5">
-                                5 questions. Get a free SWOT report.
-                              </p>
-                            </div>
-                            <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={cn(
-                      "px-4 py-2 text-sm font-medium rounded-sm transition-colors duration-200",
-                      scrolled || !isHomePage
-                        ? "text-grey-700 hover:text-primary"
-                        : "text-white/90 hover:text-white",
-                      pathname === link.href &&
-                        (scrolled || !isHomePage) &&
-                        "text-primary"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                )
-              )}
-            </nav>
-
-            {/* CTA */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Link
-                href="/startup-health-check"
-                className={cn(
-                  "text-sm font-medium transition-colors duration-200",
-                  scrolled || !isHomePage
-                    ? "text-grey-600 hover:text-primary"
-                    : "text-white/80 hover:text-white"
-                )}
-              >
-                Free Health Check
-              </Link>
-              <Link href="/contact" className="btn-primary text-xs px-5 py-2.5">
-                Pitch Your Idea
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+            <div style={{
+              width: "32px", height: "32px", background: "#1B4332",
+              borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
+            }}>
+              <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
             </div>
+            <span style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontWeight: 700, fontSize: "1.1875rem",
+              color: solid ? "#111111" : "#FFFFFF",
+              letterSpacing: "-0.01em",
+              transition: "color 0.3s ease"
+            }}>
+              Founderstreet
+            </span>
+          </Link>
 
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setMobileOpen((o) => !o)}
-              className={cn(
-                "lg:hidden p-2 rounded-sm",
-                scrolled || !isHomePage ? "text-grey-700" : "text-white"
-              )}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 lg:hidden transition-all duration-300",
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-      >
-        <div
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
-        />
-        <div
-          className={cn(
-            "absolute top-0 right-0 bottom-0 w-80 bg-white shadow-strong transition-transform duration-300",
-            mobileOpen ? "translate-x-0" : "translate-x-full"
-          )}
-        >
-          <div className="flex items-center justify-between p-5 border-b border-border">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-primary rounded-sm flex items-center justify-center">
-                <span className="text-white font-bold text-xs font-serif">FS</span>
-              </div>
-              <span className="font-serif font-bold text-base text-grey-900">
-                Founderstreet
-              </span>
-            </Link>
-            <button onClick={() => setMobileOpen(false)} className="text-grey-600">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          <div className="p-5 overflow-y-auto max-h-[calc(100vh-80px)]">
-            <nav className="space-y-1">
+          {/* Desktop nav */}
+          <nav style={{ display: "none", alignItems: "center", gap: "2px" }} className="desktop-nav">
+            {/* Services dropdown */}
+            <div ref={dropRef} style={{ position: "relative" }}>
               <button
-                onClick={() => setMobileServicesOpen((o) => !o)}
-                className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-grey-700 hover:text-primary hover:bg-grey-50 rounded-sm transition-colors"
+                onClick={() => setServicesOpen(o => !o)}
+                style={{
+                  display: "flex", alignItems: "center", gap: "4px",
+                  padding: "8px 14px",
+                  background: "transparent", border: "none", cursor: "pointer",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.875rem",
+                  color: solid ? "#3D3D3D" : "rgba(255,255,255,0.85)",
+                  borderRadius: "6px",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = solid ? "#F0F0ED" : "rgba(255,255,255,0.1)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
               >
                 Services
-                <ChevronDown
-                  className={cn(
-                    "w-4 h-4 transition-transform",
-                    mobileServicesOpen && "rotate-180"
-                  )}
-                />
+                <ChevronDown size={14} style={{ transform: servicesOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }} />
               </button>
 
-              {mobileServicesOpen && (
-                <div className="ml-3 space-y-1 border-l-2 border-green-200 pl-3">
-                  {services.map((service) => {
-                    const Icon = service.icon;
+              {servicesOpen && (
+                <div style={{
+                  position: "absolute", top: "calc(100% + 8px)", left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "500px",
+                  background: "#FFFFFF",
+                  border: "1px solid #E0E0DC",
+                  borderRadius: "12px",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)",
+                  padding: "1rem",
+                  display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px",
+                }}>
+                  {services.map(svc => {
+                    const Icon = svc.icon;
                     return (
                       <Link
-                        key={service.href}
-                        href={service.href}
-                        className="flex items-center gap-2.5 px-3 py-2 text-sm text-grey-600 hover:text-primary hover:bg-grey-50 rounded-sm transition-colors"
+                        key={svc.href}
+                        href={svc.href}
+                        style={{
+                          display: "flex", alignItems: "flex-start", gap: "12px",
+                          padding: "12px",
+                          borderRadius: "8px",
+                          textDecoration: "none",
+                          transition: "background 0.2s ease",
+                        }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#F7F7F5"; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
                       >
-                        <Icon className="w-4 h-4 text-primary" />
-                        {service.name}
+                        <div style={{
+                          width: "34px", height: "34px",
+                          background: "#EDFAF2", borderRadius: "7px",
+                          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
+                        }}>
+                          <Icon size={16} color="#1B4332" />
+                        </div>
+                        <div>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem", color: "#111111", marginBottom: "2px" }}>
+                            {svc.name}
+                          </p>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878", lineHeight: 1.5 }}>
+                            {svc.desc}
+                          </p>
+                        </div>
                       </Link>
                     );
                   })}
+                  {/* Health check CTA */}
+                  <div style={{ gridColumn: "span 2", paddingTop: "0.5rem", borderTop: "1px solid #F0F0ED", marginTop: "0.25rem" }}>
+                    <Link
+                      href="/startup-health-check"
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "space-between",
+                        padding: "12px 14px",
+                        background: "#EDFAF2",
+                        borderRadius: "8px",
+                        textDecoration: "none",
+                        transition: "background 0.2s ease"
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#D8F3DC"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#EDFAF2"; }}
+                    >
+                      <div>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#1B4332" }}>Free Startup Health Check</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#2D6A4F", marginTop: "2px" }}>5 questions. Get a free SWOT report instantly.</p>
+                      </div>
+                      <ArrowRight size={15} color="#1B4332" />
+                    </Link>
+                  </div>
                 </div>
               )}
-
-              {[
-                { name: "About", href: "/about" },
-                { name: "Resources", href: "/resources" },
-                { name: "Startup Health Check", href: "/startup-health-check" },
-                { name: "Contact", href: "/contact" },
-              ].map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="block px-3 py-2.5 text-sm font-medium text-grey-700 hover:text-primary hover:bg-grey-50 rounded-sm transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mt-6 pt-6 border-t border-border">
-              <Link href="/contact" className="btn-primary w-full justify-center">
-                Pitch Your Idea
-                <ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
+
+            {[
+              { name: "About", href: "/about" },
+              { name: "Resources", href: "/resources" },
+              { name: "Contact", href: "/contact" },
+            ].map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  padding: "8px 14px",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.875rem",
+                  color: solid ? "#3D3D3D" : "rgba(255,255,255,0.85)",
+                  textDecoration: "none",
+                  borderRadius: "6px",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = solid ? "#F0F0ED" : "rgba(255,255,255,0.1)";
+                  (e.currentTarget as HTMLElement).style.color = solid ? "#111111" : "#FFFFFF";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
+                  (e.currentTarget as HTMLElement).style.color = solid ? "#3D3D3D" : "rgba(255,255,255,0.85)";
+                }}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA buttons */}
+          <div style={{ display: "none", alignItems: "center", gap: "10px" }} className="desktop-cta">
+            <Link
+              href="/startup-health-check"
+              style={{
+                fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.875rem",
+                color: solid ? "#5A5A5A" : "rgba(255,255,255,0.7)",
+                textDecoration: "none", padding: "8px 4px",
+                transition: "color 0.2s ease"
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#1B4332" : "#FFFFFF"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#5A5A5A" : "rgba(255,255,255,0.7)"; }}
+            >
+              Free Health Check
+            </Link>
+            <Link href="/contact" className="btn-primary" style={{ fontSize: "0.8125rem", padding: "0.6rem 1.25rem" }}>
+              Pitch Your Idea
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(o => !o)}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: "40px", height: "40px",
+              background: "transparent", border: "none", cursor: "pointer",
+              color: solid ? "#111111" : "#FFFFFF",
+            }}
+            className="mobile-burger"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile drawer */}
+      <div
+        onClick={() => setMobileOpen(false)}
+        style={{
+          position: "fixed", inset: 0, zIndex: 998,
+          background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)",
+          opacity: mobileOpen ? 1 : 0,
+          pointerEvents: mobileOpen ? "auto" : "none",
+          transition: "opacity 0.3s ease",
+        }}
+      />
+      <div style={{
+        position: "fixed", top: 0, right: 0, bottom: 0,
+        width: "min(320px, 90vw)",
+        background: "#FFFFFF",
+        zIndex: 999,
+        transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
+        transition: "transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+        overflowY: "auto",
+        boxShadow: "-20px 0 60px rgba(0,0,0,0.15)"
+      }}>
+        {/* Drawer header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 1.5rem", borderBottom: "1px solid #F0F0ED" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
+            <div style={{ width: "28px", height: "28px", background: "#1B4332", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "11px" }}>FS</span>
+            </div>
+            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#111111", fontSize: "1rem" }}>Founderstreet</span>
+          </Link>
+          <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#787878" }}>
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Drawer nav */}
+        <div style={{ padding: "1rem 1.5rem" }}>
+          <button
+            onClick={() => setMobileServicesOpen(o => !o)}
+            style={{
+              width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "0.75rem 0.5rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.9375rem",
+              color: "#111111", background: "none", border: "none", cursor: "pointer",
+              borderBottom: "1px solid #F0F0ED"
+            }}
+          >
+            Services
+            <ChevronDown size={16} style={{ transform: mobileServicesOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s ease" }} />
+          </button>
+
+          {mobileServicesOpen && (
+            <div style={{ paddingLeft: "0.75rem", paddingTop: "0.5rem" }}>
+              {services.map(svc => {
+                const Icon = svc.icon;
+                return (
+                  <Link
+                    key={svc.href}
+                    href={svc.href}
+                    style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0.625rem 0.5rem", textDecoration: "none", borderRadius: "6px" }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <Icon size={15} color="#1B4332" />
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3D3D3D" }}>{svc.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+          {[
+            { name: "About", href: "/about" },
+            { name: "Resources", href: "/resources" },
+            { name: "Startup Health Check", href: "/startup-health-check" },
+            { name: "Contact", href: "/contact" },
+          ].map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              style={{
+                display: "block", padding: "0.75rem 0.5rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.9375rem",
+                color: "#111111", textDecoration: "none",
+                borderBottom: "1px solid #F0F0ED"
+              }}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          <div style={{ paddingTop: "1.5rem" }}>
+            <Link href="/contact" className="btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMobileOpen(false)}>
+              Pitch Your Idea <ArrowRight size={15} />
+            </Link>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .desktop-nav { display: flex !important; }
+          .desktop-cta { display: flex !important; }
+          .mobile-burger { display: none !important; }
+        }
+      `}</style>
     </>
   );
+}
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const solid = scrolled || !isHome;
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  return <NavbarContent key={pathname} solid={solid} />;
 }

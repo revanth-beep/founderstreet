@@ -1,110 +1,145 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, BookOpen } from "lucide-react";
 
 const posts = [
   {
-    category: "Finance",
-    title: "Unit Economics 101: What Every Founder Must Know Before Raising",
-    excerpt: "Before any investor writes a cheque, they will scrutinise your unit economics. Here's the complete framework.",
-    readingTime: 8,
-    href: "/resources/unit-economics-101-what-every-founder-must-know",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop",
+    category: "Strategy",
+    title: "Why 70% of Indian Startups Fail at the Compliance Stage — and How to Not Be One",
+    excerpt: "Regulatory oversights kill more startups than bad products. We break down the five most common compliance failures and how to systematically avoid them.",
+    readTime: "6 min",
+    href: "/resources/why-startups-fail-compliance",
   },
   {
-    category: "Legal",
-    title: "Pvt Ltd vs LLP in India: The Definitive 2025 Guide for Founders",
-    excerpt: "Choosing the wrong entity structure can cost you your next funding round. Here's exactly which one to pick.",
-    readingTime: 10,
-    href: "/resources/private-limited-vs-llp-india-2025",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=400&fit=crop",
+    category: "Finance",
+    title: "The Unit Economics Cheat Sheet Every Pre-Seed Founder Needs",
+    excerpt: "CAC, LTV, gross margin, payback period — explained simply with the exact benchmarks VCs use in their first screening call.",
+    readTime: "8 min",
+    href: "/resources/unit-economics-cheat-sheet",
   },
   {
     category: "Fundraising",
-    title: "Pitch Deck Teardown: What India's Top VCs Actually Want to See",
-    excerpt: "We've reviewed 200+ pitch decks. Here are the exact slides that make investors lean forward.",
-    readingTime: 12,
-    href: "/resources/pitch-deck-teardown-what-sequoia-wants-to-see",
-    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&h=400&fit=crop",
+    title: "How to Build a ₹1Cr+ Angel Round Without a Warm Intro",
+    excerpt: "A step-by-step playbook from our team on cold outreach, deck structure, and how to position a pre-revenue startup compellingly.",
+    readTime: "10 min",
+    href: "/resources/angel-round-without-warm-intro",
   },
 ];
 
-const categoryColors: Record<string, string> = {
-  Finance: "bg-blue-50 text-blue-700",
-  Legal: "bg-purple-50 text-purple-700",
-  Fundraising: "bg-green-100 text-green-700",
+const catColor: Record<string, { bg: string; text: string }> = {
+  Strategy:    { bg: "#EDFAF2", text: "#1B4332" },
+  Finance:     { bg: "#EFF6FF", text: "#1E40AF" },
+  Fundraising: { bg: "#FEF9C3", text: "#92400E" },
 };
 
 export default function ResourcesTeaser() {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding" style={{ background: "#FFFFFF" }}>
       <div className="container-custom">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "1rem", marginBottom: "3rem" }}>
           <div>
-            <span className="section-label mb-4">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+            <span className="label-tag" style={{ marginBottom: "0.875rem", display: "inline-flex" }}>
+              <BookOpen size={11} color="#1B4332" />
               The Founder&apos;s Brief
             </span>
-            <h2 className="heading-md mt-3">
-              Frameworks, Not Fluff
+            <h2 className="heading-lg" style={{ marginTop: "0.5rem" }}>
+              Thinking Built for{" "}
+              <span className="gradient-text">Builders</span>
             </h2>
           </div>
-          <Link
-            href="/resources"
-            className="btn-ghost text-sm font-semibold self-start sm:self-auto"
+          <Link href="/resources" style={{
+            display: "inline-flex", alignItems: "center", gap: "6px",
+            fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem",
+            color: "#1B4332", textDecoration: "none",
+            padding: "0.5rem 0",
+            borderBottom: "1.5px solid #D8F3DC",
+            transition: "border-color 0.2s ease",
+          }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#1B4332"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#D8F3DC"; }}
           >
-            View all articles
-            <ArrowRight className="w-4 h-4" />
+            All articles <ArrowRight size={14} />
           </Link>
         </div>
 
-        {/* Posts grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <Link
-              key={post.href}
-              href={post.href}
-              className="group card-base rounded-sm overflow-hidden"
-            >
-              {/* Image */}
-              <div className="aspect-[16/9] overflow-hidden bg-grey-100">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+        {/* Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1px", background: "#E0E0DC", border: "1px solid #E0E0DC", borderRadius: "12px", overflow: "hidden" }} className="res-grid">
+          {posts.map((post, i) => {
+            const colors = catColor[post.category] || catColor.Strategy;
+            return (
+              <Link
+                key={post.href}
+                href={post.href}
+                style={{
+                  display: "block",
+                  background: "#FFFFFF",
+                  padding: "2rem",
+                  textDecoration: "none",
+                  transition: "background 0.3s ease",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#FAFAF8"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#FFFFFF"; }}
+              >
+                {/* Top accent line */}
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: i === 0 ? "#1B4332" : "#E0E0DC" }} />
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span
-                    className={`text-xs font-semibold px-2 py-1 rounded-full ${categoryColors[post.category] || "bg-grey-100 text-grey-700"}`}
-                  >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                  <span style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.6875rem", fontWeight: 700,
+                    letterSpacing: "0.1em", textTransform: "uppercase" as const,
+                    color: colors.text,
+                    background: colors.bg,
+                    padding: "0.2rem 0.625rem",
+                    borderRadius: "99px"
+                  }}>
                     {post.category}
                   </span>
-                  <span className="flex items-center gap-1 text-grey-400 text-xs">
-                    <Clock className="w-3 h-3" />
-                    {post.readingTime} min read
+                  <span style={{ display: "flex", alignItems: "center", gap: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>
+                    <Clock size={11} />
+                    {post.readTime}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-base font-bold text-grey-900 group-hover:text-primary transition-colors leading-snug mb-2">
+                <h3 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "1.125rem", fontWeight: 700,
+                  color: "#111111", lineHeight: 1.4,
+                  marginBottom: "0.75rem"
+                }}>
                   {post.title}
                 </h3>
-                <p className="text-grey-600 text-sm leading-relaxed line-clamp-2">
+
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.875rem", lineHeight: 1.65,
+                  color: "#5A5A5A",
+                  marginBottom: "1.25rem"
+                }}>
                   {post.excerpt}
                 </p>
 
-                <div className="mt-4 flex items-center gap-1.5 text-primary text-sm font-semibold">
-                  Read article
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-          ))}
+                <span style={{
+                  display: "inline-flex", alignItems: "center", gap: "4px",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.8125rem", fontWeight: 600,
+                  color: "#1B4332",
+                }}>
+                  Read article <ArrowRight size={13} />
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 768px)  { .res-grid { grid-template-columns: repeat(3,1fr) !important; } }
+      `}</style>
     </section>
   );
 }

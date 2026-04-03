@@ -1,5 +1,4 @@
 import { Check, X, Minus } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 type CellValue = boolean | string | "partial";
 
@@ -25,76 +24,57 @@ interface ComparisonTableProps {
 function Cell({ value, highlight }: { value: CellValue; highlight?: boolean }) {
   if (value === true)
     return (
-      <div
-        className={cn(
-          "flex items-center justify-center",
-          highlight ? "text-green-600" : "text-green-600"
-        )}
-      >
-        <div className={cn("w-6 h-6 rounded-full flex items-center justify-center", highlight ? "bg-green-100" : "bg-green-50")}>
-          <Check className="w-3.5 h-3.5" />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: highlight ? "#D8F3DC" : "#EDFAF2", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Check size={13} color="#1B4332" />
         </div>
       </div>
     );
   if (value === false)
     return (
-      <div className="flex items-center justify-center text-grey-300">
-        <div className="w-6 h-6 rounded-full bg-grey-50 flex items-center justify-center">
-          <X className="w-3 h-3" />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: "#F7F7F5", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <X size={12} color="#C4C4C4" />
         </div>
       </div>
     );
   if (value === "partial")
     return (
-      <div className="flex items-center justify-center text-yellow-500">
-        <div className="w-6 h-6 rounded-full bg-yellow-50 flex items-center justify-center">
-          <Minus className="w-3 h-3" />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: "#FEF9C3", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Minus size={12} color="#92400E" />
         </div>
       </div>
     );
   return (
-    <div className={cn("text-center text-sm", highlight ? "font-semibold text-grey-900" : "text-grey-600")}>
+    <div style={{ textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: highlight ? 600 : 400, color: highlight ? "#111111" : "#5A5A5A" }}>
       {value}
     </div>
   );
 }
 
-export default function ComparisonTable({
-  columns,
-  rows,
-  title,
-  subtitle,
-}: ComparisonTableProps) {
+export default function ComparisonTable({ columns, rows, title, subtitle }: ComparisonTableProps) {
   return (
-    <div className="overflow-hidden rounded-sm border border-border">
+    <div style={{ overflow: "hidden", borderRadius: "10px", border: "1px solid #E0E0DC" }}>
       {(title || subtitle) && (
-        <div className="px-6 py-5 bg-grey-50 border-b border-border">
-          {title && <h3 className="font-serif font-bold text-lg text-grey-900">{title}</h3>}
-          {subtitle && <p className="text-grey-600 text-sm mt-1">{subtitle}</p>}
+        <div style={{ padding: "1.25rem 1.5rem", background: "#FAFAF8", borderBottom: "1px solid #E0E0DC" }}>
+          {title && <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#111111" }}>{title}</h3>}
+          {subtitle && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.25rem" }}>{subtitle}</p>}
         </div>
       )}
 
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          {/* Header */}
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
-            <tr className="border-b border-border">
-              <th className="text-left p-4 lg:p-5 text-xs font-semibold uppercase tracking-wider text-grey-500 bg-white w-1/3">
+            <tr style={{ borderBottom: "1px solid #E0E0DC" }}>
+              <th style={{ textAlign: "left", padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#A0A0A0", background: "#FFFFFF", width: "33%" }}>
                 Feature
               </th>
               {columns.map((col) => (
-                <th
-                  key={col.key}
-                  className={cn(
-                    "p-4 lg:p-5 text-center text-sm font-bold",
-                    col.highlight
-                      ? "bg-primary text-white"
-                      : "bg-white text-grey-700"
-                  )}
-                >
-                  <div className="flex flex-col items-center gap-1">
+                <th key={col.key} style={{ padding: "1rem 1.25rem", textAlign: "center", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 700, background: col.highlight ? "#1B4332" : "#FFFFFF", color: col.highlight ? "#FFFFFF" : "#3D3D3D" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
                     {col.highlight && (
-                      <span className="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full font-normal">
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "2px 8px", borderRadius: "99px", fontWeight: 600 }}>
                         Recommended
                       </span>
                     )}
@@ -104,39 +84,22 @@ export default function ComparisonTable({
               ))}
             </tr>
           </thead>
-
-          {/* Body */}
           <tbody>
             {rows.map((row, rIdx) => (
               <>
                 {row.category && (
-                  <tr key={`cat-${rIdx}`} className="bg-grey-50">
-                    <td
-                      colSpan={columns.length + 1}
-                      className="px-4 lg:px-5 py-2 text-xs font-semibold uppercase tracking-widest text-primary"
-                    >
+                  <tr key={`cat-${rIdx}`}>
+                    <td colSpan={columns.length + 1} style={{ padding: "0.625rem 1.25rem", background: "#F7F7F5", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#1B4332" }}>
                       {row.category}
                     </td>
                   </tr>
                 )}
-                <tr
-                  key={`row-${rIdx}`}
-                  className={cn(
-                    "border-b border-border last:border-0 hover:bg-grey-50 transition-colors",
-                    rIdx % 2 === 0 ? "bg-white" : "bg-grey-50/50"
-                  )}
-                >
-                  <td className="p-4 lg:p-5 text-sm font-medium text-grey-700">
+                <tr key={`row-${rIdx}`} style={{ borderBottom: rIdx < rows.length - 1 ? "1px solid #F0F0ED" : "none", background: rIdx % 2 === 0 ? "#FFFFFF" : "#FAFAF8" }}>
+                  <td style={{ padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 500, color: "#3D3D3D" }}>
                     {row.feature}
                   </td>
                   {row.values.map((val, vIdx) => (
-                    <td
-                      key={vIdx}
-                      className={cn(
-                        "p-4 lg:p-5",
-                        columns[vIdx]?.highlight && "bg-green-50/30"
-                      )}
-                    >
+                    <td key={vIdx} style={{ padding: "1rem 1.25rem", background: columns[vIdx]?.highlight ? "rgba(27,67,50,0.03)" : "inherit" }}>
                       <Cell value={val} highlight={columns[vIdx]?.highlight} />
                     </td>
                   ))}

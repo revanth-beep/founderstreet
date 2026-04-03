@@ -27,25 +27,20 @@ export default function BeforeAfterSlider({
     setPosition((x / rect.width) * 100);
   }, []);
 
-  const handleMouseDown = () => {
+  const handleMouseDown = useCallback(() => {
     isDragging.current = true;
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       if (!isDragging.current) return;
       updatePosition(e.clientX);
-    },
-    [updatePosition]
-  );
-
-  const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-  }, [handleMouseMove]);
+    };
+    const onUp = () => {
+      isDragging.current = false;
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    };
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+  }, [updatePosition]);
 
   const handleTouchMove = (e: React.TouchEvent) => {
     updatePosition(e.touches[0].clientX);
@@ -85,8 +80,12 @@ export default function BeforeAfterSlider({
         className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg z-10"
         style={{ left: `${position}%` }}
         onMouseDown={handleMouseDown}
-        onTouchStart={() => { isDragging.current = true; }}
-        onTouchEnd={() => { isDragging.current = false; }}
+        onTouchStart={() => {
+          isDragging.current = true;
+        }}
+        onTouchEnd={() => {
+          isDragging.current = false;
+        }}
       >
         {/* Handle */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-strong flex items-center justify-center">

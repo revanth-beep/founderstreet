@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -9,6 +9,7 @@ export default function NewsletterForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!email) return;
     setStatus("loading");
     try {
       await fetch("/api/subscribe", {
@@ -25,39 +26,75 @@ export default function NewsletterForm() {
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-2 text-green-400 text-sm">
-        <CheckCircle2 className="w-4 h-4" />
-        <span>You&apos;re on the list!</span>
+      <div style={{
+        display: "flex", alignItems: "center", gap: "10px",
+        padding: "0.875rem 1rem",
+        background: "rgba(64,145,108,0.15)",
+        border: "1px solid rgba(64,145,108,0.3)",
+        borderRadius: "6px"
+      }}>
+        <CheckCircle2 size={16} color="#74C69D" />
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#74C69D" }}>
+          You&apos;re in! Check your inbox.
+        </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
-      <div className="flex gap-2">
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+      <div style={{ display: "flex", gap: "6px" }}>
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email address"
           required
-          disabled={status === "loading"}
-          className="flex-1 px-3 py-2.5 bg-[#2C2C2C] border border-[#4A4A4A] text-white placeholder-[#8A8A8A] text-sm rounded-sm focus:outline-none focus:border-[#2D6A4F] transition-colors"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          style={{
+            flex: 1,
+            padding: "0.6875rem 0.875rem",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: "5px",
+            color: "#FFFFFF",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.875rem",
+            outline: "none",
+            transition: "border-color 0.2s ease"
+          }}
+          onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "rgba(64,145,108,0.5)"; }}
+          onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.1)"; }}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="px-4 py-2.5 bg-[#1B4332] text-white text-sm font-semibold rounded-sm hover:bg-[#2D6A4F] transition-colors flex-shrink-0 disabled:opacity-50"
-          aria-label="Subscribe"
+          style={{
+            padding: "0.6875rem 1rem",
+            background: "#1B4332",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "background 0.2s ease",
+            flexShrink: 0,
+          }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#2D6A4F"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#1B4332"; }}
         >
-          {status === "loading" ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Mail className="w-4 h-4" />
-          )}
+          {status === "loading"
+            ? <Loader2 size={15} color="#FFFFFF" style={{ animation: "spin 1s linear infinite" }} />
+            : <ArrowRight size={15} color="#FFFFFF" />
+          }
         </button>
       </div>
-      <p className="text-[#6B6B6B] text-xs">No spam. Unsubscribe anytime.</p>
+      {status === "error" && (
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#F87171" }}>
+          Something went wrong. Please try again.
+        </p>
+      )}
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", color: "rgba(255,255,255,0.2)" }}>
+        No spam. Unsubscribe at any time.
+      </p>
     </form>
   );
 }

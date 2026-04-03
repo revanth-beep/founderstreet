@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Clock, ArrowLeft, Share2, BookOpen } from "lucide-react";
+import { Clock, ArrowLeft, BookOpen } from "lucide-react";
 import { SAMPLE_POSTS } from "@/lib/cms";
-import { formatDate } from "@/lib/utils";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = SAMPLE_POSTS.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = SAMPLE_POSTS.find((p) => p.slug === slug);
   if (!post) return { title: "Post Not Found" };
   return {
     title: post.title,
@@ -27,57 +27,61 @@ export async function generateStaticParams() {
   return SAMPLE_POSTS.map((p) => ({ slug: p.slug }));
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = SAMPLE_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = SAMPLE_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
   const related = SAMPLE_POSTS.filter(
-    (p) => p.slug !== params.slug && p.category === post.category
+    (p) => p.slug !== slug && p.category === post.category
   ).slice(0, 2);
 
   return (
-    <article className="pt-24">
+    <article style={{ paddingTop: "6rem" }}>
+
       {/* Hero */}
-      <div className="bg-background-dark pb-0">
-        <div className="container-custom pt-12 pb-8">
+      <div style={{ background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)", paddingBottom: 0, position: "relative", overflow: "hidden" }}>
+        {/* Ambient */}
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "32px 32px", opacity: 0.4 }} />
+          <div style={{ position: "absolute", width: "40vw", height: "40vw", top: "-10%", right: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.4) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+        </div>
+
+        <div className="container-custom" style={{ paddingTop: "3rem", paddingBottom: "2.5rem", position: "relative", zIndex: 1 }}>
           <Link
             href="/resources"
-            className="inline-flex items-center gap-2 text-green-400 text-sm font-medium hover:text-white transition-colors mb-8"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "#74C69D", fontSize: "0.8125rem", fontWeight: 600, textDecoration: "none", marginBottom: "2rem", transition: "color 0.2s ease", fontFamily: "'Inter', sans-serif" }}
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft style={{ width: "14px", height: "14px" }} />
             Back to Resources
           </Link>
 
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-xs font-semibold bg-primary text-white px-2.5 py-1 rounded-full">
+          <div style={{ maxWidth: "760px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#1B4332", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
                 {post.category}
               </span>
-              <span className="flex items-center gap-1 text-grey-400 text-xs">
-                <Clock className="w-3 h-3" />
+              <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", color: "#A0A0A0", fontSize: "0.75rem" }}>
+                <Clock style={{ width: "12px", height: "12px" }} />
                 {post.readingTime} min read
               </span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+            <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.875rem, 3.5vw, 3rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem" }}>
               {post.title}
             </h1>
 
-            <p className="text-white/70 text-lg leading-relaxed mb-8">{post.excerpt}</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.0625rem", lineHeight: 1.75, color: "rgba(255,255,255,0.65)", marginBottom: "2rem", maxWidth: "640px" }}>
+              {post.excerpt}
+            </p>
 
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-white" />
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <div style={{ width: "40px", height: "40px", background: "rgba(27,67,50,0.6)", border: "1px solid rgba(64,145,108,0.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <BookOpen style={{ width: "18px", height: "18px", color: "#74C69D" }} />
               </div>
               <div>
-                <p className="font-semibold text-white text-sm">{post.author}</p>
-                <p className="text-grey-400 text-xs">{post.authorRole}</p>
-              </div>
-              <div className="ml-auto">
-                <button className="flex items-center gap-2 text-grey-400 hover:text-white text-sm transition-colors">
-                  <Share2 className="w-4 h-4" />
-                  Share
-                </button>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, color: "#FFFFFF", fontSize: "0.875rem" }}>{post.author}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", color: "#A0A0A0", fontSize: "0.75rem" }}>{post.authorRole}</p>
               </div>
             </div>
           </div>
@@ -85,12 +89,12 @@ export default function BlogPostPage({ params }: Props) {
 
         {/* Cover image */}
         {post.coverImage && (
-          <div className="container-custom pb-0">
-            <div className="max-w-4xl mx-auto aspect-[16/7] rounded-t-sm overflow-hidden">
+          <div className="container-custom" style={{ paddingBottom: 0 }}>
+            <div style={{ maxWidth: "900px", margin: "0 auto", aspectRatio: "16/7", borderRadius: "8px 8px 0 0", overflow: "hidden" }}>
               <img
                 src={post.coverImage}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
           </div>
@@ -98,77 +102,80 @@ export default function BlogPostPage({ params }: Props) {
       </div>
 
       {/* Content */}
-      <div className="container-custom py-12 lg:py-16">
-        <div className="max-w-3xl mx-auto">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs bg-grey-100 text-grey-600 px-3 py-1 rounded-full"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
+      <section style={{ background: "#FAFAF8", paddingBlock: "4rem 5rem" }}>
+        <div className="container-custom">
+          <div style={{ maxWidth: "720px", margin: "0 auto" }}>
 
-          {/* Article body */}
-          <div className="prose prose-lg prose-green max-w-none">
+            {/* Tags */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", background: "#F0F0ED", color: "#5A5A5A", padding: "0.25rem 0.75rem", borderRadius: "999px" }}
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Article body */}
             <div
-              className="text-grey-700 leading-relaxed space-y-6"
+              style={{ fontFamily: "'Inter', sans-serif", color: "#3D3D3D", lineHeight: 1.8, fontSize: "1rem" }}
               dangerouslySetInnerHTML={{
                 __html: post.content
-                  .replace(/^# (.+)$/gm, '<h2 class="font-serif text-2xl font-bold text-grey-900 mt-10 mb-4">$1</h2>')
-                  .replace(/^## (.+)$/gm, '<h3 class="font-serif text-xl font-bold text-grey-900 mt-8 mb-3">$1</h3>')
-                  .replace(/\n\n/g, '</p><p class="mb-4">')
-                  .replace(/^/, '<p class="mb-4">'),
+                  .replace(/^# (.+)$/gm, '<h2 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.625rem;font-weight:700;color:#111111;margin-top:2.5rem;margin-bottom:1rem;line-height:1.2;letter-spacing:-0.01em;">$1</h2>')
+                  .replace(/^## (.+)$/gm, '<h3 style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.25rem;font-weight:700;color:#111111;margin-top:2rem;margin-bottom:0.75rem;">$1</h3>')
+                  .replace(/\n\n/g, '</p><p style="margin-bottom:1.25rem;">')
+                  .replace(/^/, '<p style="margin-bottom:1.25rem;">'),
               }}
             />
-          </div>
 
-          {/* CTA Box */}
-          <div className="mt-12 p-6 lg:p-8 bg-primary rounded-sm text-white">
-            <h3 className="font-serif text-xl font-bold mb-2">
-              Ready to put this into practice?
-            </h3>
-            <p className="text-white/75 text-sm leading-relaxed mb-5">
-              Our team can help you build your {post.category.toLowerCase()} strategy from scratch.
-              Book a free 30-minute call with one of our specialists.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary font-semibold text-sm rounded-sm hover:bg-green-50 transition-colors"
-            >
-              Book a Free Call
-            </Link>
+            {/* CTA Box */}
+            <div style={{ marginTop: "3rem", padding: "2.25rem 2.5rem", background: "linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%)", borderRadius: "8px", color: "#fff" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#74C69D", marginBottom: "0.75rem" }}>
+                Ready to act on this?
+              </p>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "#fff", marginBottom: "0.75rem", lineHeight: 1.25 }}>
+                Let our team build your {post.category.toLowerCase()} strategy from scratch.
+              </h3>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+                Book a free 30-minute discovery call with one of our specialists.
+              </p>
+              <Link
+                href="/contact"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", background: "#fff", color: "#1B4332", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", borderRadius: "4px", textDecoration: "none", transition: "background 0.2s ease" }}
+              >
+                Book a Free Call
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="section-padding bg-grey-50 border-t border-border">
+        <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", paddingBlock: "4rem" }}>
           <div className="container-custom">
-            <h2 className="font-serif text-xl font-bold text-grey-900 mb-6">
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.375rem", fontWeight: 700, color: "#111111", marginBottom: "1.75rem" }}>
               Related Articles
             </h2>
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", maxWidth: "720px" }}>
               {related.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/resources/${p.slug}`}
-                  className="group bg-white border border-border rounded-sm overflow-hidden hover:shadow-medium transition-all duration-300"
+                  style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "6px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
                 >
-                  <div className="aspect-[16/9] overflow-hidden">
+                  <div style={{ aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
                     <img
                       src={p.coverImage}
                       alt={p.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
                     />
                   </div>
-                  <div className="p-4">
-                    <span className="text-xs font-semibold text-primary">{p.category}</span>
-                    <h3 className="font-serif font-bold text-grey-900 text-sm mt-1 group-hover:text-primary transition-colors">
+                  <div style={{ padding: "1rem 1.25rem" }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#1B4332" }}>{p.category}</span>
+                    <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, color: "#111111", fontSize: "0.9375rem", marginTop: "0.25rem", lineHeight: 1.4 }}>
                       {p.title}
                     </h3>
                   </div>

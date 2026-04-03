@@ -1,130 +1,150 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Clock, ArrowRight, BookOpen } from "lucide-react";
-import { SAMPLE_POSTS } from "@/lib/cms";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Resources — The Founder's Brief",
-  description:
-    "Frameworks, playbooks, and teardowns for Indian founders. Unit economics, pitch decks, incorporation guides, and more.",
-};
+import { useState } from "react";
+import Link from "next/link";
+import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
+import { SAMPLE_POSTS } from "@/lib/cms";
 
 const categories = ["All", "Finance", "Legal", "Fundraising", "Marketing", "Tech", "Strategy"];
 
-const categoryColors: Record<string, string> = {
-  Finance: "bg-blue-50 text-blue-700 border-blue-200",
-  Legal: "bg-purple-50 text-purple-700 border-purple-200",
-  Fundraising: "bg-green-100 text-green-700 border-green-200",
-  Marketing: "bg-orange-50 text-orange-700 border-orange-200",
-  Tech: "bg-indigo-50 text-indigo-700 border-indigo-200",
-  Strategy: "bg-teal-50 text-teal-700 border-teal-200",
+const categoryColors: Record<string, { bg: string; color: string; border: string }> = {
+  Finance:    { bg: "#EFF6FF", color: "#1D4ED8", border: "#BFDBFE" },
+  Legal:      { bg: "#F5F3FF", color: "#7C3AED", border: "#DDD6FE" },
+  Fundraising:{ bg: "#ECFDF5", color: "#059669", border: "#A7F3D0" },
+  Marketing:  { bg: "#FFF7ED", color: "#C2410C", border: "#FED7AA" },
+  Tech:       { bg: "#EEF2FF", color: "#4338CA", border: "#C7D2FE" },
+  Strategy:   { bg: "#F0FDFA", color: "#0F766E", border: "#99F6E4" },
 };
 
-export default async function ResourcesPage() {
-  const posts = SAMPLE_POSTS;
+export default function ResourcesPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const allPosts = SAMPLE_POSTS;
+  const filtered = activeCategory === "All"
+    ? allPosts
+    : allPosts.filter((p) => p.category === activeCategory);
+
+  const featuredPost = allPosts.find((p) => p.featured);
+  const gridPosts = filtered.filter((p) => !p.featured || filtered.filter((fp) => fp.featured).indexOf(p) > 0);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-background-dark pt-32 pb-16 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 15% 50%, rgba(27, 67, 50, 0.5) 0%, transparent 50%),
-              radial-gradient(circle at 85% 30%, rgba(45, 106, 79, 0.25) 0%, transparent 40%)
-            `,
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(184, 228, 199, 0.4) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="container-custom relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
+      <section style={{
+        position: "relative",
+        background: "linear-gradient(160deg, #081810 0%, #0d2b1c 45%, #0e2318 100%)",
+        paddingTop: "8rem", paddingBottom: "5rem",
+        overflow: "hidden",
+      }}>
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "36px 36px", opacity: 0.5 }} />
+          <div style={{ position: "absolute", width: "45vw", height: "45vw", top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(27,67,50,0.5) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(50px)" }} />
+          <div style={{ position: "absolute", width: "30vw", height: "30vw", bottom: "-5%", right: "5%", background: "radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(64,145,108,0.35), transparent)" }} />
+        </div>
+
+        <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.5rem" }}>
+            <div style={{ width: "44px", height: "44px", background: "rgba(64,145,108,0.2)", border: "1px solid rgba(64,145,108,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <BookOpen size={20} color="#74C69D" />
             </div>
-            <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.2em]">
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#74C69D" }}>
               The Founder&apos;s Brief
             </span>
           </div>
-          <h1 className="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem" }}>
             Frameworks, Not Fluff.
           </h1>
-          <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Deep-dive playbooks for Indian founders navigating unit economics, fundraising, legal,
-            and everything in between.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: "520px" }}>
+            Deep-dive playbooks for Indian founders navigating unit economics, fundraising, legal, and everything in between.
           </p>
+          <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem", flexWrap: "wrap" }}>
+            {[
+              { value: `${allPosts.length}+`, label: "Articles" },
+              { value: "6", label: "Categories" },
+              { value: "10K+", label: "Readers" },
+            ].map((s) => (
+              <div key={s.label}>
+                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "#FFFFFF", lineHeight: 1 }}>{s.value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", marginTop: "0.25rem" }}>{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="section-padding bg-background">
+      <section className="section-padding" style={{ background: "#FAFAF8" }}>
         <div className="container-custom">
+
           {/* Category filter */}
-          <div className="flex flex-wrap gap-2 mb-10">
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
             {categories.map((cat) => (
               <button
                 key={cat}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 ${
-                  cat === "All"
-                    ? "bg-primary text-white border-primary"
-                    : "bg-white text-grey-600 border-border hover:border-primary hover:text-primary"
-                }`}
+                onClick={() => setActiveCategory(cat)}
+                style={{
+                  padding: "0.4375rem 1rem",
+                  borderRadius: "999px",
+                  fontSize: "0.8125rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  border: "1px solid",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  ...(activeCategory === cat
+                    ? { background: "#1B4332", color: "#fff", borderColor: "#1B4332" }
+                    : { background: "#fff", color: "#5A5A5A", borderColor: "#E0E0DC" }),
+                }}
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* Featured post */}
-          {posts.filter((p) => p.featured)[0] && (
+          {/* Featured post — only shown when "All" or matching category */}
+          {featuredPost && (activeCategory === "All" || featuredPost.category === activeCategory) && (
             <Link
-              href={`/resources/${posts.filter((p) => p.featured)[0].slug}`}
-              className="group block bg-white border border-border rounded-sm overflow-hidden hover:shadow-medium transition-all duration-300 mb-8"
+              href={`/resources/${featuredPost.slug}`}
+              style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden", textDecoration: "none", marginBottom: "2rem", transition: "box-shadow 0.3s ease" }}
             >
-              <div className="grid lg:grid-cols-2">
-                <div className="aspect-[16/9] lg:aspect-auto lg:min-h-[280px] overflow-hidden bg-grey-100">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0 }}>
+                {/* Cover */}
+                <div style={{ position: "relative", aspectRatio: "16/7", overflow: "hidden", background: "#F0F0ED" }}>
                   <img
-                    src={posts.filter((p) => p.featured)[0].coverImage}
-                    alt={posts.filter((p) => p.featured)[0].title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src={featuredPost.coverImage}
+                    alt={featuredPost.title}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   />
-                </div>
-                <div className="p-6 lg:p-10 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-semibold bg-primary text-white px-2.5 py-1 rounded-full">
-                      Featured
-                    </span>
-                    <span
-                      className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                        categoryColors[posts.filter((p) => p.featured)[0].category] ||
-                        "bg-grey-100 text-grey-700 border-grey-200"
-                      }`}
-                    >
-                      {posts.filter((p) => p.featured)[0].category}
-                    </span>
-                  </div>
-                  <h2 className="font-serif text-2xl font-bold text-grey-900 group-hover:text-primary transition-colors leading-tight mb-3">
-                    {posts.filter((p) => p.featured)[0].title}
-                  </h2>
-                  <p className="text-grey-600 text-sm leading-relaxed mb-5">
-                    {posts.filter((p) => p.featured)[0].excerpt}
-                  </p>
-                  <div className="flex items-center gap-4 text-xs text-grey-400">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {posts.filter((p) => p.featured)[0].readingTime} min read
-                    </span>
-                    <span>{posts.filter((p) => p.featured)[0].author}</span>
-                  </div>
-                  <div className="mt-4 flex items-center gap-1.5 text-primary text-sm font-semibold">
-                    Read article
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)" }} />
+                  {/* Content overlay on desktop */}
+                  <div style={{ position: "absolute", inset: 0, padding: "2.5rem 3rem", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#1B4332", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
+                        Featured
+                      </span>
+                      {categoryColors[featuredPost.category] && (
+                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: categoryColors[featuredPost.category].bg, color: categoryColors[featuredPost.category].color, border: `1px solid ${categoryColors[featuredPost.category].border}`, padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
+                          {featuredPost.category}
+                        </span>
+                      )}
+                    </div>
+                    <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.375rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: "0.75rem", textShadow: "0 2px 12px rgba(0,0,0,0.4)" }}>
+                      {featuredPost.title}
+                    </h2>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.65, marginBottom: "1.25rem", maxWidth: "500px", textShadow: "0 1px 8px rgba(0,0,0,0.3)" }}>
+                      {featuredPost.excerpt}
+                    </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
+                      <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.6)" }}>
+                        <Clock style={{ width: "12px", height: "12px" }} />
+                        {featuredPost.readingTime} min read
+                      </span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.6)" }}>{featuredPost.author}</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#74C69D", marginLeft: "auto" }}>
+                        Read article <ArrowRight style={{ width: "14px", height: "14px" }} />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -132,78 +152,93 @@ export default async function ResourcesPage() {
           )}
 
           {/* Posts grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts
-              .filter((p) => !p.featured || posts.filter((fp) => fp.featured).indexOf(p) > 0)
-              .map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/resources/${post.slug}`}
-                  className="group card-base rounded-sm overflow-hidden"
-                >
-                  <div className="aspect-[16/9] overflow-hidden bg-grey-100">
-                    <img
-                      src={post.coverImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                          categoryColors[post.category] || "bg-grey-100 text-grey-700 border-grey-200"
-                        }`}
-                      >
-                        {post.category}
-                      </span>
-                      <span className="flex items-center gap-1 text-grey-400 text-xs">
-                        <Clock className="w-3 h-3" />
-                        {post.readingTime} min
-                      </span>
+          {gridPosts.length > 0 ? (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.5rem" }}>
+              {gridPosts.map((post) => {
+                const catStyle = categoryColors[post.category];
+                return (
+                  <Link
+                    key={post.slug}
+                    href={`/resources/${post.slug}`}
+                    style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
+                  >
+                    {/* Cover */}
+                    <div style={{ aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
+                      />
                     </div>
-                    <h3 className="font-serif text-base font-bold text-grey-900 group-hover:text-primary transition-colors leading-snug mb-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-grey-600 text-sm leading-relaxed line-clamp-2">
-                      {post.excerpt}
-                    </p>
-                    <div className="mt-4 flex items-center gap-1.5 text-primary text-sm font-semibold">
-                      Read article
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    {/* Body */}
+                    <div style={{ padding: "1.25rem 1.5rem 1.5rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
+                        {catStyle && (
+                          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: catStyle.bg, color: catStyle.color, border: `1px solid ${catStyle.border}`, padding: "0.2rem 0.625rem", borderRadius: "999px" }}>
+                            {post.category}
+                          </span>
+                        )}
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", color: "#A0A0A0" }}>
+                          <Clock style={{ width: "11px", height: "11px" }} />
+                          {post.readingTime} min
+                        </span>
+                      </div>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.0625rem", fontWeight: 700, color: "#111111", lineHeight: 1.4, marginBottom: "0.5rem" }}>
+                        {post.title}
+                      </h3>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        {post.excerpt}
+                      </p>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#1B4332", marginTop: "1rem" }}>
+                        Read article <ArrowRight style={{ width: "14px", height: "14px" }} />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-          </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div style={{ textAlign: "center", padding: "5rem 0" }}>
+              <Search style={{ width: "40px", height: "40px", color: "#C4C4C4", margin: "0 auto 1rem" }} />
+              <p style={{ fontFamily: "'Inter', sans-serif", color: "#A0A0A0", fontSize: "0.9375rem" }}>
+                No articles in this category yet. Check back soon.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Newsletter CTA */}
-      <section className="section-padding bg-grey-50 border-t border-border">
+      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", paddingBlock: "5rem" }}>
         <div className="container-custom">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="font-serif text-2xl font-bold text-grey-900 mb-3">
+          <div style={{ maxWidth: "520px", margin: "0 auto", textAlign: "center" }}>
+            <div style={{ width: "48px", height: "48px", background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
+              <BookOpen style={{ width: "22px", height: "22px", color: "#1B4332" }} />
+            </div>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: "#111111", marginBottom: "0.75rem", lineHeight: 1.2 }}>
               Get the Founder&apos;s Edge, Every Week.
             </h2>
-            <p className="text-grey-600 text-sm leading-relaxed mb-6">
-              Weekly breakdown of unit economics, pitch tear-downs, and growth tactics — straight
-              to your inbox. No spam, ever.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", lineHeight: 1.7, marginBottom: "2rem" }}>
+              Weekly breakdown of unit economics, pitch tear-downs, and growth tactics — straight to your inbox. No spam, ever.
             </p>
-            <form className="flex gap-2 max-w-sm mx-auto">
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              style={{ display: "flex", gap: "0.5rem", maxWidth: "400px", margin: "0 auto" }}
+            >
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 px-4 py-3 border border-border rounded-sm text-sm focus:outline-none focus:border-primary transition-colors"
+                style={{ flex: 1, padding: "0.75rem 1rem", border: "1px solid #E0E0DC", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#111111", background: "#fff", outline: "none" }}
               />
               <button
                 type="submit"
-                className="btn-primary flex-shrink-0"
+                className="btn-primary"
+                style={{ flexShrink: 0 }}
               >
                 Subscribe
               </button>
             </form>
-            <p className="text-grey-400 text-xs mt-3">
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginTop: "0.75rem" }}>
               Join 2,400+ founders reading every Friday.
             </p>
           </div>

@@ -1,4 +1,4 @@
-import { put, list, del, head } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 import { generateId } from "./utils";
 
 export interface BlogPost {

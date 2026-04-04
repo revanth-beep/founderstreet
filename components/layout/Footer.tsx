@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import NewsletterForm from "@/components/sections/NewsletterForm";
+import type { SiteContent } from "@/lib/site-content-defaults";
 
 const services = [
   { name: "Test Your Idea", href: "/services/validation" },
@@ -38,7 +39,10 @@ const colLink: React.CSSProperties = {
   transition: "color 0.2s ease"
 };
 
-export default function Footer() {
+export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
+  const year = new Date().getFullYear();
+  const copyright = cms.copyrightTemplate.replace("{year}", String(year));
+
   return (
     <footer style={{ background: "#4A5056", color: "#FFFFFF" }}>
       <div className="container-custom" style={{ paddingTop: "4.5rem", paddingBottom: "3rem" }}>
@@ -51,11 +55,11 @@ export default function Footer() {
                 <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
               </div>
               <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
-                Founderstreet
+                {cms.brandName}
               </span>
             </Link>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", maxWidth: "240px" }}>
-              The unseen engine behind India&apos;s next great startups. From Day Zero to Pre-Seed.
+              {cms.description}
             </p>
             {/* Social */}
             <div style={{ display: "flex", gap: "8px" }}>
@@ -128,10 +132,10 @@ export default function Footer() {
               fontSize: "1.125rem", fontWeight: 700,
               color: "#FFFFFF", marginBottom: "0.625rem"
             }}>
-              Get the Founder&apos;s Edge.
+              {cms.newsletterTitle}
             </h4>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.65, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>
-              Weekly breakdown on unit economics, pitch tear-downs, and growth tactics.
+              {cms.newsletterSubtitle}
             </p>
             <NewsletterForm />
           </div>
@@ -143,7 +147,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.2)" }}>
-            © {new Date().getFullYear()} Founderstreet Consulting Pvt. Ltd. All rights reserved.
+            {copyright}
           </p>
           <div style={{ display: "flex", gap: "1.25rem" }}>
             {[

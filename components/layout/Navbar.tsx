@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp } from "lucide-react";
+import type { SiteContent } from "@/lib/site-content-defaults";
 
 const services = [
   { name: "Test Your Idea", href: "/services/validation", icon: FlaskConical, desc: "Market sizing, SWOT & unit economics" },
@@ -16,9 +17,10 @@ const services = [
 
 type NavbarContentProps = {
   solid: boolean;
+  nav: SiteContent["nav"];
 };
 
-function NavbarContent({ solid }: NavbarContentProps) {
+function NavbarContent({ solid, nav }: NavbarContentProps) {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -59,7 +61,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
               letterSpacing: "-0.01em",
               transition: "color 0.3s ease"
             }}>
-              Founderstreet
+              {nav.brandName}
             </span>
           </Link>
 
@@ -147,8 +149,8 @@ function NavbarContent({ solid }: NavbarContentProps) {
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#E9F6E4"; }}
                     >
                       <div>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#66BB3F" }}>Free Startup Health Check</p>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#56AD32", marginTop: "2px" }}>5 questions. Get a free SWOT report instantly.</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8125rem", color: "#66BB3F" }}>{nav.healthPromoTitle}</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#56AD32", marginTop: "2px" }}>{nav.healthPromoSubtitle}</p>
                       </div>
                       <ArrowRight size={15} color="#66BB3F" />
                     </Link>
@@ -200,7 +202,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#66BB3F" : "#FFFFFF"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#5A5A5A" : "rgba(255,255,255,0.7)"; }}
             >
-              Free Health Check
+              {nav.healthCtaShort}
             </Link>
             <Link href="/contact" className="btn-primary" style={{ fontSize: "0.8125rem", padding: "0.6rem 1.25rem" }}>
               Pitch Your Idea
@@ -252,7 +254,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
             <div style={{ width: "28px", height: "28px", background: "#66BB3F", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "11px" }}>FS</span>
             </div>
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>Founderstreet</span>
+            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
           </Link>
           <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#787878" }}>
             <X size={20} />
@@ -297,7 +299,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
           {[
             { name: "About", href: "/about" },
             { name: "Resources", href: "/resources" },
-            { name: "Startup Health Check", href: "/startup-health-check" },
+            { name: nav.healthPromoTitle, href: "/startup-health-check" },
             { name: "Contact", href: "/contact" },
           ].map(link => (
             <Link
@@ -334,7 +336,7 @@ function NavbarContent({ solid }: NavbarContentProps) {
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ cms }: { cms: SiteContent["nav"] }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -346,5 +348,5 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  return <NavbarContent key={pathname} solid={solid} />;
+  return <NavbarContent key={pathname} solid={solid} nav={cms} />;
 }

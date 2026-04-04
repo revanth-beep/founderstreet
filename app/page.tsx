@@ -6,17 +6,24 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CTASection from "@/components/home/CTASection";
 import WhySection from "@/components/home/WhySection";
 import ResourcesTeaser from "@/components/home/ResourcesTeaser";
+import { getSiteContent } from "@/lib/site-content";
+import { getAllPosts } from "@/lib/cms";
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const [site, posts] = await Promise.all([getSiteContent(), getAllPosts("published")]);
+  const featured = [...posts].sort((a, b) => Number(b.featured) - Number(a.featured)).slice(0, 3);
+
   return (
     <>
-      <HeroSection />
-      <ServicesSection />
+      <HeroSection hero={site.home.hero} />
+      <ServicesSection header={site.home.services} serviceCards={site.home.serviceCards} />
       <WhySection />
       <ProcessSection />
-      <PartnerMarquee />
-      <TestimonialsSection />
-      <ResourcesTeaser />
+      <PartnerMarquee data={site.home.partnerMarquee} />
+      <TestimonialsSection data={site.home.founderStories} />
+      <ResourcesTeaser teaser={site.home.resourcesTeaser} posts={featured} />
       <CTASection />
     </>
   );

@@ -1,5 +1,5 @@
-import { put, list, del } from "@vercel/blob";
-import { generateId } from "./utils";
+import { ensureCmsSchema, getSql } from "@/lib/db";
+import { generateId } from "@/lib/utils";
 
 export interface BlogPost {
   id: string;
@@ -30,6 +30,7 @@ export interface PostMeta {
   title: string;
   excerpt: string;
   category: string;
+  /** Present for listings / featured cards */
   author: string;
   coverImage?: string;
   publishedAt: string;
@@ -38,148 +39,91 @@ export interface PostMeta {
   status: "draft" | "published";
 }
 
-const MANIFEST_KEY = "cms/manifest.json";
-const POSTS_PREFIX = "cms/posts/";
+type PostRow = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: string;
+  author_role: string;
+  cover_image: string | null;
+  tags: string;
+  reading_time: number;
+  featured: boolean;
+  status: string;
+  published_at: string;
+  updated_at: string;
+};
 
-async function getManifest(): Promise<CMSManifest> {
+function parseTags(raw: string): string[] {
   try {
-    const blobs = await list({ prefix: MANIFEST_KEY });
-    if (blobs.blobs.length === 0) {
-      return { posts: [], lastUpdated: new Date().toISOString() };
-    }
-    const res = await fetch(blobs.blobs[0].url);
-    return await res.json();
+    const j = JSON.parse(raw) as unknown;
+    return Array.isArray(j) ? j.map(String) : [];
   } catch {
-    return { posts: [], lastUpdated: new Date().toISOString() };
+    return [];
   }
 }
 
-async function saveManifest(manifest: CMSManifest): Promise<void> {
-  await put(MANIFEST_KEY, JSON.stringify(manifest), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-  });
+function asIso(v: string | Date): string {
+  if (v instanceof Date) return v.toISOString();
+  return new Date(v).toISOString();
 }
 
-export async function getAllPosts(status?: "draft" | "published"): Promise<PostMeta[]> {
-  const manifest = await getManifest();
-  const posts = manifest.posts.sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
-  if (status) return posts.filter((p) => p.status === status);
-  return posts;
+function rowToBlogPost(r: PostRow): BlogPost {
+  return {
+    id: r.id,
+    slug: r.slug,
+    title: r.title,
+    excerpt: r.excerpt,
+    content: r.content,
+    category: r.category,
+    author: r.author,
+    authorRole: r.author_role,
+    coverImage: r.cover_image ?? undefined,
+    tags: parseTags(r.tags),
+    publishedAt: asIso(r.published_at),
+    updatedAt: asIso(r.updated_at),
+    readingTime: r.reading_time,
+    featured: r.featured,
+    status: r.status === "draft" ? "draft" : "published",
+  };
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  try {
-    const blobs = await list({ prefix: `${POSTS_PREFIX}${slug}.json` });
-    if (blobs.blobs.length === 0) return null;
-    const res = await fetch(blobs.blobs[0].url);
-    return await res.json();
-  } catch {
-    return null;
-  }
+function rowToMeta(r: PostRow): PostMeta {
+  const b = rowToBlogPost(r);
+  return metaFromBlogPost(b);
 }
 
-export async function createPost(
-  data: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">
-): Promise<BlogPost> {
-  const id = generateId();
+function metaFromBlogPost(b: BlogPost): PostMeta {
+  return {
+    id: b.id,
+    slug: b.slug,
+    title: b.title,
+    excerpt: b.excerpt,
+    category: b.category,
+    author: b.author,
+    coverImage: b.coverImage,
+    publishedAt: b.publishedAt,
+    readingTime: b.readingTime,
+    featured: b.featured,
+    status: b.status,
+  };
+}
+
+function sampleToBlogPost(
+  raw: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">
+): BlogPost {
   const now = new Date().toISOString();
-  const post: BlogPost = {
-    ...data,
-    id,
+  return {
+    ...raw,
+    id: `seed_${raw.slug}`,
     publishedAt: now,
     updatedAt: now,
   };
-
-  await put(`${POSTS_PREFIX}${post.slug}.json`, JSON.stringify(post), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-  });
-
-  const manifest = await getManifest();
-  const meta: PostMeta = {
-    id: post.id,
-    slug: post.slug,
-    title: post.title,
-    excerpt: post.excerpt,
-    category: post.category,
-    author: post.author,
-    coverImage: post.coverImage,
-    publishedAt: post.publishedAt,
-    readingTime: post.readingTime,
-    featured: post.featured,
-    status: post.status,
-  };
-  manifest.posts.push(meta);
-  manifest.lastUpdated = now;
-  await saveManifest(manifest);
-
-  return post;
 }
 
-export async function updatePost(
-  slug: string,
-  data: Partial<BlogPost>
-): Promise<BlogPost | null> {
-  const existing = await getPostBySlug(slug);
-  if (!existing) return null;
-
-  const updated: BlogPost = {
-    ...existing,
-    ...data,
-    updatedAt: new Date().toISOString(),
-  };
-
-  await put(`${POSTS_PREFIX}${slug}.json`, JSON.stringify(updated), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-  });
-
-  const manifest = await getManifest();
-  const idx = manifest.posts.findIndex((p) => p.slug === slug);
-  if (idx !== -1) {
-    manifest.posts[idx] = {
-      id: updated.id,
-      slug: updated.slug,
-      title: updated.title,
-      excerpt: updated.excerpt,
-      category: updated.category,
-      author: updated.author,
-      coverImage: updated.coverImage,
-      publishedAt: updated.publishedAt,
-      readingTime: updated.readingTime,
-      featured: updated.featured,
-      status: updated.status,
-    };
-    manifest.lastUpdated = new Date().toISOString();
-    await saveManifest(manifest);
-  }
-
-  return updated;
-}
-
-export async function deletePost(slug: string): Promise<boolean> {
-  try {
-    const blobs = await list({ prefix: `${POSTS_PREFIX}${slug}.json` });
-    if (blobs.blobs.length > 0) {
-      await del(blobs.blobs[0].url);
-    }
-    const manifest = await getManifest();
-    manifest.posts = manifest.posts.filter((p) => p.slug !== slug);
-    manifest.lastUpdated = new Date().toISOString();
-    await saveManifest(manifest);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-// Sample seed data for development
 export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] = [
   {
     slug: "unit-economics-101-what-every-founder-must-know",
@@ -230,3 +174,147 @@ export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] 
     status: "published",
   },
 ];
+
+const sampleBlogPosts: BlogPost[] = SAMPLE_POSTS.map(sampleToBlogPost);
+
+async function seedPostsIfEmpty(): Promise<void> {
+  const sql = getSql();
+  if (!sql) return;
+  const c = await sql`SELECT COUNT(*)::int AS n FROM cms_posts`;
+  const n = (c[0] as { n: number }).n;
+  if (n > 0) return;
+
+  for (const raw of SAMPLE_POSTS) {
+    const post = sampleToBlogPost(raw);
+    const tagsJson = JSON.stringify(post.tags);
+    await sql`
+      INSERT INTO cms_posts (
+        id, slug, title, excerpt, content, category, author, author_role,
+        cover_image, tags, reading_time, featured, status, published_at, updated_at
+      ) VALUES (
+        ${post.id}, ${post.slug}, ${post.title}, ${post.excerpt}, ${post.content},
+        ${post.category}, ${post.author}, ${post.authorRole},
+        ${post.coverImage ?? null}, ${tagsJson}, ${post.readingTime},
+        ${post.featured}, ${post.status}, ${post.publishedAt}, ${post.updatedAt}
+      )
+      ON CONFLICT (slug) DO NOTHING;
+    `;
+  }
+}
+
+async function ensureReady(): Promise<boolean> {
+  const ok = await ensureCmsSchema();
+  if (!ok) return false;
+  await seedPostsIfEmpty();
+  return true;
+}
+
+export async function getAllPosts(status?: "draft" | "published"): Promise<PostMeta[]> {
+  const sql = getSql();
+  if (!(await ensureReady()) || !sql) {
+    let list = sampleBlogPosts.map(metaFromBlogPost);
+    if (status) list = list.filter((p) => p.status === status);
+    return list.sort(
+      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+  }
+
+  const rows = status
+    ? await sql`SELECT * FROM cms_posts WHERE status = ${status} ORDER BY published_at DESC`
+    : await sql`SELECT * FROM cms_posts ORDER BY published_at DESC`;
+
+  return (rows as PostRow[]).map(rowToMeta);
+}
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  const sql = getSql();
+  if (!(await ensureReady()) || !sql) {
+    const p = sampleBlogPosts.find((x) => x.slug === slug);
+    return p ?? null;
+  }
+
+  const rows = await sql`SELECT * FROM cms_posts WHERE slug = ${slug} LIMIT 1`;
+  const r = rows[0] as PostRow | undefined;
+  return r ? rowToBlogPost(r) : null;
+}
+
+export async function createPost(
+  data: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">
+): Promise<BlogPost> {
+  const sql = getSql();
+  if (!(await ensureReady()) || !sql) {
+    throw new Error("DATABASE_URL / POSTGRES_URL is required to create posts.");
+  }
+
+  const id = generateId();
+  const now = new Date().toISOString();
+  const post: BlogPost = {
+    ...data,
+    id,
+    publishedAt: now,
+    updatedAt: now,
+  };
+
+  const tagsJson = JSON.stringify(post.tags ?? []);
+
+  await sql`
+    INSERT INTO cms_posts (
+      id, slug, title, excerpt, content, category, author, author_role,
+      cover_image, tags, reading_time, featured, status, published_at, updated_at
+    ) VALUES (
+      ${post.id}, ${post.slug}, ${post.title}, ${post.excerpt}, ${post.content},
+      ${post.category}, ${post.author}, ${post.authorRole},
+      ${post.coverImage ?? null}, ${tagsJson}, ${post.readingTime},
+      ${post.featured}, ${post.status}, ${post.publishedAt}, ${post.updatedAt}
+    );
+  `;
+
+  return post;
+}
+
+export async function updatePost(
+  slug: string,
+  data: Partial<BlogPost>
+): Promise<BlogPost | null> {
+  const sql = getSql();
+  if (!(await ensureReady()) || !sql) return null;
+
+  const existing = await getPostBySlug(slug);
+  if (!existing) return null;
+
+  const next: BlogPost = {
+    ...existing,
+    ...data,
+    slug: existing.slug,
+    id: existing.id,
+    updatedAt: new Date().toISOString(),
+  };
+
+  const tagsJson = JSON.stringify(next.tags ?? []);
+
+  await sql`
+    UPDATE cms_posts SET
+      title = ${next.title},
+      excerpt = ${next.excerpt},
+      content = ${next.content},
+      category = ${next.category},
+      author = ${next.author},
+      author_role = ${next.authorRole},
+      cover_image = ${next.coverImage ?? null},
+      tags = ${tagsJson},
+      reading_time = ${next.readingTime},
+      featured = ${next.featured},
+      status = ${next.status},
+      updated_at = ${next.updatedAt}
+    WHERE slug = ${slug};
+  `;
+
+  return next;
+}
+
+export async function deletePost(slug: string): Promise<boolean> {
+  const sql = getSql();
+  if (!(await ensureReady()) || !sql) return false;
+  await sql`DELETE FROM cms_posts WHERE slug = ${slug}`;
+  return true;
+}

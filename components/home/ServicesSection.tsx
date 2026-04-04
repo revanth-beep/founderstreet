@@ -3,61 +3,27 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import {
-  FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, ArrowRight
+  FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
+import type { ServiceCardCms, ServicesHeaderCms } from "@/lib/site-content-defaults";
 
-const services = [
-  {
-    n: "01", icon: FlaskConical,
-    tag: "Validation",
-    name: "Test Your Idea",
-    desc: "Stress-test the concept before capital is deployed. Market sizing, SWOT, and unit economics built from first principles.",
-    href: "/services/validation",
-    accent: "#66BB3F",
-  },
-  {
-    n: "02", icon: Building2,
-    tag: "Legal & Compliance",
-    name: "Incorporation",
-    desc: "End-to-end company registration in under 10 days. DIN, DSC, MOA, AOA, trademark — completely handled.",
-    href: "/services/incorporation",
-    accent: "#66BB3F",
-  },
-  {
-    n: "03", icon: Calculator,
-    tag: "Finance",
-    name: "Virtual CFO",
-    desc: "Institutional-grade bookkeeping, GST compliance, payroll, and strategic financial forecasting.",
-    href: "/services/accounting",
-    accent: "#66BB3F",
-  },
-  {
-    n: "04", icon: Megaphone,
-    tag: "Growth",
-    name: "Marketing & Retail",
-    desc: "Full-funnel performance marketing. SEO, Google Ads, Meta Ads, OOH billboards, and retail distribution.",
-    href: "/services/marketing",
-    accent: "#66BB3F",
-  },
-  {
-    n: "05", icon: Code2,
-    tag: "Technology",
-    name: "Web & App Dev",
-    desc: "Shopify stores, custom SaaS platforms, and mobile apps engineered for conversion and scale.",
-    href: "/services/web-development",
-    accent: "#66BB3F",
-  },
-  {
-    n: "06", icon: TrendingUp,
-    tag: "Fundraising",
-    name: "Investor Funding",
-    desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 200+ vetted angels and VCs.",
-    href: "/services/funding",
-    accent: "#66BB3F",
-  },
+const ICONS: LucideIcon[] = [
+  FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp,
 ];
 
-export default function ServicesSection() {
+export default function ServicesSection({
+  header,
+  serviceCards,
+}: {
+  header: ServicesHeaderCms;
+  serviceCards: ServiceCardCms[];
+}) {
+  const services = serviceCards.map((c, i) => ({
+    ...c,
+    icon: ICONS[i] ?? FlaskConical,
+    accent: "#66BB3F",
+  }));
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -87,14 +53,14 @@ export default function ServicesSection() {
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "3.5rem" }}>
           <span className="label-tag" style={{ alignSelf: "flex-start" }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
-            What We Do
+            {header.label}
           </span>
           <h2 className="heading-lg" style={{ maxWidth: "600px" }}>
-            Six Pillars of{" "}
-            <span className="gradient-text">Startup Infrastructure</span>
+            {header.title}{" "}
+            <span className="gradient-text">{header.titleGradient}</span>
           </h2>
           <p className="body-lg" style={{ maxWidth: "460px" }}>
-            Every service eliminates an execution bottleneck so you move faster, raise smarter, and scale further.
+            {header.subtitle}
           </p>
         </div>
 

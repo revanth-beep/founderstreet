@@ -1,13 +1,28 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import AIWidget from "@/components/AIWidget";
+import SiteChrome from "@/components/layout/SiteChrome";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://founderstreet.in";
+/** Valid absolute URL for metadataBase / OG resolution. Accepts host:port without scheme. */
+function metadataBaseUrl(): URL {
+  const fallback = "https://founderstreet.in";
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return new URL(fallback);
+  try {
+    if (/^https?:\/\//i.test(raw)) return new URL(raw);
+    if (/^localhost\b/i.test(raw) || /^127\.\d+\.\d+\.\d+\b/.test(raw)) {
+      return new URL(`http://${raw}`);
+    }
+    return new URL(`https://${raw}`);
+  } catch {
+    return new URL(fallback);
+  }
+}
+
+const metadataBase = metadataBaseUrl();
+const siteUrlCanonical = metadataBase.toString().replace(/\/$/, "");
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase,
   title: {
     default: "Founderstreet — The Unseen Engine Behind India's Next Great Startups",
     template: "%s | Founderstreet",
@@ -25,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://founderstreet.in",
+    url: siteUrlCanonical,
     siteName: "Founderstreet",
     title: "Founderstreet — The Unseen Engine Behind India's Next Great Startups",
     description:
@@ -57,10 +72,7 @@ export default function RootLayout({
         />
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAFA", color: "#3d4246" }}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <AIWidget />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

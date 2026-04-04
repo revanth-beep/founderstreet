@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, ArrowLeft, BookOpen } from "lucide-react";
-import { SAMPLE_POSTS } from "@/lib/cms";
+import { getAllPosts, getPostBySlug } from "@/lib/cms";
+
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const PLACEHOLDER = "/og-image.png";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = SAMPLE_POSTS.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
   return {
     title: post.title,
@@ -24,17 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return SAMPLE_POSTS.map((p) => ({ slug: p.slug }));
+  const posts = await getAllPosts("published");
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = SAMPLE_POSTS.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = SAMPLE_POSTS.filter(
-    (p) => p.slug !== slug && p.category === post.category
-  ).slice(0, 2);
+  const published = await getAllPosts("published");
+  const related = published.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 2);
 
   return (
     <article style={{ paddingTop: "6rem" }}>
@@ -168,7 +172,7 @@ export default async function BlogPostPage({ params }: Props) {
                 >
                   <div style={{ aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
                     <img
-                      src={p.coverImage}
+                      src={p.coverImage || PLACEHOLDER}
                       alt={p.title}
                       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
                     />

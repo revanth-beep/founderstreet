@@ -3,15 +3,9 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
+import type { HeroCms } from "@/lib/site-content-defaults";
 
-const stats = [
-  { value: "150+", label: "Startups Launched" },
-  { value: "₹40Cr+", label: "Funding Facilitated" },
-  { value: "98%", label: "Compliance Rate" },
-  { value: "< 10 Days", label: "Avg. Incorporation" },
-];
-
-export default function HeroSection() {
+export default function HeroSection({ hero }: { hero: HeroCms }) {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -84,7 +78,7 @@ export default function HeroSection() {
           <div className="hero-eyebrow" style={{ marginBottom: "1.75rem", opacity: 0 }}>
             <span className="label-tag-dark">
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#9FE670", display: "inline-block" }} />
-              India&apos;s Startup Infrastructure Platform
+              {hero.eyebrow}
             </span>
           </div>
 
@@ -102,8 +96,12 @@ export default function HeroSection() {
               marginBottom: "1.75rem",
             }}
           >
-            The Unseen Engine<br />
-            Behind India&apos;s{" "}
+            {hero.titleBefore.split("\n").map((line, i) => (
+              <span key={i}>
+                {i > 0 ? <br /> : null}
+                {line}
+              </span>
+            ))}{" "}
             <span style={{
               fontStyle: "italic",
               background: "linear-gradient(135deg, #9FE670 0%, #CEEAB8 100%)",
@@ -111,9 +109,9 @@ export default function HeroSection() {
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"
             }}>
-              Next Great
+              {hero.titleAccent}
             </span>{" "}
-            Startups.
+            {hero.titleAfter}
           </h1>
 
           {/* Subheadline */}
@@ -129,21 +127,20 @@ export default function HeroSection() {
               marginBottom: "2.5rem",
             }}
           >
-            From Day Zero to Pre-Seed, we provide the elite operational, financial, and
-            digital infrastructure founders need to launch, scale, and secure funding.{" "}
+            {hero.subtitle}{" "}
             <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 500 }}>
-              You build the vision; we handle the execution.
+              {hero.subtitleEmphasis}
             </span>
           </p>
 
           {/* CTAs */}
           <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", marginBottom: "4rem", opacity: 0 }}>
-            <Link href="/contact" className="btn-primary" style={{ fontSize: "0.9375rem", padding: "0.9375rem 2rem" }}>
-              Pitch Your Idea
+            <Link href={hero.ctaPrimaryHref} className="btn-primary" style={{ fontSize: "0.9375rem", padding: "0.9375rem 2rem" }}>
+              {hero.ctaPrimaryLabel}
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/startup-health-check"
+              href={hero.ctaSecondaryHref}
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.75rem",
                 padding: "0.9375rem 1.75rem",
@@ -167,7 +164,7 @@ export default function HeroSection() {
               }}>
                 <Play size={12} fill="white" color="white" />
               </span>
-              Free Startup Health Check
+              {hero.ctaSecondaryLabel}
             </Link>
           </div>
 
@@ -180,10 +177,10 @@ export default function HeroSection() {
               color: "rgba(255,255,255,0.3)",
               marginBottom: "1.25rem"
             }}>
-              Trusted by founders across India
+              {hero.statsLabel}
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem 2.5rem" }} className="sm-stats-grid">
-              {stats.map((s) => (
+              {hero.stats.map((s) => (
                 <div key={s.label}>
                   <div style={{
                     fontFamily: "'Playfair Display', Georgia, serif",

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { FileText, Users, BarChart3, Plus, ArrowRight } from "lucide-react";
+import { FileText, Inbox, BarChart3, Plus, ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/cms";
+import { countContactSubmissions } from "@/lib/contact-submissions";
 
 export default async function AdminDashboard() {
-  const posts = await getAllPosts();
+  const [posts, contactCount] = await Promise.all([getAllPosts(), countContactSubmissions()]);
   const publishedCount = posts.filter((p) => p.status === "published").length;
   const draftCount = posts.filter((p) => p.status === "draft").length;
 
@@ -27,16 +28,28 @@ export default async function AdminDashboard() {
           { label: "Total Posts", value: posts.length, icon: FileText, bg: "#eff6ff", color: "#2563eb" },
           { label: "Published", value: publishedCount, icon: BarChart3, bg: "#f0fdf4", color: "#16a34a" },
           { label: "Drafts", value: draftCount, icon: FileText, bg: "#fefce8", color: "#ca8a04" },
-          { label: "Subscribers", value: "—", icon: Users, bg: "#faf5ff", color: "#9333ea" },
+          { label: "Contact leads", value: contactCount, icon: Inbox, bg: "#faf5ff", color: "#9333ea", href: "/admin/contact-submissions" },
         ].map((stat) => {
           const Icon = stat.icon;
-          return (
-            <div key={stat.label} className="admin-stat-card">
+          const inner = (
+            <>
               <div className="admin-stat-card__icon" style={{ background: stat.bg, color: stat.color }}>
                 <Icon className="w-4 h-4" />
               </div>
               <p className="admin-stat-card__value">{stat.value}</p>
               <p className="admin-stat-card__label">{stat.label}</p>
+            </>
+          );
+          if ("href" in stat && stat.href) {
+            return (
+              <Link key={stat.label} href={stat.href} className="admin-stat-card" style={{ textDecoration: "none", color: "inherit" }}>
+                {inner}
+              </Link>
+            );
+          }
+          return (
+            <div key={stat.label} className="admin-stat-card">
+              {inner}
             </div>
           );
         })}

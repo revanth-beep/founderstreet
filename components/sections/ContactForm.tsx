@@ -48,17 +48,39 @@ const labelStyle: React.CSSProperties = {
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorDetail, setErrorDetail] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
+    setErrorDetail("");
     const form = e.currentTarget;
+    const fd = new FormData(form);
     try {
-      await new Promise((r) => setTimeout(r, 900));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: String(fd.get("firstName") ?? ""),
+          lastName: String(fd.get("lastName") ?? ""),
+          email: String(fd.get("email") ?? ""),
+          phone: String(fd.get("phone") ?? ""),
+          service: String(fd.get("service") ?? ""),
+          stage: String(fd.get("stage") ?? ""),
+          message: String(fd.get("message") ?? ""),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setStatus("error");
+        setErrorDetail(typeof data.error === "string" ? data.error : "Something went wrong. Please try again or email hello@founderstreet.in.");
+        return;
+      }
       setStatus("success");
       form.reset();
     } catch {
       setStatus("error");
+      setErrorDetail("Network error. Please check your connection or email hello@founderstreet.in.");
     }
   }
 
@@ -136,8 +158,8 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#DC2626" }}>
-          Something went wrong. Please email us directly at hello@founderstreet.in.
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#DC2626", lineHeight: 1.5 }}>
+          {errorDetail || "Something went wrong. Please email us directly at hello@founderstreet.in."}
         </p>
       )}
 

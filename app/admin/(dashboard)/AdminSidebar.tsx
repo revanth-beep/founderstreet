@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, FileText, LogOut, Globe } from "lucide-react";
+import { LayoutDashboard, FileText, LogOut, Globe, Inbox } from "lucide-react";
 
 export default function AdminSidebar() {
   const router = useRouter();
@@ -37,6 +37,7 @@ export default function AdminSidebar() {
       <nav className="admin-sidenav__nav">
         {[
           { icon: LayoutDashboard, name: "Dashboard", href: "/admin" },
+          { icon: Inbox, name: "Contact form", href: "/admin/contact-submissions" },
           { icon: FileText, name: "Blog posts", href: "/admin/posts" },
           { icon: Globe, name: "Website pages", href: "/admin/site" },
         ].map(({ icon: Icon, name, href }) => (

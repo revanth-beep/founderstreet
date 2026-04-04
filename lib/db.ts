@@ -46,5 +46,24 @@ export async function ensureCmsSchema(): Promise<boolean> {
     );
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS cms_contact_submissions (
+      id TEXT PRIMARY KEY,
+      first_name TEXT NOT NULL,
+      last_name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      phone TEXT NOT NULL DEFAULT '',
+      service TEXT NOT NULL,
+      stage TEXT NOT NULL,
+      message TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS cms_contact_submissions_created_at_idx
+    ON cms_contact_submissions (created_at DESC);
+  `;
+
   return true;
 }

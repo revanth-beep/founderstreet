@@ -53,7 +53,6 @@ export default function TestimonialsSection({ data }: { data: FounderStoriesCms 
       <div className="container-custom">
         <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
           <span className="label-tag-dark" style={{ marginBottom: "1rem" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#9FE670", display: "inline-block" }} />
             {data.eyebrow}
           </span>
           <h2

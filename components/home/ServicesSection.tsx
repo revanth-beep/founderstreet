@@ -52,7 +52,6 @@ export default function ServicesSection({
         {/* Header */}
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "3.5rem" }}>
           <span className="label-tag" style={{ alignSelf: "flex-start" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
             {header.label}
           </span>
           <h2 className="heading-lg" style={{ maxWidth: "600px" }}>

@@ -4,19 +4,17 @@ export default function ServicePageEyebrow({ children }: { children: string }) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "0.5rem",
-        padding: "0.3rem 0.875rem",
-        borderRadius: "999px",
-        background: "#E9F6E4",
-        color: "#66BB3F",
+        padding: "0.125rem 0 0.125rem 0.625rem",
+        borderLeft: "2px solid #66BB3F",
+        background: "transparent",
+        color: "#3a5c42",
         fontFamily: "'Inter', sans-serif",
         fontSize: "0.6875rem",
-        fontWeight: 700,
-        letterSpacing: "0.12em",
+        fontWeight: 600,
+        letterSpacing: "0.14em",
         textTransform: "uppercase",
       }}
     >
-      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#66BB3F" }} />
       {children}
     </span>
   );

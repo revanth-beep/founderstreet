@@ -77,7 +77,6 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
           {/* Eyebrow */}
           <div className="hero-eyebrow" style={{ marginBottom: "1.75rem", opacity: 0 }}>
             <span className="label-tag-dark">
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#9FE670", display: "inline-block" }} />
               {hero.eyebrow}
             </span>
           </div>

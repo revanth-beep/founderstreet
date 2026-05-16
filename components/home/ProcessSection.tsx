@@ -64,7 +64,6 @@ export default function ProcessSection() {
       <div className="container-custom">
         <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 4rem" }}>
           <span className="label-tag" style={{ marginBottom: "1rem" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
             Our Process
           </span>
           <h2 className="heading-lg" style={{ marginTop: "0.75rem" }}>

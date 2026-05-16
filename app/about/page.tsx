@@ -144,8 +144,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
           >
             <div>
               <span className="label-tag" style={{ marginBottom: "1rem", display: "inline-flex" }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
-                {about.story.label}
+                  {about.story.label}
               </span>
               <h2
                 style={{
@@ -210,7 +209,6 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 3rem" }}>
             <span className="label-tag" style={{ marginBottom: "0.875rem" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               {about.values.label}
             </span>
             <h2
@@ -274,7 +272,6 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 3rem" }}>
             <span className="label-tag" style={{ marginBottom: "0.875rem" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               {about.team.label}
             </span>
             <h2

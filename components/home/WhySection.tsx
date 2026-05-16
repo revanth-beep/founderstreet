@@ -63,7 +63,6 @@ export default function WhySection() {
           {/* Left */}
           <div>
             <span className="label-tag" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#66BB3F", display: "inline-block" }} />
               Why Founderstreet
             </span>
             <h2 className="heading-lg" style={{ marginBottom: "1.25rem", marginTop: "0.5rem" }}>

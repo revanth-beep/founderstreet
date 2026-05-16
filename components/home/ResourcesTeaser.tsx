@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Clock, BookOpen } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import type { PostMeta } from "@/lib/cms";
 import type { ResourcesTeaserCms } from "@/lib/site-content-defaults";
 
@@ -28,7 +28,6 @@ export default function ResourcesTeaser({ teaser, posts }: Props) {
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "1rem", marginBottom: "3rem" }}>
           <div>
             <span className="label-tag" style={{ marginBottom: "0.875rem", display: "inline-flex" }}>
-              <BookOpen size={11} color="#66BB3F" />
               {teaser.eyebrow}
             </span>
             <h2 className="heading-lg" style={{ marginTop: "0.5rem" }}>

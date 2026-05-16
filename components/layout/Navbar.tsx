@@ -54,15 +54,27 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
             }}>
               <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
             </div>
-            <span style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontWeight: 700, fontSize: "1.1875rem",
-              color: solid ? "#3d4246" : "#FFFFFF",
-              letterSpacing: "-0.01em",
-              transition: "color 0.3s ease"
-            }}>
-              {nav.brandName}
-            </span>
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+              <span style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 700, fontSize: "1.1875rem",
+                color: solid ? "#3d4246" : "#FFFFFF",
+                letterSpacing: "-0.01em",
+                transition: "color 0.3s ease"
+              }}>
+                {nav.brandName}
+              </span>
+              <span style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 400, fontSize: "0.6rem",
+                color: solid ? "#909090" : "rgba(255,255,255,0.55)",
+                letterSpacing: "0.01em",
+                transition: "color 0.3s ease",
+                whiteSpace: "nowrap",
+              }}>
+                {nav.subsidiaryText}
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
@@ -161,6 +173,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
 
             {[
               { name: "About", href: "/about" },
+              { name: "Team", href: "/team" },
               { name: "Resources", href: "/resources" },
               { name: "Contact", href: "/contact" },
             ].map(link => (
@@ -254,7 +267,10 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
             <div style={{ width: "28px", height: "28px", background: "#66BB3F", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "11px" }}>FS</span>
             </div>
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.55rem", color: "#909090", letterSpacing: "0.01em" }}>{nav.subsidiaryText}</span>
+            </div>
           </Link>
           <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#787878" }}>
             <X size={20} />
@@ -298,6 +314,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
 
           {[
             { name: "About", href: "/about" },
+            { name: "Our Team", href: "/team" },
             { name: "Resources", href: "/resources" },
             { name: nav.healthPromoTitle, href: "/startup-health-check" },
             { name: "Contact", href: "/contact" },

@@ -44,7 +44,7 @@ export default function WebDevPage() {
         label="Web & Tech Development"
         title="Scalable Digital Storefronts"
         titleHighlight="Built to Convert."
-        subtitle="From Shopify builds to custom SaaS platforms — we engineer every digital experience with one obsession: conversion. Beautiful design meets technical rigour."
+        subtitle="From Shopify builds to custom SaaS platforms, we engineer every digital experience with one obsession: conversion. Beautiful design meets technical rigour."
         ctaText="Start a Project"
         icon={Code2}
         stats={[
@@ -71,7 +71,7 @@ export default function WebDevPage() {
               afterLabel="After Founderstreet"
             />
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center", marginTop: "0.75rem" }}>
-              Actual client project — D2C nutrition brand. Conversion rate improved from 1.2% to 4.8%.
+              Actual client project. D2C nutrition brand. Conversion rate improved from 1.2% to 4.8%.
             </p>
           </div>
         </div>

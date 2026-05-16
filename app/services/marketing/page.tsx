@@ -16,8 +16,8 @@ const services = [
     category: "Digital & Performance",
     icon: Monitor,
     items: [
-      { title: "SEO & Content Marketing", desc: "Dominate organic search for your category. We build topical authority through long-form content, technical SEO, and link building — compounding traffic over time.", metrics: ["3–6 month to page 1", "Evergreen traffic asset"] },
-      { title: "Google Ads (Search & Display)", desc: "High-intent leads at the exact moment of need. We manage campaigns with surgical precision — Quality Score optimisation, negative keyword management, and bid strategies.", metrics: ["Target ROAS: 3–5x", "Cost per lead optimisation"] },
+      { title: "SEO & Content Marketing", desc: "Dominate organic search for your category. We build topical authority through long-form content, technical SEO, and link building that compounds traffic over time.", metrics: ["3–6 month to page 1", "Evergreen traffic asset"] },
+      { title: "Google Ads (Search & Display)", desc: "High-intent leads at the exact moment of need. We manage campaigns with surgical precision: Quality Score optimisation, negative keyword management, and bid strategies.", metrics: ["Target ROAS: 3–5x", "Cost per lead optimisation"] },
       { title: "Meta Ads (Facebook & Instagram)", desc: "Full-funnel social campaigns from cold audience prospecting to warm retargeting. Creative strategy, A/B testing, and dynamic product ads for e-commerce brands.", metrics: ["Creative-led strategy", "Full-funnel attribution"] },
     ],
   },
@@ -48,10 +48,10 @@ const results = [
 
 const faqs = [
   { question: "What kind of ROAS can we expect from Meta/Google Ads?", answer: "For D2C brands, we typically target a blended ROAS of 3–5x within the first 60–90 days. Performance varies by category, price point, and creative quality. We set realistic benchmarks in a discovery call before committing to targets." },
-  { question: "Do you handle the creative/ad design as well?", answer: "Yes. Our performance marketing retainer includes ad creative production — static images, short-form video (reels), and carousel ads. We A/B test creatives continuously and only scale winning formats." },
+  { question: "Do you handle the creative/ad design as well?", answer: "Yes. Our performance marketing retainer includes ad creative production: static images, short-form video (reels), and carousel ads. We A/B test creatives continuously and only scale winning formats." },
   { question: "What's the minimum OOH advertising budget?", answer: "For a single billboard in a Tier-1 city (prime location), expect ₹1.5–4L per month. We recommend a minimum 3-month campaign for brand recall. We can help with a ₹5–10L activation budget across multiple formats." },
   { question: "How long does it take to set up retail distribution?", answer: "Initial distributor conversations begin in Week 1. First purchase orders typically come in by Week 4–6. We manage the relationship, credit terms negotiation, and supply chain coordination throughout." },
-  { question: "Do you work with early-stage startups with limited budgets?", answer: "Yes. We have a lean-start option for D2C brands at ₹25,000/month for digital-only (SEO + 1 paid channel). We grow the scope as your revenue scales. Our model is outcome-aligned — we grow when you grow." },
+  { question: "Do you work with early-stage startups with limited budgets?", answer: "Yes. We have a lean-start option for D2C brands at ₹25,000/month for digital-only (SEO + 1 paid channel). We grow the scope as your revenue scales. Our model is outcome-aligned. We grow when you grow." },
 ];
 
 const h2 = {
@@ -68,7 +68,7 @@ export default function MarketingPage() {
         label="Marketing & Retail Expansion"
         title="Full-Funnel Growth,"
         titleHighlight="Online and Offline."
-        subtitle="We engineer demand across every customer touchpoint — from Google search to highway billboards to retail shelf space. Integrated digital performance and high-impact offline activations."
+        subtitle="We engineer demand across every customer touchpoint: from Google search to highway billboards to retail shelf space. Integrated digital performance and high-impact offline activations."
         ctaText="Plan My Growth"
         icon={Megaphone}
         stats={[
@@ -92,7 +92,7 @@ export default function MarketingPage() {
                 lineHeight: 1.7,
               }}
             >
-              Digital performance, offline activations, and retail distribution — orchestrated as one growth system.
+              Digital performance, offline activations, and retail distribution orchestrated as one growth system.
             </p>
           </div>
           {services.map((category, idx) => {

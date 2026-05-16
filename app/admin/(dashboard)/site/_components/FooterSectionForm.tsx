@@ -46,6 +46,17 @@ export default function FooterSectionForm({ initial }: { initial: Footer }) {
           />
         </div>
         <div className="admin-field">
+          <label className="admin-label" htmlFor="f-subsidiary">
+            Subsidiary line (shown beneath name)
+          </label>
+          <input
+            id="f-subsidiary"
+            className="admin-input"
+            value={footer.subsidiaryText}
+            onChange={(e) => setFooter({ ...footer, subsidiaryText: e.target.value })}
+          />
+        </div>
+        <div className="admin-field">
           <label className="admin-label" htmlFor="f-desc">
             Short description
           </label>

@@ -6,7 +6,7 @@ import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 
 export const metadata: Metadata = {
-  title: "Accounting & Taxation — Virtual CFO",
+  title: "Accounting & Taxation: Virtual CFO",
   description:
     "Institutional-grade financial plumbing. Virtual CFO services, bookkeeping, payroll, GST compliance, and strategic runway management.",
 };
@@ -45,7 +45,7 @@ const plans = [
 ];
 
 const faqs = [
-  { question: "How is a Virtual CFO different from a regular CA?", answer: "A CA handles compliance — taxes, audits, and filings. A Virtual CFO handles strategy — financial modelling, fundraising preparation, runway management, and board reporting. We provide both under one roof, so you don't need to manage two separate relationships." },
+  { question: "How is a Virtual CFO different from a regular CA?", answer: "A CA handles compliance: taxes, audits, and filings. A Virtual CFO handles strategy: financial modelling, fundraising preparation, runway management, and board reporting. We provide both under one roof, so you don't need to manage two separate relationships." },
   { question: "What accounting software do you use?", answer: "We primarily work with Zoho Books, QuickBooks, and Tally depending on client preference. We also integrate with Razorpay, Stripe, and other payment platforms for automated reconciliation. All clients get read-only access to their accounts in real time." },
   { question: "Can you help us prepare for a due diligence audit?", answer: "Absolutely. We maintain your accounts in investor-ready condition from Day 1. When due diligence begins, we provide a complete data room with audited financials, tax returns, GST filings, payroll records, and cap table documentation." },
   { question: "How do you handle startups with foreign investment?", answer: "We manage all FEMA compliance, RBI reporting requirements (FC-GPR, FC-TRS), and transfer pricing documentation required when a company receives foreign direct investment or has foreign directors." },
@@ -67,7 +67,7 @@ export default function AccountingPage() {
         label="Accounting & Virtual CFO"
         title="Financial Plumbing"
         titleHighlight="That Impresses Investors."
-        subtitle="Institutional-grade accounting, GST compliance, and virtual CFO services so you can focus 100% on product and growth — not spreadsheets."
+        subtitle="Institutional-grade accounting, GST compliance, and virtual CFO services so you can focus 100% on product and growth, not spreadsheets."
         ctaText="Get Started"
         icon={Calculator}
         stats={[

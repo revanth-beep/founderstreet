@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#E9F6E4"/>
+  <circle cx="100" cy="82" r="34" fill="#1B4332"/>
+  <ellipse cx="100" cy="175" rx="58" ry="46" fill="#1B4332"/>
+  <text x="100" y="96" text-anchor="middle" font-family="Georgia, serif" font-weight="800" font-size="22" fill="#FAFAF8">FS</text>
+</svg>

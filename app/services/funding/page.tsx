@@ -27,9 +27,9 @@ const coreServices = [
 const faqs = [
   { question: "What does the pitch deck creation process look like?", answer: "Week 1: Discovery call + competitive analysis + narrative structure workshop. Week 2: First draft (8 slides). Week 3: Revisions + financial model integration. Week 4: Final deck + investor Q&A prep session. We also provide a 30-minute mock pitch before your first investor meeting." },
   { question: "What is the 12-slide master deck structure?", answer: "Our proven structure: 1) Cover + Hook, 2) Problem, 3) Solution, 4) Market Size (TAM/SAM/SOM), 5) Product Demo, 6) Business Model, 7) Go-to-Market, 8) Traction, 9) Team, 10) Financials, 11) Competition, 12) The Ask. Each slide has a single, clear message." },
-  { question: "How do you source investors for matchmaking?", answer: "We maintain a live database of 200+ vetted angels, 40+ VC funds, and 15+ accelerators/incubators active in India. We only make warm introductions — cold email blasting destroys reputation. Matching is based on sector fit, cheque size, and stage alignment." },
-  { question: "What does the n8n automation process mean for investor outreach?", answer: "We use n8n (a workflow automation tool) to systematise investor pipeline management. This includes automated follow-up sequences, CRM tracking, meeting scheduling, and data room access management — ensuring no warm lead falls through the cracks." },
-  { question: "Do you take equity for your fundraising services?", answer: "No equity for pitch deck creation or financial modelling. For investor matchmaking and warm introductions, we charge a fixed project fee upfront. We do not take success fees or equity percentages — this keeps our incentives clean and conflict-free." },
+  { question: "How do you source investors for matchmaking?", answer: "We maintain a live network of 25+ vetted investor connects active in India. We only make warm introductions. Cold email blasting destroys reputation. Matching is based on sector fit, cheque size, and stage alignment." },
+  { question: "What does the n8n automation process mean for investor outreach?", answer: "We use n8n (a workflow automation tool) to systematise investor pipeline management. This includes automated follow-up sequences, CRM tracking, meeting scheduling, and data room access management. No warm lead falls through the cracks." },
+  { question: "Do you take equity for your fundraising services?", answer: "No equity for pitch deck creation or financial modelling. For investor matchmaking and warm introductions, we charge a fixed project fee upfront. We do not take success fees or equity percentages. This keeps our incentives clean and conflict-free." },
 ];
 
 const h2 = {
@@ -142,7 +142,7 @@ export default function FundingPage() {
         <div className="container-custom">
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Your funding round starts with one deck.</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>
-            Let&apos;s build the narrative that gets you in the room — and gets the room to say yes.
+            Let&apos;s build the narrative that gets you in the room and gets the room to say yes.
           </p>
           <Link href="/contact" className="btn-white">
             Build My Pitch Deck

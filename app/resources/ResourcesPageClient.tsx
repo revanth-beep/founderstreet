@@ -225,7 +225,7 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
               Get the Founder&apos;s Edge, Every Week.
             </h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", lineHeight: 1.7, marginBottom: "2rem" }}>
-              Weekly breakdown of unit economics, pitch tear-downs, and growth tactics — straight to your inbox. No spam, ever.
+              Weekly breakdown of unit economics, pitch tear-downs, and growth tactics. Straight to your inbox. No spam, ever.
             </p>
             <form
               onSubmit={(e) => e.preventDefault()}

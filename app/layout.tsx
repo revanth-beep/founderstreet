@@ -24,7 +24,7 @@ const siteUrlCanonical = metadataBase.toString().replace(/\/$/, "");
 export const metadata: Metadata = {
   metadataBase,
   title: {
-    default: "Founderstreet — The Unseen Engine Behind India's Next Great Startups",
+    default: "Founderstreet: The Unseen Engine Behind India's Next Great Startups",
     template: "%s | Founderstreet",
   },
   description:
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteUrlCanonical,
     siteName: "Founderstreet",
-    title: "Founderstreet — The Unseen Engine Behind India's Next Great Startups",
+    title: "Founderstreet: The Unseen Engine Behind India's Next Great Startups",
     description:
       "Elite operational, financial, and digital infrastructure for Indian founders.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],

@@ -46,6 +46,17 @@ export default function NavigationSectionForm({ initial }: { initial: Nav }) {
           />
         </div>
         <div className="admin-field">
+          <label className="admin-label" htmlFor="subsidiaryText">
+            Subsidiary line (shown beneath site name)
+          </label>
+          <input
+            id="subsidiaryText"
+            className="admin-input"
+            value={nav.subsidiaryText}
+            onChange={(e) => setNav({ ...nav, subsidiaryText: e.target.value })}
+          />
+        </div>
+        <div className="admin-field">
           <label className="admin-label" htmlFor="healthCtaShort">
             Short “health check” link (desktop header)
           </label>

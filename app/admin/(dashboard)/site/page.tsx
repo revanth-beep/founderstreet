@@ -46,6 +46,11 @@ const SECTIONS = [
     title: "About page",
     desc: "Full /about page: hero, story, stats, values, team, bottom CTA, and SEO title/description.",
   },
+  {
+    href: "/admin/site/team",
+    title: "Team page",
+    desc: "All team members on /team: names, roles, credentials, photos, and department groupings.",
+  },
 ];
 
 export default function AdminSiteHubPage() {

@@ -16,13 +16,13 @@ const deliverables = [
   {
     icon: BarChart3,
     title: "Market Sizing & TAM/SAM/SOM Analysis",
-    desc: "We model your total addressable market from first principles — not just copy a McKinsey slide. You'll know the true revenue ceiling and exactly what share is realistic.",
+    desc: "We model your total addressable market from first principles, not just copying a McKinsey slide. You'll know the true revenue ceiling and exactly what share is realistic.",
     points: ["Bottom-up market model", "Revenue potential by geography", "3-scenario sizing (conservative/base/bull)"],
   },
   {
     icon: Target,
     title: "SWOT & Competitor Benchmarking",
-    desc: "We audit every incumbent in your space — their CAC, LTV, pricing, and the gaps in their product. You'll know exactly where they're failing and how to win.",
+    desc: "We audit every incumbent in your space: their CAC, LTV, pricing, and the gaps in their product. You'll know exactly where they're failing and how to win.",
     points: ["Competitive landscape map", "Whitespace opportunity analysis", "Positioning recommendation"],
   },
   {
@@ -68,7 +68,7 @@ export default function ValidationPage() {
         label="Validation & Strategy"
         title="Stress-Test Your Idea"
         titleHighlight="Before Capital Is Deployed."
-        subtitle="We don't just launch — we audit the concept with the same rigour an institutional investor would. Market sizing, competitive intelligence, and unit economics before you spend a single rupee."
+        subtitle="We audit the concept with the same rigour an institutional investor would. Market sizing, competitive intelligence, and unit economics before you spend a single rupee."
         ctaText="Start Validation"
         icon={FlaskConical}
         stats={[

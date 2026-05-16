@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const SYSTEM_PROMPT = `You are Founder AI, an intelligent assistant for Founderstreet — India's premier startup infrastructure platform.
+const SYSTEM_PROMPT = `You are Founder AI, an intelligent assistant for Founderstreet, India's startup infrastructure platform.
 
 Your role is to:
 1. Answer questions about startups, company incorporation, accounting, marketing, fundraising, and tech development in the Indian context
@@ -45,13 +45,13 @@ export async function POST(request: NextRequest) {
 
       if (lastMessage.includes("llp") || lastMessage.includes("pvt ltd") || lastMessage.includes("private limited")) {
         response =
-          "For VC-backed startups, Private Limited (Pvt Ltd) is almost always the right choice — it allows ESOPs, FDI, and is the only structure institutional investors accept. LLP works better for professional services firms. We can incorporate your Pvt Ltd in under 10 days. Want to book a call to get started?";
+          "For VC-backed startups, Private Limited (Pvt Ltd) is almost always the right choice. It allows ESOPs, FDI, and is the only structure institutional investors accept. LLP works better for professional services firms. We can incorporate your Pvt Ltd in under 10 days. Want to book a call to get started?";
       } else if (lastMessage.includes("cost") || lastMessage.includes("price") || lastMessage.includes("fee")) {
         response =
           "Our pricing varies by service: Incorporation packages start from ₹15,000, accounting from ₹8,000/month, and pitch decks from ₹25,000. We offer bundled packages for startups needing multiple services. Book a free call and we'll give you an exact quote for your needs.";
       } else if (lastMessage.includes("fund") || lastMessage.includes("investor") || lastMessage.includes("raise")) {
         response =
-          "Fundraising success comes down to three things: a compelling narrative, clean financials, and the right investor relationships. We help with all three — pitch deck creation, financial modelling, and warm introductions to our network of 200+ angels and VCs. Ready to start your round?";
+          "Fundraising success comes down to three things: a compelling narrative, clean financials, and the right investor relationships. We help with all three: pitch deck creation, financial modelling, and warm introductions to our network of 25+ investor connects. Ready to start your round?";
       } else if (lastMessage.includes("incorporation") || lastMessage.includes("register") || lastMessage.includes("company")) {
         response =
           "We incorporate Private Limited companies in under 10 days. The process includes DIN/DSC for directors, name reservation, MOA/AOA drafting, SPICe+ filing, and post-incorporation setup (PAN, TAN, bank account). Everything handled end-to-end. Want to get started?";

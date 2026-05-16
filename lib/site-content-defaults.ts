@@ -79,6 +79,22 @@ export type AboutTeamMemberCms = {
   role: string;
   background: string;
   image: string;
+  department?: string;
+};
+
+export type TeamPageMemberCms = {
+  name: string;
+  role: string;
+  background: string;
+  image: string;
+  department: string;
+};
+
+export type TeamPageCms = {
+  metadata: { title: string; description: string };
+  hero: { eyebrow: string; title: string; subtitle: string };
+  departments: string[];
+  members: TeamPageMemberCms[];
 };
 
 export type AboutPageCms = {
@@ -120,12 +136,14 @@ export type AboutPageCms = {
 export type SiteContent = {
   nav: {
     brandName: string;
+    subsidiaryText: string;
     healthPromoTitle: string;
     healthPromoSubtitle: string;
     healthCtaShort: string;
   };
   footer: {
     brandName: string;
+    subsidiaryText: string;
     description: string;
     newsletterTitle: string;
     newsletterSubtitle: string;
@@ -150,6 +168,7 @@ export type SiteContent = {
     statReadersLabel: string;
     statReadersValue: string;
   };
+  teamPage: TeamPageCms;
   /** Escape hatch: arbitrary JSON merged on top (advanced). */
   custom?: Record<string, unknown>;
 };
@@ -157,18 +176,20 @@ export type SiteContent = {
 export const defaultSiteContent: SiteContent = {
   nav: {
     brandName: "Founderstreet",
+    subsidiaryText: "by Northville Consulting Group",
     healthPromoTitle: "Free Startup Health Check",
     healthPromoSubtitle: "5 questions. Get a free SWOT report instantly.",
     healthCtaShort: "Free Health Check",
   },
   footer: {
     brandName: "Founderstreet",
+    subsidiaryText: "by Northville Consulting Group",
     description:
       "The unseen engine behind India's next great startups. From Day Zero to Pre-Seed.",
     newsletterTitle: "Get the Founder's Edge.",
     newsletterSubtitle:
       "Weekly breakdown on unit economics, pitch tear-downs, and growth tactics.",
-    copyrightTemplate: "© {year} Founderstreet Consulting Pvt. Ltd. All rights reserved.",
+    copyrightTemplate: "© {year} Founderstreet · Northville Consulting Group. All rights reserved.",
   },
   home: {
     hero: {
@@ -187,8 +208,8 @@ export const defaultSiteContent: SiteContent = {
       stats: [
         { value: "150+", label: "Startups Launched" },
         { value: "₹40Cr+", label: "Funding Facilitated" },
-        { value: "98%", label: "Compliance Rate" },
-        { value: "< 10 Days", label: "Avg. Incorporation" },
+        { value: "25+", label: "Investor Connects" },
+        { value: "10 Days", label: "Avg. Incorporation" },
       ],
     },
     services: {
@@ -210,7 +231,7 @@ export const defaultSiteContent: SiteContent = {
         n: "02",
         tag: "Legal & Compliance",
         name: "Incorporation",
-        desc: "End-to-end company registration in under 10 days. DIN, DSC, MOA, AOA, trademark — completely handled.",
+        desc: "End-to-end company registration in under 10 days. DIN, DSC, MOA, AOA, trademark. Completely handled.",
         href: "/services/incorporation",
       },
       {
@@ -249,68 +270,25 @@ export const defaultSiteContent: SiteContent = {
       viewAllLabel: "All articles",
     },
     partnerMarquee: {
-      headline: "Our Partner Network — Billboards · Distribution · Digital · Retail",
+      headline: "Our Network: Clients, Investors and Institutional Partners",
       partners: [
-        { name: "Times OOH", cat: "Billboard" },
-        { name: "StartupIndia", cat: "Ecosystem" },
-        { name: "AWS Activate", cat: "Cloud" },
-        { name: "PhoenixMalls", cat: "Retail" },
-        { name: "Razorpay", cat: "Payments" },
-        { name: "Meta Business", cat: "Social Ads" },
-        { name: "Google Ads", cat: "Performance" },
-        { name: "NASSCOM", cat: "Tech Body" },
-        { name: "IndiaMart", cat: "B2B Platform" },
-        { name: "Metro Ads", cat: "Transit OOH" },
-        { name: "BigTrade", cat: "Distribution" },
-        { name: "Laqshya Media", cat: "OOH" },
+        { name: "706 Pictures", cat: "Client" },
+        { name: "ICICI Bank", cat: "Investor Connect" },
+        { name: "IIM Kashipur", cat: "Academic Partner" },
       ],
     },
     founderStories: {
-      eyebrow: "Founder Stories",
-      title: "Results That Speak for Themselves",
+      eyebrow: "Client Stories",
+      title: "What Our Clients Say",
       stories: [
         {
-          name: "Rohan Mehta",
-          role: "Founder, AgriConnect",
-          sector: "B2B AgriTech",
-          avatar:
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+          name: "706 Pictures",
+          role: "Film Production Company",
+          sector: "Media & Entertainment",
+          avatar: "/team/placeholder.svg",
           quote:
-            "Founderstreet handled everything from our Pvt Ltd incorporation to building our MVP in just 6 weeks. We closed our pre-seed round of ₹1.2Cr within 4 months of launch.",
-          result: "₹1.2Cr Pre-Seed",
-          rating: 5,
-        },
-        {
-          name: "Priya Sharma",
-          role: "Co-founder, NourishKart",
-          sector: "D2C Nutrition",
-          avatar:
-            "https://images.unsplash.com/photo-1494790108755-2616b612b8c5?w=100&h=100&fit=crop&crop=face",
-          quote:
-            "The Virtual CFO service was a game-changer. Our burn rate clarity and unit economics model convinced investors we had a tight grip on our business.",
-          result: "₹75L Angel Round",
-          rating: 5,
-        },
-        {
-          name: "Arjun Kapoor",
-          role: "Founder, ZippyLogistics",
-          sector: "Last-Mile Delivery",
-          avatar:
-            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-          quote:
-            "Our Shopify store went from 0 to ₹40L monthly GMV in 3 months. The marketing team's ROAS on Meta Ads alone was 4.2x. Worth every paisa.",
-          result: "₹40L MRR in 90 days",
-          rating: 5,
-        },
-        {
-          name: "Kavya Reddy",
-          role: "Founder, LearnIQ",
-          sector: "EdTech SaaS",
-          avatar:
-            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-          quote:
-            "The pitch deck they built was the sharpest 12 slides I've ever seen. Every VC we presented to mentioned it. We ended up oversubscribed.",
-          result: "₹3Cr Seed (Oversubscribed)",
+            "The team at Founderstreet has been incredibly professional and significantly helped us organise our accounting system. We now rely on them for comprehensive bookkeeping, financial analysis, and taxation including GST, TDS, and ITR filing. They've streamlined our operations and given us complete peace of mind.",
+          result: "Full-service accounting partnership",
           rating: 5,
         },
       ],
@@ -327,7 +305,7 @@ export const defaultSiteContent: SiteContent = {
       titleLine1: "We're the team that builds the scaffolding",
       titleAccent: "while you build the skyscraper.",
       lead:
-        "Founderstreet was born from frustration. Three ex-founders who had each wasted critical early months on company registration, CAC spreadsheets, and pitch deck revisions — instead of building product and acquiring customers.",
+        "Founderstreet was born from frustration. Three ex-founders who had each wasted critical early months on company registration, CAC spreadsheets, and pitch deck revisions instead of building product and acquiring customers.",
     },
     story: {
       label: "Our Story",
@@ -336,7 +314,7 @@ export const defaultSiteContent: SiteContent = {
       paragraphs: [
         "In 2021, our founding team was building three separate startups across different sectors. Each of us hit the same wall: the operational overhead of building a company in India was eating into our time to build the actual product.",
         "Incorporation took 6 weeks instead of 10 days. The CA we hired didn't understand startup equity or ESOP accounting. Our pitch deck looked like a school project. And we had no idea who the right investors were for our stage.",
-        "So we built Founderstreet — the infrastructure layer we wished existed. Today, we've helped 150+ startups across India launch, scale, and raise over ₹40Cr in funding.",
+        "So we built Founderstreet: the infrastructure layer we wished existed. Today, we've helped 150+ startups across India launch, scale, and raise over ₹40Cr in funding.",
       ],
       stats: [
         { value: "2021", label: "Founded" },
@@ -353,7 +331,7 @@ export const defaultSiteContent: SiteContent = {
           icon: "target",
           title: "Outcome-Obsessed",
           desc:
-            "Every deliverable has a measurable objective. We don't track hours — we track milestones. Our incentives are permanently aligned with yours.",
+            "Every deliverable has a measurable objective. We don't track hours. We track milestones. Our incentives are permanently aligned with yours.",
         },
         {
           icon: "zap",
@@ -404,5 +382,37 @@ export const defaultSiteContent: SiteContent = {
     statCategoriesLabel: "Categories",
     statReadersLabel: "Readers",
     statReadersValue: "10K+",
+  },
+  teamPage: {
+    metadata: {
+      title: "Our Team: Founderstreet by Northville Consulting Group",
+      description:
+        "Meet the consultants, strategists, and operators behind Founderstreet by Northville Consulting Group.",
+    },
+    hero: {
+      eyebrow: "Founderstreet by Northville Consulting Group",
+      title: "The People Behind the Platform",
+      subtitle:
+        "Chartered Accountants, MBAs, ex-bankers, and growth operators working as one team to build India's next great startups.",
+    },
+    departments: ["Leadership", "Senior Consultants", "Consultants", "Associates", "Interns"],
+    members: [
+      { name: "Asmeet Bhatia", role: "Managing Director", background: "CA, MBA (ISB), B.Com (H)", image: "/team/asmeet-bhatia.avif", department: "Leadership" },
+      { name: "Achal Bhatt", role: "Director, Marketing", background: "CPA, MSc. in Accounting (UIUC), NYFA", image: "/team/achal-bhatt.avif", department: "Leadership" },
+      { name: "Neha Agarwal", role: "Senior Consultant, Investment Banking", background: "CA AIR 27, Ex-IB, Ex-Infosys", image: "/team/neha-agarwal.avif", department: "Senior Consultants" },
+      { name: "MS Rehsi", role: "Senior Strategy Consultant", background: "Ex-CMO, Aircel", image: "/team/ms-rehsi.avif", department: "Senior Consultants" },
+      { name: "Kiran Surana", role: "Senior Consultant, FP&A", background: "Chartered Accountant", image: "/team/placeholder.svg", department: "Senior Consultants" },
+      { name: "Vishi Agarwal", role: "Senior Marketing Consultant", background: "CA, MBA (S.P. Jain), MSc (Univ. of Houston)", image: "/team/vishi-agarwal.avif", department: "Senior Consultants" },
+      { name: "Nidhi Srivastava", role: "Senior Consultant, FP&A", background: "US CPA", image: "/team/nidhi-srivastava.avif", department: "Senior Consultants" },
+      { name: "CA Priya Arora", role: "Finance Consultant", background: "CA, B.Com Accounting & Finance", image: "/team/priya-arora.avif", department: "Consultants" },
+      { name: "Revanth Rallabandi", role: "Product Management Consultant", background: "ISB", image: "/team/placeholder.svg", department: "Consultants" },
+      { name: "Mohit S.", role: "Due Diligence Consultant", background: "Chartered Accountant", image: "/team/mohit-s.avif", department: "Consultants" },
+      { name: "Thiruvenkat R", role: "Marketing Consultant", background: "B.E (AI & ML), MBA (Pursuing)", image: "/team/thiruvenkat-r.avif", department: "Consultants" },
+      { name: "Chanpreet Singh Gujral", role: "Strategy Associate", background: "BMS, Delhi University", image: "/team/chanpreet-gujral.avif", department: "Associates" },
+      { name: "Shruti Meharia", role: "FP&A Associate", background: "B.Com Hons. (SRCC), CA (Pursuing)", image: "/team/shruti-meharia.avif", department: "Associates" },
+      { name: "Krupa Nagdeote", role: "Graphic Designer", background: "IPM, IIM Rohtak", image: "/team/krupa-nagdeote.avif", department: "Associates" },
+      { name: "Tanupreet Kaur", role: "Finance Intern", background: "B.Com (PU, Chandigarh), US CPA (Pursuing)", image: "/team/tanupreet-kaur.avif", department: "Interns" },
+      { name: "Saksham Nagpal", role: "Finance Intern", background: "B.A. (Hons) Economics", image: "/team/placeholder.svg", department: "Interns" },
+    ],
   },
 };

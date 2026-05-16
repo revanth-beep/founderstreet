@@ -17,6 +17,7 @@ const services = [
 
 const company = [
   { name: "About Us", href: "/about" },
+  { name: "Our Team", href: "/team" },
   { name: "The Founder's Brief", href: "/resources" },
   { name: "Startup Health Check", href: "/startup-health-check" },
   { name: "Contact Us", href: "/contact" },
@@ -50,13 +51,18 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
 
           {/* Brand */}
           <div>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "1.25rem" }}>
+            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "0.5rem" }}>
               <div style={{ width: "32px", height: "32px", background: "#66BB3F", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
               </div>
-              <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
-                {cms.brandName}
-              </span>
+              <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+                <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
+                  {cms.brandName}
+                </span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.6rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.01em" }}>
+                  {cms.subsidiaryText}
+                </span>
+              </div>
             </Link>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", maxWidth: "240px" }}>
               {cms.description}

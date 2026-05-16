@@ -9,8 +9,6 @@ export async function POST(request: NextRequest) {
     }
 
     // In production: store in Vercel KV or email service (Mailchimp/Resend)
-    // For now, log and return success
-    console.log("New subscriber:", email);
 
     // Example KV storage (uncomment when KV is configured):
     // const { kv } = await import("@vercel/kv");

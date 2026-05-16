@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, ArrowRight, FileText, BarChart3, Users, Download } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
@@ -101,7 +102,7 @@ export default function FundingPage() {
             {deckTemplates.map((template) => (
               <div key={template.name} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden" }}>
                 <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#F0F0ED", position: "relative" }}>
-                  <img src={template.image} alt={template.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.85 }} />
+                  <Image src={template.image} alt={template.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" style={{ objectFit: "cover", opacity: 0.85 }} />
                   <div style={{ position: "absolute", top: "0.5rem", left: "0.5rem", background: "#66BB3F", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, padding: "0.2rem 0.5rem", borderRadius: "999px" }}>
                     {template.slides} slides
                   </div>

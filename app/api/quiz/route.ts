@@ -8,10 +8,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Name and email required" }, { status: 400 });
     }
 
-    // Store lead in KV / send welcome email
-    console.log("Quiz lead:", { name, email, answers });
-
-    // In production: trigger email with SWOT report template
+    // In production: store lead in KV / trigger email with SWOT report template
     // await sendEmail({
     //   to: email,
     //   subject: "Your Free Startup SWOT Report — Founderstreet",

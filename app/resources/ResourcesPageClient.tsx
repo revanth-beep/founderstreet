@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
 import type { PostMeta } from "@/lib/cms";
@@ -117,10 +118,12 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
               <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0 }}>
                 {/* Cover */}
                 <div style={{ position: "relative", aspectRatio: "16/7", overflow: "hidden", background: "#F0F0ED" }}>
-                  <img
+                  <Image
                     src={featuredPost.coverImage || PLACEHOLDER}
                     alt={featuredPost.title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    fill
+                    sizes="(max-width: 1280px) 100vw, 1280px"
+                    style={{ objectFit: "cover" }}
                   />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)" }} />
                   {/* Content overlay on desktop */}
@@ -169,11 +172,13 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
                     style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
                   >
                     {/* Cover */}
-                    <div style={{ aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
-                      <img
+                    <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
+                      <Image
                         src={post.coverImage || PLACEHOLDER}
                         alt={post.title}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 400px"
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
                     {/* Body */}

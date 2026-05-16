@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, ArrowLeft, BookOpen } from "lucide-react";
@@ -94,11 +95,13 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Cover image */}
         {post.coverImage && (
           <div className="container-custom" style={{ paddingBottom: 0 }}>
-            <div style={{ maxWidth: "900px", margin: "0 auto", aspectRatio: "16/7", borderRadius: "8px 8px 0 0", overflow: "hidden" }}>
-              <img
+            <div style={{ position: "relative", maxWidth: "900px", margin: "0 auto", aspectRatio: "16/7", borderRadius: "8px 8px 0 0", overflow: "hidden" }}>
+              <Image
                 src={post.coverImage}
                 alt={post.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                fill
+                sizes="(max-width: 1280px) 100vw, 900px"
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>
@@ -170,11 +173,13 @@ export default async function BlogPostPage({ params }: Props) {
                   href={`/resources/${p.slug}`}
                   style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "6px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
                 >
-                  <div style={{ aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
-                    <img
+                  <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
+                    <Image
                       src={p.coverImage || PLACEHOLDER}
                       alt={p.title}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                   <div style={{ padding: "1rem 1.25rem" }}>

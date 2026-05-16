@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 type Props = {
@@ -13,6 +11,7 @@ export function TeamCard({ member, large }: Props) {
 
   return (
     <div
+      className="team-card"
       style={{
         background: "#FFFFFF",
         border: "1px solid #E8E8E4",
@@ -20,16 +19,7 @@ export function TeamCard({ member, large }: Props) {
         padding: large ? "1.75rem" : "1.25rem",
         display: "flex", flexDirection: "column", alignItems: "center",
         textAlign: "center",
-        transition: "box-shadow 0.2s ease, transform 0.2s ease",
         cursor: "default",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px rgba(27,67,50,0.1)";
-        (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow = "none";
-        (e.currentTarget as HTMLElement).style.transform = "none";
       }}
     >
       <div style={{
@@ -46,6 +36,7 @@ export function TeamCard({ member, large }: Props) {
           alt={member.name}
           width={imgSize}
           height={imgSize}
+          sizes={large ? "140px" : "110px"}
           style={{
             width: "100%", height: "100%",
             objectFit: isPlaceholder ? "contain" : "cover",

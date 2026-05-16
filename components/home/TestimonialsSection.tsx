@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import type { FounderStoriesCms } from "@/lib/site-content-defaults";
 
@@ -109,12 +110,13 @@ export default function TestimonialsSection({ data }: { data: FounderStoriesCms 
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
-                <img
+                <Image
                   src={t.avatar}
                   alt={t.name}
+                  width={48}
+                  height={48}
+                  sizes="48px"
                   style={{
-                    width: "48px",
-                    height: "48px",
                     borderRadius: "50%",
                     objectFit: "cover",
                     border: "2px solid rgba(123,201,90,0.4)",

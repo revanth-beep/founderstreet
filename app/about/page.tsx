@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Target, Heart, Zap, ArrowRight, type LucideIcon } from "lucide-react";
 import { getSiteContent } from "@/lib/site-content";
@@ -296,12 +297,14 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
           >
             {teamMembers.map((member) => (
               <div key={member.name} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div style={{ aspectRatio: "1/1", overflow: "hidden", borderRadius: "10px", background: "#F0F0ED" }} className="team-img-wrap">
-                  <img
+                <div style={{ position: "relative", aspectRatio: "1/1", overflow: "hidden", borderRadius: "10px", background: "#F0F0ED" }} className="team-img-wrap">
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
                     className="team-img"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    style={{ objectFit: "cover", transition: "transform 0.5s ease" }}
                   />
                 </div>
                 <div>

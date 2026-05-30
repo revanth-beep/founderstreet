@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageSquare, X, Send, Loader2, Bot, Minimize2 } from "lucide-react";
+import { MessageSquare, X, Send, Loader2, Bot, Minimize2, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 interface Message {
@@ -16,6 +16,7 @@ const SUGGESTED_QUESTIONS = [
   "How much does it cost to incorporate a company?",
   "How do I start raising funds?",
   "What services do you offer?",
+  "Where's your FAQ section?",
 ];
 
 const WELCOME_MESSAGE: Message = {
@@ -41,7 +42,7 @@ const c = {
   online: "#9FE670",
 };
 
-export default function AIWidget() {
+export default function AIWidget({ whatsappUrl = "https://wa.me/919876543210" }: { whatsappUrl?: string }) {
   const [open, setOpen] = useState(false);
   const [minimised, setMinimised] = useState(false);
   const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
@@ -487,64 +488,48 @@ export default function AIWidget() {
       )}
 
       {!open && (
-        <button
-          type="button"
-          onClick={() => {
-            setOpen(true);
-            setMinimised(false);
-          }}
-          className="ai-widget-anchor"
-          style={{
-            position: "fixed",
-            bottom: "1rem",
-            right: "1rem",
-            zIndex: 50,
-            width: "56px",
-            height: "56px",
-            borderRadius: "50%",
-            background: c.green,
-            color: c.white,
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 0 40px rgba(102,187,63,0.40), 0 10px 40px rgba(0,0,0,0.25)",
-            transition: "transform 0.2s ease, background 0.2s ease",
-          }}
-          aria-label="Open Founder AI chat"
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = c.greenHover;
-            e.currentTarget.style.transform = "scale(1.08)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = c.green;
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          <MessageSquare size={24} />
-          {hasUnread && (
-            <span
-              style={{
-                position: "absolute",
-                top: "-4px",
-                right: "-4px",
-                width: "16px",
-                height: "16px",
-                background: "#DC2626",
-                borderRadius: "50%",
-                fontSize: "9px",
-                fontWeight: 700,
-                color: c.white,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              1
-            </span>
-          )}
-        </button>
+        <div className="ai-widget-anchor" style={{ position: "fixed", bottom: "1rem", right: "1rem", zIndex: 50, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.625rem" }}>
+          {/* WhatsApp button */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              width: "48px", height: "48px", borderRadius: "50%",
+              background: "#25D366", color: "#FFFFFF", border: "none",
+              cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 0 30px rgba(37,211,102,0.35), 0 6px 20px rgba(0,0,0,0.2)",
+              transition: "transform 0.2s ease",
+              textDecoration: "none",
+            }}
+            aria-label="Chat on WhatsApp"
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1.1)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+          >
+            <MessageCircle size={20} />
+          </a>
+          {/* AI chat button */}
+          <button
+            type="button"
+            onClick={() => { setOpen(true); setMinimised(false); }}
+            style={{
+              width: "56px", height: "56px", borderRadius: "50%",
+              background: c.green, color: c.white, border: "none",
+              cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 0 40px rgba(102,187,63,0.40), 0 10px 40px rgba(0,0,0,0.25)",
+              transition: "transform 0.2s ease, background 0.2s ease",
+              position: "relative",
+            }}
+            aria-label="Open Founder AI chat"
+            onMouseEnter={(e) => { e.currentTarget.style.background = c.greenHover; e.currentTarget.style.transform = "scale(1.08)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = c.green; e.currentTarget.style.transform = "scale(1)"; }}
+          >
+            <MessageSquare size={24} />
+            {hasUnread && (
+              <span style={{ position: "absolute", top: "-4px", right: "-4px", width: "16px", height: "16px", background: "#DC2626", borderRadius: "50%", fontSize: "9px", fontWeight: 700, color: c.white, display: "flex", alignItems: "center", justifyContent: "center" }}>1</span>
+            )}
+          </button>
+        </div>
       )}
     </>
   );

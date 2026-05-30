@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, ArrowRight, CheckCircle2, Clock, Shield, FileText, Award } from "lucide-react";
+import { Building2, ArrowRight, CheckCircle2, Shield, FileText, Award } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ComparisonTable from "@/components/ui/ComparisonTable";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
+import EntityAdvisor from "@/components/ui/EntityAdvisor";
 
 export const metadata: Metadata = {
   title: "Company Incorporation & Compliance",
@@ -31,7 +33,7 @@ const comparisonRows = [
   { feature: "Best For", values: ["VC-backed startups", "Professional services", "Freelancers/solo ops"] },
 ];
 
-const process = [
+const steps = [
   { step: "01", title: "Director Identification Number (DIN)", desc: "We apply for DINs for all proposed directors. This is the first regulatory step in the incorporation process.", time: "Day 1–2" },
   { step: "02", title: "Digital Signature Certificate (DSC)", desc: "We obtain Class-3 DSCs for all directors, required for signing e-forms on the MCA portal.", time: "Day 1–3" },
   { step: "03", title: "Name Reservation via RUN", desc: "We file a name reservation request with MCA and get your company name approved. We send 3 alternatives.", time: "Day 3–5" },
@@ -117,41 +119,87 @@ export default function IncorporationPage() {
             </h2>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {process.map((p) => (
-              <div key={p.step} style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem", alignItems: "flex-start" }}>
-                <div style={{ flexShrink: 0 }}>
-                  <div
-                    style={{
-                      width: "56px",
-                      height: "56px",
-                      borderRadius: "50%",
-                      background: "#FFFFFF",
-                      border: "2px solid #E0E0DC",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 2px 15px -3px rgba(0,0,0,0.07)",
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.875rem", color: "#66BB3F" }}>{p.step}</span>
-                  </div>
-                </div>
-                <div style={{ flex: "1 1 280px", minWidth: 0 }}>
-                  <div style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.25rem" }}>
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem 1rem", marginBottom: "0.5rem" }}>
-                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.0625rem", color: "#3d4246" }}>{p.title}</h3>
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", fontWeight: 500 }}>
-                        <Clock size={12} />
-                        {p.time}
-                      </span>
-                    </div>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.7 }}>{p.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div style={{ maxWidth: "48rem", margin: "0 auto" }}>
+            <Accordion
+              items={steps.map(p => ({
+                question: `Step ${p.step}: ${p.title}`,
+                answer: `${p.desc} Timeline: ${p.time}.`,
+              }))}
+            />
           </div>
+
+          {/* Pre-flight checklist */}
+          <div style={{ maxWidth: "56rem", margin: "3rem auto 0", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "12px", padding: "clamp(1.5rem, 4vw, 2.5rem)" }}>
+            <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+              <ServicePageEyebrow>What You Need to Get Started</ServicePageEyebrow>
+              <h3 style={{ ...h2, fontSize: "clamp(1.25rem, 2vw, 1.625rem)", marginTop: "0.75rem" }}>
+                Gather these documents, book your kickoff call, and we will have your Certificate of Incorporation in under 10 days.
+              </h3>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="checklist-grid">
+              {/* Your homework */}
+              <div style={{ background: "#F7F7F5", borderRadius: "10px", padding: "1.5rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#66BB3F", marginBottom: "1rem" }}>
+                  Your Homework (The Easy Part)
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                  {[
+                    "PAN and Aadhaar Card (all directors)",
+                    "Bank Statement under 2 months old",
+                    "Electricity Bill for the office address",
+                    "No Objection Certificate (NOC) from landlord",
+                  ].map(item => (
+                    <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A" }}>
+                      <CheckCircle2 size={16} color="#66BB3F" style={{ flexShrink: 0, marginTop: "2px" }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* Our job */}
+              <div style={{ background: "#3d4246", borderRadius: "10px", padding: "1.5rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1rem" }}>
+                  Our Job (The Complex Part)
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                  {[
+                    "AI-assisted entity structuring (Pvt Ltd vs LLP vs OPC)",
+                    "Drafting custom MOA and AOA",
+                    "Securing Class-3 DSCs and DINs",
+                    "Navigating SPICe+, Agile Pro, PAN and TAN",
+                    "Zero rejections: first-time MCA approval",
+                  ].map(item => (
+                    <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.7)" }}>
+                      <CheckCircle2 size={16} color="#9FE670" style={{ flexShrink: 0, marginTop: "2px" }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div style={{ textAlign: "center", marginTop: "2rem" }}>
+              <Link href="/contact" className="btn-primary">
+                Book Your Incorporation Kickoff
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <style>{`
+        @media (min-width: 640px) { .checklist-grid { grid-template-columns: 1fr 1fr !important; } }
+      `}</style>
+
+      <section style={{ background: "#FFFFFF", paddingBlock: "clamp(3rem, 6vw, 4.5rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 0.5rem" }}>
+            <ServicePageEyebrow>AI Entity Advisor</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Not Sure Which Entity to Choose?</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              Answer 3 quick questions and get an instant AI-powered recommendation under the Companies Act 2013.
+            </p>
+          </div>
+          <EntityAdvisor />
         </div>
       </section>
 
@@ -181,6 +229,36 @@ export default function IncorporationPage() {
         </div>
       </section>
 
+      <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Incorporation Pricing</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              No hidden government fees. No surprise add-ons. What you see is what you pay.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>
+            {[
+              { name: "Private Limited", price: "₹6,999", desc: "Full Pvt Ltd registration. DIN, DSC, name reservation, MOA/AOA, SPICe+ filing, CIN, PAN, TAN.", badge: null, highlight: false, cta: "Start Pvt Ltd" },
+              { name: "Private Ltd + IP Bundle", price: "₹12,999", desc: "Everything in Pvt Ltd plus trademark search and filing, brand name legal clearance, and NDA templates.", badge: "Most Popular", highlight: true, cta: "Start with IP" },
+              { name: "LLP Registration", price: "₹5,999", desc: "LLP incorporation for professional services firms. LLP Agreement, DPIN, DSC, and Certificate of Registration.", badge: null, highlight: false, cta: "Start LLP" },
+            ].map(p => (
+              <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
+                {p.badge && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>{p.badge}</span>}
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.75rem" }}>{p.price}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: p.highlight ? "rgba(255,255,255,0.8)" : "#5A5A5A", lineHeight: 1.65, marginBottom: "1.25rem" }}>{p.desc}</p>
+                <Link href="/contact" style={{ display: "block", textAlign: "center", padding: "0.625rem 1rem", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", background: p.highlight ? "#FFFFFF" : "#66BB3F", color: p.highlight ? "#66BB3F" : "#FFFFFF" }}>{p.cta}</Link>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center", marginTop: "1.5rem" }}>
+            All prices include government fees, professional charges, and post-incorporation setup. Delivered in under 10 working days.
+          </p>
+        </div>
+      </section>
+
       <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
@@ -189,6 +267,8 @@ export default function IncorporationPage() {
           <Accordion items={faqs} />
         </div>
       </section>
+
+      <CaseStudyBanner />
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">

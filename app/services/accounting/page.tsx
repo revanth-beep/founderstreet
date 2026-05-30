@@ -4,6 +4,7 @@ import { Calculator, ArrowRight, TrendingUp, FileText, Receipt, PieChart } from 
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
 
 export const metadata: Metadata = {
   title: "Accounting & Taxation: Virtual CFO",
@@ -116,6 +117,70 @@ export default function AccountingPage() {
         </div>
       </section>
 
+      <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }} className="ai-model-grid">
+            <div>
+              <ServicePageEyebrow>AI-Powered Deliverable</ServicePageEyebrow>
+              <h2 style={{ ...h2, marginTop: "1rem", marginBottom: "1rem" }}>
+                AI-Generated 5-Year Financial Model
+              </h2>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "#5A5A5A", lineHeight: 1.75, marginBottom: "1.5rem", maxWidth: "480px" }}>
+                Revenue projections, unit economics, P&amp;L, Balance Sheet, and Cash Flow, built from your actual business inputs in under 48 hours. Investor-ready and auditable.
+              </p>
+              <div style={{ background: "#F7F7F5", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "1.25rem", marginBottom: "1.5rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9FE670", marginBottom: "0.75rem" }}>
+                  Powered by Setu Account Aggregator
+                </p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65 }}>
+                  Clients who opt in connect their bank accounts via{" "}
+                  <a href="https://setu.co" target="_blank" rel="noopener noreferrer" style={{ color: "#66BB3F", textDecoration: "underline" }}>Setu</a>
+                  {" "}— India&apos;s leading Account Aggregator (5M+ daily AA requests, Pine Labs). Real bank data flows directly into your model, replacing manual estimates with verified financial inputs.
+                </p>
+              </div>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.75rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                {["5-year P&L, Balance Sheet, Cash Flow", "Revenue model built from your actual inputs", "3 scenarios: conservative, base, optimistic", "Delivered to Google Sheets, investor-ready", "Analyst review before delivery"].map(f => (
+                  <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A" }}>
+                    <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#66BB3F" }} />
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/contact" className="btn-primary">
+                Request Financial Model
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+            <div style={{ background: "#3d4246", borderRadius: "14px", padding: "1.75rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>
+                Sample Output Preview
+              </p>
+              {[
+                { label: "Year 1 Revenue", val: "₹24.6L", note: "Based on your inputs" },
+                { label: "Year 3 Revenue", val: "₹1.8Cr", note: "Base scenario" },
+                { label: "Break-even Month", val: "Month 14", note: "Conservative estimate" },
+                { label: "LTV / CAC Ratio", val: "4.2x", note: "By cohort" },
+                { label: "Gross Margin", val: "68%", note: "Year 2 onwards" },
+              ].map(row => (
+                <div key={row.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                  <div>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)" }}>{row.label}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", color: "rgba(255,255,255,0.3)" }}>{row.note}</p>
+                  </div>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.125rem", fontWeight: 700, color: "#9FE670" }}>{row.val}</p>
+                </div>
+              ))}
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", color: "rgba(255,255,255,0.25)", marginTop: "1rem", textAlign: "center" }}>
+                Illustrative only. Actual outputs based on your real business inputs.
+              </p>
+            </div>
+          </div>
+        </div>
+        <style>{`@media (min-width: 1024px) { .ai-model-grid { grid-template-columns: 1fr 1fr !important; gap: 4rem !important; } }`}</style>
+      </section>
+
       <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
@@ -188,6 +253,11 @@ export default function AccountingPage() {
           <Accordion items={faqs} />
         </div>
       </section>
+
+      <CaseStudyBanner
+        quote="The team at Founderstreet has been incredibly professional and significantly helped us organise our accounting system."
+        company="706 Pictures, Film Production"
+      />
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">

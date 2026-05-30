@@ -4,6 +4,7 @@ import { Megaphone, ArrowRight, Monitor, MapPin, Store } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
 
 export const metadata: Metadata = {
   title: "Marketing & Retail Expansion",
@@ -128,6 +129,48 @@ export default function MarketingPage() {
         </div>
       </section>
 
+      <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "44rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>AI Creative Studio</ServicePageEyebrow>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", marginTop: "1rem", lineHeight: 1.2 }}>
+              Scale Your Brand Without an In-House Design Team
+            </h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              We generate high-converting social posts, ad creatives, and bulk branded content at a fraction of the cost. Powered by AI. Reviewed by our team.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.25rem" }}>
+            {[
+              { n: "01", title: "Social Content", sub: "LinkedIn, Instagram, YouTube Shorts", tool: "Predis.ai", note: "India-optimised. Generates image, video, caption, and hashtags from one prompt.", price: "From $29/mo" },
+              { n: "02", title: "Paid Ad Creatives", sub: "Meta, Google, LinkedIn", tool: "AdCreative.ai", note: "Pre-scores every creative for predicted click-through rate before you spend a rupee.", price: "From $29/mo" },
+              { n: "03", title: "Bulk Branded Content", sub: "Certificates, campaign variants, localised posts", tool: "Robolly via n8n", note: "Template-based bulk image and PDF generation. Native n8n integration for scale.", price: "From €15/mo" },
+              { n: "04", title: "Dynamic PDFs & Images", sub: "Personalised reports, invoices, proposals", tool: "RenderForm", note: "Pixel-perfect dynamic image and PDF API. Output in under 2 seconds.", price: "From €19/mo" },
+            ].map(card => (
+              <div key={card.n} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 700, color: "#F0F0ED" }}>{card.n}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 600, color: "#787878", background: "#F0F0ED", padding: "0.2rem 0.625rem", borderRadius: "4px" }}>{card.price}</span>
+                </div>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.25rem" }}>{card.title}</h3>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginBottom: "0.75rem" }}>{card.sub}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, marginBottom: "1rem" }}>{card.note}</p>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#66BB3F" }}>
+                  Powered by {card.tool}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+            <Link href="/contact" className="btn-primary">
+              Request a Sample Creative
+              <ArrowRight size={15} />
+            </Link>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginTop: "0.75rem" }}>We generate a test render and email it to you within 24 hours.</p>
+          </div>
+        </div>
+      </section>
+
       <section style={{ background: "#4A5056", paddingBlock: "clamp(4rem, 8vw, 6rem)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 20%, rgba(102,187,63,0.35) 0%, transparent 50%)", pointerEvents: "none" }} />
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
@@ -143,6 +186,46 @@ export default function MarketingPage() {
         </div>
       </section>
 
+      <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", lineHeight: 1.2, marginTop: "1rem" }}>
+              Simple, Outcome-Aligned Pricing
+            </h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              We grow when you grow. All retainers are milestone-based. No lock-in contracts.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
+            {[
+              { name: "Digital Lean Start", price: "₹25,000", period: "/mo", desc: "For early-stage D2C and SaaS. SEO foundation + one paid channel (Google or Meta). Ideal for first 90 days of growth.", features: ["SEO & content setup", "1 paid ad channel", "Monthly performance report", "Creative production"], highlight: false, cta: "Start Lean" },
+              { name: "Growth Retainer", price: "₹60,000", period: "/mo", desc: "Multi-channel performance marketing. SEO + Google + Meta + content. For startups with ₹10L+ MRR.", features: ["Everything in Lean", "Google + Meta Ads", "OOH strategy", "Bi-weekly strategy calls", "AI Creative Studio"], highlight: true, cta: "Start Growth" },
+              { name: "Retail + Digital", price: "Custom", period: "", desc: "Full-funnel: digital performance + OOH + retail distribution. For consumer brands going offline.", features: ["Everything in Growth", "OOH placements", "Retail distribution", "Distributor management", "Sales team support"], highlight: false, cta: "Book a Call" },
+            ].map(p => (
+              <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
+                {p.highlight && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>Most Popular</span>}
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "0.125rem", marginBottom: "0.625rem" }}>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246" }}>{p.price}</span>
+                  {p.period && <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: p.highlight ? "rgba(255,255,255,0.65)" : "#787878" }}>{p.period}</span>}
+                </div>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: p.highlight ? "rgba(255,255,255,0.75)" : "#5A5A5A", lineHeight: 1.65, marginBottom: "1rem" }}>{p.desc}</p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                  {p.features.map(f => (
+                    <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: p.highlight ? "rgba(255,255,255,0.85)" : "#5A5A5A" }}>
+                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: p.highlight ? "#FFFFFF" : "#66BB3F", flexShrink: 0 }} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/contact" style={{ display: "block", textAlign: "center", padding: "0.625rem 1rem", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", background: p.highlight ? "#FFFFFF" : "#66BB3F", color: p.highlight ? "#66BB3F" : "#FFFFFF" }}>{p.cta}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
@@ -151,6 +234,8 @@ export default function MarketingPage() {
           <Accordion items={faqs} />
         </div>
       </section>
+
+      <CaseStudyBanner />
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">

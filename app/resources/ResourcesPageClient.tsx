@@ -84,6 +84,16 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
       <section className="section-padding" style={{ background: "#FAFAFA" }}>
         <div className="container-custom">
 
+          {/* Section label */}
+          <div style={{ marginBottom: "1.75rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#66BB3F", marginBottom: "0.25rem" }}>
+              The Founder&apos;s Brief
+            </p>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.25rem, 2vw, 1.5rem)", fontWeight: 700, color: "#3d4246" }}>
+              Frameworks, not fluff.
+            </h2>
+          </div>
+
           {/* Category filter */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2.5rem" }}>
             {categories.map((cat) => (

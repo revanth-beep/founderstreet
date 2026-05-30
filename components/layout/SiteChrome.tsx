@@ -19,7 +19,7 @@ export default async function SiteChrome({ children }: { children: React.ReactNo
       <Navbar cms={site.nav} />
       <main>{children}</main>
       <Footer cms={site.footer} />
-      <AIWidget />
+      <AIWidget whatsappUrl={site.nav.whatsappUrl} />
     </>
   );
 }

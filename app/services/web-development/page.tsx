@@ -5,6 +5,7 @@ import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
 
 export const metadata: Metadata = {
   title: "Web & Tech Development",
@@ -131,6 +132,33 @@ export default function WebDevPage() {
         </div>
       </section>
 
+      <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Project Pricing</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
+            {[
+              { name: "Shopify Build", price: "₹24,999", period: "one-time", desc: "Custom Shopify theme, product pages, checkout, and payment gateway. Delivered in 2–3 weeks.", cta: "Start Shopify Project", highlight: false },
+              { name: "Custom Web App", price: "₹74,999+", period: "one-time", desc: "Bespoke SaaS or platform. Full-stack, cloud-deployed, handed off via GitHub. 6–10 week sprints.", cta: "Scope My App", highlight: true },
+              { name: "Monthly Retainer", price: "₹20,000", period: "/month", desc: "Ongoing development, bug fixes, performance monitoring, and feature additions.", cta: "Start Retainer", highlight: false },
+            ].map(p => (
+              <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
+                {p.highlight && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>Most Common</span>}
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
+                <div style={{ marginBottom: "0.75rem" }}>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246" }}>{p.price}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: p.highlight ? "rgba(255,255,255,0.65)" : "#787878" }}> {p.period}</span>
+                </div>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: p.highlight ? "rgba(255,255,255,0.75)" : "#5A5A5A", lineHeight: 1.65, marginBottom: "1.25rem" }}>{p.desc}</p>
+                <Link href="/contact" style={{ display: "block", textAlign: "center", padding: "0.625rem 1rem", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", background: p.highlight ? "#FFFFFF" : "#66BB3F", color: p.highlight ? "#66BB3F" : "#FFFFFF" }}>{p.cta}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
@@ -139,6 +167,8 @@ export default function WebDevPage() {
           <Accordion items={faqs} />
         </div>
       </section>
+
+      <CaseStudyBanner />
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">

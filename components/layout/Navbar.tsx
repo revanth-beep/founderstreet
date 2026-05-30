@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const services = [
@@ -204,10 +204,12 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
 
           {/* CTA buttons */}
           <div style={{ display: "none", alignItems: "center", gap: "10px" }} className="desktop-cta">
-            <Link
-              href="/startup-health-check"
+            {/* Phone */}
+            <a
+              href={`tel:${nav.phone}`}
               style={{
-                fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.875rem",
+                display: "flex", alignItems: "center", gap: "5px",
+                fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.8125rem",
                 color: solid ? "#5A5A5A" : "rgba(255,255,255,0.7)",
                 textDecoration: "none", padding: "8px 4px",
                 transition: "color 0.2s ease"
@@ -215,8 +217,32 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#66BB3F" : "#FFFFFF"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = solid ? "#5A5A5A" : "rgba(255,255,255,0.7)"; }}
             >
-              {nav.healthCtaShort}
-            </Link>
+              <Phone size={13} />
+              {nav.phone}
+            </a>
+            {/* WhatsApp */}
+            <a
+              href={nav.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex", alignItems: "center", gap: "5px",
+                padding: "6px 12px",
+                background: solid ? "#E9F6E4" : "rgba(102,187,63,0.15)",
+                border: `1px solid ${solid ? "#CEEAB8" : "rgba(102,187,63,0.3)"}`,
+                borderRadius: "6px",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem",
+                color: solid ? "#56AD32" : "#9FE670",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                whiteSpace: "nowrap" as const,
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = solid ? "#DEF3D4" : "rgba(102,187,63,0.25)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = solid ? "#E9F6E4" : "rgba(102,187,63,0.15)"; }}
+            >
+              <MessageCircle size={13} />
+              WhatsApp
+            </a>
             <Link href="/contact" className="btn-primary" style={{ fontSize: "0.8125rem", padding: "0.6rem 1.25rem" }}>
               Pitch Your Idea
               <ArrowRight size={14} />
@@ -334,7 +360,36 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
             </Link>
           ))}
 
-          <div style={{ paddingTop: "1.5rem" }}>
+          <div style={{ paddingTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <a
+              href={nav.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                padding: "0.75rem 1rem",
+                background: "#E9F6E4", border: "1px solid #CEEAB8", borderRadius: "6px",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.9375rem",
+                color: "#56AD32", textDecoration: "none",
+              }}
+              onClick={() => setMobileOpen(false)}
+            >
+              <MessageCircle size={16} />
+              Chat on WhatsApp
+            </a>
+            <a
+              href={`tel:${nav.phone}`}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                padding: "0.625rem 1rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.875rem",
+                color: "#5A5A5A", textDecoration: "none",
+              }}
+              onClick={() => setMobileOpen(false)}
+            >
+              <Phone size={14} />
+              {nav.phone}
+            </a>
             <Link href="/contact" className="btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMobileOpen(false)}>
               Pitch Your Idea <ArrowRight size={15} />
             </Link>

@@ -18,10 +18,17 @@ const services = [
 const company = [
   { name: "About Us", href: "/about" },
   { name: "Our Team", href: "/team" },
-  { name: "The Founder's Brief", href: "/resources" },
-  { name: "Startup Health Check", href: "/startup-health-check" },
+  { name: "Resources", href: "/resources" },
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "Locations", href: "/locations" },
+  { name: "Test Your Idea", href: "/startup-health-check" },
   { name: "Contact Us", href: "/contact" },
-  { name: "Careers", href: "/careers" },
+];
+
+const tools = [
+  { name: "Founder's AI Stack", href: "/resources/ai-stack" },
+  { name: "AI Validation Tools", href: "/resources/ai-tools" },
+  { name: "Startup Templates", href: "/templates" },
 ];
 
 const colHead: React.CSSProperties = {
@@ -119,7 +126,7 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
 
           {/* Company */}
           <div>
-            <p style={colHead}>Company &amp; Insights</p>
+            <p style={colHead}>Company</p>
             {company.map(c => (
               <Link key={c.href} href={c.href} style={colLink}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
@@ -127,6 +134,20 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
               >
                 <ArrowRight size={12} style={{ opacity: 0.4 }} />
                 {c.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Tools & Resources */}
+          <div>
+            <p style={colHead}>Tools &amp; Resources</p>
+            {tools.map(t => (
+              <Link key={t.href} href={t.href} style={colLink}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+              >
+                <ArrowRight size={12} style={{ opacity: 0.4 }} />
+                {t.name}
               </Link>
             ))}
           </div>

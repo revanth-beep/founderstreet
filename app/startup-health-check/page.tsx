@@ -3,8 +3,8 @@ import StartupQuiz from "@/components/sections/StartupQuiz";
 import { CheckCircle2, ClipboardList, Mail, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Startup Health Check: Free SWOT Report",
-  description: "Answer 5 questions about your startup. Get a free personalised SWOT analysis and market sizing report sent to your inbox.",
+  title: "Test Your Idea: Free SWOT Report | Founderstreet",
+  description: "Answer 5 questions about your startup idea. Get a free personalised SWOT analysis and market sizing report sent to your inbox instantly.",
 };
 
 const what = [
@@ -26,7 +26,7 @@ const what = [
   {
     icon: Mail,
     title: "Follow-up from Our Team",
-    desc: "A human from Founderstreet will review your answers and reach out within 48 hours.",
+    desc: "A consultant from Founderstreet will review your answers and reach out within 48 hours.",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function StartupHealthCheckPage() {
               <ClipboardList size={20} color="#9FE670" />
             </div>
             <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670" }}>
-              Free Startup Health Check
+              Test Your Idea, Free
             </span>
           </div>
           <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem" }}>

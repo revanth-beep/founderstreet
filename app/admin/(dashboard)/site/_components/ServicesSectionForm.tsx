@@ -130,14 +130,26 @@ export default function ServicesSectionForm({
                 onChange={(e) => updateCard(i, { desc: e.target.value })}
               />
             </div>
-            <div className="admin-field">
-              <label className="admin-label">Link when clicked</label>
-              <p className="admin-hint">Must start with / — e.g. /services/accounting</p>
-              <input
-                className="admin-input"
-                value={card.href}
-                onChange={(e) => updateCard(i, { href: e.target.value })}
-              />
+            <div className="admin-grid-2">
+              <div className="admin-field">
+                <label className="admin-label">Starting price badge</label>
+                <p className="admin-hint">e.g. Starting at ₹6,999 — leave blank to hide</p>
+                <input
+                  className="admin-input"
+                  value={card.price ?? ""}
+                  onChange={(e) => updateCard(i, { price: e.target.value })}
+                  placeholder="Starting at ₹6,999"
+                />
+              </div>
+              <div className="admin-field">
+                <label className="admin-label">Link when clicked</label>
+                <p className="admin-hint">Must start with / — e.g. /services/accounting</p>
+                <input
+                  className="admin-input"
+                  value={card.href}
+                  onChange={(e) => updateCard(i, { href: e.target.value })}
+                />
+              </div>
             </div>
           </div>
         </details>

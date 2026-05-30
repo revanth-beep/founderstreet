@@ -96,12 +96,14 @@ export default function ServicesSection({
                   const tag = el.querySelector(".svc-tag") as HTMLElement;
                   const name = el.querySelector(".svc-name") as HTMLElement;
                   const desc = el.querySelector(".svc-desc") as HTMLElement;
+                  const price = el.querySelector(".svc-price") as HTMLElement;
                   const arrow = el.querySelector(".svc-arrow") as HTMLElement;
                   const iconWrap = el.querySelector(".svc-icon") as HTMLElement;
                   if (num) num.style.color = "rgba(255,255,255,0.07)";
                   if (tag) { tag.style.color = "#9FE670"; tag.style.background = "rgba(123,201,90,0.15)"; }
                   if (name) name.style.color = "#FFFFFF";
                   if (desc) desc.style.color = "rgba(255,255,255,0.55)";
+                  if (price) { price.style.color = "rgba(255,255,255,0.5)"; price.style.background = "rgba(255,255,255,0.08)"; price.style.borderColor = "rgba(255,255,255,0.12)"; }
                   if (arrow) { arrow.style.color = "#9FE670"; arrow.style.transform = "translateX(5px)"; }
                   if (iconWrap) { iconWrap.style.background = "rgba(123,201,90,0.2)"; iconWrap.style.borderColor = "rgba(123,201,90,0.3)"; }
                 }}
@@ -112,12 +114,14 @@ export default function ServicesSection({
                   const tag = el.querySelector(".svc-tag") as HTMLElement;
                   const name = el.querySelector(".svc-name") as HTMLElement;
                   const desc = el.querySelector(".svc-desc") as HTMLElement;
+                  const price = el.querySelector(".svc-price") as HTMLElement;
                   const arrow = el.querySelector(".svc-arrow") as HTMLElement;
                   const iconWrap = el.querySelector(".svc-icon") as HTMLElement;
                   if (num) num.style.color = "#F0F0ED";
                   if (tag) { tag.style.color = "#66BB3F"; tag.style.background = "#E9F6E4"; }
                   if (name) name.style.color = "#3d4246";
                   if (desc) desc.style.color = "#5A5A5A";
+                  if (price) { price.style.color = "#5A5A5A"; price.style.background = "#F0F0ED"; price.style.borderColor = "#E0E0DC"; }
                   if (arrow) { arrow.style.color = "#66BB3F"; arrow.style.transform = "translateX(0)"; }
                   if (iconWrap) { iconWrap.style.background = "#F0F0ED"; iconWrap.style.borderColor = "#E0E0DC"; }
                 }}
@@ -177,10 +181,26 @@ export default function ServicesSection({
                   fontSize: "0.875rem", lineHeight: 1.65,
                   color: "#5A5A5A",
                   transition: "color 0.35s ease",
-                  marginBottom: "1.5rem",
+                  marginBottom: "0.875rem",
                 }}>
                   {svc.desc}
                 </p>
+
+                {/* Price badge */}
+                {svc.price && (
+                  <span className="svc-price" style={{
+                    display: "inline-block",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.6875rem", fontWeight: 600,
+                    color: "#5A5A5A", background: "#F0F0ED",
+                    border: "1px solid #E0E0DC",
+                    padding: "0.2rem 0.625rem", borderRadius: "4px",
+                    marginBottom: "1.25rem",
+                    transition: "color 0.35s ease, background 0.35s ease, border-color 0.35s ease",
+                  }}>
+                    {svc.price}
+                  </span>
+                )}
 
                 {/* Arrow */}
                 <span className="svc-arrow" style={{

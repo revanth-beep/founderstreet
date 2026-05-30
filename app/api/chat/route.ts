@@ -55,6 +55,9 @@ export async function POST(request: NextRequest) {
       } else if (lastMessage.includes("incorporation") || lastMessage.includes("register") || lastMessage.includes("company")) {
         response =
           "We incorporate Private Limited companies in under 10 days. The process includes DIN/DSC for directors, name reservation, MOA/AOA drafting, SPICe+ filing, and post-incorporation setup (PAN, TAN, bank account). Everything handled end-to-end. Want to get started?";
+      } else if (lastMessage.includes("faq") || lastMessage.includes("frequently") || lastMessage.includes("questions")) {
+        response =
+          "Our FAQ section is on the homepage — scroll down to 'Answers for Founders' or visit founderstreet.in/#faq. It covers pricing, timelines, what's included, investor matching, and our refund policy. Anything specific I can answer right now?";
       }
 
       return NextResponse.json({ message: response });

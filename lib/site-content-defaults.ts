@@ -30,6 +30,7 @@ export type ServiceCardCms = {
   name: string;
   desc: string;
   href: string;
+  price?: string;
 };
 
 export type ResourcesTeaserCms = {
@@ -140,6 +141,8 @@ export type SiteContent = {
     healthPromoTitle: string;
     healthPromoSubtitle: string;
     healthCtaShort: string;
+    phone: string;
+    whatsappUrl: string;
   };
   footer: {
     brandName: string;
@@ -177,9 +180,11 @@ export const defaultSiteContent: SiteContent = {
   nav: {
     brandName: "Founderstreet",
     subsidiaryText: "by Northville Consulting Group",
-    healthPromoTitle: "Free Startup Health Check",
+    healthPromoTitle: "Test Your Idea, Free",
     healthPromoSubtitle: "5 questions. Get a free SWOT report instantly.",
-    healthCtaShort: "Free Health Check",
+    healthCtaShort: "Test Your Idea",
+    phone: "+91 98765 43210",
+    whatsappUrl: "https://wa.me/919876543210",
   },
   footer: {
     brandName: "Founderstreet",
@@ -202,7 +207,7 @@ export const defaultSiteContent: SiteContent = {
       subtitleEmphasis: "You build the vision; we handle the execution.",
       ctaPrimaryLabel: "Pitch Your Idea",
       ctaPrimaryHref: "/contact",
-      ctaSecondaryLabel: "Free Startup Health Check",
+      ctaSecondaryLabel: "Test Your Idea, Free",
       ctaSecondaryHref: "/startup-health-check",
       statsLabel: "Trusted by founders across India",
       stats: [
@@ -226,6 +231,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Test Your Idea",
         desc: "Stress-test the concept before capital is deployed. Market sizing, SWOT, and unit economics built from first principles.",
         href: "/services/validation",
+        price: "Free SWOT report",
       },
       {
         n: "02",
@@ -233,6 +239,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Incorporation",
         desc: "End-to-end company registration in under 10 days. DIN, DSC, MOA, AOA, trademark. Completely handled.",
         href: "/services/incorporation",
+        price: "Starting at ₹6,999",
       },
       {
         n: "03",
@@ -240,6 +247,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Virtual CFO",
         desc: "Institutional-grade bookkeeping, GST compliance, payroll, and strategic financial forecasting.",
         href: "/services/accounting",
+        price: "Starting at ₹4,999/mo",
       },
       {
         n: "04",
@@ -247,6 +255,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Marketing & Retail",
         desc: "Full-funnel performance marketing. SEO, Google Ads, Meta Ads, OOH billboards, and retail distribution.",
         href: "/services/marketing",
+        price: "Starting at ₹9,999/mo",
       },
       {
         n: "05",
@@ -254,6 +263,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Web & App Dev",
         desc: "Shopify stores, custom SaaS platforms, and mobile apps engineered for conversion and scale.",
         href: "/services/web-development",
+        price: "Starting at ₹24,999",
       },
       {
         n: "06",
@@ -261,6 +271,7 @@ export const defaultSiteContent: SiteContent = {
         name: "Investor Funding",
         desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 200+ vetted angels and VCs.",
         href: "/services/funding",
+        price: "Starting at ₹9,999",
       },
     ],
     resourcesTeaser: {
@@ -355,13 +366,13 @@ export const defaultSiteContent: SiteContent = {
           name: "Asmeet Bhatia",
           role: "Managing Director",
           background: "CA, MBA (ISB), B.Com (H)",
-          image: "/team/asmeet-bhatia.jpg",
+          image: "/team/asmeet-bhatia.avif",
         },
         {
           name: "Achal Bhatt",
           role: "Director - Marketing",
           background: "CPA, MSc. in Accounting (UIUC), NYFA",
-          image: "/team/achal-bhatt.jpg",
+          image: "/team/achal-bhatt.avif",
         },
       ],
     },

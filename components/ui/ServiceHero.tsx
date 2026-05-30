@@ -117,29 +117,11 @@ export default function ServiceHero({
             {subtitle}
           </p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
             <Link href={ctaHref} className="btn-primary" style={{ fontSize: "0.9rem" }}>
               {ctaText}
               <ArrowRight size={15} />
-            </Link>
-            <Link
-              href="/startup-health-check"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                padding: "0.8125rem 1.5rem",
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: "4px",
-                color: "rgba(255,255,255,0.7)",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem", fontWeight: 500,
-                textDecoration: "none",
-                transition: "all 0.25s ease",
-                backdropFilter: "blur(6px)",
-              }}
-            >
-              Free Health Check →
             </Link>
           </div>
 

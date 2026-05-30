@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { TrendingUp, ArrowRight, FileText, BarChart3, Users, Download } from "lucide-react";
+import { TrendingUp, ArrowRight, FileText, BarChart3, Users, Search, Shield, Zap, Target } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
+import InvestorMatchQuiz from "@/components/sections/InvestorMatchQuiz";
 
 export const metadata: Metadata = {
   title: "Investor Funding & Pitch Deck Services",
   description:
     "Pitch deck creation, financial projections, and investor matchmaking. Connect with India's leading angels, VCs, and accelerators.",
 };
-
-const deckTemplates = [
-  { name: "Seed Round Deck", slides: 12, best: "Pre-seed to seed", raise: "₹50L – ₹3Cr", image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop" },
-  { name: "Series A Narrative", slides: 15, best: "Traction-stage", raise: "₹3Cr – ₹20Cr", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" },
-  { name: "Angel Round Teaser", slides: 8, best: "Idea to MVP", raise: "₹10L – ₹1Cr", image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=300&fit=crop" },
-  { name: "Accelerator Application", slides: 10, best: "Y Combinator / SFA", raise: "Programme equity", image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop" },
-];
 
 const coreServices = [
   { icon: FileText, title: "Pitch Deck Creation", desc: "The 12-slide master deck designed to make investors lean forward. We combine data storytelling with visual design excellence.", deliverables: ["12-slide investor deck", "Narrative storyboarding", "Visual design (Figma/PowerPoint)", "Investor Q&A script", "Mock pitch session", "3 revision rounds"] },
@@ -88,44 +82,110 @@ export default function FundingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      {/* Pricing strip */}
+      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", borderBottom: "1px solid #E0E0DC", paddingBlock: "2.5rem" }}>
         <div className="container-custom">
-          <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 2.5rem" }}>
-            <ServicePageEyebrow>Resource Library</ServicePageEyebrow>
-            <h2 style={{ ...h2, marginTop: "1rem" }}>Pitch Deck Templates</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              Preview our winning frameworks. Download a free seed-round template and start building your narrative today.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: "1rem" }}>
-            {deckTemplates.map((template) => (
-              <div key={template.name} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden" }}>
-                <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#F0F0ED", position: "relative" }}>
-                  <Image src={template.image} alt={template.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" style={{ objectFit: "cover", opacity: 0.85 }} />
-                  <div style={{ position: "absolute", top: "0.5rem", left: "0.5rem", background: "#66BB3F", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, padding: "0.2rem 0.5rem", borderRadius: "999px" }}>
-                    {template.slides} slides
-                  </div>
-                </div>
-                <div style={{ padding: "1rem" }}>
-                  <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#3d4246", marginBottom: "0.25rem" }}>{template.name}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#787878", marginBottom: "0.25rem" }}>Best for: {template.best}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#66BB3F", marginBottom: "0.75rem" }}>Target raise: {template.raise}</p>
-                  <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#66BB3F", textDecoration: "none" }}>
-                    <Download size={14} />
-                    Download Free Template
-                  </Link>
-                </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem 3rem", alignItems: "center", justifyContent: "center" }}>
+            {[
+              { service: "Pitch Deck Creation", price: "Starting at ₹9,999" },
+              { service: "Financial Projections (5-year)", price: "Starting at ₹14,999" },
+              { service: "Investor Matchmaking", price: "Starting at ₹24,999" },
+              { service: "Full Fundraising Package", price: "Custom — Book a Call" },
+            ].map(item => (
+              <div key={item.service} style={{ textAlign: "center" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginBottom: "0.25rem" }}>{item.service}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 700, color: "#3d4246" }}>{item.price}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+      {/* AI Investor Matchmaker Quiz */}
+      <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "44rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>AI Investor Matchmaker</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Find Your Top 3 Investor Matches in 60 Seconds</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              5 quick questions. No pitch deck upload. No friction. Our AI cross-references your profile against 200+ active investor mandates and surfaces the 3 best fits.
+            </p>
+          </div>
+          <InvestorMatchQuiz />
+        </div>
+      </section>
+
+      {/* Beyond the Algorithm */}
+      <section style={{ background: "#3d4246", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "44rem", margin: "0 auto 3rem" }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9FE670" }}>Beyond the Algorithm</span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#FFFFFF", marginTop: "1rem", lineHeight: 1.2 }}>
+              The AI found the fund. We find the strategy.
+            </h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              Here is how we go deeper than any algorithm can.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", marginBottom: "3rem" }}>
+            {[
+              { icon: Search, title: "Portfolio Conflict Checks", desc: "We analyse the fund's active portfolio to ensure they have not quietly invested in your direct competitor in the past 6 months." },
+              { icon: Zap, title: "Dry Powder & Deployment Velocity", desc: "We track exactly where a fund is in its lifecycle: actively deploying or just taking coffee chats with no capital to deploy." },
+              { icon: Users, title: "Partner-Level Profiling", desc: "Funds do not write cheques. Partners do. We identify exactly which General Partner holds the mandate for your specific sector and stage." },
+              { icon: Target, title: "Follow-On Capacity & Strategic Fit", desc: "We analyse past deals to assess the investor's track record of participating in subsequent rounds (Series A/B)." },
+            ].map(p => {
+              const Icon = p.icon;
+              return (
+                <div key={p.title} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", padding: "1.5rem" }}>
+                  <div style={{ width: "40px", height: "40px", borderRadius: "8px", background: "rgba(102,187,63,0.15)", border: "1px solid rgba(102,187,63,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                    <Icon size={18} color="#9FE670" />
+                  </div>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1rem", fontWeight: 700, color: "#FFFFFF", marginBottom: "0.5rem" }}>{p.title}</h3>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.65 }}>{p.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", maxWidth: "32rem", margin: "0 auto 1.5rem", lineHeight: 1.7 }}>
+              Do not guess your way through fundraising. Let us build your custom investor dossier and facilitate the warm introductions.
+            </p>
             <Link href="/contact" className="btn-primary">
-              Download Seed-Round Template
-              <Download size={16} />
+              Book Your Capital Strategy Call
+              <ArrowRight size={15} />
             </Link>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginTop: "0.75rem" }}>Free with email. No commitment required.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pitch Deck Builder */}
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+        <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "44rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Pitch Deck Builder</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Need a Deck in 60 Seconds? Start Here.</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              AI generates your first draft. Our team polishes it into an investor-ready deck.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
+            {[
+              { tier: "Tier 1", label: "Quick Draft", price: "Free", tool: "Gamma.app", desc: "AI generates a 10-slide deck from a single prompt in under 60 seconds. 70M+ users globally.", highlight: false, ctaLabel: "Generate Free Draft" },
+              { tier: "Tier 2", label: "Polished Deck", price: "₹4,999", tool: "Chronicle HQ", desc: "Interactive block-based deck (Indian-founded, Accel-backed). Our team reviews and edits before delivery.", highlight: true, ctaLabel: "Get a Polished Deck" },
+              { tier: "Tier 3", label: "Investor-Grade Deck", price: "₹24,999+", tool: "Slidebean", desc: "Bespoke narrative with slide-level analytics. Templates used by Airbnb, Intercom, Buffer.", highlight: false, ctaLabel: "Book Bespoke Deck" },
+            ].map(t => (
+              <div key={t.tier} style={{ background: t.highlight ? "#66BB3F" : "#FFFFFF", border: t.highlight ? "1px solid #56AD32" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: t.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
+                {t.highlight && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>Most Popular</span>}
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: t.highlight ? "rgba(255,255,255,0.65)" : "#A0A0A0", marginBottom: "0.25rem" }}>{t.tier}</p>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.125rem", fontWeight: 700, color: t.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{t.label}</h3>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: t.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.75rem" }}>{t.price}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: t.highlight ? "rgba(255,255,255,0.75)" : "#5A5A5A", lineHeight: 1.65, marginBottom: "1rem" }}>{t.desc}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: t.highlight ? "rgba(255,255,255,0.5)" : "#A0A0A0", marginBottom: "1.25rem" }}>Powered by {t.tool}</p>
+                <Link href="/contact" style={{ display: "block", textAlign: "center", padding: "0.625rem 1rem", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", background: t.highlight ? "#FFFFFF" : "#66BB3F", color: t.highlight ? "#66BB3F" : "#FFFFFF" }}>
+                  {t.ctaLabel}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -138,6 +198,8 @@ export default function FundingPage() {
           <Accordion items={faqs} />
         </div>
       </section>
+
+      <CaseStudyBanner />
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">

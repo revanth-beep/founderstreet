@@ -47,13 +47,19 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
         <div className="container-custom" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
-            <div style={{
-              width: "32px", height: "32px", background: "#66BB3F",
-              borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
-            }}>
-              <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
-            </div>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={nav.logoUrl || "/logos/logo-icon-color.png"}
+              alt="Founderstreet"
+              style={{
+                height: "44px",
+                width: "auto",
+                flexShrink: 0,
+                filter: solid ? "none" : "brightness(0) invert(1)",
+                transition: "filter 0.3s ease",
+              }}
+            />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
               <span style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
@@ -290,9 +296,8 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
         {/* Drawer header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 1.5rem", borderBottom: "1px solid #F0F0ED" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
-            <div style={{ width: "28px", height: "28px", background: "#66BB3F", borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "11px" }}>FS</span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={nav.logoUrl || "/logos/logo-icon-color.png"} alt="Founderstreet" style={{ height: "38px", width: "auto", flexShrink: 0 }} />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
               <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
               <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.55rem", color: "#909090", letterSpacing: "0.01em" }}>{nav.subsidiaryText}</span>

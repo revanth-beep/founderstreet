@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
+import AdminImageUploadField from "../../_components/AdminImageUploadField";
 
 type Footer = SiteContent["footer"];
 
@@ -34,6 +35,13 @@ export default function FooterSectionForm({ initial }: { initial: Footer }) {
 
       <div className="admin-card">
         <p className="admin-card__title">Company block</p>
+        <AdminImageUploadField
+          id="footer-logo"
+          label="Logo image (footer)"
+          hint="Displayed in the bottom-left of every page. Upload to Vercel Blob or paste a URL."
+          value={footer.logoUrl ?? ""}
+          onChange={(url) => setFooter({ ...footer, logoUrl: url })}
+        />
         <div className="admin-field">
           <label className="admin-label" htmlFor="f-brand">
             Name next to logo
@@ -94,6 +102,27 @@ export default function FooterSectionForm({ initial }: { initial: Footer }) {
             value={footer.newsletterSubtitle}
             onChange={(e) => setFooter({ ...footer, newsletterSubtitle: e.target.value })}
           />
+        </div>
+      </div>
+
+      <div className="admin-card">
+        <p className="admin-card__title">Social media links</p>
+        <div className="admin-grid-2">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="f-li">LinkedIn URL</label>
+            <input id="f-li" className="admin-input" value={footer.socialLinks?.linkedin ?? ""}
+              onChange={(e) => setFooter({ ...footer, socialLinks: { ...(footer.socialLinks ?? { linkedin: "", twitter: "", instagram: "" }), linkedin: e.target.value } })} />
+          </div>
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="f-tw">Twitter / X URL</label>
+            <input id="f-tw" className="admin-input" value={footer.socialLinks?.twitter ?? ""}
+              onChange={(e) => setFooter({ ...footer, socialLinks: { ...(footer.socialLinks ?? { linkedin: "", twitter: "", instagram: "" }), twitter: e.target.value } })} />
+          </div>
+        </div>
+        <div className="admin-field">
+          <label className="admin-label" htmlFor="f-ig">Instagram URL</label>
+          <input id="f-ig" className="admin-input" value={footer.socialLinks?.instagram ?? ""}
+            onChange={(e) => setFooter({ ...footer, socialLinks: { ...(footer.socialLinks ?? { linkedin: "", twitter: "", instagram: "" }), instagram: e.target.value } })} />
         </div>
       </div>
 

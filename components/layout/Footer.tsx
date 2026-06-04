@@ -59,9 +59,12 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
           {/* Brand */}
           <div>
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "0.5rem" }}>
-              <div style={{ width: "32px", height: "32px", background: "#66BB3F", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ color: "#FFFFFF", fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "13px" }}>FS</span>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={cms.logoUrl || "/logos/logo-icon-color.png"}
+                alt="Founderstreet"
+                style={{ height: "44px", width: "auto", flexShrink: 0, filter: "brightness(0) invert(1)" }}
+              />
               <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
                 <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>
                   {cms.brandName}
@@ -77,9 +80,9 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
             {/* Social */}
             <div style={{ display: "flex", gap: "8px" }}>
               {[
-                { href: "https://linkedin.com", Icon: LinkedInIcon, label: "LinkedIn" },
-                { href: "https://twitter.com", Icon: XIcon, label: "X" },
-                { href: "https://instagram.com", Icon: InstagramIcon, label: "Instagram" },
+                { href: cms.socialLinks?.linkedin || "https://linkedin.com", Icon: LinkedInIcon, label: "LinkedIn" },
+                { href: cms.socialLinks?.twitter || "https://twitter.com", Icon: XIcon, label: "X" },
+                { href: cms.socialLinks?.instagram || "https://instagram.com", Icon: InstagramIcon, label: "Instagram" },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}

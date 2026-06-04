@@ -6,12 +6,15 @@ import Accordion from "@/components/ui/Accordion";
 import StartupQuiz from "@/components/sections/StartupQuiz";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
+import { getSiteContent } from "@/lib/site-content";
 
-export const metadata: Metadata = {
-  title: "Startup Idea Validation & Strategy",
-  description:
-    "Stress-test your concept before capital is deployed. Market sizing, SWOT analysis, competitor benchmarking, and unit economics modelling.",
-};
+export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  const m = site.servicePages.validation.meta;
+  return { title: m.title, description: m.description };
+}
 
 const deliverables = [
   {
@@ -34,49 +37,21 @@ const deliverables = [
   },
 ];
 
-const faqs = [
-  {
-    question: "How long does the validation process take?",
-    answer:
-      "Our standard validation sprint takes 10–14 working days. We deliver a full report with market sizing, SWOT, and unit economics model, plus a 60-minute walkthrough call.",
-  },
-  {
-    question: "What data sources do you use for market sizing?",
-    answer:
-      "We use a combination of primary research (founder interviews, consumer surveys), secondary data (Statista, IBEF, industry reports), and bottom-up modelling from existing comparable businesses.",
-  },
-  {
-    question: "Will this analysis work for a pre-revenue idea?",
-    answer:
-      "Absolutely. In fact, this is where it's most valuable. Pre-revenue validation prevents you from building the wrong thing. We've validated ideas from napkin-sketch stage all the way to Series A.",
-  },
-  {
-    question: "Do you provide the SWOT report as a downloadable template?",
-    answer:
-      "Yes. Every client receives a fully editable PowerPoint and Excel model. You own all the IP. We also provide a condensed investor-ready version of the market analysis.",
-  },
-  {
-    question: "Can this replace a formal market research firm?",
-    answer:
-      "For early-stage startups, yes. Traditional market research firms charge ₹5–15L for slower, more generic reports. We're purpose-built for Indian startup contexts and move at startup velocity.",
-  },
-];
+export default async function ValidationPage() {
+  const site = await getSiteContent();
+  const cms = site.servicePages.validation;
+  const { hero, faq, pricing, bottomCta } = cms;
 
-export default function ValidationPage() {
   return (
     <>
       <ServiceHero
-        label="Validation & Strategy"
-        title="Stress-Test Your Idea"
-        titleHighlight="Before Capital Is Deployed."
-        subtitle="We audit the concept with the same rigour an institutional investor would. Market sizing, competitive intelligence, and unit economics before you spend a single rupee."
-        ctaText="Start Validation"
+        label={hero.label}
+        title={hero.title}
+        titleHighlight={hero.titleHighlight}
+        subtitle={hero.subtitle}
+        ctaText={hero.ctaText}
         icon={FlaskConical}
-        stats={[
-          { value: "85%", label: "Of validated ideas pivot at least once" },
-          { value: "3x", label: "Higher success rate post-validation" },
-          { value: "14 days", label: "Turnaround time" },
-        ]}
+        stats={hero.stats}
       />
 
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
@@ -247,7 +222,7 @@ export default function ValidationPage() {
               Common Questions
             </h2>
           </div>
-          <Accordion items={faqs} />
+          <Accordion items={faq} />
         </div>
       </section>
 
@@ -260,13 +235,9 @@ export default function ValidationPage() {
             </h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>
-            {[
-              { name: "SWOT Snapshot", price: "Free", desc: "5-question health check. Instant SWOT report emailed to you. No commitment.", features: ["SWOT summary", "Top 3 risks identified", "Founderstreet follow-up within 48 hrs"], highlight: false, cta: "Start Free" },
-              { name: "Full Validation Sprint", price: "₹14,999", period: "one-time", desc: "Complete market validation in 14 working days.", features: ["TAM/SAM/SOM model", "Competitor landscape", "Unit economics model", "60-min walkthrough call", "Editable PowerPoint + Excel"], highlight: true, cta: "Book Validation" },
-              { name: "Strategy + Validation", price: "₹24,999", period: "one-time", desc: "Validation + GTM strategy + pitch-ready market slide.", features: ["Everything in Full Sprint", "Go-to-market strategy", "Investor-ready market slide", "Positioning recommendation"], highlight: false, cta: "Book Strategy Package" },
-            ].map(p => (
+            {pricing.map(p => (
               <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
-                {p.highlight && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>Most Popular</span>}
+                {(p.badge || p.highlight) && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>{p.badge || "Featured"}</span>}
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
                 <div style={{ marginBottom: "0.75rem" }}>
                   <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246" }}>{p.price}</span>
@@ -302,7 +273,7 @@ export default function ValidationPage() {
               marginBottom: "1rem",
             }}
           >
-            Ready to validate your idea?
+            {bottomCta.title}
           </h2>
           <p
             style={{
@@ -314,10 +285,10 @@ export default function ValidationPage() {
               lineHeight: 1.7,
             }}
           >
-            Book a free 30-minute discovery call and we&apos;ll scope out your validation project within 24 hours.
+            {bottomCta.subtitle}
           </p>
           <Link href="/contact" className="btn-white">
-            Start My Validation
+            {bottomCta.buttonLabel}
             <ArrowRight size={16} />
           </Link>
         </div>

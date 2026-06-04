@@ -5,14 +5,17 @@ import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
+import { getSiteContent } from "@/lib/site-content";
 
-export const metadata: Metadata = {
-  title: "Marketing & Retail Expansion",
-  description:
-    "Full-funnel growth engineering. SEO, Google Ads, Meta Ads, OOH billboards, retail distribution. Digital and offline marketing for Indian startups.",
-};
+export const revalidate = 60;
 
-const services = [
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  const m = site.servicePages.marketing.meta;
+  return { title: m.title, description: m.description };
+}
+
+const serviceCategories = [
   {
     category: "Digital & Performance",
     icon: Monitor,
@@ -47,14 +50,6 @@ const results = [
   { metric: "3 states", context: "in 45 days", detail: "FMCG launch via super-stockist network expansion" },
 ];
 
-const faqs = [
-  { question: "What kind of ROAS can we expect from Meta/Google Ads?", answer: "For D2C brands, we typically target a blended ROAS of 3–5x within the first 60–90 days. Performance varies by category, price point, and creative quality. We set realistic benchmarks in a discovery call before committing to targets." },
-  { question: "Do you handle the creative/ad design as well?", answer: "Yes. Our performance marketing retainer includes ad creative production: static images, short-form video (reels), and carousel ads. We A/B test creatives continuously and only scale winning formats." },
-  { question: "What's the minimum OOH advertising budget?", answer: "For a single billboard in a Tier-1 city (prime location), expect ₹1.5–4L per month. We recommend a minimum 3-month campaign for brand recall. We can help with a ₹5–10L activation budget across multiple formats." },
-  { question: "How long does it take to set up retail distribution?", answer: "Initial distributor conversations begin in Week 1. First purchase orders typically come in by Week 4–6. We manage the relationship, credit terms negotiation, and supply chain coordination throughout." },
-  { question: "Do you work with early-stage startups with limited budgets?", answer: "Yes. We have a lean-start option for D2C brands at ₹25,000/month for digital-only (SEO + 1 paid channel). We grow the scope as your revenue scales. Our model is outcome-aligned. We grow when you grow." },
-];
-
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.25rem, 2vw, 1.375rem)",
@@ -62,44 +57,35 @@ const h2 = {
   color: "#3d4246",
 };
 
-export default function MarketingPage() {
+export default async function MarketingPage() {
+  const site = await getSiteContent();
+  const cms = site.servicePages.marketing;
+  const { hero, faq, pricing, bottomCta } = cms;
+
   return (
     <>
       <ServiceHero
-        label="Marketing & Retail Expansion"
-        title="Full-Funnel Growth,"
-        titleHighlight="Online and Offline."
-        subtitle="We engineer demand across every customer touchpoint: from Google search to highway billboards to retail shelf space. Integrated digital performance and high-impact offline activations."
-        ctaText="Plan My Growth"
+        label={hero.label}
+        title={hero.title}
+        titleHighlight={hero.titleHighlight}
+        subtitle={hero.subtitle}
+        ctaText={hero.ctaText}
         icon={Megaphone}
-        stats={[
-          { value: "4.2x", label: "Average blended ROAS" },
-          { value: "15+", label: "States in distributor network" },
-          { value: "50+", label: "D2C brands scaled" },
-        ]}
+        stats={hero.stats}
       />
 
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ marginBottom: "2.5rem" }}>
             <ServicePageEyebrow>Growth capabilities</ServicePageEyebrow>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.9375rem",
-                color: "#5A5A5A",
-                maxWidth: "36rem",
-                marginTop: "1rem",
-                lineHeight: 1.7,
-              }}
-            >
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", maxWidth: "36rem", marginTop: "1rem", lineHeight: 1.7 }}>
               Digital performance, offline activations, and retail distribution orchestrated as one growth system.
             </p>
           </div>
-          {services.map((category, idx) => {
+          {serviceCategories.map((category, idx) => {
             const CategoryIcon = category.icon;
             return (
-              <div key={category.category} style={{ marginBottom: idx < services.length - 1 ? "3.5rem" : 0 }}>
+              <div key={category.category} style={{ marginBottom: idx < serviceCategories.length - 1 ? "3.5rem" : 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
                   <div style={{ width: "32px", height: "32px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <CategoryIcon size={16} color="#66BB3F" />
@@ -107,7 +93,6 @@ export default function MarketingPage() {
                   <h2 style={h2}>{category.category}</h2>
                   <div style={{ flex: "1 1 120px", height: "1px", background: "#E0E0DC", minWidth: "40px" }} />
                 </div>
-
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
                   {category.items.map((item) => (
                     <div key={item.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.25rem" }}>
@@ -198,13 +183,9 @@ export default function MarketingPage() {
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
-            {[
-              { name: "Digital Lean Start", price: "₹25,000", period: "/mo", desc: "For early-stage D2C and SaaS. SEO foundation + one paid channel (Google or Meta). Ideal for first 90 days of growth.", features: ["SEO & content setup", "1 paid ad channel", "Monthly performance report", "Creative production"], highlight: false, cta: "Start Lean" },
-              { name: "Growth Retainer", price: "₹60,000", period: "/mo", desc: "Multi-channel performance marketing. SEO + Google + Meta + content. For startups with ₹10L+ MRR.", features: ["Everything in Lean", "Google + Meta Ads", "OOH strategy", "Bi-weekly strategy calls", "AI Creative Studio"], highlight: true, cta: "Start Growth" },
-              { name: "Retail + Digital", price: "Custom", period: "", desc: "Full-funnel: digital performance + OOH + retail distribution. For consumer brands going offline.", features: ["Everything in Growth", "OOH placements", "Retail distribution", "Distributor management", "Sales team support"], highlight: false, cta: "Book a Call" },
-            ].map(p => (
+            {pricing.map(p => (
               <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
-                {p.highlight && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>Most Popular</span>}
+                {(p.badge || p.highlight) && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>{p.badge || "Featured"}</span>}
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "0.125rem", marginBottom: "0.625rem" }}>
                   <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246" }}>{p.price}</span>
@@ -231,7 +212,7 @@ export default function MarketingPage() {
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246" }}>Frequently Asked Questions</h2>
           </div>
-          <Accordion items={faqs} />
+          <Accordion items={faq} />
         </div>
       </section>
 
@@ -239,12 +220,12 @@ export default function MarketingPage() {
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
-          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Ready to engineer your growth?</h2>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>{bottomCta.title}</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>
-            Book a free growth audit. We&apos;ll map out your acquisition channels and give you a 90-day action plan.
+            {bottomCta.subtitle}
           </p>
           <Link href="/contact" className="btn-white">
-            Get My Growth Audit
+            {bottomCta.buttonLabel}
             <ArrowRight size={16} />
           </Link>
         </div>

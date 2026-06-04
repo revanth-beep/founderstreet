@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
+import AdminImageUploadField from "../../_components/AdminImageUploadField";
 
 type Nav = SiteContent["nav"];
 
@@ -34,6 +35,13 @@ export default function NavigationSectionForm({ initial }: { initial: Nav }) {
 
       <div className="admin-card">
         <p className="admin-card__title">Brand &amp; shortcuts</p>
+        <AdminImageUploadField
+          id="nav-logo"
+          label="Logo image (navbar)"
+          hint="Displayed in the top-left of every page. Upload to Vercel Blob or paste a URL."
+          value={nav.logoUrl ?? ""}
+          onChange={(url) => setNav({ ...nav, logoUrl: url })}
+        />
         <div className="admin-field">
           <label className="admin-label" htmlFor="brandName">Site name (next to logo)</label>
           <input id="brandName" className="admin-input" value={nav.brandName} onChange={(e) => setNav({ ...nav, brandName: e.target.value })} />

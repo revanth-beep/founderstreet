@@ -7,12 +7,15 @@ import ComparisonTable from "@/components/ui/ComparisonTable";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
 import EntityAdvisor from "@/components/ui/EntityAdvisor";
+import { getSiteContent } from "@/lib/site-content";
 
-export const metadata: Metadata = {
-  title: "Company Incorporation & Compliance",
-  description:
-    "End-to-end company incorporation in India. Pvt Ltd, LLP, and sole proprietorship registration with IP protection.",
-};
+export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  const m = site.servicePages.incorporation.meta;
+  return { title: m.title, description: m.description };
+}
 
 const comparisonColumns = [
   { key: "pvtltd", label: "Private Limited", highlight: true },
@@ -60,14 +63,6 @@ const bundles = [
   },
 ];
 
-const faqs = [
-  { question: "What is the minimum share capital required for a Pvt Ltd company?", answer: "There is no minimum paid-up capital requirement for a Private Limited Company as per the Companies (Amendment) Act, 2015. However, the authorised share capital (typically ₹1,00,000) is required for stamp duty calculation." },
-  { question: "How many directors and shareholders are needed?", answer: "A minimum of 2 directors and 2 shareholders are required for a Private Limited Company. The same person can act as both director and shareholder. Maximum directors allowed: 15 (can be increased by special resolution)." },
-  { question: "What documents do I need to provide?", answer: "For each director: PAN card, Aadhaar card, passport-size photograph, current bank statement (utility bill for address proof), email ID, and mobile number. For the registered office: rental agreement and NOC from landlord." },
-  { question: "Can I incorporate a company as a non-resident Indian (NRI)?", answer: "Yes. NRIs can be directors and shareholders in an Indian company. At least one director must be a resident of India (stayed in India for at least 182 days in the previous calendar year)." },
-  { question: "What happens after incorporation?", answer: "Post-incorporation, we handle: commencement of business declaration, opening of bank accounts, registration for GST (if applicable), Startup India registration, and first-year annual compliance calendar setup." },
-];
-
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
@@ -77,21 +72,21 @@ const h2 = {
   letterSpacing: "-0.01em" as const,
 };
 
-export default function IncorporationPage() {
+export default async function IncorporationPage() {
+  const site = await getSiteContent();
+  const cms = site.servicePages.incorporation;
+  const { hero, faq, pricing, bottomCta } = cms;
+
   return (
     <>
       <ServiceHero
-        label="Company Incorporation"
-        title="Your Legal Foundation,"
-        titleHighlight="Built Right From Day Zero."
-        subtitle="End-to-end company registration and regulatory compliance. We handle the paperwork so your first 10 days are spent building product, not filing forms."
-        ctaText="Start Incorporation"
+        label={hero.label}
+        title={hero.title}
+        titleHighlight={hero.titleHighlight}
+        subtitle={hero.subtitle}
+        ctaText={hero.ctaText}
         icon={Building2}
-        stats={[
-          { value: "< 10 Days", label: "Avg. incorporation time" },
-          { value: "500+", label: "Companies incorporated" },
-          { value: "100%", label: "Compliance success rate" },
-        ]}
+        stats={hero.stats}
       />
 
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
@@ -128,7 +123,6 @@ export default function IncorporationPage() {
             />
           </div>
 
-          {/* Pre-flight checklist */}
           <div style={{ maxWidth: "56rem", margin: "3rem auto 0", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "12px", padding: "clamp(1.5rem, 4vw, 2.5rem)" }}>
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
               <ServicePageEyebrow>What You Need to Get Started</ServicePageEyebrow>
@@ -137,18 +131,12 @@ export default function IncorporationPage() {
               </h3>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="checklist-grid">
-              {/* Your homework */}
               <div style={{ background: "#F7F7F5", borderRadius: "10px", padding: "1.5rem" }}>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#66BB3F", marginBottom: "1rem" }}>
                   Your Homework (The Easy Part)
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-                  {[
-                    "PAN and Aadhaar Card (all directors)",
-                    "Bank Statement under 2 months old",
-                    "Electricity Bill for the office address",
-                    "No Objection Certificate (NOC) from landlord",
-                  ].map(item => (
+                  {["PAN and Aadhaar Card (all directors)", "Bank Statement under 2 months old", "Electricity Bill for the office address", "No Objection Certificate (NOC) from landlord"].map(item => (
                     <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A" }}>
                       <CheckCircle2 size={16} color="#66BB3F" style={{ flexShrink: 0, marginTop: "2px" }} />
                       {item}
@@ -156,19 +144,12 @@ export default function IncorporationPage() {
                   ))}
                 </ul>
               </div>
-              {/* Our job */}
               <div style={{ background: "#3d4246", borderRadius: "10px", padding: "1.5rem" }}>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1rem" }}>
                   Our Job (The Complex Part)
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-                  {[
-                    "AI-assisted entity structuring (Pvt Ltd vs LLP vs OPC)",
-                    "Drafting custom MOA and AOA",
-                    "Securing Class-3 DSCs and DINs",
-                    "Navigating SPICe+, Agile Pro, PAN and TAN",
-                    "Zero rejections: first-time MCA approval",
-                  ].map(item => (
+                  {["AI-assisted entity structuring (Pvt Ltd vs LLP vs OPC)", "Drafting custom MOA and AOA", "Securing Class-3 DSCs and DINs", "Navigating SPICe+, Agile Pro, PAN and TAN", "Zero rejections: first-time MCA approval"].map(item => (
                     <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.7)" }}>
                       <CheckCircle2 size={16} color="#9FE670" style={{ flexShrink: 0, marginTop: "2px" }} />
                       {item}
@@ -186,9 +167,7 @@ export default function IncorporationPage() {
           </div>
         </div>
       </section>
-      <style>{`
-        @media (min-width: 640px) { .checklist-grid { grid-template-columns: 1fr 1fr !important; } }
-      `}</style>
+      <style>{`@media (min-width: 640px) { .checklist-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
 
       <section style={{ background: "#FFFFFF", paddingBlock: "clamp(3rem, 6vw, 4.5rem)" }}>
         <div className="container-custom">
@@ -239,16 +218,21 @@ export default function IncorporationPage() {
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>
-            {[
-              { name: "Private Limited", price: "₹6,999", desc: "Full Pvt Ltd registration. DIN, DSC, name reservation, MOA/AOA, SPICe+ filing, CIN, PAN, TAN.", badge: null, highlight: false, cta: "Start Pvt Ltd" },
-              { name: "Private Ltd + IP Bundle", price: "₹12,999", desc: "Everything in Pvt Ltd plus trademark search and filing, brand name legal clearance, and NDA templates.", badge: "Most Popular", highlight: true, cta: "Start with IP" },
-              { name: "LLP Registration", price: "₹5,999", desc: "LLP incorporation for professional services firms. LLP Agreement, DPIN, DSC, and Certificate of Registration.", badge: null, highlight: false, cta: "Start LLP" },
-            ].map(p => (
+            {pricing.map(p => (
               <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>
                 {p.badge && <span style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "0.2rem 0.625rem", borderRadius: "999px", marginBottom: "0.75rem" }}>{p.badge}</span>}
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.25rem" }}>{p.name}</h3>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.625rem", fontWeight: 700, color: p.highlight ? "#FFFFFF" : "#3d4246", marginBottom: "0.75rem" }}>{p.price}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: p.highlight ? "rgba(255,255,255,0.8)" : "#5A5A5A", lineHeight: 1.65, marginBottom: "1.25rem" }}>{p.desc}</p>
+                {p.features && p.features.length > 0 && (
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                    {p.features.map(f => (
+                      <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: p.highlight ? "rgba(255,255,255,0.85)" : "#5A5A5A" }}>
+                        <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: p.highlight ? "#FFFFFF" : "#66BB3F", flexShrink: 0 }} />{f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <Link href="/contact" style={{ display: "block", textAlign: "center", padding: "0.625rem 1rem", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", background: p.highlight ? "#FFFFFF" : "#66BB3F", color: p.highlight ? "#66BB3F" : "#FFFFFF" }}>{p.cta}</Link>
               </div>
             ))}
@@ -264,7 +248,7 @@ export default function IncorporationPage() {
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <h2 style={h2}>Frequently Asked Questions</h2>
           </div>
-          <Accordion items={faqs} />
+          <Accordion items={faq} />
         </div>
       </section>
 
@@ -272,12 +256,12 @@ export default function IncorporationPage() {
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
         <div className="container-custom">
-          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>Start your incorporation today</h2>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>{bottomCta.title}</h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>
-            Get your company live in 10 working days. We handle every filing; you focus on building your product.
+            {bottomCta.subtitle}
           </p>
           <Link href="/contact" className="btn-white">
-            Start Incorporation
+            {bottomCta.buttonLabel}
             <ArrowRight size={16} />
           </Link>
         </div>

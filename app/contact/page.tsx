@@ -1,20 +1,33 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import ContactForm from "@/components/sections/ContactForm";
+import { getSiteContent } from "@/lib/site-content";
 
-const contactDetails = [
-  { icon: Mail, label: "Email", value: "hello@founderstreet.in", href: "mailto:hello@founderstreet.in" },
-  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: MapPin, label: "Office", value: "DLF Cyber City, Gurugram, Haryana 122002", href: null },
-  { icon: Clock, label: "Hours", value: "Monday–Saturday, 10 AM – 7 PM IST", href: null },
-];
+export const revalidate = 60;
 
-export default function ContactPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  return {
+    title: site.contactPage.meta.title,
+    description: site.contactPage.meta.description,
+  };
+}
+
+const detailIcons: Record<string, React.ElementType> = {
+  Email: Mail,
+  Phone: Phone,
+  Office: MapPin,
+  Hours: Clock,
+};
+
+export default async function ContactPage() {
+  const site = await getSiteContent();
+  const cms = site.contactPage;
+
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────── */}
+      {/* Hero */}
       <section style={{
         position: "relative",
         background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
@@ -29,24 +42,24 @@ export default function ContactPage() {
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: "680px" }}>
             <span style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1.25rem" }}>
-              Get in Touch
+              {cms.hero.eyebrow}
             </span>
             <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1.25rem" }}>
-              Let&apos;s Talk About Your Startup.
+              {cms.hero.title}
             </h1>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: "540px" }}>
-              Book a free 30-minute discovery call. We&apos;ll understand your stage, identify your biggest gaps, and tell you exactly how we can help. No pitch. No pressure.
+              {cms.hero.subtitle}
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── Main content ─────────────────────────────── */}
+      {/* Main content */}
       <section className="section-padding" style={{ background: "#FAFAFA" }}>
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="contact-grid">
 
-            {/* ── Left: Form ──────────────────────── */}
+            {/* Left: Form */}
             <div>
               <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.75rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.5rem" }}>
                 Pitch Your Idea
@@ -57,15 +70,15 @@ export default function ContactPage() {
               <ContactForm />
             </div>
 
-            {/* ── Right: Info ─────────────────────── */}
+            {/* Right: Info */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
 
               {/* Contact card */}
               <div style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "12px", padding: "1.75rem" }}>
                 <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, color: "#3d4246", marginBottom: "1.25rem" }}>Contact Details</h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  {contactDetails.map((item) => {
-                    const Icon = item.icon;
+                  {cms.details.map((item) => {
+                    const Icon = detailIcons[item.label] ?? Mail;
                     return (
                       <div key={item.label} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
                         <div style={{ width: "36px", height: "36px", background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -74,10 +87,7 @@ export default function ContactPage() {
                         <div>
                           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.2rem" }}>{item.label}</p>
                           {item.href
-                            ? <a href={item.href} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246", textDecoration: "none", transition: "color 0.2s ease" }}
-                              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#66BB3F"; }}
-                              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#3d4246"; }}
-                            >{item.value}</a>
+                            ? <a href={item.href} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246", textDecoration: "none" }}>{item.value}</a>
                             : <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246" }}>{item.value}</p>
                           }
                         </div>
@@ -91,14 +101,12 @@ export default function ContactPage() {
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.75rem" }}>Follow Us</p>
                   <div style={{ display: "flex", gap: "8px" }}>
                     {[
-                      { Icon: LinkedInIcon, href: "https://linkedin.com", label: "LinkedIn" },
-                      { Icon: XIcon, href: "https://twitter.com", label: "X" },
-                      { Icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
+                      { Icon: LinkedInIcon, href: cms.socialLinks.linkedin, label: "LinkedIn" },
+                      { Icon: XIcon, href: cms.socialLinks.twitter, label: "X" },
+                      { Icon: InstagramIcon, href: cms.socialLinks.instagram, label: "Instagram" },
                     ].map(({ Icon, href, label }) => (
                       <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                        style={{ width: "36px", height: "36px", background: "#F0F0ED", border: "1px solid #E0E0DC", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s ease" }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#66BB3F"; (e.currentTarget as HTMLElement).style.borderColor = "#66BB3F"; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#F0F0ED"; (e.currentTarget as HTMLElement).style.borderColor = "#E0E0DC"; }}
+                        style={{ width: "36px", height: "36px", background: "#F0F0ED", border: "1px solid #E0E0DC", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center" }}
                       >
                         <Icon className="w-4 h-4" />
                       </a>
@@ -107,36 +115,30 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Response time badge */}
+              {/* Response badge */}
               <div style={{ background: "#66BB3F", borderRadius: "12px", padding: "1.375rem 1.5rem", display: "flex", alignItems: "flex-start", gap: "1rem" }}>
                 <div style={{ width: "36px", height: "36px", background: "rgba(255,255,255,0.15)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <Clock size={16} color="#FFFFFF" />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9375rem", color: "#FFFFFF", marginBottom: "0.25rem" }}>We respond within 24 hours</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.6, color: "rgba(255,255,255,0.65)" }}>Every inquiry is reviewed by a senior team member. No automated responses, no gatekeeping.</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9375rem", color: "#FFFFFF", marginBottom: "0.25rem" }}>{cms.responseBadge.title}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.6, color: "rgba(255,255,255,0.65)" }}>{cms.responseBadge.subtitle}</p>
                 </div>
               </div>
 
               {/* FAQ links */}
-              <div>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.875rem" }}>Common Questions</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                  {[
-                    "How much does incorporation cost?",
-                    "How quickly can you build my pitch deck?",
-                    "Do you work with international founders?",
-                    "What's included in the free health check?",
-                  ].map((q) => (
-                    <div key={q} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.8125rem 1rem", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", cursor: "pointer", transition: "all 0.2s ease" }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#66BB3F"; (e.currentTarget as HTMLElement).style.background = "#F7FFF9"; }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#E0E0DC"; (e.currentTarget as HTMLElement).style.background = "#FFFFFF"; }}
-                    >
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3D3D3D" }}>{q}</span>
-                    </div>
-                  ))}
+              {cms.faqQuestions.length > 0 && (
+                <div>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.875rem" }}>Common Questions</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                    {cms.faqQuestions.map((q) => (
+                      <div key={q} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.8125rem 1rem", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px" }}>
+                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3D3D3D" }}>{q}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const maxBytes = 5 * 1024 * 1024;
+  const maxBytes = 4 * 1024 * 1024;
 
   const form = await request.formData();
   const file = form.get("file");
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (file.size > maxBytes) {
-    return NextResponse.json({ error: "File too large (max 5 MB)" }, { status: 400 });
+    return NextResponse.json({ error: "File too large (max 4 MB). Please compress or resize the image first." }, { status: 400 });
   }
 
   const mime = (file as Blob).type || "";

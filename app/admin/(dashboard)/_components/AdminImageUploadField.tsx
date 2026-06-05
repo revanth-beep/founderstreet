@@ -21,6 +21,10 @@ export default function AdminImageUploadField({ id, label, value, onChange, hint
     e.target.value = "";
     if (!file) return;
     setErr("");
+    if (file.size > 4 * 1024 * 1024) {
+      setErr("File too large (max 4 MB). Please compress or resize the image first.");
+      return;
+    }
     setUploading(true);
     try {
       const fd = new FormData();

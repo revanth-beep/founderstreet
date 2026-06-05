@@ -35,10 +35,23 @@ export async function POST(request: NextRequest) {
   const pathname = `cms/uploads/${Date.now()}-${safe}`;
 
   const buf = Buffer.from(await file.arrayBuffer());
-  const blob = await put(pathname, buf, {
-    access: "public",
-    token: process.env.BLOB_READ_WRITE_TOKEN,
-  });
+
+  let blob;
+  try {
+    blob = await put(pathname, buf, {
+      access: "public",
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+  } catch (putErr) {
+    const msg = putErr instanceof Error ? putErr.message : String(putErr);
+    if (msg.includes("private store")) {
+      return NextResponse.json(
+        { error: "Your Vercel Blob store is set to private. Go to Vercel → Storage → your Blob store → Settings and change access to Public, then try again." },
+        { status: 503 }
+      );
+    }
+    throw putErr;
+  }
 
   return NextResponse.json({ url: blob.url });
 }

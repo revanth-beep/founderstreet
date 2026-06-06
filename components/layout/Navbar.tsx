@@ -50,15 +50,12 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={solid
-                ? (nav.logoUrl || "/logos/logo-icon-color.png")
-                : (nav.logoUrlWhite || nav.logoUrl || "/logos/logo-icon-mono.png")}
+              src={nav.logoUrl || "/logos/logo-icon-color.png"}
               alt="Founderstreet"
               style={{
                 height: "44px",
                 width: "auto",
                 flexShrink: 0,
-                transition: "opacity 0.3s ease",
               }}
             />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>

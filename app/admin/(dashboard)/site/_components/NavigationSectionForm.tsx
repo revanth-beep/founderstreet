@@ -37,17 +37,10 @@ export default function NavigationSectionForm({ initial }: { initial: Nav }) {
         <p className="admin-card__title">Brand &amp; shortcuts</p>
         <AdminImageUploadField
           id="nav-logo"
-          label="Logo — colour version (solid navbar)"
-          hint="Shown when the navbar has a white background (all pages except the homepage hero)."
+          label="Logo image (navbar)"
+          hint="Displayed in the top-left of every page at all times."
           value={nav.logoUrl ?? ""}
           onChange={(url) => setNav({ ...nav, logoUrl: url })}
-        />
-        <AdminImageUploadField
-          id="nav-logo-white"
-          label="Logo — light/white version (transparent navbar)"
-          hint="Shown on the homepage before scrolling, where the navbar is transparent over the dark hero. Upload a white or light-coloured version of your logo."
-          value={nav.logoUrlWhite ?? ""}
-          onChange={(url) => setNav({ ...nav, logoUrlWhite: url })}
         />
         <div className="admin-field">
           <label className="admin-label" htmlFor="brandName">Site name (next to logo)</label>

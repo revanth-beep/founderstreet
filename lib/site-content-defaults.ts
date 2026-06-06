@@ -198,6 +198,8 @@ export type SiteContent = {
     phone: string;
     whatsappUrl: string;
     logoUrl: string;
+    /** Logo shown on transparent navbar (dark hero background). Falls back to logoUrl with white filter if not set. */
+    logoUrlWhite: string;
   };
   footer: {
     brandName: string;
@@ -252,6 +254,7 @@ export const defaultSiteContent: SiteContent = {
     phone: "+91 98765 43210",
     whatsappUrl: "https://wa.me/919876543210",
     logoUrl: "/logos/logo-icon-color.png",
+    logoUrlWhite: "/logos/logo-icon-mono.png",
   },
   footer: {
     brandName: "Founderstreet",

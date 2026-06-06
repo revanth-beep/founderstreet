@@ -63,7 +63,7 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
               <img
                 src={cms.logoUrl || "/logos/logo-icon-color.png"}
                 alt="Founderstreet"
-                style={{ height: "44px", width: "auto", flexShrink: 0, filter: "brightness(0) invert(1)" }}
+                style={{ height: "44px", width: "auto", flexShrink: 0 }}
               />
               <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
                 <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF" }}>

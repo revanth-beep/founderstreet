@@ -35,13 +35,7 @@ export default function FooterSectionForm({ initial }: { initial: Footer }) {
 
       <div className="admin-card">
         <p className="admin-card__title">Company block</p>
-        <AdminImageUploadField
-          id="footer-logo"
-          label="Logo image (footer)"
-          hint="Displayed in the bottom-left of every page. Upload to Vercel Blob or paste a URL."
-          value={footer.logoUrl ?? ""}
-          onChange={(url) => setFooter({ ...footer, logoUrl: url })}
-        />
+        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Logo is shared with the navbar. Upload it under <strong>Navigation &amp; Logo</strong>.</p>
         <div className="admin-field">
           <label className="admin-label" htmlFor="f-brand">
             Name next to logo

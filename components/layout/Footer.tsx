@@ -47,7 +47,7 @@ const colLink: React.CSSProperties = {
   transition: "color 0.2s ease"
 };
 
-export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
+export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; logoUrl?: string }) {
   const year = new Date().getFullYear();
   const copyright = cms.copyrightTemplate.replace("{year}", String(year));
 
@@ -61,7 +61,7 @@ export default function Footer({ cms }: { cms: SiteContent["footer"] }) {
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "0.5rem" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={cms.logoUrl || "/logos/logo-icon-color.png"}
+                src={logoUrl || cms.logoUrl || "/logos/logo-icon-color.png"}
                 alt="Founderstreet"
                 style={{ height: "44px", width: "auto", flexShrink: 0 }}
               />

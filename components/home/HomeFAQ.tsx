@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "How does the investor matching work?",
-    a: "We maintain a curated list of 200+ vetted angels and VCs with active investment mandates. After understanding your stage, sector, and funding requirement, we make warm introductions to the right investors and support the conversation through term sheet stage.",
+    a: "We maintain a curated list of 775+ vetted investors across VCs, Angels, Banks, Family Offices, and Grants with active investment mandates. After understanding your stage, sector, and funding requirement, we make warm introductions to the right investors and support the conversation through term sheet stage.",
   },
   {
     q: "Do you work with idea-stage founders?",

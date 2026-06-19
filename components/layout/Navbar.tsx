@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const services = [
@@ -13,6 +13,7 @@ const services = [
   { name: "Marketing & Retail", href: "/services/marketing", icon: Megaphone, desc: "Full-funnel digital and offline growth" },
   { name: "Web & Tech Development", href: "/services/web-development", icon: Code2, desc: "Scalable storefronts and platforms" },
   { name: "Investor Funding", href: "/services/funding", icon: TrendingUp, desc: "Pitch decks, projections & matchmaking" },
+  { name: "Co-working Space", href: "/contact", icon: MapPin, desc: "Get access to 1200+ co-working spaces across India" },
 ];
 
 type NavbarContentProps = {
@@ -53,12 +54,12 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               src={nav.logoUrl || "/logos/logo-icon-color.png"}
               alt="Founderstreet"
               style={{
-                height: "44px",
+                height: `${nav.logoSize || 44}px`,
                 width: "auto",
                 flexShrink: 0,
               }}
             />
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.25 }}>
               <span style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 700, fontSize: "1.1875rem",
@@ -68,6 +69,18 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               }}>
                 {nav.brandName}
               </span>
+              {nav.logoTagline && (
+                <span style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 400, fontSize: "0.6rem",
+                  color: solid ? "#787878" : "rgba(255,255,255,0.6)",
+                  letterSpacing: "0.01em",
+                  transition: "color 0.3s ease",
+                  whiteSpace: "nowrap",
+                }}>
+                  {nav.logoTagline}
+                </span>
+              )}
               <span style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400, fontSize: "0.6rem",
@@ -295,9 +308,12 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 1.5rem", borderBottom: "1px solid #F0F0ED" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={nav.logoUrl || "/logos/logo-icon-color.png"} alt="Founderstreet" style={{ height: "38px", width: "auto", flexShrink: 0 }} />
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+            <img src={nav.logoUrl || "/logos/logo-icon-color.png"} alt="Founderstreet" style={{ height: `${Math.max(32, (nav.logoSize || 44) - 6)}px`, width: "auto", flexShrink: 0 }} />
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.25 }}>
               <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
+              {nav.logoTagline && (
+                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.55rem", color: "#787878", letterSpacing: "0.01em" }}>{nav.logoTagline}</span>
+              )}
               <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.55rem", color: "#909090", letterSpacing: "0.01em" }}>{nav.subsidiaryText}</span>
             </div>
           </Link>

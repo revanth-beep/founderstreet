@@ -43,11 +43,30 @@ export default function NavigationSectionForm({ initial }: { initial: Nav }) {
           onChange={(url) => setNav({ ...nav, logoUrl: url })}
         />
         <div className="admin-field">
+          <label className="admin-label" htmlFor="logoSize">Logo size: {nav.logoSize || 44}px</label>
+          <p className="admin-hint">Drag to resize the logo in the navbar (32 – 80 px).</p>
+          <input
+            id="logoSize"
+            type="range"
+            min={32}
+            max={80}
+            step={2}
+            value={nav.logoSize || 44}
+            onChange={(e) => setNav({ ...nav, logoSize: Number(e.target.value) })}
+            style={{ width: "100%", accentColor: "#66BB3F" }}
+          />
+        </div>
+        <div className="admin-field">
+          <label className="admin-label" htmlFor="logoTagline">Tagline below logo (optional)</label>
+          <p className="admin-hint">Short line shown below the logo image and above the subsidiary text. Leave blank to hide.</p>
+          <input id="logoTagline" className="admin-input" value={nav.logoTagline ?? ""} placeholder="e.g. India's Startup Platform" onChange={(e) => setNav({ ...nav, logoTagline: e.target.value })} />
+        </div>
+        <div className="admin-field">
           <label className="admin-label" htmlFor="brandName">Site name (next to logo)</label>
           <input id="brandName" className="admin-input" value={nav.brandName} onChange={(e) => setNav({ ...nav, brandName: e.target.value })} />
         </div>
         <div className="admin-field">
-          <label className="admin-label" htmlFor="subsidiaryText">Subsidiary line (shown beneath site name)</label>
+          <label className="admin-label" htmlFor="subsidiaryText">Subsidiary line (shown beneath tagline)</label>
           <input id="subsidiaryText" className="admin-input" value={nav.subsidiaryText} onChange={(e) => setNav({ ...nav, subsidiaryText: e.target.value })} />
         </div>
         <div className="admin-field">

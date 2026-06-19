@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock } from "lucide-react";
 import type { PostMeta } from "@/lib/cms";
 import type { ResourcesTeaserCms } from "@/lib/site-content-defaults";
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export default function ResourcesTeaser({ teaser, posts }: Props) {
-  const cards = posts.slice(0, 3);
+  const cards = posts.slice(0, teaser.maxPosts || 3);
 
   return (
     <section className="section-padding" style={{ background: "#FFFFFF" }}>
@@ -82,7 +83,6 @@ export default function ResourcesTeaser({ teaser, posts }: Props) {
                 style={{
                   display: "block",
                   background: "#FFFFFF",
-                  padding: "2rem",
                   textDecoration: "none",
                   transition: "background 0.3s ease",
                   position: "relative",
@@ -95,6 +95,12 @@ export default function ResourcesTeaser({ teaser, posts }: Props) {
                   (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
                 }}
               >
+                {post.coverImage && (
+                  <div style={{ position: "relative", width: "100%", height: "180px", overflow: "hidden" }}>
+                    <Image src={post.coverImage} alt={post.title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 33vw" />
+                  </div>
+                )}
+                <div style={{ padding: "2rem" }}>
                 <div
                   style={{
                     position: "absolute",
@@ -175,6 +181,7 @@ export default function ResourcesTeaser({ teaser, posts }: Props) {
                 >
                   Read article <ArrowRight size={13} />
                 </span>
+                </div>
               </Link>
             );
           })}

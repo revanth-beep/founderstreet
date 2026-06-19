@@ -229,40 +229,12 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", paddingBlock: "5rem" }}>
+      {/* Disclaimer */}
+      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", paddingBlock: "2rem" }}>
         <div className="container-custom">
-          <div style={{ maxWidth: "520px", margin: "0 auto", textAlign: "center" }}>
-            <div style={{ width: "48px", height: "48px", background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
-              <BookOpen style={{ width: "22px", height: "22px", color: "#66BB3F" }} />
-            </div>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.875rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.75rem", lineHeight: 1.2 }}>
-              Get the Founder&apos;s Edge, Every Week.
-            </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", lineHeight: 1.7, marginBottom: "2rem" }}>
-              Weekly breakdown of unit economics, pitch tear-downs, and growth tactics. Straight to your inbox. No spam, ever.
-            </p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              style={{ display: "flex", gap: "0.5rem", maxWidth: "400px", margin: "0 auto" }}
-            >
-              <input
-                type="email"
-                placeholder="your@email.com"
-                style={{ flex: 1, padding: "0.75rem 1rem", border: "1px solid #E0E0DC", borderRadius: "4px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246", background: "#fff", outline: "none" }}
-              />
-              <button
-                type="submit"
-                className="btn-primary"
-                style={{ flexShrink: 0 }}
-              >
-                Subscribe
-              </button>
-            </form>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginTop: "0.75rem" }}>
-              Join 2,400+ founders reading every Friday.
-            </p>
-          </div>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#787878", textAlign: "center", lineHeight: 1.7, maxWidth: "640px", margin: "0 auto" }}>
+            <strong style={{ color: "#5A5A5A" }}>Disclaimer:</strong> All articles on this platform are for knowledge sharing purposes only and do not constitute professional legal, financial, or business advice. Please consult a qualified professional before making any business decisions.
+          </p>
         </div>
       </section>
     </>

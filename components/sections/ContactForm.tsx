@@ -5,11 +5,16 @@ import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
 const services = [
   "Test Your Idea / Validation",
-  "Company Incorporation",
+  "Strategy Consulting",
+  "Company Incorporation and Annual Compliance",
   "Accounting & Virtual CFO",
-  "Marketing & Retail",
+  "Digital Marketing",
+  "Projections and Valuation Report",
+  "Offline Marketing and PR",
+  "Co-working Spaces",
   "Web & Tech Development",
   "Investor Funding & Pitch Deck",
+  "Legal Documentation & Consultation",
   "Multiple Services",
   "Just Exploring",
 ];

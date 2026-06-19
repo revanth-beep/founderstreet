@@ -27,9 +27,9 @@ export default function TeaserSectionForm({ initial }: { initial: ResourcesTease
 
   return (
     <form onSubmit={onSave}>
-      <h1 className="admin-page-title">Home — article preview strip</h1>
+      <h1 className="admin-page-title">Home: article preview strip</h1>
       <p className="admin-page-desc">
-        The section that shows a few blog posts. The posts themselves are chosen automatically from your published articles.
+        The section that shows a few blog posts. Posts are chosen automatically from your published articles.
       </p>
 
       <div className="admin-card">
@@ -44,7 +44,7 @@ export default function TeaserSectionForm({ initial }: { initial: ResourcesTease
         </div>
         <div className="admin-grid-2">
           <div className="admin-field">
-            <label className="admin-label">Heading — before green word</label>
+            <label className="admin-label">Heading: before green word</label>
             <input
               className="admin-input"
               value={teaser.titleBefore}
@@ -52,7 +52,7 @@ export default function TeaserSectionForm({ initial }: { initial: ResourcesTease
             />
           </div>
           <div className="admin-field">
-            <label className="admin-label">Heading — green word</label>
+            <label className="admin-label">Heading: green word</label>
             <input
               className="admin-input"
               value={teaser.titleGradient}
@@ -61,18 +61,31 @@ export default function TeaserSectionForm({ initial }: { initial: ResourcesTease
           </div>
         </div>
         <div className="admin-field">
-          <label className="admin-label">“View all” link text</label>
+          <label className="admin-label">View all link text</label>
           <input
             className="admin-input"
             value={teaser.viewAllLabel}
             onChange={(e) => setTeaser({ ...teaser, viewAllLabel: e.target.value })}
           />
         </div>
+        <div className="admin-field">
+          <label className="admin-label">Articles to show on home page</label>
+          <p className="admin-hint">How many published articles appear in the preview strip (3 to 6).</p>
+          <select
+            className="admin-select"
+            value={teaser.maxPosts || 3}
+            onChange={(e) => setTeaser({ ...teaser, maxPosts: Number(e.target.value) })}
+          >
+            {[3, 4, 5, 6].map((n) => (
+              <option key={n} value={n}>{n} articles</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="admin-actions">
         <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
-          {saving ? "Saving…" : "Save changes"}
+          {saving ? "Saving..." : "Save changes"}
         </button>
         {msg && <span className="admin-msg--ok">{msg}</span>}
         {err && <span className="admin-msg--err">{err}</span>}

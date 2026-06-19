@@ -12,7 +12,7 @@ const reasons = [
   {
     icon: Zap,
     title: "Startup Velocity",
-    desc: "Incorporation in 10 days. MVP in 4 weeks. Pitch deck in 5 days. We move fast without sacrificing rigour.",
+    desc: "Incorporation in 10 working days. Website in 4 days. Pitch deck in 5 days. We move fast without sacrificing rigour.",
   },
   {
     icon: Users2,
@@ -29,9 +29,9 @@ const reasons = [
 const comparison = [
   { label: "Incorporation speed", them: "4–6 weeks", us: "< 10 days" },
   { label: "Financial reporting", them: "Quarterly PDFs", us: "Live dashboards" },
-  { label: "Investor intro access", them: "None", us: "200+ vetted contacts" },
+  { label: "Investor intro access", them: "None", us: "700+ vetted contacts" },
   { label: "Pitch deck quality", them: "Template-based", us: "Bespoke narrative" },
-  { label: "Pricing model", them: "Monthly retainer", us: "Milestone-based" },
+  { label: "Pricing model", them: "Monthly retainer", us: "Flexible pricing" },
 ];
 
 export default function WhySection() {

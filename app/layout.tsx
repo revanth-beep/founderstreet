@@ -24,11 +24,11 @@ const siteUrlCanonical = metadataBase.toString().replace(/\/$/, "");
 export const metadata: Metadata = {
   metadataBase,
   title: {
-    default: "Founderstreet: The Unseen Engine Behind India's Next Great Startups",
+    default: "Founderstreet: One Stop for Startup Founders",
     template: "%s | Founderstreet",
   },
   description:
-    "From Day Zero to Pre-Seed, we provide the elite operational, financial, and digital infrastructure founders need to launch, scale, and secure funding.",
+    "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
   keywords: [
     "startup consulting India",
     "company incorporation India",
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteUrlCanonical,
     siteName: "Founderstreet",
-    title: "Founderstreet: The Unseen Engine Behind India's Next Great Startups",
+    title: "Founderstreet: One Stop for Startup Founders",
     description:
-      "Elite operational, financial, and digital infrastructure for Indian founders.",
+      "Elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding for Indian founders.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Founderstreet",
-    description: "The unseen engine behind India's next great startups.",
+    description: "One stop for startup founders. Compliance, Accounting, Marketing, Strategy, and Investor funding.",
   },
   robots: { index: true, follow: true },
 };

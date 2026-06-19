@@ -46,7 +46,6 @@ const serviceCategories = [
 
 const results = [
   { metric: "₹40L MRR", context: "in 90 days", detail: "D2C nutrition brand via Meta Ads + retail distribution" },
-  { metric: "4.8x ROAS", context: "on Google Ads", detail: "B2B SaaS using branded search + competitor conquesting" },
   { metric: "3 states", context: "in 45 days", detail: "FMCG launch via super-stockist network expansion" },
 ];
 
@@ -127,15 +126,15 @@ export default async function MarketingPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.25rem" }}>
             {[
-              { n: "01", title: "Social Content", sub: "LinkedIn, Instagram, YouTube Shorts", tool: "Predis.ai", note: "India-optimised. Generates image, video, caption, and hashtags from one prompt.", price: "From $29/mo" },
-              { n: "02", title: "Paid Ad Creatives", sub: "Meta, Google, LinkedIn", tool: "AdCreative.ai", note: "Pre-scores every creative for predicted click-through rate before you spend a rupee.", price: "From $29/mo" },
-              { n: "03", title: "Bulk Branded Content", sub: "Certificates, campaign variants, localised posts", tool: "Robolly via n8n", note: "Template-based bulk image and PDF generation. Native n8n integration for scale.", price: "From €15/mo" },
-              { n: "04", title: "Dynamic PDFs & Images", sub: "Personalised reports, invoices, proposals", tool: "RenderForm", note: "Pixel-perfect dynamic image and PDF API. Output in under 2 seconds.", price: "From €19/mo" },
+              { n: "01", title: "Social Content", sub: "LinkedIn, Instagram, YouTube Shorts", tool: "Predis.ai", note: "India-optimised. Generates image, video, caption, and hashtags from one prompt.", price: "" },
+              { n: "02", title: "Paid Ad Creatives", sub: "Meta, Google, LinkedIn", tool: "AdCreative.ai", note: "Pre-scores every creative for predicted click-through rate before you spend a rupee.", price: "" },
+              { n: "03", title: "Bulk Branded Content", sub: "Certificates, campaign variants, localised posts", tool: "Robolly via n8n", note: "Template-based bulk image and PDF generation. Native n8n integration for scale.", price: "" },
+              { n: "04", title: "Dynamic PDFs & Images", sub: "Personalised reports, invoices, proposals", tool: "RenderForm", note: "Pixel-perfect dynamic image and PDF API. Output in under 2 seconds.", price: "" },
             ].map(card => (
               <div key={card.n} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
                   <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 700, color: "#F0F0ED" }}>{card.n}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 600, color: "#787878", background: "#F0F0ED", padding: "0.2rem 0.625rem", borderRadius: "4px" }}>{card.price}</span>
+                  {card.price && <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 600, color: "#787878", background: "#F0F0ED", padding: "0.2rem 0.625rem", borderRadius: "4px" }}>{card.price}</span>}
                 </div>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.0625rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.25rem" }}>{card.title}</h3>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginBottom: "0.75rem" }}>{card.sub}</p>
@@ -179,7 +178,7 @@ export default async function MarketingPage() {
               Simple, Outcome-Aligned Pricing
             </h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              We grow when you grow. All retainers are milestone-based. No lock-in contracts.
+              We grow when you grow. Pricing is customised to your stage and goals. No lock-in contracts.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>

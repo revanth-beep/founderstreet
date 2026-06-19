@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
-import NewsletterForm from "@/components/sections/NewsletterForm";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const services = [
   { name: "Test Your Idea", href: "/services/validation" },
-  { name: "Incorporation & Compliance", href: "/services/incorporation" },
-  { name: "Accounting & Taxation", href: "/services/accounting" },
-  { name: "Marketing & Retail", href: "/services/marketing" },
+  { name: "Company Incorporation", href: "/services/incorporation" },
+  { name: "Accounting & Virtual CFO", href: "/services/accounting" },
+  { name: "Digital Marketing", href: "/services/marketing" },
   { name: "Web Development", href: "/services/web-development" },
-  { name: "Pitch Decks & Valuation", href: "/services/funding" },
+  { name: "Investor Funding", href: "/services/funding" },
 ];
 
 const company = [
@@ -21,14 +20,8 @@ const company = [
   { name: "Resources", href: "/resources" },
   { name: "Case Studies", href: "/case-studies" },
   { name: "Locations", href: "/locations" },
-  { name: "Test Your Idea", href: "/startup-health-check" },
+  { name: "Startup Health Check", href: "/startup-health-check" },
   { name: "Contact Us", href: "/contact" },
-];
-
-const tools = [
-  { name: "Founder's AI Stack", href: "/resources/ai-stack" },
-  { name: "AI Validation Tools", href: "/resources/ai-tools" },
-  { name: "Startup Templates", href: "/templates" },
 ];
 
 const colHead: React.CSSProperties = {
@@ -141,34 +134,6 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
             ))}
           </div>
 
-          {/* Tools & Resources */}
-          <div>
-            <p style={colHead}>Tools &amp; Resources</p>
-            {tools.map(t => (
-              <Link key={t.href} href={t.href} style={colLink}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
-              >
-                <ArrowRight size={12} style={{ opacity: 0.4 }} />
-                {t.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "1.125rem", fontWeight: 700,
-              color: "#FFFFFF", marginBottom: "0.625rem"
-            }}>
-              {cms.newsletterTitle}
-            </h4>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", lineHeight: 1.65, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>
-              {cms.newsletterSubtitle}
-            </p>
-            <NewsletterForm />
-          </div>
         </div>
 
         {/* Divider */}
@@ -202,7 +167,7 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
 
       <style>{`
         @media (min-width: 640px)  { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
-        @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.25fr !important; } }
+        @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr !important; } }
       `}</style>
     </footer>
   );

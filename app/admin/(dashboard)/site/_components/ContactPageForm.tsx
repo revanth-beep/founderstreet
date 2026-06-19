@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { ContactPageCms, ContactDetailCms } from "@/lib/site-content-defaults";
+import type { ContactPageCms, ContactDetailCms, FaqItem } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
 
 export default function ContactPageForm({ initial }: { initial: ContactPageCms }) {
@@ -37,9 +37,9 @@ export default function ContactPageForm({ initial }: { initial: ContactPageCms }
     setData(d => ({ ...d, details: d.details.filter((_, j) => j !== i) }));
   }
 
-  function setFaqQ(i: number, v: string) {
+  function setFaqField(i: number, field: keyof FaqItem, v: string) {
     const faqQuestions = [...data.faqQuestions];
-    faqQuestions[i] = v;
+    faqQuestions[i] = { ...faqQuestions[i], [field]: v };
     setData(d => ({ ...d, faqQuestions }));
   }
 
@@ -151,14 +151,25 @@ export default function ContactPageForm({ initial }: { initial: ContactPageCms }
 
       {/* FAQ questions */}
       <div className="admin-card">
-        <p className="admin-card__title">Common questions sidebar</p>
-        {data.faqQuestions.map((q, i) => (
-          <div key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
-            <input className="admin-input" value={q} onChange={e => setFaqQ(i, e.target.value)} style={{ flex: 1 }} />
-            <button type="button" className="admin-btn" onClick={() => setData(d => ({ ...d, faqQuestions: d.faqQuestions.filter((_, j) => j !== i) }))}>Remove</button>
+        <p className="admin-card__title">Common questions (accordion)</p>
+        <p className="admin-hint">Each question expands to show the answer on the contact page.</p>
+        {data.faqQuestions.map((item, i) => (
+          <div key={i} style={{ borderBottom: i < data.faqQuestions.length - 1 ? "1px solid #F0F0ED" : "none", paddingBottom: "1rem", marginBottom: "1rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+              <p className="admin-label" style={{ margin: 0 }}>Question {i + 1}</p>
+              <button type="button" className="admin-btn" onClick={() => setData(d => ({ ...d, faqQuestions: d.faqQuestions.filter((_, j) => j !== i) }))}>Remove</button>
+            </div>
+            <div className="admin-field">
+              <label className="admin-label">Question</label>
+              <input className="admin-input" value={item.q} onChange={e => setFaqField(i, "q", e.target.value)} placeholder="e.g. How much does incorporation cost?" />
+            </div>
+            <div className="admin-field" style={{ marginBottom: 0 }}>
+              <label className="admin-label">Answer</label>
+              <textarea className="admin-textarea" rows={3} value={item.a} onChange={e => setFaqField(i, "a", e.target.value)} placeholder="The answer shown when the question is clicked…" />
+            </div>
           </div>
         ))}
-        <button type="button" className="admin-btn" onClick={() => setData(d => ({ ...d, faqQuestions: [...d.faqQuestions, ""] }))}>+ Add question</button>
+        <button type="button" className="admin-btn" onClick={() => setData(d => ({ ...d, faqQuestions: [...d.faqQuestions, { q: "", a: "" }] }))}>+ Add question</button>
       </div>
 
       <div className="admin-actions">

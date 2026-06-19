@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const services = [
-  { icon: ShoppingCart, number: "01", title: "E-Commerce & Shopify Builds", desc: "Conversion-optimised storefronts built on Shopify, WooCommerce, or custom stacks. Average checkout conversion increase: 35%.", features: ["Custom Shopify theme development", "One-click checkout optimisation", "Product page CRO", "Payment gateway integration", "Inventory & ERP sync", "Mobile-first design"] },
+  { icon: ShoppingCart, number: "01", title: "E-Commerce & Shopify Builds", desc: "Conversion-optimised storefronts built on Shopify, WooCommerce, or custom stacks. Mobile-first, fast, and built to sell.", features: ["Custom Shopify theme development", "One-click checkout optimisation", "Product page CRO", "Payment gateway integration", "Inventory & ERP sync", "Mobile-first design"] },
   { icon: Globe, number: "02", title: "Custom Web Apps & Platforms", desc: "Bespoke technology stacks for SaaS products, marketplace platforms, and complex business applications.", features: ["SaaS product development", "B2B marketplace platforms", "API development & integration", "Admin dashboards & analytics", "Scalable cloud architecture", "Auth & subscription systems"] },
   { icon: Palette, number: "03", title: "UI/UX Design", desc: "Wireframing, prototyping, and high-fidelity design systems. Every interface we design has a measurable conversion objective.", features: ["User journey mapping", "Wireframes & prototypes", "Design system & component library", "Figma-to-code handoff", "A/B test design variants", "Accessibility compliance"] },
   { icon: Smartphone, number: "04", title: "Mobile App Development", desc: "React Native and Flutter apps that feel native on iOS and Android. From consumer apps to B2B tools.", features: ["Cross-platform (iOS & Android)", "Offline-first architecture", "Push notifications", "In-app purchases", "App Store optimisation", "Analytics integration"] },
@@ -130,7 +130,8 @@ export default async function WebDevPage() {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Pricing</ServicePageEyebrow>
-            <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Project Pricing</h2>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Simple Project Pricing</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>Starting at <strong>&#8377;10,999</strong>. Custom quotes for complex projects.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
             {pricing.map(p => (

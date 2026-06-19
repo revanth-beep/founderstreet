@@ -116,7 +116,7 @@ export default async function FundingPage() {
             <ServicePageEyebrow>AI Investor Matchmaker</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>Find Your Top 3 Investor Matches in 60 Seconds</h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              5 quick questions. No pitch deck upload. No friction. Our AI cross-references your profile against 200+ active investor mandates and surfaces the 3 best fits.
+              5 quick questions. No pitch deck upload. No friction. Our AI cross-references your profile against 775+ active investor mandates and surfaces the 3 best fits.
             </p>
           </div>
           <InvestorMatchQuiz />

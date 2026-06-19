@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import ContactForm from "@/components/sections/ContactForm";
+import FaqAccordion from "./FaqAccordion";
 import { getSiteContent } from "@/lib/site-content";
 
 export const revalidate = 60;
@@ -126,18 +127,9 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* FAQ links */}
+              {/* FAQ accordion */}
               {cms.faqQuestions.length > 0 && (
-                <div>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.875rem" }}>Common Questions</p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    {cms.faqQuestions.map((q) => (
-                      <div key={q} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.8125rem 1rem", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px" }}>
-                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3D3D3D" }}>{q}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <FaqAccordion items={cms.faqQuestions} />
               )}
             </div>
           </div>

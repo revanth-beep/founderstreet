@@ -38,6 +38,7 @@ export type ResourcesTeaserCms = {
   titleBefore: string;
   titleGradient: string;
   viewAllLabel: string;
+  maxPosts: number;
 };
 
 export type PartnerPillCms = {
@@ -177,13 +178,18 @@ export type ContactDetailCms = {
   href: string;
 };
 
+export type FaqItem = {
+  q: string;
+  a: string;
+};
+
 export type ContactPageCms = {
   meta: { title: string; description: string };
   hero: { eyebrow: string; title: string; subtitle: string };
   details: ContactDetailCms[];
   socialLinks: { linkedin: string; twitter: string; instagram: string };
   responseBadge: { title: string; subtitle: string };
-  faqQuestions: string[];
+  faqQuestions: FaqItem[];
 };
 
 // ─── Main SiteContent type ─────────────────────────────────────────────────
@@ -198,6 +204,8 @@ export type SiteContent = {
     phone: string;
     whatsappUrl: string;
     logoUrl: string;
+    logoSize: number;
+    logoTagline: string;
   };
   footer: {
     brandName: string;
@@ -252,6 +260,8 @@ export const defaultSiteContent: SiteContent = {
     phone: "+91 98765 43210",
     whatsappUrl: "https://wa.me/919876543210",
     logoUrl: "/logos/logo-icon-color.png",
+    logoSize: 44,
+    logoTagline: "",
   },
   footer: {
     brandName: "Founderstreet",
@@ -261,7 +271,7 @@ export const defaultSiteContent: SiteContent = {
     newsletterTitle: "Get the Founder's Edge.",
     newsletterSubtitle:
       "Weekly breakdown on unit economics, pitch tear-downs, and growth tactics.",
-    copyrightTemplate: "© {year} Founderstreet · Northville Consulting Group. All rights reserved.",
+    copyrightTemplate: "© {year} Founderstreet by Northville Consulting LLP. All rights reserved.",
     logoUrl: "/logos/logo-icon-color.png",
     socialLinks: {
       linkedin: "https://linkedin.com",
@@ -276,7 +286,7 @@ export const defaultSiteContent: SiteContent = {
       titleAccent: "Next Great",
       titleAfter: "Startups.",
       subtitle:
-        "From Day Zero to Pre-Seed, we provide the elite operational, financial, and digital infrastructure founders need to launch, scale, and secure funding.",
+        "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
       subtitleEmphasis: "You build the vision; we handle the execution.",
       ctaPrimaryLabel: "Pitch Your Idea",
       ctaPrimaryHref: "/contact",
@@ -342,7 +352,7 @@ export const defaultSiteContent: SiteContent = {
         n: "06",
         tag: "Fundraising",
         name: "Investor Funding",
-        desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 200+ vetted angels and VCs.",
+        desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 775+ vetted investors: VCs, Angels, Banks, Family Offices, and Grants.",
         href: "/services/funding",
         price: "Starting at ₹9,999",
       },
@@ -352,6 +362,7 @@ export const defaultSiteContent: SiteContent = {
       titleBefore: "Thinking Built for",
       titleGradient: "Builders",
       viewAllLabel: "All articles",
+      maxPosts: 3,
     },
     partnerMarquee: {
       headline: "Our Network: Clients, Investors and Institutional Partners",
@@ -525,10 +536,9 @@ export const defaultSiteContent: SiteContent = {
       subtitle: "Every inquiry is reviewed by a senior team member. No automated responses, no gatekeeping.",
     },
     faqQuestions: [
-      "How much does incorporation cost?",
-      "How quickly can you build my pitch deck?",
-      "Do you work with international founders?",
-      "What's included in the free health check?",
+      { q: "How much does incorporation cost?", a: "Starting at ₹9,999. Our packages cover DIN, DSC, MOA, AOA, and SPICe+ filing. A senior consultant will share a detailed quote based on your company structure within 24 hours." },
+      { q: "How quickly can you build my pitch deck?", a: "We deliver a complete 12-slide investor-ready deck in 24 hours for fast-track requests. Standard delivery with revisions takes 5 to 7 working days." },
+      { q: "Do you work with international founders?", a: "Yes. We work with founders based outside India who want to incorporate or operate in India. We handle all filings remotely and guide you through FEMA and FDI compliance." },
     ],
   },
   servicePages: {
@@ -579,8 +589,7 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "End-to-end company registration and regulatory compliance. We handle the paperwork so your first 10 days are spent building product, not filing forms.",
         ctaText: "Start Incorporation",
         stats: [
-          { value: "< 10 Days", label: "Avg. incorporation time" },
-          { value: "500+", label: "Companies incorporated" },
+          { value: "< 10 Working Days", label: "Avg. incorporation time" },
           { value: "100%", label: "Compliance success rate" },
         ],
       },
@@ -609,9 +618,9 @@ export const defaultSiteContent: SiteContent = {
       },
       hero: {
         label: "Accounting & Virtual CFO",
-        title: "Financial Plumbing",
-        titleHighlight: "That Impresses Investors.",
-        subtitle: "Institutional-grade accounting, GST compliance, and virtual CFO services so you can focus 100% on product and growth, not spreadsheets.",
+        title: "Accounting Built for",
+        titleHighlight: "Founders, Not Accountants.",
+        subtitle: "GST compliance, bookkeeping, payroll, and virtual CFO services built for early-stage startups. Focus 100% on product and growth: we handle the numbers.",
         ctaText: "Get Started",
         stats: [
           { value: "₹0", label: "Penalties across all clients" },
@@ -624,12 +633,13 @@ export const defaultSiteContent: SiteContent = {
         { question: "What accounting software do you use?", answer: "We primarily work with Zoho Books, QuickBooks, and Tally depending on client preference. We also integrate with Razorpay, Stripe, and other payment platforms for automated reconciliation. All clients get read-only access to their accounts in real time." },
         { question: "Can you help us prepare for a due diligence audit?", answer: "Absolutely. We maintain your accounts in investor-ready condition from Day 1. When due diligence begins, we provide a complete data room with audited financials, tax returns, GST filings, payroll records, and cap table documentation." },
         { question: "How do you handle startups with foreign investment?", answer: "We manage all FEMA compliance, RBI reporting requirements (FC-GPR, FC-TRS), and transfer pricing documentation required when a company receives foreign direct investment or has foreign directors." },
-        { question: "What is the pricing structure?", answer: "We offer three packages: Seed (bookkeeping + GST, from ₹8,000/month), Growth (adds payroll + TDS + investor reporting, from ₹18,000/month), and Scale (full Virtual CFO with fundraising support, from ₹35,000/month). Custom pricing for companies with more complex needs." },
+        { question: "What is the pricing structure?", answer: "Our packages start at ₹3,000/month for pre-seed founders. Pricing scales with your team size, transaction volume, and service needs. Book a free call and we will scope a custom package for your stage." },
       ],
       pricing: [
-        { name: "Seed", price: "₹8,000", period: "/month", desc: "For pre-revenue startups", features: ["Monthly bookkeeping", "GST return filing", "Bank reconciliation", "Annual ITR filing", "Email support"], highlight: false, cta: "Get Started" },
-        { name: "Growth", price: "₹18,000", period: "/month", desc: "For revenue-generating startups", features: ["Everything in Seed", "Payroll processing", "TDS deduction & filing", "Investor MIS reports", "Priority support", "Quarterly strategy call"], highlight: true, badge: "Most Popular", cta: "Get Started" },
-        { name: "Scale", price: "₹35,000", period: "/month", desc: "For pre-Series A startups", features: ["Everything in Growth", "Virtual CFO services", "Fundraising model", "Board reporting", "Due diligence prep", "Dedicated CFO partner"], highlight: false, cta: "Get Started" },
+        { name: "Pre-Seed", price: "₹3,000", period: "/month", desc: "For idea-stage and pre-revenue founders", features: ["Monthly bookkeeping", "Bank reconciliation", "Email support"], highlight: false, cta: "Get Started" },
+        { name: "Seed", price: "Contact Us", period: "", desc: "For pre-revenue startups", features: ["Monthly bookkeeping", "GST return filing", "Bank reconciliation", "Annual ITR filing", "Email support"], highlight: false, cta: "Get a Quote" },
+        { name: "Growth", price: "Contact Us", period: "", desc: "For revenue-generating startups", features: ["Everything in Seed", "Payroll processing", "TDS deduction & filing", "Investor MIS reports", "Priority support", "Quarterly strategy call"], highlight: true, badge: "Most Popular", cta: "Get a Quote" },
+        { name: "Scale", price: "Contact Us", period: "", desc: "For pre-Series A startups", features: ["Everything in Growth", "Virtual CFO services", "Fundraising model", "Board reporting", "Due diligence prep", "Dedicated CFO partner"], highlight: false, cta: "Get a Quote" },
       ],
       bottomCta: {
         title: "Get investor-grade financials from Day One",
@@ -649,7 +659,6 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "We engineer demand across every customer touchpoint: from Google search to highway billboards to retail shelf space. Integrated digital performance and high-impact offline activations.",
         ctaText: "Plan My Growth",
         stats: [
-          { value: "4.2x", label: "Average blended ROAS" },
           { value: "15+", label: "States in distributor network" },
           { value: "50+", label: "D2C brands scaled" },
         ],
@@ -662,8 +671,8 @@ export const defaultSiteContent: SiteContent = {
         { question: "Do you work with early-stage startups with limited budgets?", answer: "Yes. We have a lean-start option for D2C brands at ₹25,000/month for digital-only (SEO + 1 paid channel). We grow the scope as your revenue scales. Our model is outcome-aligned. We grow when you grow." },
       ],
       pricing: [
-        { name: "Digital Lean Start", price: "₹25,000", period: "/mo", desc: "For early-stage D2C and SaaS. SEO foundation + one paid channel (Google or Meta). Ideal for first 90 days of growth.", features: ["SEO & content setup", "1 paid ad channel", "Monthly performance report", "Creative production"], highlight: false, cta: "Start Lean" },
-        { name: "Growth Retainer", price: "₹60,000", period: "/mo", desc: "Multi-channel performance marketing. SEO + Google + Meta + content. For startups with ₹10L+ MRR.", features: ["Everything in Lean", "Google + Meta Ads", "OOH strategy", "Bi-weekly strategy calls", "AI Creative Studio"], highlight: true, badge: "Most Popular", cta: "Start Growth" },
+        { name: "Digital Lean Start", price: "Contact Us", period: "", desc: "For early-stage D2C and SaaS. SEO foundation + one paid channel (Google or Meta). Ideal for first 90 days of growth.", features: ["SEO & content setup", "1 paid ad channel", "Monthly performance report", "Creative production"], highlight: false, cta: "Get a Quote" },
+        { name: "Growth Retainer", price: "Contact Us", period: "", desc: "Multi-channel performance marketing. SEO + Google + Meta + content. For startups with ₹10L+ MRR.", features: ["Everything in Lean", "Google + Meta Ads", "OOH strategy", "Bi-weekly strategy calls", "AI Creative Studio"], highlight: true, badge: "Most Popular", cta: "Get a Quote" },
         { name: "Retail + Digital", price: "Custom", desc: "Full-funnel: digital performance + OOH + retail distribution. For consumer brands going offline.", features: ["Everything in Growth", "OOH placements", "Retail distribution", "Distributor management", "Sales team support"], highlight: false, cta: "Book a Call" },
       ],
       bottomCta: {
@@ -684,22 +693,22 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "From Shopify builds to custom SaaS platforms, we engineer every digital experience with one obsession: conversion. Beautiful design meets technical rigour.",
         ctaText: "Start a Project",
         stats: [
-          { value: "35%", label: "Avg. checkout conversion increase" },
-          { value: "< 2s", label: "Target page load time" },
-          { value: "60+", label: "Products shipped" },
+          { value: "20+", label: "Projects delivered" },
+          { value: "4 Days", label: "Typical website delivery" },
+          { value: "100%", label: "Source code ownership" },
         ],
       },
       faq: [
         { question: "What technologies do you use?", answer: "Our frontend stack: Next.js, React, TypeScript, Tailwind CSS. Backend: Node.js, Python (FastAPI), PostgreSQL, Redis. Cloud: AWS and Vercel for deployment. For e-commerce, we specialise in Shopify (plus custom themes) and WooCommerce." },
-        { question: "How long does a typical e-commerce build take?", answer: "A standard Shopify build (custom theme, up to 5 collection pages, checkout customisation) takes 2–3 weeks. A fully custom e-commerce platform with advanced features takes 6–10 weeks. We work in 2-week sprints with demos at every stage." },
-        { question: "Do you provide ongoing maintenance and support?", answer: "Yes. We offer monthly retainer packages for ongoing development, bug fixes, performance monitoring, and feature additions. Retainers start at ₹20,000/month for basic maintenance up to ₹80,000/month for dedicated development capacity." },
+        { question: "How long does a typical e-commerce build take?", answer: "A standard website build takes 4 working days. For custom e-commerce platforms with advanced features, timelines are scoped during discovery and typically range from 2 to 8 weeks depending on complexity." },
+        { question: "Do you provide ongoing maintenance and support?", answer: "Yes. We offer monthly retainer packages for ongoing development, bug fixes, performance monitoring, and feature additions. Contact us for a quote based on your maintenance needs." },
         { question: "Can you redesign our existing website?", answer: "Yes, and this is where we often see the biggest wins. We start with a conversion audit of your existing site, identify the biggest drop-off points, and redesign with a clear CRO strategy. Typical result: 30–60% improvement in lead generation." },
         { question: "Who owns the code after the project is complete?", answer: "You own 100% of the code, design assets, and intellectual property. We provide full source code handoff via GitHub. No lock-in, no licensing fees. You can take the code anywhere." },
       ],
       pricing: [
-        { name: "Shopify Build", price: "₹24,999", period: "one-time", features: [], desc: "Custom Shopify theme, product pages, checkout, and payment gateway. Delivered in 2–3 weeks.", highlight: false, cta: "Start Shopify Project" },
-        { name: "Custom Web App", price: "₹74,999+", period: "one-time", features: [], desc: "Bespoke SaaS or platform. Full-stack, cloud-deployed, handed off via GitHub. 6–10 week sprints.", highlight: true, badge: "Most Common", cta: "Scope My App" },
-        { name: "Monthly Retainer", price: "₹20,000", period: "/month", features: [], desc: "Ongoing development, bug fixes, performance monitoring, and feature additions.", highlight: false, cta: "Start Retainer" },
+        { name: "Shopify Build", price: "₹10,999", period: "one-time", features: [], desc: "Custom Shopify theme, product pages, checkout, and payment gateway. Delivered in 4 working days.", highlight: false, cta: "Start Shopify Project" },
+        { name: "Custom Web App", price: "Contact Us", period: "", features: [], desc: "Bespoke SaaS or platform. Full-stack, cloud-deployed, handed off via GitHub. 2-8 week sprints.", highlight: true, badge: "Most Common", cta: "Scope My App" },
+        { name: "Monthly Retainer", price: "Contact Us", period: "", features: [], desc: "Ongoing development, bug fixes, performance monitoring, and feature additions.", highlight: false, cta: "Get a Quote" },
       ],
       bottomCta: {
         title: "Let's build something exceptional.",
@@ -716,18 +725,18 @@ export const defaultSiteContent: SiteContent = {
         label: "Investor Funding & Pitch Decks",
         title: "Turn Metrics Into",
         titleHighlight: "a Compelling Narrative.",
-        subtitle: "We transform your raw data into the exact story institutional investors want to hear. Pitch deck creation, financial modelling, and warm introductions to our vetted network.",
+        subtitle: "We transform your raw data into the exact story institutional investors want to hear. Pitch deck creation, financial modelling, and warm introductions to 775+ vetted investors: VCs, Angels, Banks, Family Offices, and Grants.",
         ctaText: "Build My Deck",
         stats: [
-          { value: "₹40Cr+", label: "Funding facilitated" },
-          { value: "200+", label: "Investor introductions" },
+          { value: "58+", label: "Startups served" },
+          { value: "775+", label: "Vetted investor contacts" },
           { value: "73%", label: "Decks that secured term sheets" },
         ],
       },
       faq: [
         { question: "What does the pitch deck creation process look like?", answer: "Week 1: Discovery call + competitive analysis + narrative structure workshop. Week 2: First draft (8 slides). Week 3: Revisions + financial model integration. Week 4: Final deck + investor Q&A prep session. We also provide a 30-minute mock pitch before your first investor meeting." },
         { question: "What is the 12-slide master deck structure?", answer: "Our proven structure: 1) Cover + Hook, 2) Problem, 3) Solution, 4) Market Size (TAM/SAM/SOM), 5) Product Demo, 6) Business Model, 7) Go-to-Market, 8) Traction, 9) Team, 10) Financials, 11) Competition, 12) The Ask. Each slide has a single, clear message." },
-        { question: "How do you source investors for matchmaking?", answer: "We maintain a live network of 25+ vetted investor connects active in India. We only make warm introductions. Cold email blasting destroys reputation. Matching is based on sector fit, cheque size, and stage alignment." },
+        { question: "How do you source investors for matchmaking?", answer: "We maintain a live network of 775+ vetted investor contacts across VCs, Angels, Banks, Family Offices, and Grants active in India. We only make warm introductions based on sector fit, cheque size, and stage alignment." },
         { question: "What does the n8n automation process mean for investor outreach?", answer: "We use n8n (a workflow automation tool) to systematise investor pipeline management. This includes automated follow-up sequences, CRM tracking, meeting scheduling, and data room access management. No warm lead falls through the cracks." },
         { question: "Do you take equity for your fundraising services?", answer: "No equity for pitch deck creation or financial modelling. For investor matchmaking and warm introductions, we charge a fixed project fee upfront. We do not take success fees or equity percentages. This keeps our incentives clean and conflict-free." },
       ],

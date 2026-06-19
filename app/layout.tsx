@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SiteChrome from "@/components/layout/SiteChrome";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /** Valid absolute URL for metadataBase / OG resolution. Accepts host:port without scheme. */
 function metadataBaseUrl(): URL {
@@ -73,6 +75,8 @@ export default function RootLayout({
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAFA", color: "#3d4246" }}>
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

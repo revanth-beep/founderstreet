@@ -1,44 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Lightbulb, Rocket, BarChart3, Users } from "lucide-react";
+import { Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Users2, Target, Search } from "lucide-react";
+import type { ProcessSectionCms } from "@/lib/site-content-defaults";
 
-const steps = [
-  {
-    icon: Lightbulb,
-    step: "01",
-    title: "Idea Validation",
-    desc: "Market sizing, SWOT, and unit economics before a single rupee is spent. We stress-test the concept with investor-grade rigour.",
-    duration: "Week 1–2",
-    color: "#66BB3F",
-  },
-  {
-    icon: Rocket,
-    step: "02",
-    title: "Foundation Build",
-    desc: "Company incorporated, bank accounts open, IP registered, and accounting setup live — legally ready to operate.",
-    duration: "Week 2–4",
-    color: "#56AD32",
-  },
-  {
-    icon: BarChart3,
-    step: "03",
-    title: "Growth Execution",
-    desc: "Full-stack marketing, e-commerce, and retail distribution activated simultaneously for maximum early momentum.",
-    duration: "Month 2–6",
-    color: "#7BC95A",
-  },
-  {
-    icon: Users,
-    step: "04",
-    title: "Investor Readiness",
-    desc: "Pitch deck, 5-year financial models, and direct warm introductions to our vetted angel and VC network.",
-    duration: "Month 4–8",
-    color: "#66BB3F",
-  },
-];
+const ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Users2, Target, Search,
+};
 
-export default function ProcessSection() {
+const STEP_COLORS = ["#66BB3F", "#56AD32", "#7BC95A", "#66BB3F"];
+
+export default function ProcessSection({ cms }: { cms: ProcessSectionCms }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -64,17 +36,18 @@ export default function ProcessSection() {
       <div className="container-custom">
         <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 4rem" }}>
           <span className="label-tag" style={{ marginBottom: "1rem" }}>
-            Our Process
+            {cms.eyebrow}
           </span>
           <h2 className="heading-lg" style={{ marginTop: "0.75rem" }}>
-            From Idea to Investment-Ready{" "}
-            <span className="gradient-text">in Under 6 Months</span>
+            {cms.title}{" "}
+            <span className="gradient-text">{cms.titleGradient}</span>
           </h2>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1px", background: "#E0E0DC", border: "1px solid #E0E0DC", borderRadius: "12px", overflow: "hidden" }} className="proc-grid">
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
+          {cms.steps.map((step, idx) => {
+            const Icon = ICON_MAP[step.iconName] ?? Lightbulb;
+            const color = STEP_COLORS[idx % STEP_COLORS.length];
             return (
               <div
                 key={step.step}
@@ -91,7 +64,7 @@ export default function ProcessSection() {
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                   <div style={{
                     width: "48px", height: "48px",
-                    background: step.color,
+                    background: color,
                     borderRadius: "10px",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0,
@@ -114,7 +87,7 @@ export default function ProcessSection() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.6875rem", fontWeight: 700,
                     letterSpacing: "0.1em", textTransform: "uppercase" as const,
-                    color: step.color,
+                    color: color,
                     background: "#E9F6E4",
                     padding: "0.2rem 0.625rem", borderRadius: "99px"
                   }}>
@@ -145,8 +118,8 @@ export default function ProcessSection() {
                 }}>
                   <div style={{
                     height: "100%", borderRadius: "99px",
-                    background: step.color,
-                    width: `${(idx + 1) * 25}%`
+                    background: color,
+                    width: `${(idx + 1) * Math.round(100 / cms.steps.length)}%`
                   }} />
                 </div>
               </div>

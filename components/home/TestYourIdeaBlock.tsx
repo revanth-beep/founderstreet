@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Zap, TrendingUp, AlertTriangle, Target, Sparkles } from "lucide-react";
+import type { HealthCheckBlockCms } from "@/lib/site-content-defaults";
 
 const swotItems = [
   {
@@ -38,7 +39,7 @@ const swotItems = [
   },
 ];
 
-export default function TestYourIdeaBlock() {
+export default function TestYourIdeaBlock({ cms }: { cms: HealthCheckBlockCms }) {
   return (
     <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
       <div className="container-custom">
@@ -47,33 +48,29 @@ export default function TestYourIdeaBlock() {
           {/* Left: copy */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
-              <span className="label-tag">Start Here</span>
+              <span className="label-tag">{cms.eyebrow}</span>
               <span style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#56AD32", background: "#E9F6E4", border: "1px solid #CEEAB8", padding: "0.2rem 0.625rem", borderRadius: "99px" }}>
                 <Sparkles size={11} />
-                Powered by AI
+                {cms.badge}
               </span>
             </div>
             <h2 className="heading-lg" style={{ marginBottom: "1rem", marginTop: "0.5rem" }}>
-              Get a Free SWOT Snapshot{" "}
-              <span className="gradient-text">of Your Idea</span>
+              {cms.title}{" "}
+              <span className="gradient-text">{cms.titleGradient}</span>
             </h2>
             <p className="body-lg" style={{ marginBottom: "2rem", maxWidth: "440px" }}>
-              Before you commit time and capital, stress-test your concept. Answer 5 questions and get a personalised SWOT report instantly, free.
+              {cms.subtitle}
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {[
-                "Identify your biggest risks before investors do",
-                "Understand market sizing and competitive gaps",
-                "Delivered to your inbox in under 60 seconds",
-              ].map(point => (
+              {cms.bullets.map(point => (
                 <li key={point} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "#5A5A5A", lineHeight: 1.6 }}>
                   <span style={{ color: "#66BB3F", fontWeight: 700, marginTop: "1px", flexShrink: 0 }}>→</span>
                   {point}
                 </li>
               ))}
             </ul>
-            <Link href="/startup-health-check" className="btn-primary">
-              Run Your Free SWOT Now
+            <Link href={cms.buttonHref} className="btn-primary">
+              {cms.buttonLabel}
               <ArrowRight size={16} />
             </Link>
           </div>

@@ -17,6 +17,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
+const BUNDLE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  FileText, Shield, Award, Building2,
+};
+
 const comparisonColumns = [
   { key: "pvtltd", label: "Private Limited", highlight: true },
   { key: "llp", label: "LLP" },
@@ -36,33 +40,6 @@ const comparisonRows = [
   { feature: "Best For", values: ["VC-backed startups", "Professional services", "Freelancers/solo ops"] },
 ];
 
-const steps = [
-  { step: "01", title: "Director Identification Number (DIN)", desc: "We apply for DINs for all proposed directors. This is the first regulatory step in the incorporation process.", time: "Day 1–2" },
-  { step: "02", title: "Digital Signature Certificate (DSC)", desc: "We obtain Class-3 DSCs for all directors, required for signing e-forms on the MCA portal.", time: "Day 1–3" },
-  { step: "03", title: "Name Reservation via RUN", desc: "We file a name reservation request with MCA and get your company name approved. We send 3 alternatives.", time: "Day 3–5" },
-  { step: "04", title: "MOA & AOA Drafting", desc: "We draft bespoke Memorandum and Articles of Association tailored to your business and investor needs.", time: "Day 4–6" },
-  { step: "05", title: "SPICe+ Filing & CIN Issuance", desc: "We file the SPICe+ form with MCA. On approval, you receive your Certificate of Incorporation and CIN.", time: "Day 6–10" },
-  { step: "06", title: "PAN, TAN & Bank Account", desc: "We immediately file for PAN and TAN, and assist in opening your company's current bank account.", time: "Day 10–14" },
-];
-
-const bundles = [
-  {
-    icon: FileText,
-    title: "Complete Incorporation Bundle",
-    items: ["Certificate of Incorporation", "PAN & TAN registration", "MOA & AOA documents", "Share certificates", "First board resolution", "Commencement certificate"],
-  },
-  {
-    icon: Shield,
-    title: "IP & Brand Protection",
-    items: ["Trademark search & filing", "Class identification", "Domain registration", "Brand name legal clearance", "Logo copyright registration", "NDA templates"],
-  },
-  {
-    icon: Award,
-    title: "Post-Incorporation Setup",
-    items: ["Startup India recognition", "GST registration (if needed)", "Bank account assistance", "Company letterhead & seal", "Annual compliance calendar", "CA introduction"],
-  },
-];
-
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
   fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)",
@@ -75,7 +52,7 @@ const h2 = {
 export default async function IncorporationPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.incorporation;
-  const { hero, faq, pricing, bottomCta } = cms;
+  const { hero, faq, pricing, bottomCta, steps, bundles } = cms;
 
   return (
     <>
@@ -186,7 +163,7 @@ export default async function IncorporationPage() {
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1.5rem" }}>
             {bundles.map((bundle) => {
-              const Icon = bundle.icon;
+              const Icon = BUNDLE_ICON_MAP[bundle.iconName] ?? FileText;
               return (
                 <div key={bundle.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.5rem" }}>
                   <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>

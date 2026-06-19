@@ -16,18 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
-const coreServices = [
-  { icon: FileText, title: "Pitch Deck Creation", desc: "The 12-slide master deck designed to make investors lean forward. We combine data storytelling with visual design excellence.", deliverables: ["12-slide investor deck", "Narrative storyboarding", "Visual design (Figma/PowerPoint)", "Investor Q&A script", "Mock pitch session", "3 revision rounds"] },
-  { icon: BarChart3, title: "Financial Projections", desc: "5-year Excel models that withstand investor scrutiny. Built bottom-up with clear assumptions, scenario analysis, and key driver sensitivity.", deliverables: ["5-year P&L projection", "Revenue & cost model", "3 scenarios (bear/base/bull)", "Cohort analysis", "Fundraise utilisation plan", "Cap table modelling"] },
-  { icon: Users, title: "Investor Matchmaking", desc: "Warm introductions to the right investors at the right stage. No cold emails. We only connect you with investors who've pre-indicated interest.", deliverables: ["Investor database scan", "Stage & sector matching", "Warm email introductions", "Meeting preparation brief", "Pipeline CRM setup (n8n)", "Post-meeting follow-up"] },
-];
-
-const beyondAlgorithm = [
-  { icon: Search, title: "Portfolio Conflict Checks", desc: "We analyse the fund's active portfolio to ensure they have not quietly invested in your direct competitor in the past 6 months." },
-  { icon: Zap, title: "Dry Powder & Deployment Velocity", desc: "We track exactly where a fund is in its lifecycle: actively deploying or just taking coffee chats with no capital to deploy." },
-  { icon: Users, title: "Partner-Level Profiling", desc: "Funds do not write cheques. Partners do. We identify exactly which General Partner holds the mandate for your specific sector and stage." },
-  { icon: Target, title: "Follow-On Capacity & Strategic Fit", desc: "We analyse past deals to assess the investor's track record of participating in subsequent rounds (Series A/B)." },
-];
+const SERVICE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  FileText, BarChart3, Users, Search, Shield, Zap, Target, TrendingUp,
+};
 
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
@@ -40,7 +31,7 @@ const h2 = {
 export default async function FundingPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.funding;
-  const { hero, faq, pricing, bottomCta } = cms;
+  const { hero, faq, pricing, bottomCta, coreServices, beyondAlgorithm } = cms;
 
   return (
     <>
@@ -58,7 +49,7 @@ export default async function FundingPage() {
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1.5rem" }}>
             {coreServices.map((service) => {
-              const Icon = service.icon;
+              const Icon = SERVICE_ICON_MAP[service.iconName] ?? FileText;
               return (
                 <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.5rem" }}>
                   <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
@@ -136,7 +127,7 @@ export default async function FundingPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", marginBottom: "3rem" }}>
             {beyondAlgorithm.map(p => {
-              const Icon = p.icon;
+              const Icon = SERVICE_ICON_MAP[p.iconName] ?? Search;
               return (
                 <div key={p.title} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", padding: "1.5rem" }}>
                   <div style={{ width: "40px", height: "40px", borderRadius: "8px", background: "rgba(102,187,63,0.15)", border: "1px solid rgba(102,187,63,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>

@@ -15,32 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
-const services = [
-  {
-    icon: TrendingUp,
-    title: "Virtual CFO Services",
-    desc: "High-level financial forecasting and runway management for early-stage startups. You get the strategic clarity of a ₹40L/yr CFO at a fraction of the cost.",
-    features: ["Monthly financial health reports", "12-month cash flow forecasting", "Fundraising financial modelling", "Board-ready P&L presentations", "Burn rate optimisation", "Scenario planning (3 cases)"],
-  },
-  {
-    icon: FileText,
-    title: "Bookkeeping & Payroll",
-    desc: "Automated, accurate, and on time. We use cloud accounting tools to give you real-time visibility into your finances without any manual reconciliation.",
-    features: ["Monthly bookkeeping & reconciliation", "Payroll processing & payslips", "Vendor payment management", "Bank statement reconciliation", "TDS deduction & filing", "Expense management"],
-  },
-  {
-    icon: Receipt,
-    title: "GST & Taxation",
-    desc: "Zero penalties. Optimised tax structures. We ensure every filing is on time and your tax structure is designed to minimise liability legally.",
-    features: ["GST registration & filing (GSTR-1, 3B)", "Advance tax computation", "Annual income tax filing", "Tax audit support", "Transfer pricing advisory", "Startup tax exemptions (80-IAC)"],
-  },
-  {
-    icon: PieChart,
-    title: "Investor Reporting",
-    desc: "Institutional-grade reporting for your angel investors, lead funds, and board. Structured exactly as institutional investors expect to see it.",
-    features: ["Monthly MIS reports", "Investor deck financials", "KPI dashboards", "Cohort analysis", "Due diligence data room", "ESOP accounting"],
-  },
-];
+const SERVICE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  TrendingUp, FileText, Receipt, PieChart, Calculator,
+};
 
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
@@ -53,7 +30,7 @@ const h2 = {
 export default async function AccountingPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.accounting;
-  const { hero, faq, pricing, bottomCta } = cms;
+  const { hero, faq, pricing, bottomCta, serviceCards } = cms;
 
   return (
     <>
@@ -75,8 +52,8 @@ export default async function AccountingPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "1.5rem" }}>
-            {services.map((service) => {
-              const Icon = service.icon;
+            {serviceCards.map((service) => {
+              const Icon = SERVICE_ICON_MAP[service.iconName] ?? TrendingUp;
               return (
                 <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "clamp(1.25rem, 3vw, 2rem)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.25rem" }}>

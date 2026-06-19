@@ -135,6 +135,85 @@ export type AboutPageCms = {
   };
 };
 
+// ─── Nav / Footer link types ───────────────────────────────────────────────
+
+export type NavServiceItem = { name: string; href: string; desc: string };
+export type FooterLink = { name: string; href: string };
+
+// ─── Home section types ────────────────────────────────────────────────────
+
+export type WhyReason = { iconName: string; title: string; desc: string };
+export type ComparisonRow = { label: string; them: string; us: string };
+export type ProcessStep = { iconName: string; step: string; title: string; desc: string; duration: string };
+export type HomeFaqItem = { q: string; a: string };
+
+export type WhySectionCms = {
+  eyebrow: string;
+  title: string;
+  titleGradient: string;
+  subtitle: string;
+  reasons: WhyReason[];
+  comparison: ComparisonRow[];
+};
+
+export type ProcessSectionCms = {
+  eyebrow: string;
+  title: string;
+  titleGradient: string;
+  steps: ProcessStep[];
+};
+
+export type CtaSectionCms = {
+  title: string;
+  titleItalic: string;
+  subtitle: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+  note: string;
+};
+
+export type HomeFaqCms = {
+  eyebrow: string;
+  title: string;
+  titleGradient: string;
+  items: HomeFaqItem[];
+};
+
+export type StyleworkCms = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
+  href: string;
+};
+
+export type HealthCheckBlockCms = {
+  eyebrow: string;
+  badge: string;
+  title: string;
+  titleGradient: string;
+  subtitle: string;
+  bullets: string[];
+  buttonLabel: string;
+  buttonHref: string;
+};
+
+// ─── Service page extra content types ─────────────────────────────────────
+
+export type ValidationDeliverable = { iconName: string; title: string; desc: string; points: string[] };
+export type IncorporationStep = { step: string; title: string; desc: string; time: string };
+export type IncorporationBundle = { iconName: string; title: string; items: string[] };
+export type AccountingServiceCard = { iconName: string; title: string; desc: string; features: string[] };
+export type MarketingServiceItem = { title: string; desc: string; metrics: string[] };
+export type MarketingCategory = { category: string; iconName: string; items: MarketingServiceItem[] };
+export type MarketingResult = { metric: string; context: string; detail: string };
+export type AiStudioCard = { n: string; title: string; sub: string; tool: string; note: string };
+export type WebDevServiceCard = { iconName: string; number: string; title: string; desc: string; features: string[] };
+export type FundingCoreService = { iconName: string; title: string; desc: string; deliverables: string[] };
+export type BeyondAlgorithmCard = { iconName: string; title: string; desc: string };
+
 // ─── Service page types ────────────────────────────────────────────────────
 
 export type ServicePagePricingTier = {
@@ -206,6 +285,7 @@ export type SiteContent = {
     logoUrl: string;
     logoSize: number;
     logoTagline: string;
+    services: NavServiceItem[];
   };
   footer: {
     brandName: string;
@@ -217,6 +297,8 @@ export type SiteContent = {
     copyrightTemplate: string;
     logoUrl: string;
     socialLinks: { linkedin: string; twitter: string; instagram: string };
+    serviceLinks: FooterLink[];
+    companyLinks: FooterLink[];
   };
   home: {
     hero: HeroCms;
@@ -225,6 +307,12 @@ export type SiteContent = {
     resourcesTeaser: ResourcesTeaserCms;
     partnerMarquee: PartnerMarqueeCms;
     founderStories: FounderStoriesCms;
+    why: WhySectionCms;
+    process: ProcessSectionCms;
+    cta: CtaSectionCms;
+    faq: HomeFaqCms;
+    stylework: StyleworkCms;
+    healthCheckBlock: HealthCheckBlockCms;
   };
   aboutPage: AboutPageCms;
   resourcesPage: {
@@ -239,12 +327,12 @@ export type SiteContent = {
   teamPage: TeamPageCms;
   contactPage: ContactPageCms;
   servicePages: {
-    validation: ServicePageCms;
-    incorporation: ServicePageCms;
-    accounting: ServicePageCms;
-    marketing: ServicePageCms;
-    webDevelopment: ServicePageCms;
-    funding: ServicePageCms;
+    validation: ServicePageCms & { deliverables: ValidationDeliverable[] };
+    incorporation: ServicePageCms & { steps: IncorporationStep[]; bundles: IncorporationBundle[] };
+    accounting: ServicePageCms & { serviceCards: AccountingServiceCard[] };
+    marketing: ServicePageCms & { serviceCategories: MarketingCategory[]; results: MarketingResult[]; aiStudio: AiStudioCard[] };
+    webDevelopment: ServicePageCms & { serviceCards: WebDevServiceCard[]; techStack: string[] };
+    funding: ServicePageCms & { coreServices: FundingCoreService[]; beyondAlgorithm: BeyondAlgorithmCard[] };
   };
   /** Escape hatch: arbitrary JSON merged on top (advanced). */
   custom?: Record<string, unknown>;
@@ -262,6 +350,15 @@ export const defaultSiteContent: SiteContent = {
     logoUrl: "/logos/logo-icon-color.png",
     logoSize: 44,
     logoTagline: "",
+    services: [
+      { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
+      { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
+      { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
+      { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
+      { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+      { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
+      { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
+    ],
   },
   footer: {
     brandName: "Founderstreet",
@@ -278,6 +375,23 @@ export const defaultSiteContent: SiteContent = {
       twitter: "https://twitter.com",
       instagram: "https://instagram.com",
     },
+    serviceLinks: [
+      { name: "Test Your Idea", href: "/services/validation" },
+      { name: "Company Incorporation", href: "/services/incorporation" },
+      { name: "Accounting & Virtual CFO", href: "/services/accounting" },
+      { name: "Digital Marketing", href: "/services/marketing" },
+      { name: "Web Development", href: "/services/web-development" },
+      { name: "Investor Funding", href: "/services/funding" },
+    ],
+    companyLinks: [
+      { name: "About Us", href: "/about" },
+      { name: "Our Team", href: "/team" },
+      { name: "Resources", href: "/resources" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "Locations", href: "/locations" },
+      { name: "Startup Health Check", href: "/startup-health-check" },
+      { name: "Contact Us", href: "/contact" },
+    ],
   },
   home: {
     hero: {
@@ -387,6 +501,81 @@ export const defaultSiteContent: SiteContent = {
           rating: 5,
         },
       ],
+    },
+    why: {
+      eyebrow: "Why Founderstreet",
+      title: "The Infrastructure Layer",
+      titleGradient: "Investors Expect",
+      subtitle:
+        "Most early-stage startups fail not because of bad ideas, but because of bad execution. We remove every operational, legal, and financial blocker before they slow you down.",
+      reasons: [
+        { iconName: "ShieldCheck", title: "Compliance-First", desc: "Every structure we build passes due diligence. Our playbooks are designed for investors, not just regulators." },
+        { iconName: "Zap", title: "Startup Velocity", desc: "Incorporation in 10 working days. Website in 4 days. Pitch deck in 5 days. We move fast without sacrificing rigour." },
+        { iconName: "Users2", title: "Embedded, Not Outsourced", desc: "We integrate directly with your team: Slack, Notion, weekly calls. You get a co-founder, not a vendor." },
+        { iconName: "Target", title: "Outcome-Aligned", desc: "No retainers for mediocrity. Our model is built on milestone delivery: our incentives align with yours." },
+      ],
+      comparison: [
+        { label: "Incorporation speed", them: "4–6 weeks", us: "< 10 days" },
+        { label: "Financial reporting", them: "Quarterly PDFs", us: "Live dashboards" },
+        { label: "Investor intro access", them: "None", us: "700+ vetted contacts" },
+        { label: "Pitch deck quality", them: "Template-based", us: "Bespoke narrative" },
+        { label: "Pricing model", them: "Monthly retainer", us: "Flexible pricing" },
+      ],
+    },
+    process: {
+      eyebrow: "Our Process",
+      title: "From Idea to Investment-Ready",
+      titleGradient: "in Under 6 Months",
+      steps: [
+        { iconName: "Lightbulb", step: "01", title: "Idea Validation", desc: "Market sizing, SWOT, and unit economics before a single rupee is spent. We stress-test the concept with investor-grade rigour.", duration: "Week 1–2" },
+        { iconName: "Rocket", step: "02", title: "Foundation Build", desc: "Company incorporated, bank accounts open, IP registered, and accounting setup live: legally ready to operate.", duration: "Week 2–4" },
+        { iconName: "BarChart3", step: "03", title: "Growth Execution", desc: "Full-stack marketing, e-commerce, and retail distribution activated simultaneously for maximum early momentum.", duration: "Month 2–6" },
+        { iconName: "Users", step: "04", title: "Investor Readiness", desc: "Pitch deck, 5-year financial models, and direct warm introductions to our vetted angel and VC network.", duration: "Month 4–8" },
+      ],
+    },
+    cta: {
+      title: "Ready to Build Something",
+      titleItalic: "Extraordinary?",
+      subtitle: "Book a free 30-minute strategy call. We'll review your idea, identify your biggest execution gaps, and show you exactly how we can help.",
+      primaryLabel: "Book a Free Strategy Call",
+      primaryHref: "/contact",
+      secondaryLabel: "Take the Health Check",
+      secondaryHref: "/startup-health-check",
+      note: "No commitment required · Response within 24 hours",
+    },
+    faq: {
+      eyebrow: "Common Questions",
+      title: "Answers for",
+      titleGradient: "Founders",
+      items: [
+        { q: "How long does company incorporation take?", a: "We get your company live in under 10 working days. The timeline covers Director Identification Numbers (DIN), Digital Signature Certificates (DSC), name reservation via MCA, MOA and AOA drafting, SPICe+ filing, and PAN and TAN registration. All filings handled by us." },
+        { q: "What does the Virtual CFO service include?", a: "Virtual CFO covers monthly bookkeeping, GST and TDS compliance, payroll management, statutory filing (ITR, ROC), and strategic financial forecasting. You also get a dedicated CA, live financial dashboards, and investor-ready reporting. Pricing starts at ₹4,999/month." },
+        { q: "How does the investor matching work?", a: "We maintain a curated list of 775+ vetted investors across VCs, Angels, Banks, Family Offices, and Grants with active investment mandates. After understanding your stage, sector, and funding requirement, we make warm introductions to the right investors and support the conversation through term sheet stage." },
+        { q: "Do you work with idea-stage founders?", a: "Yes. Many of our clients come to us at Day Zero: pre-product, pre-revenue, and sometimes pre-team. Our validation and incorporation services are specifically designed for early-stage founders who need a structured foundation before building." },
+        { q: "What is your pricing model?", a: "Pricing varies by service. Company Incorporation starts at ₹6,999. Virtual CFO starts at ₹4,999/month. Web development starts at ₹24,999. For investor funding and marketing engagements, we work on milestone-based retainers. Book a discovery call for a custom quote." },
+        { q: "Do you offer refunds?", a: "We stand behind our work with a delivery guarantee on all compliance and incorporation filings. If we miss a committed deadline due to our error, we refund the fee for that milestone. Service fees for completed deliverables are non-refundable." },
+      ],
+    },
+    stylework: {
+      eyebrow: "Exclusive Ecosystem Perk",
+      title: "Priority co-working access for Founderstreet portfolio companies",
+      description: "Because Founderstreet operates as your infrastructure layer, portfolio companies receive priority onboarding and discounted desk and cabin rates at Stylework co-working locations across India.",
+      buttonLabel: "Explore Ecosystem Perks",
+      href: "/contact",
+    },
+    healthCheckBlock: {
+      eyebrow: "Start Here",
+      badge: "Powered by AI",
+      title: "Get a Free SWOT Snapshot",
+      titleGradient: "of Your Idea",
+      subtitle: "Before you commit time and capital, stress-test your concept. Answer 5 questions and get a personalised SWOT report instantly, free.",
+      bullets: [
+        "Identify your biggest risks before investors do",
+        "Understand market sizing and competitive gaps",
+        "Delivered to your inbox in under 60 seconds",
+      ],
+      buttonLabel: "Run Your Free SWOT Now",
+      buttonHref: "/startup-health-check",
     },
   },
   aboutPage: {
@@ -576,6 +765,11 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Book a free 30-minute discovery call and we'll scope out your validation project within 24 hours.",
         buttonLabel: "Start My Validation",
       },
+      deliverables: [
+        { iconName: "BarChart3", title: "Market Sizing & TAM/SAM/SOM Analysis", desc: "We model your total addressable market from first principles, not just copying a McKinsey slide. You'll know the true revenue ceiling and exactly what share is realistic.", points: ["Bottom-up market model", "Revenue potential by geography", "3-scenario sizing (conservative/base/bull)"] },
+        { iconName: "Target", title: "SWOT & Competitor Benchmarking", desc: "We audit every incumbent in your space: their CAC, LTV, pricing, and the gaps in their product. You'll know exactly where they're failing and how to win.", points: ["Competitive landscape map", "Whitespace opportunity analysis", "Positioning recommendation"] },
+        { iconName: "TrendingUp", title: "Unit Economics Modelling", desc: "The most important slide in your deck. We build the exact CAC vs LTV model investors will stress-test, including payback periods and contribution margin.", points: ["CAC by acquisition channel", "LTV by cohort", "Payback period & break-even model"] },
+      ],
     },
     incorporation: {
       meta: {
@@ -610,6 +804,19 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Get your company live in 10 working days. We handle every filing; you focus on building your product.",
         buttonLabel: "Start Incorporation",
       },
+      steps: [
+        { step: "01", title: "Director Identification Number (DIN)", desc: "We apply for DINs for all proposed directors. This is the first regulatory step in the incorporation process.", time: "Day 1–2" },
+        { step: "02", title: "Digital Signature Certificate (DSC)", desc: "We obtain Class-3 DSCs for all directors, required for signing e-forms on the MCA portal.", time: "Day 1–3" },
+        { step: "03", title: "Name Reservation via RUN", desc: "We file a name reservation request with MCA and get your company name approved. We send 3 alternatives.", time: "Day 3–5" },
+        { step: "04", title: "MOA & AOA Drafting", desc: "We draft bespoke Memorandum and Articles of Association tailored to your business and investor needs.", time: "Day 4–6" },
+        { step: "05", title: "SPICe+ Filing & CIN Issuance", desc: "We file the SPICe+ form with MCA. On approval, you receive your Certificate of Incorporation and CIN.", time: "Day 6–10" },
+        { step: "06", title: "PAN, TAN & Bank Account", desc: "We immediately file for PAN and TAN, and assist in opening your company's current bank account.", time: "Day 10–14" },
+      ],
+      bundles: [
+        { iconName: "FileText", title: "Complete Incorporation Bundle", items: ["Certificate of Incorporation", "PAN & TAN registration", "MOA & AOA documents", "Share certificates", "First board resolution", "Commencement certificate"] },
+        { iconName: "Shield", title: "IP & Brand Protection", items: ["Trademark search & filing", "Class identification", "Domain registration", "Brand name legal clearance", "Logo copyright registration", "NDA templates"] },
+        { iconName: "Award", title: "Post-Incorporation Setup", items: ["Startup India recognition", "GST registration (if needed)", "Bank account assistance", "Company letterhead & seal", "Annual compliance calendar", "CA introduction"] },
+      ],
     },
     accounting: {
       meta: {
@@ -646,6 +853,12 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Stop managing spreadsheets. Get a dedicated finance team for less than the cost of a part-time accountant.",
         buttonLabel: "Start Financial Setup",
       },
+      serviceCards: [
+        { iconName: "TrendingUp", title: "Virtual CFO Services", desc: "High-level financial forecasting and runway management for early-stage startups. You get the strategic clarity of a ₹40L/yr CFO at a fraction of the cost.", features: ["Monthly financial health reports", "12-month cash flow forecasting", "Fundraising financial modelling", "Board-ready P&L presentations", "Burn rate optimisation", "Scenario planning (3 cases)"] },
+        { iconName: "FileText", title: "Bookkeeping & Payroll", desc: "Automated, accurate, and on time. We use cloud accounting tools to give you real-time visibility into your finances without any manual reconciliation.", features: ["Monthly bookkeeping & reconciliation", "Payroll processing & payslips", "Vendor payment management", "Bank statement reconciliation", "TDS deduction & filing", "Expense management"] },
+        { iconName: "Receipt", title: "GST & Taxation", desc: "Zero penalties. Optimised tax structures. We ensure every filing is on time and your tax structure is designed to minimise liability legally.", features: ["GST registration & filing (GSTR-1, 3B)", "Advance tax computation", "Annual income tax filing", "Tax audit support", "Transfer pricing advisory", "Startup tax exemptions (80-IAC)"] },
+        { iconName: "PieChart", title: "Investor Reporting", desc: "Institutional-grade reporting for your angel investors, lead funds, and board. Structured exactly as institutional investors expect to see it.", features: ["Monthly MIS reports", "Investor deck financials", "KPI dashboards", "Cohort analysis", "Due diligence data room", "ESOP accounting"] },
+      ],
     },
     marketing: {
       meta: {
@@ -680,6 +893,44 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Book a free growth audit. We'll map out your acquisition channels and give you a 90-day action plan.",
         buttonLabel: "Get My Growth Audit",
       },
+      serviceCategories: [
+        {
+          category: "Digital & Performance",
+          iconName: "Monitor",
+          items: [
+            { title: "SEO & Content Marketing", desc: "Dominate organic search for your category. We build topical authority through long-form content, technical SEO, and link building that compounds traffic over time.", metrics: ["3–6 month to page 1", "Evergreen traffic asset"] },
+            { title: "Google Ads (Search & Display)", desc: "High-intent leads at the exact moment of need. We manage campaigns with surgical precision: Quality Score optimisation, negative keyword management, and bid strategies.", metrics: ["Target ROAS: 3–5x", "Cost per lead optimisation"] },
+            { title: "Meta Ads (Facebook & Instagram)", desc: "Full-funnel social campaigns from cold audience prospecting to warm retargeting. Creative strategy, A/B testing, and dynamic product ads for e-commerce brands.", metrics: ["Creative-led strategy", "Full-funnel attribution"] },
+          ],
+        },
+        {
+          category: "Offline OOH & BTL",
+          iconName: "MapPin",
+          items: [
+            { title: "Billboard & Outdoor Advertising", desc: "Prime billboard locations in Tier-1 and Tier-2 cities. We have direct partnerships with Times OOH, Laqshya Media, and Metro Ads for competitive rates.", metrics: ["Pan-India network", "Geo-targeted placement"] },
+            { title: "Mall Kiosks & Pop-Up Activations", desc: "High-footfall retail experiences at Phoenix Malls, Select Citywalk, and Inorbit. From kiosk design to staffing and sales training.", metrics: ["10+ premium malls", "D2C brand launches"] },
+            { title: "BTL & Sampling Campaigns", desc: "Product sampling, roadshows, and brand activation events that put your product directly in consumers' hands for direct feedback and conversion.", metrics: ["Measurable footfall", "CRM data capture"] },
+          ],
+        },
+        {
+          category: "Retail Distribution",
+          iconName: "Store",
+          items: [
+            { title: "Super-Stockist Network", desc: "Connect directly with our vetted network of regional distributors and super-stockists across 15+ states. From general trade to modern trade.", metrics: ["15+ states covered", "Vetted distributor network"] },
+            { title: "Modern Trade & E-Commerce Marketplaces", desc: "End-to-end listing management on Amazon, Flipkart, Blinkit, Zepto, and Swiggy Instamart. Plus modern trade tie-ups with Big Bazaar and DMart.", metrics: ["Top marketplace coverage", "Listing optimisation"] },
+          ],
+        },
+      ],
+      results: [
+        { metric: "₹40L MRR", context: "in 90 days", detail: "D2C nutrition brand via Meta Ads + retail distribution" },
+        { metric: "3 states", context: "in 45 days", detail: "FMCG launch via super-stockist network expansion" },
+      ],
+      aiStudio: [
+        { n: "01", title: "Social Content", sub: "LinkedIn, Instagram, YouTube Shorts", tool: "Predis.ai", note: "India-optimised. Generates image, video, caption, and hashtags from one prompt." },
+        { n: "02", title: "Paid Ad Creatives", sub: "Meta, Google, LinkedIn", tool: "AdCreative.ai", note: "Pre-scores every creative for predicted click-through rate before you spend a rupee." },
+        { n: "03", title: "Bulk Branded Content", sub: "Certificates, campaign variants, localised posts", tool: "Robolly via n8n", note: "Template-based bulk image and PDF generation. Native n8n integration for scale." },
+        { n: "04", title: "Dynamic PDFs & Images", sub: "Personalised reports, invoices, proposals", tool: "RenderForm", note: "Pixel-perfect dynamic image and PDF API. Output in under 2 seconds." },
+      ],
     },
     webDevelopment: {
       meta: {
@@ -715,6 +966,13 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Share your brief and we'll come back with a scoped proposal within 48 hours.",
         buttonLabel: "Start a Project",
       },
+      serviceCards: [
+        { iconName: "ShoppingCart", number: "01", title: "E-Commerce & Shopify Builds", desc: "Conversion-optimised storefronts built on Shopify, WooCommerce, or custom stacks. Mobile-first, fast, and built to sell.", features: ["Custom Shopify theme development", "One-click checkout optimisation", "Product page CRO", "Payment gateway integration", "Inventory & ERP sync", "Mobile-first design"] },
+        { iconName: "Globe", number: "02", title: "Custom Web Apps & Platforms", desc: "Bespoke technology stacks for SaaS products, marketplace platforms, and complex business applications.", features: ["SaaS product development", "B2B marketplace platforms", "API development & integration", "Admin dashboards & analytics", "Scalable cloud architecture", "Auth & subscription systems"] },
+        { iconName: "Palette", number: "03", title: "UI/UX Design", desc: "Wireframing, prototyping, and high-fidelity design systems. Every interface we design has a measurable conversion objective.", features: ["User journey mapping", "Wireframes & prototypes", "Design system & component library", "Figma-to-code handoff", "A/B test design variants", "Accessibility compliance"] },
+        { iconName: "Smartphone", number: "04", title: "Mobile App Development", desc: "React Native and Flutter apps that feel native on iOS and Android. From consumer apps to B2B tools.", features: ["Cross-platform (iOS & Android)", "Offline-first architecture", "Push notifications", "In-app purchases", "App Store optimisation", "Analytics integration"] },
+      ],
+      techStack: ["Next.js", "React", "TypeScript", "Node.js", "Python", "PostgreSQL", "Redis", "Shopify", "Tailwind CSS", "AWS", "Vercel", "Figma", "Flutter", "React Native", "GraphQL", "Stripe"],
     },
     funding: {
       meta: {
@@ -750,6 +1008,17 @@ export const defaultSiteContent: SiteContent = {
         subtitle: "Let's build the narrative that gets you in the room and gets the room to say yes.",
         buttonLabel: "Build My Pitch Deck",
       },
+      coreServices: [
+        { iconName: "FileText", title: "Pitch Deck Creation", desc: "The 12-slide master deck designed to make investors lean forward. We combine data storytelling with visual design excellence.", deliverables: ["12-slide investor deck", "Narrative storyboarding", "Visual design (Figma/PowerPoint)", "Investor Q&A script", "Mock pitch session", "3 revision rounds"] },
+        { iconName: "BarChart3", title: "Financial Projections", desc: "5-year Excel models that withstand investor scrutiny. Built bottom-up with clear assumptions, scenario analysis, and key driver sensitivity.", deliverables: ["5-year P&L projection", "Revenue & cost model", "3 scenarios (bear/base/bull)", "Cohort analysis", "Fundraise utilisation plan", "Cap table modelling"] },
+        { iconName: "Users", title: "Investor Matchmaking", desc: "Warm introductions to the right investors at the right stage. No cold emails. We only connect you with investors who've pre-indicated interest.", deliverables: ["Investor database scan", "Stage & sector matching", "Warm email introductions", "Meeting preparation brief", "Pipeline CRM setup (n8n)", "Post-meeting follow-up"] },
+      ],
+      beyondAlgorithm: [
+        { iconName: "Search", title: "Portfolio Conflict Checks", desc: "We analyse the fund's active portfolio to ensure they have not quietly invested in your direct competitor in the past 6 months." },
+        { iconName: "Zap", title: "Dry Powder & Deployment Velocity", desc: "We track exactly where a fund is in its lifecycle: actively deploying or just taking coffee chats with no capital to deploy." },
+        { iconName: "Users", title: "Partner-Level Profiling", desc: "Funds do not write cheques. Partners do. We identify exactly which General Partner holds the mandate for your specific sector and stage." },
+        { iconName: "Target", title: "Follow-On Capacity & Strategic Fit", desc: "We analyse past deals to assess the investor's track record of participating in subsequent rounds (Series A/B)." },
+      ],
     },
   },
 };

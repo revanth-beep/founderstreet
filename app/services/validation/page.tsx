@@ -16,31 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
-const deliverables = [
-  {
-    icon: BarChart3,
-    title: "Market Sizing & TAM/SAM/SOM Analysis",
-    desc: "We model your total addressable market from first principles, not just copying a McKinsey slide. You'll know the true revenue ceiling and exactly what share is realistic.",
-    points: ["Bottom-up market model", "Revenue potential by geography", "3-scenario sizing (conservative/base/bull)"],
-  },
-  {
-    icon: Target,
-    title: "SWOT & Competitor Benchmarking",
-    desc: "We audit every incumbent in your space: their CAC, LTV, pricing, and the gaps in their product. You'll know exactly where they're failing and how to win.",
-    points: ["Competitive landscape map", "Whitespace opportunity analysis", "Positioning recommendation"],
-  },
-  {
-    icon: TrendingUp,
-    title: "Unit Economics Modelling",
-    desc: "The most important slide in your deck. We build the exact CAC vs LTV model investors will stress-test, including payback periods and contribution margin.",
-    points: ["CAC by acquisition channel", "LTV by cohort", "Payback period & break-even model"],
-  },
-];
+const DELIVERABLE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  BarChart3, Target, TrendingUp, FlaskConical,
+};
 
 export default async function ValidationPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.validation;
-  const { hero, faq, pricing, bottomCta } = cms;
+  const { hero, faq, pricing, bottomCta, deliverables } = cms;
 
   return (
     <>
@@ -75,7 +58,7 @@ export default async function ValidationPage() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             {deliverables.map((d, i) => {
-              const Icon = d.icon;
+              const Icon = DELIVERABLE_ICON_MAP[d.iconName] ?? BarChart3;
               return (
                 <div
                   key={d.title}

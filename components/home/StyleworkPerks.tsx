@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
+import type { StyleworkCms } from "@/lib/site-content-defaults";
 
-export default function StyleworkPerks() {
+export default function StyleworkPerks({ cms }: { cms: StyleworkCms }) {
   return (
     <div style={{ background: "#FFFFFF", paddingInline: "clamp(1rem, 5vw, 2rem)", paddingBottom: "clamp(2rem, 4vw, 3rem)" }}>
       <div className="container-custom">
@@ -34,31 +35,27 @@ export default function StyleworkPerks() {
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: "#9FE670", marginBottom: "0.375rem",
               }}>
-                Exclusive Ecosystem Perk
+                {cms.eyebrow}
               </p>
               <h3 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(1rem, 1.5vw, 1.1875rem)", fontWeight: 700,
                 color: "#FFFFFF", marginBottom: "0.5rem", lineHeight: 1.3,
               }}>
-                Priority co-working access for Founderstreet portfolio companies
+                {cms.title}
               </h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.8125rem", color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.65, maxWidth: "540px",
               }}>
-                Because Founderstreet operates as your infrastructure layer, portfolio companies receive priority onboarding and discounted desk and cabin rates at{" "}
-                <a href="https://www.stylework.city/" target="_blank" rel="noopener noreferrer" style={{ color: "#9FE670", textDecoration: "underline" }}>
-                  Stylework
-                </a>{" "}
-                co-working locations across India.
+                {cms.description}
               </p>
             </div>
           </div>
 
           <Link
-            href="/contact"
+            href={cms.href}
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               padding: "0.75rem 1.375rem",
@@ -75,7 +72,7 @@ export default function StyleworkPerks() {
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
           >
-            Explore Ecosystem Perks
+            {cms.buttonLabel}
             <ArrowRight size={14} />
           </Link>
         </div>

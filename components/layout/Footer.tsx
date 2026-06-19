@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
-const services = [
+const DEFAULT_SERVICE_LINKS = [
   { name: "Test Your Idea", href: "/services/validation" },
   { name: "Company Incorporation", href: "/services/incorporation" },
   { name: "Accounting & Virtual CFO", href: "/services/accounting" },
@@ -14,7 +14,7 @@ const services = [
   { name: "Investor Funding", href: "/services/funding" },
 ];
 
-const company = [
+const DEFAULT_COMPANY_LINKS = [
   { name: "About Us", href: "/about" },
   { name: "Our Team", href: "/team" },
   { name: "Resources", href: "/resources" },
@@ -43,6 +43,9 @@ const colLink: React.CSSProperties = {
 export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; logoUrl?: string }) {
   const year = new Date().getFullYear();
   const copyright = cms.copyrightTemplate.replace("{year}", String(year));
+
+  const serviceLinks = (cms.serviceLinks && cms.serviceLinks.length > 0) ? cms.serviceLinks : DEFAULT_SERVICE_LINKS;
+  const companyLinks = (cms.companyLinks && cms.companyLinks.length > 0) ? cms.companyLinks : DEFAULT_COMPANY_LINKS;
 
   return (
     <footer style={{ background: "#4A5056", color: "#FFFFFF" }}>
@@ -109,8 +112,8 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
           {/* Services */}
           <div>
             <p style={colHead}>Core Services</p>
-            {services.map(s => (
-              <Link key={s.href} href={s.href} style={colLink}
+            {serviceLinks.map(s => (
+              <Link key={s.href + s.name} href={s.href} style={colLink}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
               >
@@ -123,8 +126,8 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
           {/* Company */}
           <div>
             <p style={colHead}>Company</p>
-            {company.map(c => (
-              <Link key={c.href} href={c.href} style={colLink}
+            {companyLinks.map(c => (
+              <Link key={c.href + c.name} href={c.href} style={colLink}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
               >

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { ArrowRight, CalendarCheck } from "lucide-react";
+import type { CtaSectionCms } from "@/lib/site-content-defaults";
 
-export default function CTASection() {
+export default function CTASection({ cms }: { cms: CtaSectionCms }) {
   return (
     <section
       style={{ background: "linear-gradient(135deg, #66BB3F 0%, #4A5056 100%)", position: "relative", overflow: "hidden" }}
@@ -34,8 +35,8 @@ export default function CTASection() {
             color: "#FFFFFF", marginBottom: "1.25rem",
             letterSpacing: "-0.02em"
           }}>
-            Ready to Build Something{" "}
-            <span style={{ fontStyle: "italic", color: "#B5E890" }}>Extraordinary?</span>
+            {cms.title}{" "}
+            <span style={{ fontStyle: "italic", color: "#B5E890" }}>{cms.titleItalic}</span>
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -43,17 +44,16 @@ export default function CTASection() {
             color: "rgba(255,255,255,0.65)",
             marginBottom: "2.5rem", maxWidth: "520px", margin: "0 auto 2.5rem"
           }}>
-            Book a free 30-minute strategy call. We&apos;ll review your idea, identify your
-            biggest execution gaps, and show you exactly how we can help.
+            {cms.subtitle}
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", justifyContent: "center" }}>
-            <Link href="/contact" className="btn-white">
+            <Link href={cms.primaryHref} className="btn-white">
               <CalendarCheck size={16} />
-              Book a Free Strategy Call
+              {cms.primaryLabel}
             </Link>
             <Link
-              href="/startup-health-check"
+              href={cms.secondaryHref}
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.5rem",
                 padding: "0.8125rem 1.75rem",
@@ -69,7 +69,7 @@ export default function CTASection() {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
             >
-              Take the Health Check
+              {cms.secondaryLabel}
               <ArrowRight size={15} />
             </Link>
           </div>
@@ -80,7 +80,7 @@ export default function CTASection() {
             color: "rgba(255,255,255,0.35)",
             marginTop: "1.5rem"
           }}>
-            No commitment required · Response within 24 hours
+            {cms.note}
           </p>
         </div>
       </div>

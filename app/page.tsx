@@ -22,15 +22,15 @@ export default async function HomePage() {
     <>
       <HeroSection hero={site.home.hero} />
       <ServicesSection header={site.home.services} serviceCards={site.home.serviceCards} />
-      <TestYourIdeaBlock />
-      <WhySection />
-      <StyleworkPerks />
-      <ProcessSection />
+      <TestYourIdeaBlock cms={site.home.healthCheckBlock} />
+      <WhySection cms={site.home.why} />
+      <StyleworkPerks cms={site.home.stylework} />
+      <ProcessSection cms={site.home.process} />
       <PartnerMarquee data={site.home.partnerMarquee} />
       <TestimonialsSection data={site.home.founderStories} />
       <ResourcesTeaser teaser={site.home.resourcesTeaser} posts={featured} />
-      <HomeFAQ />
-      <CTASection />
+      <HomeFAQ cms={site.home.faq} />
+      <CTASection cms={site.home.cta} />
     </>
   );
 }

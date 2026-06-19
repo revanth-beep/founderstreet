@@ -1,40 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ShieldCheck, Zap, Users2, Target } from "lucide-react";
+import { ShieldCheck, Zap, Users2, Target, Lightbulb, Rocket, BarChart3, Users, Search } from "lucide-react";
+import type { WhySectionCms } from "@/lib/site-content-defaults";
 
-const reasons = [
-  {
-    icon: ShieldCheck,
-    title: "Compliance-First",
-    desc: "Every structure we build passes due diligence. Our playbooks are designed for investors, not just regulators.",
-  },
-  {
-    icon: Zap,
-    title: "Startup Velocity",
-    desc: "Incorporation in 10 working days. Website in 4 days. Pitch deck in 5 days. We move fast without sacrificing rigour.",
-  },
-  {
-    icon: Users2,
-    title: "Embedded, Not Outsourced",
-    desc: "We integrate directly with your team — Slack, Notion, weekly calls. You get a co-founder, not a vendor.",
-  },
-  {
-    icon: Target,
-    title: "Outcome-Aligned",
-    desc: "No retainers for mediocrity. Our model is built on milestone delivery — our incentives align with yours.",
-  },
-];
+const ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  ShieldCheck, Zap, Users2, Target, Lightbulb, Rocket, BarChart3, Users, Search,
+};
 
-const comparison = [
-  { label: "Incorporation speed", them: "4–6 weeks", us: "< 10 days" },
-  { label: "Financial reporting", them: "Quarterly PDFs", us: "Live dashboards" },
-  { label: "Investor intro access", them: "None", us: "700+ vetted contacts" },
-  { label: "Pitch deck quality", them: "Template-based", us: "Bespoke narrative" },
-  { label: "Pricing model", them: "Monthly retainer", us: "Flexible pricing" },
-];
-
-export default function WhySection() {
+export default function WhySection({ cms }: { cms: WhySectionCms }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -63,16 +37,14 @@ export default function WhySection() {
           {/* Left */}
           <div>
             <span className="label-tag" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
-              Why Founderstreet
+              {cms.eyebrow}
             </span>
             <h2 className="heading-lg" style={{ marginBottom: "1.25rem", marginTop: "0.5rem" }}>
-              The Infrastructure Layer{" "}
-              <span className="gradient-text">Investors Expect</span>
+              {cms.title}{" "}
+              <span className="gradient-text">{cms.titleGradient}</span>
             </h2>
             <p className="body-lg" style={{ marginBottom: "2.5rem", maxWidth: "480px" }}>
-              Most early-stage startups fail not because of bad ideas — but because of bad
-              execution. We remove every operational, legal, and financial blocker before
-              they slow you down.
+              {cms.subtitle}
             </p>
 
             {/* Comparison table */}
@@ -97,13 +69,13 @@ export default function WhySection() {
                   Founderstreet
                 </span>
               </div>
-              {comparison.map((row, i) => (
+              {cms.comparison.map((row, i) => (
                 <div
                   key={row.label}
                   style={{
                     display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
                     padding: "0.875rem 1.25rem",
-                    borderBottom: i < comparison.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                    borderBottom: i < cms.comparison.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
                     alignItems: "center",
                   }}
                 >
@@ -121,10 +93,10 @@ export default function WhySection() {
             </div>
           </div>
 
-          {/* Right — 4 reasons */}
+          {/* Right — reasons */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
-            {reasons.map((r) => {
-              const Icon = r.icon;
+            {cms.reasons.map((r) => {
+              const Icon = ICON_MAP[r.iconName] ?? ShieldCheck;
               return (
                 <div
                   key={r.title}

@@ -3,18 +3,24 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin, Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
-const services = [
-  { name: "Test Your Idea", href: "/services/validation", icon: FlaskConical, desc: "Market sizing, SWOT & unit economics" },
-  { name: "Incorporation & Compliance", href: "/services/incorporation", icon: Building2, desc: "End-to-end company registration" },
-  { name: "Accounting & Virtual CFO", href: "/services/accounting", icon: Calculator, desc: "Financial plumbing for founders" },
-  { name: "Marketing & Retail", href: "/services/marketing", icon: Megaphone, desc: "Full-funnel digital and offline growth" },
-  { name: "Web & Tech Development", href: "/services/web-development", icon: Code2, desc: "Scalable storefronts and platforms" },
-  { name: "Investor Funding", href: "/services/funding", icon: TrendingUp, desc: "Pitch decks, projections & matchmaking" },
-  { name: "Co-working Space", href: "/contact", icon: MapPin, desc: "Get access to 1200+ co-working spaces across India" },
-];
+const NAV_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, MapPin,
+  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target,
+};
+
+// Fallback icon assignment by href pattern
+function getNavIcon(href: string): React.ComponentType<{ size?: number; color?: string }> {
+  if (href.includes("validation")) return FlaskConical;
+  if (href.includes("incorporation")) return Building2;
+  if (href.includes("accounting")) return Calculator;
+  if (href.includes("marketing")) return Megaphone;
+  if (href.includes("web-development")) return Code2;
+  if (href.includes("funding")) return TrendingUp;
+  return MapPin;
+}
 
 type NavbarContentProps = {
   solid: boolean;
@@ -26,6 +32,16 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
+
+  const services = (nav.services && nav.services.length > 0) ? nav.services : [
+    { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
+    { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
+    { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
+    { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
+    { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+    { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
+    { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
+  ];
 
   useEffect(() => {
     const fn = (e: MouseEvent) => {
@@ -129,10 +145,10 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
                   display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px",
                 }}>
                   {services.map(svc => {
-                    const Icon = svc.icon;
+                    const Icon = getNavIcon(svc.href);
                     return (
                       <Link
-                        key={svc.href}
+                        key={svc.href + svc.name}
                         href={svc.href}
                         style={{
                           display: "flex", alignItems: "flex-start", gap: "12px",
@@ -341,10 +357,10 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
           {mobileServicesOpen && (
             <div style={{ paddingLeft: "0.75rem", paddingTop: "0.5rem" }}>
               {services.map(svc => {
-                const Icon = svc.icon;
+                const Icon = getNavIcon(svc.href);
                 return (
                   <Link
-                    key={svc.href}
+                    key={svc.href + svc.name}
                     href={svc.href}
                     style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0.625rem 0.5rem", textDecoration: "none", borderRadius: "6px" }}
                     onClick={() => setMobileOpen(false)}

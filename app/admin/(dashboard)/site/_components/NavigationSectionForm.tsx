@@ -104,6 +104,43 @@ export default function NavigationSectionForm({ initial }: { initial: Nav }) {
         </div>
       </div>
 
+      <div className="admin-card">
+        <p className="admin-card__title">Services dropdown — menu items</p>
+        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Items shown in the Services dropdown menu. The icon is auto-assigned by URL pattern.</p>
+        {(nav.services ?? []).map((svc, i) => (
+          <div key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", alignItems: "flex-end" }}>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Name</label>
+              <input className="admin-input" value={svc.name} onChange={e => {
+                const services = [...(nav.services ?? [])];
+                services[i] = { ...services[i], name: e.target.value };
+                setNav({ ...nav, services });
+              }} />
+            </div>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Href</label>
+              <input className="admin-input" value={svc.href} onChange={e => {
+                const services = [...(nav.services ?? [])];
+                services[i] = { ...services[i], href: e.target.value };
+                setNav({ ...nav, services });
+              }} />
+            </div>
+            <div className="admin-field" style={{ flex: 2, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Description</label>
+              <input className="admin-input" value={svc.desc} onChange={e => {
+                const services = [...(nav.services ?? [])];
+                services[i] = { ...services[i], desc: e.target.value };
+                setNav({ ...nav, services });
+              }} />
+            </div>
+            <button type="button" className="admin-btn" style={{ marginBottom: "0.125rem" }} onClick={() => {
+              setNav({ ...nav, services: (nav.services ?? []).filter((_, j) => j !== i) });
+            }}>Remove</button>
+          </div>
+        ))}
+        <button type="button" className="admin-btn" onClick={() => setNav({ ...nav, services: [...(nav.services ?? []), { name: "", href: "", desc: "" }] })}>+ Add service item</button>
+      </div>
+
       <div className="admin-actions">
         <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
           {saving ? "Saving…" : "Save changes"}

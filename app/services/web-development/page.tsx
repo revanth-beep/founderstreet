@@ -16,14 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: m.title, description: m.description };
 }
 
-const services = [
-  { icon: ShoppingCart, number: "01", title: "E-Commerce & Shopify Builds", desc: "Conversion-optimised storefronts built on Shopify, WooCommerce, or custom stacks. Mobile-first, fast, and built to sell.", features: ["Custom Shopify theme development", "One-click checkout optimisation", "Product page CRO", "Payment gateway integration", "Inventory & ERP sync", "Mobile-first design"] },
-  { icon: Globe, number: "02", title: "Custom Web Apps & Platforms", desc: "Bespoke technology stacks for SaaS products, marketplace platforms, and complex business applications.", features: ["SaaS product development", "B2B marketplace platforms", "API development & integration", "Admin dashboards & analytics", "Scalable cloud architecture", "Auth & subscription systems"] },
-  { icon: Palette, number: "03", title: "UI/UX Design", desc: "Wireframing, prototyping, and high-fidelity design systems. Every interface we design has a measurable conversion objective.", features: ["User journey mapping", "Wireframes & prototypes", "Design system & component library", "Figma-to-code handoff", "A/B test design variants", "Accessibility compliance"] },
-  { icon: Smartphone, number: "04", title: "Mobile App Development", desc: "React Native and Flutter apps that feel native on iOS and Android. From consumer apps to B2B tools.", features: ["Cross-platform (iOS & Android)", "Offline-first architecture", "Push notifications", "In-app purchases", "App Store optimisation", "Analytics integration"] },
-];
-
-const techStack = ["Next.js", "React", "TypeScript", "Node.js", "Python", "PostgreSQL", "Redis", "Shopify", "Tailwind CSS", "AWS", "Vercel", "Figma", "Flutter", "React Native", "GraphQL", "Stripe"];
+const SERVICE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  ShoppingCart, Globe, Palette, Smartphone, Code2,
+};
 
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
@@ -36,7 +31,7 @@ const h2 = {
 export default async function WebDevPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.webDevelopment;
-  const { hero, faq, pricing, bottomCta } = cms;
+  const { hero, faq, pricing, bottomCta, serviceCards, techStack } = cms;
 
   return (
     <>
@@ -80,8 +75,8 @@ export default async function WebDevPage() {
             <h2 style={{ ...h2, marginTop: "1rem" }}>What We Build</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "1.5rem" }}>
-            {services.map((service) => {
-              const Icon = service.icon;
+            {serviceCards.map((service) => {
+              const Icon = SERVICE_ICON_MAP[service.iconName] ?? Code2;
               return (
                 <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "clamp(1.25rem, 3vw, 2rem)" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>

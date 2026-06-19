@@ -136,6 +136,60 @@ export default function FooterSectionForm({ initial }: { initial: Footer }) {
         </div>
       </div>
 
+      <div className="admin-card">
+        <p className="admin-card__title">Core Services links</p>
+        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Links shown in the footer under "Core Services".</p>
+        {(footer.serviceLinks ?? []).map((link, i) => (
+          <div key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", alignItems: "flex-end" }}>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Name</label>
+              <input className="admin-input" value={link.name} onChange={e => {
+                const serviceLinks = [...(footer.serviceLinks ?? [])];
+                serviceLinks[i] = { ...serviceLinks[i], name: e.target.value };
+                setFooter({ ...footer, serviceLinks });
+              }} />
+            </div>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Href</label>
+              <input className="admin-input" value={link.href} onChange={e => {
+                const serviceLinks = [...(footer.serviceLinks ?? [])];
+                serviceLinks[i] = { ...serviceLinks[i], href: e.target.value };
+                setFooter({ ...footer, serviceLinks });
+              }} />
+            </div>
+            <button type="button" className="admin-btn" style={{ marginBottom: "0.125rem" }} onClick={() => setFooter({ ...footer, serviceLinks: (footer.serviceLinks ?? []).filter((_, j) => j !== i) })}>Remove</button>
+          </div>
+        ))}
+        <button type="button" className="admin-btn" onClick={() => setFooter({ ...footer, serviceLinks: [...(footer.serviceLinks ?? []), { name: "", href: "" }] })}>+ Add link</button>
+      </div>
+
+      <div className="admin-card">
+        <p className="admin-card__title">Company links</p>
+        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Links shown in the footer under "Company".</p>
+        {(footer.companyLinks ?? []).map((link, i) => (
+          <div key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", alignItems: "flex-end" }}>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Name</label>
+              <input className="admin-input" value={link.name} onChange={e => {
+                const companyLinks = [...(footer.companyLinks ?? [])];
+                companyLinks[i] = { ...companyLinks[i], name: e.target.value };
+                setFooter({ ...footer, companyLinks });
+              }} />
+            </div>
+            <div className="admin-field" style={{ flex: 1, margin: 0 }}>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Href</label>
+              <input className="admin-input" value={link.href} onChange={e => {
+                const companyLinks = [...(footer.companyLinks ?? [])];
+                companyLinks[i] = { ...companyLinks[i], href: e.target.value };
+                setFooter({ ...footer, companyLinks });
+              }} />
+            </div>
+            <button type="button" className="admin-btn" style={{ marginBottom: "0.125rem" }} onClick={() => setFooter({ ...footer, companyLinks: (footer.companyLinks ?? []).filter((_, j) => j !== i) })}>Remove</button>
+          </div>
+        ))}
+        <button type="button" className="admin-btn" onClick={() => setFooter({ ...footer, companyLinks: [...(footer.companyLinks ?? []), { name: "", href: "" }] })}>+ Add link</button>
+      </div>
+
       <div className="admin-actions">
         <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>
           {saving ? "Saving…" : "Save changes"}

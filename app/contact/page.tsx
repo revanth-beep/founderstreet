@@ -134,8 +134,7 @@ export default async function ContactPage() {
             </div>
           </div>
         </div>
-        <style>{`@media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr !important; gap: 4rem !important; } }`}</style>
-      </section>
+              </section>
     </>
   );
 }

@@ -129,19 +129,7 @@ export default function AIWidget({ whatsappUrl = "https://wa.me/919876543210" }:
 
   return (
     <>
-      <style>{`
-        @keyframes fs-chat-bounce {
-          0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
-          40% { transform: translateY(-4px); opacity: 1; }
-        }
-        @keyframes fs-spin {
-          to { transform: rotate(360deg); }
-        }
-        @media (min-width: 640px) {
-          .ai-widget-anchor { right: 1.5rem !important; }
-        }
-      `}</style>
-      {/* Chat window */}
+            {/* Chat window */}
       <div
         className="ai-widget-anchor"
         style={{

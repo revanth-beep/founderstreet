@@ -138,11 +138,6 @@ export default function TestYourIdeaBlock({ cms }: { cms: HealthCheckBlockCms })
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 1024px) {
-          .tyi-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; }
-        }
-      `}</style>
-    </section>
+          </section>
   );
 }

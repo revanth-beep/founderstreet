@@ -202,8 +202,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
             </div>
           </div>
         </div>
-        <style>{`@media (min-width: 1024px) { .about-story-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; } }`}</style>
-      </section>
+              </section>
 
       <section className="section-padding" style={{ background: "#F7F7F5" }}>
         <div className="container-custom">
@@ -265,8 +264,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
             })}
           </div>
         </div>
-        <style>{`@media (min-width: 768px) { .values-grid { grid-template-columns: repeat(3,1fr) !important; } }`}</style>
-      </section>
+              </section>
 
       <section className="section-padding" style={{ background: "#FFFFFF" }}>
         <div className="container-custom">
@@ -337,11 +335,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
             ))}
           </div>
         </div>
-        <style>{`
-          @media (min-width: 640px) { .team-grid { grid-template-columns: 1fr 1fr !important; max-width: none !important; } }
-          .team-img-wrap:hover .team-img { transform: scale(1.05); }
-        `}</style>
-      </section>
+              </section>
 
       <section
         className="section-padding"

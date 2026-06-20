@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Calibrated fallback for Playfair Display — reduces metric shift on font swap */
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Georgia");
+  size-adjust: 103%;
+  ascent-override: 93%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+/* Calibrated fallback for Inter */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 /* ============================================================
    THEME — Tailwind v4 CSS-first configuration
    ============================================================ */
@@ -97,13 +117,13 @@ html {
 body {
   background-color: #FAFAFA;
   color: #3d4246;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', "Inter Fallback", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6,
 .display, .serif {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', "Playfair Display Fallback", Georgia, serif;
 }
 
 ::selection {
@@ -434,3 +454,69 @@ a { text-decoration: none; color: inherit; }
 .gsap-in   { opacity: 0; }
 .gsap-left { opacity: 0; transform: translateX(-30px); }
 .gsap-right{ opacity: 0; transform: translateX(30px); }
+
+/* ============================================================
+   RESPONSIVE GRIDS — centralised here to prevent CLS.
+   Keep these in sync with the className used in each component.
+   ============================================================ */
+
+/* Navbar */
+@media (min-width: 1024px) {
+  .desktop-nav   { display: flex !important; }
+  .desktop-cta   { display: flex !important; }
+  .mobile-burger { display: none !important; }
+}
+
+/* Footer */
+@media (min-width: 640px)  { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
+@media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr !important; } }
+
+/* Hero stats row */
+@media (min-width: 640px) { .sm-stats-grid { grid-template-columns: repeat(4,1fr) !important; } }
+
+/* Services section grid */
+@media (min-width: 640px)  { .svc-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(3,1fr) !important; } }
+
+/* Why Founderstreet */
+@media (min-width: 1024px) { .why-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; } }
+
+/* Process steps */
+@media (min-width: 640px)  { .proc-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media (min-width: 1024px) { .proc-grid { grid-template-columns: repeat(4,1fr) !important; } }
+
+/* Test Your Idea / health check block */
+@media (min-width: 1024px) { .tyi-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; } }
+
+/* Resources teaser strip */
+@media (min-width: 768px)  { .res-grid { grid-template-columns: repeat(3,1fr) !important; } }
+
+/* Contact page */
+@media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr !important; gap: 4rem !important; } }
+
+/* About page */
+@media (min-width: 1024px) { .about-story-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; } }
+@media (min-width: 768px)  { .values-grid { grid-template-columns: repeat(3,1fr) !important; } }
+@media (min-width: 640px)  { .team-grid { grid-template-columns: 1fr 1fr !important; max-width: none !important; } }
+
+/* About page — team card hover (needs to be global, inline :hover doesn't work) */
+.team-img-wrap:hover .team-img { transform: scale(1.05); }
+
+/* Health check page */
+@media (min-width: 1024px) { .hc-grid { grid-template-columns: 1fr 1fr !important; } }
+
+/* Case studies */
+@media (min-width: 768px)  { [class^="cs-grid-"] { grid-template-columns: 1fr 1fr 1fr !important; } }
+
+/* Incorporation checklist */
+@media (min-width: 640px)  { .checklist-grid { grid-template-columns: 1fr 1fr !important; } }
+
+/* Accounting AI model section */
+@media (min-width: 1024px) { .ai-model-grid { grid-template-columns: 1fr 1fr !important; gap: 4rem !important; } }
+
+/* Shared animations */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fs-chat-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40%            { transform: translateY(-4px); opacity: 1; }
+}

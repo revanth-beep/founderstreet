@@ -168,10 +168,6 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 640px)  { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
-        @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr !important; } }
-      `}</style>
-    </footer>
+          </footer>
   );
 }

@@ -128,10 +128,6 @@ export default function ProcessSection({ cms }: { cms: ProcessSectionCms }) {
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 640px)  { .proc-grid { grid-template-columns: repeat(2,1fr) !important; } }
-        @media (min-width: 1024px) { .proc-grid { grid-template-columns: repeat(4,1fr) !important; } }
-      `}</style>
-    </section>
+          </section>
   );
 }

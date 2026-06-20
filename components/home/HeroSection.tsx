@@ -225,11 +225,6 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
         }} />
       </div>
 
-      <style>{`
-        @media (min-width: 640px) {
-          .sm-stats-grid { grid-template-columns: repeat(4, 1fr) !important; }
-        }
-      `}</style>
-    </section>
+          </section>
   );
 }

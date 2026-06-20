@@ -72,7 +72,9 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               style={{
                 height: `${nav.logoSize || 44}px`,
                 width: "auto",
+                minWidth: "32px",
                 flexShrink: 0,
+                aspectRatio: "1 / 1",
               }}
             />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.25 }}>
@@ -432,14 +434,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 1024px) {
-          .desktop-nav { display: flex !important; }
-          .desktop-cta { display: flex !important; }
-          .mobile-burger { display: none !important; }
-        }
-      `}</style>
-    </>
+          </>
   );
 }
 

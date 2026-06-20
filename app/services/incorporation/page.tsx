@@ -144,8 +144,7 @@ export default async function IncorporationPage() {
           </div>
         </div>
       </section>
-      <style>{`@media (min-width: 640px) { .checklist-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
-
+      
       <section style={{ background: "#FFFFFF", paddingBlock: "clamp(3rem, 6vw, 4.5rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 0.5rem" }}>

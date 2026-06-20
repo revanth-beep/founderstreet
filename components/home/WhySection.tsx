@@ -148,11 +148,6 @@ export default function WhySection({ cms }: { cms: WhySectionCms }) {
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 1024px) {
-          .why-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; }
-        }
-      `}</style>
-    </section>
+          </section>
   );
 }

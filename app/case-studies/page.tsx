@@ -108,8 +108,7 @@ export default function CaseStudiesPage() {
             ))}
           </div>
         </div>
-        <style>{`@media (min-width: 768px) { [class^="cs-grid-"] { grid-template-columns: 1fr 1fr 1fr !important; } }`}</style>
-      </section>
+              </section>
 
       <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5rem)", textAlign: "center" }}>
         <div className="container-custom">

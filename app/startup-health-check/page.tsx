@@ -103,8 +103,7 @@ export default function StartupHealthCheckPage() {
             </div>
           </div>
         </div>
-        <style>{`@media (min-width: 1024px) { .hc-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
-      </section>
+              </section>
     </>
   );
 }

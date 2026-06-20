@@ -188,11 +188,6 @@ export default function ResourcesTeaser({ teaser, posts }: Props) {
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 768px) {
-          .res-grid { grid-template-columns: repeat(3,1fr) !important; }
-        }
-      `}</style>
-    </section>
+          </section>
   );
 }

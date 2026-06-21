@@ -26,47 +26,51 @@ function metadataBaseUrl(): URL {
 const metadataBase = metadataBaseUrl();
 const siteUrlCanonical = metadataBase.toString().replace(/\/$/, "");
 
-export const metadata: Metadata = {
-  metadataBase,
-  title: {
-    default: "Founderstreet: One Stop for Startup Founders",
-    template: "%s | Founderstreet",
-  },
-  description:
-    "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
-  keywords: [
-    "startup consulting India",
-    "company incorporation India",
-    "startup accounting",
-    "pitch deck India",
-    "virtual CFO startup",
-    "investor matching India",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: siteUrlCanonical,
-    siteName: "Founderstreet",
-    title: "Founderstreet: One Stop for Startup Founders",
-    description:
-      "Elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding for Indian founders.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Founderstreet",
-    description: "One stop for startup founders. Compliance, Accounting, Marketing, Strategy, and Investor funding.",
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteContent();
+  const customFavicon = site.favicon?.trim() || "";
 
-export default async function RootLayout({
+  return {
+    metadataBase,
+    title: {
+      default: "Founderstreet: One Stop for Startup Founders",
+      template: "%s | Founderstreet",
+    },
+    description:
+      "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
+    keywords: [
+      "startup consulting India",
+      "company incorporation India",
+      "startup accounting",
+      "pitch deck India",
+      "virtual CFO startup",
+      "investor matching India",
+    ],
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      url: siteUrlCanonical,
+      siteName: "Founderstreet",
+      title: "Founderstreet: One Stop for Startup Founders",
+      description:
+        "Elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding for Indian founders.",
+      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Founderstreet",
+      description: "One stop for startup founders. Compliance, Accounting, Marketing, Strategy, and Investor funding.",
+    },
+    robots: { index: true, follow: true },
+    icons: { icon: customFavicon || "/favicon.ico" },
+  };
+}
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const site = await getSiteContent();
-  const customFavicon = site.favicon?.trim() || "";
   return (
     <html lang="en">
       <head>
@@ -82,9 +86,6 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@400;500;600;700&display=fallback"
           rel="stylesheet"
         />
-        {customFavicon && (
-          <link rel="icon" href={customFavicon} />
-        )}
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAFA", color: "#3d4246" }}>
         <SiteChrome>{children}</SiteChrome>

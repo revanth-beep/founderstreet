@@ -51,6 +51,21 @@ const SECTIONS = [
     title: "Team page",
     desc: "All team members on /team: names, roles, credentials, photos, and department groupings.",
   },
+  {
+    href: "/admin/site/favicon",
+    title: "Favicon",
+    desc: "The small icon shown in browser tabs and bookmarks. Upload a square PNG, ICO, or SVG.",
+  },
+  {
+    href: "/admin/site/privacy",
+    title: "Privacy Policy page",
+    desc: "Edit the last-updated date and all sections of the /privacy page.",
+  },
+  {
+    href: "/admin/site/terms",
+    title: "Terms of Service page",
+    desc: "Edit the last-updated date and all sections of the /terms page.",
+  },
 ];
 
 export default function AdminSiteHubPage() {

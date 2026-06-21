@@ -271,9 +271,20 @@ export type ContactPageCms = {
   faqQuestions: FaqItem[];
 };
 
+// ─── Legal page types ─────────────────────────────────────────────────────
+
+export type LegalSection = { heading: string; body: string };
+
+export type LegalPageCms = {
+  lastUpdated: string;
+  sections: LegalSection[];
+};
+
 // ─── Main SiteContent type ─────────────────────────────────────────────────
 
 export type SiteContent = {
+  /** URL for the browser tab favicon. Leave empty to use the default /favicon.ico. */
+  favicon: string;
   nav: {
     brandName: string;
     subsidiaryText: string;
@@ -326,6 +337,8 @@ export type SiteContent = {
   };
   teamPage: TeamPageCms;
   contactPage: ContactPageCms;
+  privacyPage: LegalPageCms;
+  termsPage: LegalPageCms;
   servicePages: {
     validation: ServicePageCms & { deliverables: ValidationDeliverable[] };
     incorporation: ServicePageCms & { steps: IncorporationStep[]; bundles: IncorporationBundle[] };
@@ -339,6 +352,7 @@ export type SiteContent = {
 };
 
 export const defaultSiteContent: SiteContent = {
+  favicon: "",
   nav: {
     brandName: "Founderstreet",
     subsidiaryText: "by Northville Consulting Group",
@@ -728,6 +742,48 @@ export const defaultSiteContent: SiteContent = {
       { q: "How much does incorporation cost?", a: "Starting at ₹9,999. Our packages cover DIN, DSC, MOA, AOA, and SPICe+ filing. A senior consultant will share a detailed quote based on your company structure within 24 hours." },
       { q: "How quickly can you build my pitch deck?", a: "We deliver a complete 12-slide investor-ready deck in 24 hours for fast-track requests. Standard delivery with revisions takes 5 to 7 working days." },
       { q: "Do you work with international founders?", a: "Yes. We work with founders based outside India who want to incorporate or operate in India. We handle all filings remotely and guide you through FEMA and FDI compliance." },
+    ],
+  },
+  privacyPage: {
+    lastUpdated: "April 2025",
+    sections: [
+      {
+        heading: "",
+        body: "Founderstreet (\"we\", \"us\", or \"our\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use our services.",
+      },
+      {
+        heading: "Information We Collect",
+        body: "We collect information you provide directly to us, such as your name, email address, phone number, and startup details when you fill out our contact form, subscribe to our newsletter, or use our startup health check tool.",
+      },
+      {
+        heading: "How We Use Your Information",
+        body: "We use the information we collect to provide our services, communicate with you, send newsletters (with your consent), and improve our platform.",
+      },
+      {
+        heading: "Contact Us",
+        body: "For privacy-related inquiries, contact us at hello@northvilleconsultinggroup.com",
+      },
+    ],
+  },
+  termsPage: {
+    lastUpdated: "April 2025",
+    sections: [
+      {
+        heading: "",
+        body: "By using Founderstreet's services, you agree to these Terms of Service. Please read them carefully before engaging our services.",
+      },
+      {
+        heading: "Services",
+        body: "Founderstreet provides startup infrastructure services including company incorporation, accounting, marketing, web development, and fundraising support. All services are subject to a separate engagement agreement.",
+      },
+      {
+        heading: "Payment",
+        body: "Payment terms are specified in individual service agreements. Refund policies vary by service type. Please refer to your engagement letter for specific terms.",
+      },
+      {
+        heading: "Contact",
+        body: "For queries, contact hello@northvilleconsultinggroup.com",
+      },
     ],
   },
   servicePages: {

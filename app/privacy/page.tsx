@@ -1,42 +1,46 @@
 import type { Metadata } from "next";
+import { getSiteContent } from "@/lib/site-content";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Founderstreet's privacy policy.",
 };
 
-export default function PrivacyPage() {
+function renderBody(text: string) {
+  const parts = text.split(/(\S+@\S+\.\S+)/g);
+  return parts.map((part, i) =>
+    /\S+@\S+\.\S+/.test(part) ? (
+      <a key={i} href={`mailto:${part}`} className="text-[#66BB3F] underline">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+}
+
+export default async function PrivacyPage() {
+  const site = await getSiteContent();
+  const { lastUpdated, sections } = site.privacyPage;
+
   return (
     <div className="pt-32 pb-20">
       <div className="container-custom max-w-3xl">
         <h1 className="heading-lg mb-6">Privacy Policy</h1>
         <p className="text-[#6B6B6B] text-sm leading-relaxed mb-4">
-          Last updated: April 2025
+          Last updated: {lastUpdated}
         </p>
         <div className="prose prose-lg max-w-none space-y-6 text-[#4A4A4A] text-sm leading-relaxed">
-          <p>
-            Founderstreet (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy and is committed to
-            protecting your personal data. This privacy policy explains how we collect, use,
-            and safeguard your information when you use our services.
-          </p>
-          <h2 className="heading-sm mt-8 mb-3">Information We Collect</h2>
-          <p>
-            We collect information you provide directly to us, such as your name, email address,
-            phone number, and startup details when you fill out our contact form, subscribe to our
-            newsletter, or use our startup health check tool.
-          </p>
-          <h2 className="heading-sm mt-8 mb-3">How We Use Your Information</h2>
-          <p>
-            We use the information we collect to provide our services, communicate with you,
-            send newsletters (with your consent), and improve our platform.
-          </p>
-          <h2 className="heading-sm mt-8 mb-3">Contact Us</h2>
-          <p>
-            For privacy-related inquiries, contact us at{" "}
-            <a href="mailto:hello@northvilleconsultinggroup.com" className="text-[#66BB3F] underline">
-              hello@northvilleconsultinggroup.com
-            </a>
-          </p>
+          {sections.map((section, i) => (
+            <div key={i}>
+              {section.heading ? (
+                <h2 className="heading-sm mt-8 mb-3">{section.heading}</h2>
+              ) : null}
+              <p>{renderBody(section.body)}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -3,6 +3,9 @@ import "./globals.css";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getSiteContent } from "@/lib/site-content";
+
+export const revalidate = 60;
 
 /** Valid absolute URL for metadataBase / OG resolution. Accepts host:port without scheme. */
 function metadataBaseUrl(): URL {
@@ -57,11 +60,13 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const site = await getSiteContent();
+  const customFavicon = site.favicon?.trim() || "";
   return (
     <html lang="en">
       <head>
@@ -77,6 +82,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@400;500;600;700&display=fallback"
           rel="stylesheet"
         />
+        {customFavicon && (
+          <link rel="icon" href={customFavicon} />
+        )}
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#FAFAFA", color: "#3d4246" }}>
         <SiteChrome>{children}</SiteChrome>

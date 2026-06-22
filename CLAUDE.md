@@ -60,7 +60,7 @@ lib/
   contact-submissions.ts
   auth-admin.ts         # JWT helpers + admin middleware
   deep-merge.ts
-middleware.ts           # Protects /admin/* routes
+middleware.ts           # Protects /admin/* routes (deprecated; Next.js 16 wants proxy.ts)
 public/team/            # 13 team portrait .avif files + placeholder.svg
 ```
 
@@ -144,6 +144,11 @@ OPENAI_API_KEY=         # Optional; disables AI chat if missing
 3. Admin submits form at `/admin/site/*` → PATCH `/api/admin/site`
 4. `patchSiteContent()` saves to DB
 5. ISR revalidates the relevant page within 60s
+
+## Dev Setup Notes
+- **Bundler**: `npm run dev` uses `--webpack` explicitly. Turbopack (Next.js 16 default) causes a fatal panic (`Next.js package not found`) on this machine, which makes the browser refresh in a loop via broken HMR. Do not switch back to Turbopack.
+- **middleware.ts**: The `middleware` file convention is deprecated in Next.js 16. The runtime now calls it `proxy.ts`. It still works as `middleware.ts` but will break in a future version. Pending rename to `proxy.ts`.
+- **Port**: Port 3000 is occupied by another process locally. Dev server runs on 3001.
 
 ## Writing Style Rules
 - No em dashes (—) in copy — they read as AI-generated. Use a period, comma, or colon instead.

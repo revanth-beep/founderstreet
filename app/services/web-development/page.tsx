@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Code2, ArrowRight, ShoppingCart, Globe, Palette, Smartphone } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
-import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 import CaseStudyBanner from "@/components/ui/CaseStudyBanner";
 import { getSiteContent } from "@/lib/site-content";
@@ -44,29 +43,6 @@ export default async function WebDevPage() {
         icon={Code2}
         stats={hero.stats}
       />
-
-      <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
-        <div className="container-custom">
-          <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 2.5rem" }}>
-            <ServicePageEyebrow>The Founderstreet Difference</ServicePageEyebrow>
-            <h2 style={{ ...h2, marginTop: "1rem" }}>Before & After</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              Drag the slider to see how we transform underperforming websites into high-converting digital assets.
-            </p>
-          </div>
-          <div style={{ maxWidth: "48rem", margin: "0 auto" }}>
-            <BeforeAfterSlider
-              beforeSrc="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=700&fit=crop"
-              afterSrc="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&h=700&fit=crop"
-              beforeLabel="Before Founderstreet"
-              afterLabel="After Founderstreet"
-            />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center", marginTop: "0.75rem" }}>
-              Actual client project. D2C nutrition brand. Conversion rate improved from 1.2% to 4.8%.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">

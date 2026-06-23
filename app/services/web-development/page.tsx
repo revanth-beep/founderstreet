@@ -89,7 +89,6 @@ export default async function WebDevPage() {
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Pricing</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>Simple Project Pricing</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>Starting at <strong>&#8377;10,999</strong>. Custom quotes for complex projects.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
             {pricing.map(p => (

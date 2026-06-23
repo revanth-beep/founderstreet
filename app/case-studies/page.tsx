@@ -41,6 +41,28 @@ const caseStudies = [
     metrics: [{ value: "6", label: "Investor intros" }, { value: "3", label: "Meetings secured" }, { value: "2 Weeks", label: "Deck turnaround" }],
     color: "#4A5056",
   },
+  {
+    startup: "White Stone Legal",
+    industry: "Legal Services",
+    challenge: "Legal firms operate under strict Bar Council guidelines that prohibit promotional or superlative marketing language. Building a website that was compelling and conversion-focused without crossing regulatory lines required a completely different content approach. Standard marketing copy was off the table.",
+    services: ["Web Development", "SEO"],
+    result: "Professional legal website designed, built, and launched in 1 week. Content was carefully crafted to be informative and trust-building while staying fully compliant with legal advertising standards. SEO foundations laid with practice-area pages, structured schema markup, and local search optimisation targeting Delhi NCR.",
+    quote: null,
+    quoteAuthor: null,
+    metrics: [{ value: "1 Week", label: "Website live" }, { value: "100%", label: "Compliance maintained" }, { value: "On-going", label: "SEO partnership" }],
+    color: "#1B4332",
+  },
+  {
+    startup: "Novelty Homes",
+    industry: "Interior Decor & Real Estate",
+    challenge: "Novelty Homes operates a 20,000 sq ft showroom in Delhi and was generating leads through word of mouth alone. Their paid acquisition was unstructured, cost per lead was high, and the quality of inbound enquiries was inconsistent. They needed a full performance marketing setup and content that could showcase their showroom and portfolio at scale.",
+    services: ["Meta Ads", "Google Ads", "Content Creation"],
+    result: "End-to-end paid media strategy implemented across Meta and Google. Audience segmentation, creative testing, and funnel optimisation reduced cost per lead by 30%. Improved targeting and content quality lifted lead quality scores by 40%. Content creation for social channels gave the showroom a consistent visual identity online.",
+    quote: null,
+    quoteAuthor: null,
+    metrics: [{ value: "30%", label: "Reduction in CAC" }, { value: "40%", label: "Better lead quality" }, { value: "20K sqft", label: "Showroom showcased" }],
+    color: "#66BB3F",
+  },
 ];
 
 export default function CaseStudiesPage() {

@@ -6,11 +6,11 @@ import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons"
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const DEFAULT_SERVICE_LINKS = [
-  { name: "Test Your Idea", href: "/services/strategy" },
+  { name: "Test Your Idea", href: "/services/validation" },
   { name: "Company Incorporation", href: "/services/incorporation" },
   { name: "Accounting & Virtual CFO", href: "/services/accounting" },
   { name: "Digital Marketing", href: "/services/marketing" },
-  { name: "Web Development", href: "/services/offline-marketing" },
+  { name: "Web Development", href: "/services/web-development" },
   { name: "Investor Funding", href: "/services/funding" },
 ];
 

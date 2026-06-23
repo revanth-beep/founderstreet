@@ -33,7 +33,6 @@ const comparisonRows = [
   { feature: "Min. Members Required", values: ["2", "2", "1"] },
   { feature: "ESOPs Available", values: [true, false, false] },
   { feature: "Foreign Investment (FDI)", values: [true, "partial", false] },
-  { feature: "Annual Compliance Cost", values: ["₹25,000–50,000", "₹15,000–30,000", "₹5,000–10,000"] },
   { feature: "Incorporation Time", values: ["7–10 days", "10–15 days", "3–5 days"] },
   { feature: "Tax Rate (Turnover < ₹400Cr)", values: ["22%", "30%", "As per slab"] },
   { feature: "Perpetual Existence", values: [true, true, false] },

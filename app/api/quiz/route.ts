@@ -213,14 +213,16 @@ function buildSwotHtml(
 </html>`;
 }
 
-async function sendEmail(to: string, name: string, answers: Record<string, string>) {
+const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
+// Internal inbox that gets a copy of every SWOT lead for follow-up.
+const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hello@northvilleconsultinggroup.com";
+
+async function resendSend(payload: Record<string, unknown>) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.warn("RESEND_API_KEY not set — skipping email");
     return;
   }
-
-  const html = buildSwotHtml(name, answers);
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -228,17 +230,70 @@ async function sendEmail(to: string, name: string, answers: Record<string, strin
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from: "Founderstreet <hello@founderstreet.in>",
-      to: [to],
-      subject: `${name}, here's your free Startup SWOT Report`,
-      html,
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!res.ok) {
     const err = await res.text();
     throw new Error(`Resend error ${res.status}: ${err}`);
+  }
+}
+
+function buildLeadNotificationHtml(
+  name: string,
+  email: string,
+  answers: Record<string, string>
+): string {
+  const stage = STAGE_LABELS[answers.stage] ?? answers.stage ?? "N/A";
+  const sector = SECTOR_LABELS[answers.sector] ?? answers.sector ?? "N/A";
+  const challenge = CHALLENGE_LABELS[answers.challenge] ?? answers.challenge ?? "N/A";
+  const team = TEAM_LABELS[answers.team] ?? answers.team ?? "N/A";
+  const timeline = TIMELINE_LABELS[answers.timeline] ?? answers.timeline ?? "N/A";
+
+  const rows = [
+    ["Name", name],
+    ["Email", email],
+    ["Stage", stage],
+    ["Sector", sector],
+    ["Main Challenge", challenge],
+    ["Team", team],
+    ["Funding Timeline", timeline],
+  ]
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;color:#3d4246;">${label}</td><td style="padding:8px 12px;border:1px solid #E0E0DC;color:#5A5A5A;">${value}</td></tr>`
+    )
+    .join("");
+
+  return `<div style="font-family:Arial,sans-serif;max-width:560px;">
+    <h2 style="color:#1B4332;">New SWOT Quiz Lead</h2>
+    <p style="color:#5A5A5A;">Someone just completed the Startup Health Check quiz. Their details:</p>
+    <table style="border-collapse:collapse;width:100%;font-size:14px;">${rows}</table>
+    <p style="color:#A0A0A0;font-size:12px;margin-top:16px;">A full SWOT report was automatically emailed to ${email}.</p>
+  </div>`;
+}
+
+async function sendEmail(to: string, name: string, answers: Record<string, string>) {
+  // 1. SWOT report to the person who filled the form
+  await resendSend({
+    from: FROM_ADDRESS,
+    to: [to],
+    subject: `${name}, here's your free Startup SWOT Report`,
+    html: buildSwotHtml(name, answers),
+    reply_to: LEADS_INBOX,
+  });
+
+  // 2. Internal copy of the lead for follow-up (best-effort, never blocks the user)
+  try {
+    await resendSend({
+      from: FROM_ADDRESS,
+      to: [LEADS_INBOX],
+      subject: `New SWOT lead: ${name}`,
+      html: buildLeadNotificationHtml(name, to, answers),
+      reply_to: to,
+    });
+  } catch (e) {
+    console.error("Lead notification failed:", e);
   }
 }
 

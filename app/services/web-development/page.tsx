@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Code2, ArrowRight, ShoppingCart, Globe, Palette, Smartphone } from "lucide-react";
+import { Code2, ArrowRight, ShoppingCart, Globe, Palette, Smartphone, MapPin, Newspaper, Megaphone } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import Accordion from "@/components/ui/Accordion";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const SERVICE_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
-  ShoppingCart, Globe, Palette, Smartphone, Code2,
+  ShoppingCart, Globe, Palette, Smartphone, Code2, MapPin, Newspaper, Megaphone,
 };
 
 const h2 = {

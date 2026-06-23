@@ -10,7 +10,7 @@ export default async function AdminServicesSectionPage() {
       tag: "",
       name: "",
       desc: "",
-      href: "/services/validation",
+      href: "/services/strategy",
     });
   }
   return (

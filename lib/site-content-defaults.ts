@@ -365,11 +365,11 @@ export const defaultSiteContent: SiteContent = {
     logoSize: 44,
     logoTagline: "",
     services: [
-      { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
+      { name: "Test Your Idea", href: "/services/strategy", desc: "Market sizing, SWOT & unit economics" },
       { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
       { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
       { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
-      { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+      { name: "Web & Tech Development", href: "/services/offline-marketing", desc: "Scalable storefronts and platforms" },
       { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
       { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
     ],
@@ -390,11 +390,11 @@ export const defaultSiteContent: SiteContent = {
       instagram: "https://instagram.com",
     },
     serviceLinks: [
-      { name: "Test Your Idea", href: "/services/validation" },
+      { name: "Test Your Idea", href: "/services/strategy" },
       { name: "Company Incorporation", href: "/services/incorporation" },
       { name: "Accounting & Virtual CFO", href: "/services/accounting" },
       { name: "Digital Marketing", href: "/services/marketing" },
-      { name: "Web Development", href: "/services/web-development" },
+      { name: "Web Development", href: "/services/offline-marketing" },
       { name: "Investor Funding", href: "/services/funding" },
     ],
     companyLinks: [
@@ -441,7 +441,7 @@ export const defaultSiteContent: SiteContent = {
         tag: "Validation",
         name: "Test Your Idea",
         desc: "Stress-test the concept before capital is deployed. Market sizing, SWOT, and unit economics built from first principles.",
-        href: "/services/validation",
+        href: "/services/strategy",
         price: "Free SWOT report",
       },
       {
@@ -473,7 +473,7 @@ export const defaultSiteContent: SiteContent = {
         tag: "Technology",
         name: "Web & App Dev",
         desc: "Shopify stores, custom SaaS platforms, and mobile apps engineered for conversion and scale.",
-        href: "/services/web-development",
+        href: "/services/offline-marketing",
         price: "Starting at ₹24,999",
       },
       {

@@ -13,11 +13,11 @@ const NAV_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: 
 
 // Fallback icon assignment by href pattern
 function getNavIcon(href: string): React.ComponentType<{ size?: number; color?: string }> {
-  if (href.includes("validation")) return FlaskConical;
+  if (href.includes("strategy")) return FlaskConical;
   if (href.includes("incorporation")) return Building2;
   if (href.includes("accounting")) return Calculator;
   if (href.includes("marketing")) return Megaphone;
-  if (href.includes("web-development")) return Code2;
+  if (href.includes("offline-marketing")) return Code2;
   if (href.includes("funding")) return TrendingUp;
   return MapPin;
 }
@@ -34,11 +34,11 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
   const dropRef = useRef<HTMLDivElement>(null);
 
   const services = (nav.services && nav.services.length > 0) ? nav.services : [
-    { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
+    { name: "Test Your Idea", href: "/services/strategy", desc: "Market sizing, SWOT & unit economics" },
     { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
     { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
     { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
-    { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+    { name: "Web & Tech Development", href: "/services/offline-marketing", desc: "Scalable storefronts and platforms" },
     { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
     { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
   ];

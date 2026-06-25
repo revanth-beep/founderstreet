@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
-import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
+import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import ContactForm from "@/components/sections/ContactForm";
 import FaqAccordion from "./FaqAccordion";
 import { getSiteContent } from "@/lib/site-content";
@@ -103,7 +103,6 @@ export default async function ContactPage() {
                   <div style={{ display: "flex", gap: "8px" }}>
                     {[
                       { Icon: LinkedInIcon, href: cms.socialLinks.linkedin, label: "LinkedIn" },
-                      { Icon: XIcon, href: cms.socialLinks.twitter, label: "X" },
                       { Icon: InstagramIcon, href: cms.socialLinks.instagram, label: "Instagram" },
                     ].map(({ Icon, href, label }) => (
                       <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}

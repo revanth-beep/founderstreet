@@ -385,9 +385,9 @@ export const defaultSiteContent: SiteContent = {
     copyrightTemplate: "© {year} Founderstreet by Northville Consulting LLP. All rights reserved.",
     logoUrl: "/logos/logo-icon-color.png",
     socialLinks: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      instagram: "https://instagram.com",
+      linkedin: "https://www.linkedin.com/company/founderstreet-in/",
+      twitter: "",
+      instagram: "https://www.instagram.com/founderstreet.in/",
     },
     serviceLinks: [
       { name: "Test Your Idea", href: "/services/validation" },
@@ -730,9 +730,9 @@ export const defaultSiteContent: SiteContent = {
       { label: "Hours", value: "Monday–Saturday, 10:30 AM – 6:30 PM IST", href: "" },
     ],
     socialLinks: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      instagram: "https://instagram.com",
+      linkedin: "https://www.linkedin.com/company/founderstreet-in/",
+      twitter: "",
+      instagram: "https://www.instagram.com/founderstreet.in/",
     },
     responseBadge: {
       title: "We respond within 24 hours",

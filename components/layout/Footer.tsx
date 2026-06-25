@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
+import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const DEFAULT_SERVICE_LINKS = [
@@ -76,9 +76,8 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
             {/* Social */}
             <div style={{ display: "flex", gap: "8px" }}>
               {[
-                { href: cms.socialLinks?.linkedin || "https://linkedin.com", Icon: LinkedInIcon, label: "LinkedIn" },
-                { href: cms.socialLinks?.twitter || "https://twitter.com", Icon: XIcon, label: "X" },
-                { href: cms.socialLinks?.instagram || "https://instagram.com", Icon: InstagramIcon, label: "Instagram" },
+                { href: cms.socialLinks?.linkedin || "https://www.linkedin.com/company/founderstreet-in/", Icon: LinkedInIcon, label: "LinkedIn" },
+                { href: cms.socialLinks?.instagram || "https://www.instagram.com/founderstreet.in/", Icon: InstagramIcon, label: "Instagram" },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}

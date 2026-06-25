@@ -30,7 +30,7 @@ const h2 = {
 export default async function WebDevPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.webDevelopment;
-  const { hero, faq, pricing, bottomCta, serviceCards } = cms;
+  const { hero, faq, pricing, bottomCta, serviceCards, techStack } = cms;
 
   return (
     <>
@@ -80,6 +80,19 @@ export default async function WebDevPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", borderBottom: "1px solid #E0E0DC", paddingBlock: "3.5rem" }}>
+        <div className="container-custom">
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#A0A0A0", textAlign: "center", marginBottom: "2rem" }}>Technologies We Build With</p>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.75rem" }}>
+            {techStack.map((tech) => (
+              <span key={tech} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 500, color: "#3D3D3D", padding: "0.5rem 1rem", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "4px" }}>
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
       </section>

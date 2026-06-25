@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { ServicePageCms, ServicePagePricingTier, ServicePageFaqItem } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
 
-type ServiceKey = "validation" | "incorporation" | "accounting" | "bookkeeping" | "marketing" | "webDevelopment" | "funding";
+type ServiceKey = "validation" | "incorporation" | "accounting" | "bookkeeping" | "marketing" | "webDevelopment" | "funding" | "pitchDeck";
 
 const SERVICE_LABELS: Record<ServiceKey, string> = {
   validation: "Test Your Idea (Validation)",
@@ -14,6 +14,7 @@ const SERVICE_LABELS: Record<ServiceKey, string> = {
   marketing: "Marketing & Retail",
   webDevelopment: "Web & Tech Development",
   funding: "Investor Funding",
+  pitchDeck: "Pitch Deck & Valuation",
 };
 
 export default function ServicePageForm({

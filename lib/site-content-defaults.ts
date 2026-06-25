@@ -347,6 +347,7 @@ export type SiteContent = {
     marketing: ServicePageCms & { serviceCategories: MarketingCategory[]; results: MarketingResult[]; aiStudio: AiStudioCard[] };
     webDevelopment: ServicePageCms & { serviceCards: WebDevServiceCard[]; techStack: string[] };
     funding: ServicePageCms & { coreServices: FundingCoreService[]; beyondAlgorithm: BeyondAlgorithmCard[] };
+    pitchDeck: ServicePageCms & { serviceCards: AccountingServiceCard[] };
   };
   /** Escape hatch: arbitrary JSON merged on top (advanced). */
   custom?: Record<string, unknown>;
@@ -372,6 +373,7 @@ export const defaultSiteContent: SiteContent = {
       { name: "Book-keeping & Taxation", href: "/services/bookkeeping", desc: "Clean books and on-time tax filings" },
       { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
       { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+      { name: "Pitch Deck & Valuation", href: "/services/pitch-deck", desc: "Investor-ready decks and defensible valuations" },
       { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
       { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
     ],
@@ -398,6 +400,7 @@ export const defaultSiteContent: SiteContent = {
       { name: "Book-keeping & Taxation", href: "/services/bookkeeping" },
       { name: "Digital Marketing", href: "/services/marketing" },
       { name: "Web Development", href: "/services/web-development" },
+      { name: "Pitch Deck & Valuation", href: "/services/pitch-deck" },
       { name: "Investor Funding", href: "/services/funding" },
     ],
     companyLinks: [
@@ -494,6 +497,14 @@ export const defaultSiteContent: SiteContent = {
         desc: "Accurate book-keeping and end-to-end tax compliance. GST, TDS, income tax, and clean, audit-ready books every month.",
         href: "/services/bookkeeping",
         price: "Starting at ₹2,999/mo",
+      },
+      {
+        n: "08",
+        tag: "Fundraising",
+        name: "Pitch Deck & Valuation",
+        desc: "Investor-ready pitch decks and defensible startup valuations. We craft the story and model the numbers so you raise on your terms.",
+        href: "/services/pitch-deck",
+        price: "Starting at ₹9,999",
       },
     ],
     resourcesTeaser: {
@@ -1125,6 +1136,46 @@ export const defaultSiteContent: SiteContent = {
         { iconName: "Receipt", title: "GST Compliance", desc: "Zero penalties, every filing on time. We handle your GST registration and returns end to end so you stay fully compliant.", features: ["GST registration", "GSTR-1 & GSTR-3B filing", "Input tax credit reconciliation", "E-invoicing setup", "GST advisory", "Annual GST return (GSTR-9)"] },
         { iconName: "FileText", title: "Income Tax & TDS", desc: "Optimised, legally minimised, and always on time. We manage your direct-tax compliance from TDS to annual returns.", features: ["TDS deduction & filing", "Advance tax computation", "Annual income tax filing", "Tax planning & optimisation", "Startup exemptions (80-IAC)", "Notice & assessment support"] },
         { iconName: "PieChart", title: "Reporting & ROC Compliance", desc: "Investor-ready financials and statutory compliance handled. We keep your reporting and MCA filings clean and current.", features: ["Monthly financial summary", "Profit & loss statements", "ROC / MCA annual filings", "Audit support", "Due-diligence ready books", "Director compliance"] },
+      ],
+    },
+    pitchDeck: {
+      meta: {
+        title: "Pitch Deck & Valuation",
+        description: "Investor-ready pitch decks and defensible startup valuations. We craft the story, model the numbers, and value your business so you walk into every room prepared.",
+      },
+      hero: {
+        label: "Pitch Deck & Valuation",
+        title: "Tell a Story",
+        titleHighlight: "Investors Believe.",
+        subtitle: "A great idea isn't enough. Investors back founders who can tell a clear, credible story backed by numbers that hold up. We design your pitch deck and determine a defensible valuation so you raise on your terms.",
+        ctaText: "Build My Deck",
+        stats: [
+          { value: "58+", label: "Decks built" },
+          { value: "12", label: "Slide master structure" },
+          { value: "3", label: "Valuation methods used" },
+        ],
+      },
+      faq: [
+        { question: "What does the pitch deck service include?", answer: "End-to-end deck creation: narrative structure, slide-by-slide content, visual design, and investor Q&A preparation. We deliver an editable deck (Figma and PowerPoint) along with a tightened story that holds an investor's attention from the first slide." },
+        { question: "How do you arrive at a valuation?", answer: "We use multiple methods depending on your stage: comparable company analysis, discounted cash flow (DCF), and the Berkus or scorecard method for early-stage startups. You get a clear, defensible valuation range you can confidently justify to investors." },
+        { question: "How long does it take?", answer: "A standard investor-ready deck takes about 2 weeks including revisions. A valuation report takes 5 to 7 working days. If you need both, we run them in parallel and deliver together." },
+        { question: "Will the deck and valuation actually stand up to investor scrutiny?", answer: "Yes. We build both the way investors expect to see them. The deck follows a proven 12-slide structure with a single clear message per slide, and the valuation is backed by transparent assumptions you can defend line by line in a due-diligence conversation." },
+      ],
+      pricing: [
+        { name: "Pitch Deck", price: "₹9,999", period: "one-time", desc: "A complete investor-ready pitch deck.", features: ["12-slide master deck", "Narrative & storyline", "Visual design (Figma + PPT)", "Investor Q&A prep", "3 revision rounds"], highlight: false, cta: "Build My Deck" },
+        { name: "Deck + Valuation", price: "Contact Us", period: "", desc: "Pitch deck plus a defensible valuation.", features: ["Everything in Pitch Deck", "Business valuation report", "3 valuation methods", "Financial summary integration", "Priority delivery"], highlight: true, badge: "Most Popular", cta: "Get a Quote" },
+        { name: "Valuation Report", price: "Custom", period: "", desc: "A standalone, defensible valuation.", features: ["Comparable company analysis", "DCF model", "Early-stage method (Berkus/Scorecard)", "Assumptions & sensitivity", "Walkthrough call"], highlight: false, cta: "Book Valuation" },
+      ],
+      bottomCta: {
+        title: "Walk into the room ready.",
+        subtitle: "Get a deck investors remember and a valuation you can defend. Book a free discovery call to get started.",
+        buttonLabel: "Start My Deck",
+      },
+      serviceCards: [
+        { iconName: "Presentation", title: "Pitch Deck Design", desc: "A polished, investor-ready deck that tells your story with clarity and confidence. We handle the structure, content, and visual design end to end.", features: ["12-slide master structure", "Slide-by-slide content", "Professional visual design", "Editable Figma + PowerPoint", "Investor Q&A script", "3 revision rounds"] },
+        { iconName: "FileText", title: "Narrative & Storytelling", desc: "Investors back stories, not spreadsheets. We sharpen your hook, problem, and vision into a narrative that makes investors lean forward.", features: ["Story arc & positioning", "Problem & solution framing", "Market opportunity framing", "Traction storytelling", "The ask, made clear", "Mock pitch session"] },
+        { iconName: "BarChart3", title: "Business Valuation", desc: "A defensible valuation you can justify line by line. We use the methods investors trust so your number holds up under scrutiny.", features: ["Comparable company analysis", "Discounted cash flow (DCF)", "Berkus / scorecard method", "Valuation range & rationale", "Assumptions documented", "Sensitivity analysis"] },
+        { iconName: "TrendingUp", title: "Financial Summary & Modelling", desc: "The numbers behind the story. We build the financial summary and key metrics investors expect to see in your deck.", features: ["Revenue & cost summary", "Unit economics (CAC/LTV)", "Key metrics dashboard", "Use-of-funds plan", "Projection highlights", "Cap table snapshot"] },
       ],
     },
   },

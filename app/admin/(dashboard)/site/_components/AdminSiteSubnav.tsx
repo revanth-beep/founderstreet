@@ -35,6 +35,7 @@ const ITEMS: NavItem[] = [
   { type: "link", href: "/admin/site/services/marketing", label: "Marketing" },
   { type: "link", href: "/admin/site/services/web-development", label: "Web Dev" },
   { type: "link", href: "/admin/site/services/funding", label: "Funding" },
+  { type: "link", href: "/admin/site/services/pitch-deck", label: "Pitch Deck & Valuation" },
   // Other pages
   { type: "group", label: "Other pages" },
   { type: "link", href: "/admin/site/contact", label: "Contact" },

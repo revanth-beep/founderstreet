@@ -12,6 +12,7 @@ const DEFAULT_SERVICE_LINKS = [
   { name: "Book-keeping & Taxation", href: "/services/bookkeeping" },
   { name: "Digital Marketing", href: "/services/marketing" },
   { name: "Web Development", href: "/services/web-development" },
+  { name: "Pitch Deck & Valuation", href: "/services/pitch-deck" },
   { name: "Investor Funding", href: "/services/funding" },
 ];
 

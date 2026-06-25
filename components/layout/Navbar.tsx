@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin, Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin, Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen, Presentation } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const NAV_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
   FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, MapPin,
-  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen,
+  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen, Presentation,
 };
 
 // Fallback icon assignment by href pattern
@@ -19,6 +19,7 @@ function getNavIcon(href: string): React.ComponentType<{ size?: number; color?: 
   if (href.includes("accounting")) return Calculator;
   if (href.includes("marketing")) return Megaphone;
   if (href.includes("web-development")) return Code2;
+  if (href.includes("pitch-deck")) return Presentation;
   if (href.includes("funding")) return TrendingUp;
   return MapPin;
 }
@@ -41,6 +42,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
     { name: "Book-keeping & Taxation", href: "/services/bookkeeping", desc: "Clean books and on-time tax filings" },
     { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
     { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
+    { name: "Pitch Deck & Valuation", href: "/services/pitch-deck", desc: "Investor-ready decks and defensible valuations" },
     { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
     { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
   ];

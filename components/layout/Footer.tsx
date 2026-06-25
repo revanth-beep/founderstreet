@@ -9,6 +9,7 @@ const DEFAULT_SERVICE_LINKS = [
   { name: "Test Your Idea", href: "/services/validation" },
   { name: "Company Incorporation", href: "/services/incorporation" },
   { name: "Accounting & Virtual CFO", href: "/services/accounting" },
+  { name: "Book-keeping & Taxation", href: "/services/bookkeeping" },
   { name: "Digital Marketing", href: "/services/marketing" },
   { name: "Web Development", href: "/services/web-development" },
   { name: "Investor Funding", href: "/services/funding" },

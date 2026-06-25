@@ -31,6 +31,7 @@ const ITEMS: NavItem[] = [
   { type: "link", href: "/admin/site/services/validation", label: "Validation" },
   { type: "link", href: "/admin/site/services/incorporation", label: "Incorporation" },
   { type: "link", href: "/admin/site/services/accounting", label: "Accounting" },
+  { type: "link", href: "/admin/site/services/bookkeeping", label: "Book-keeping & Tax" },
   { type: "link", href: "/admin/site/services/marketing", label: "Marketing" },
   { type: "link", href: "/admin/site/services/web-development", label: "Web Dev" },
   { type: "link", href: "/admin/site/services/funding", label: "Funding" },

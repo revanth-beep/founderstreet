@@ -4,12 +4,13 @@ import { useState } from "react";
 import type { ServicePageCms, ServicePagePricingTier, ServicePageFaqItem } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
 
-type ServiceKey = "validation" | "incorporation" | "accounting" | "marketing" | "webDevelopment" | "funding";
+type ServiceKey = "validation" | "incorporation" | "accounting" | "bookkeeping" | "marketing" | "webDevelopment" | "funding";
 
 const SERVICE_LABELS: Record<ServiceKey, string> = {
   validation: "Test Your Idea (Validation)",
   incorporation: "Incorporation",
   accounting: "Accounting & Virtual CFO",
+  bookkeeping: "Book-keeping & Taxation",
   marketing: "Marketing & Retail",
   webDevelopment: "Web & Tech Development",
   funding: "Investor Funding",

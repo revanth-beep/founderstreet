@@ -3,18 +3,19 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin, Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, Phone, MessageCircle, MapPin, Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen } from "lucide-react";
 import type { SiteContent } from "@/lib/site-content-defaults";
 
 const NAV_ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
   FlaskConical, Building2, Calculator, Megaphone, Code2, TrendingUp, MapPin,
-  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target,
+  Lightbulb, Rocket, BarChart3, Users, ShieldCheck, Zap, Target, BookOpen,
 };
 
 // Fallback icon assignment by href pattern
 function getNavIcon(href: string): React.ComponentType<{ size?: number; color?: string }> {
   if (href.includes("validation")) return FlaskConical;
   if (href.includes("incorporation")) return Building2;
+  if (href.includes("bookkeeping")) return BookOpen;
   if (href.includes("accounting")) return Calculator;
   if (href.includes("marketing")) return Megaphone;
   if (href.includes("web-development")) return Code2;
@@ -37,6 +38,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
     { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
     { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
     { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
+    { name: "Book-keeping & Taxation", href: "/services/bookkeeping", desc: "Clean books and on-time tax filings" },
     { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
     { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
     { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },

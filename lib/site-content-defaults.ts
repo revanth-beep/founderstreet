@@ -343,6 +343,7 @@ export type SiteContent = {
     validation: ServicePageCms & { deliverables: ValidationDeliverable[] };
     incorporation: ServicePageCms & { steps: IncorporationStep[]; bundles: IncorporationBundle[] };
     accounting: ServicePageCms & { serviceCards: AccountingServiceCard[] };
+    bookkeeping: ServicePageCms & { serviceCards: AccountingServiceCard[] };
     marketing: ServicePageCms & { serviceCategories: MarketingCategory[]; results: MarketingResult[]; aiStudio: AiStudioCard[] };
     webDevelopment: ServicePageCms & { serviceCards: WebDevServiceCard[]; techStack: string[] };
     funding: ServicePageCms & { coreServices: FundingCoreService[]; beyondAlgorithm: BeyondAlgorithmCard[] };
@@ -368,6 +369,7 @@ export const defaultSiteContent: SiteContent = {
       { name: "Test Your Idea", href: "/services/validation", desc: "Market sizing, SWOT & unit economics" },
       { name: "Incorporation & Compliance", href: "/services/incorporation", desc: "End-to-end company registration" },
       { name: "Accounting & Virtual CFO", href: "/services/accounting", desc: "Financial plumbing for founders" },
+      { name: "Book-keeping & Taxation", href: "/services/bookkeeping", desc: "Clean books and on-time tax filings" },
       { name: "Marketing & Retail", href: "/services/marketing", desc: "Full-funnel digital and offline growth" },
       { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
       { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
@@ -393,6 +395,7 @@ export const defaultSiteContent: SiteContent = {
       { name: "Test Your Idea", href: "/services/validation" },
       { name: "Company Incorporation", href: "/services/incorporation" },
       { name: "Accounting & Virtual CFO", href: "/services/accounting" },
+      { name: "Book-keeping & Taxation", href: "/services/bookkeeping" },
       { name: "Digital Marketing", href: "/services/marketing" },
       { name: "Web Development", href: "/services/web-development" },
       { name: "Investor Funding", href: "/services/funding" },
@@ -483,6 +486,14 @@ export const defaultSiteContent: SiteContent = {
         desc: "12-slide pitch decks, 5-year financial models, and warm introductions to 775+ vetted investors: VCs, Angels, Banks, Family Offices, and Grants.",
         href: "/services/funding",
         price: "Starting at ₹9,999",
+      },
+      {
+        n: "07",
+        tag: "Finance",
+        name: "Book-keeping & Taxation",
+        desc: "Accurate book-keeping and end-to-end tax compliance. GST, TDS, income tax, and clean, audit-ready books every month.",
+        href: "/services/bookkeeping",
+        price: "Starting at ₹2,999/mo",
       },
     ],
     resourcesTeaser: {
@@ -1073,6 +1084,47 @@ export const defaultSiteContent: SiteContent = {
         { iconName: "Zap", title: "Dry Powder & Deployment Velocity", desc: "We track exactly where a fund is in its lifecycle: actively deploying or just taking coffee chats with no capital to deploy." },
         { iconName: "Users", title: "Partner-Level Profiling", desc: "Funds do not write cheques. Partners do. We identify exactly which General Partner holds the mandate for your specific sector and stage." },
         { iconName: "Target", title: "Follow-On Capacity & Strategic Fit", desc: "We analyse past deals to assess the investor's track record of participating in subsequent rounds (Series A/B)." },
+      ],
+    },
+    bookkeeping: {
+      meta: {
+        title: "Book-keeping & Taxation",
+        description: "Accurate book-keeping and end-to-end tax compliance for Indian startups. GST, TDS, income tax, and clean books maintained month after month.",
+      },
+      hero: {
+        label: "Book-keeping & Taxation",
+        title: "Clean Books.",
+        titleHighlight: "Zero Tax Surprises.",
+        subtitle: "Stay compliant and audit-ready without lifting a finger. We maintain accurate books, file every return on time, and keep your taxes optimised so you can focus on building.",
+        ctaText: "Get Started",
+        stats: [
+          { value: "₹0", label: "Late-filing penalties" },
+          { value: "100%", label: "On-time filings" },
+          { value: "24hr", label: "Query turnaround" },
+        ],
+      },
+      faq: [
+        { question: "What does your book-keeping service include?", answer: "Monthly recording of all transactions, bank and payment-gateway reconciliation, accounts payable and receivable tracking, and a clean monthly closing. You get real-time, read-only access to your books and a monthly summary of where your money went." },
+        { question: "Which taxes do you handle?", answer: "We cover the full stack: GST registration and monthly/quarterly returns (GSTR-1, GSTR-3B), TDS deduction and filing, advance tax computation, annual income tax returns, and ROC/MCA annual compliance. We also flag eligible startup exemptions like Section 80-IAC." },
+        { question: "What accounting software do you use?", answer: "We work with Zoho Books, QuickBooks, and Tally based on your preference, and integrate with Razorpay, Stripe, and your bank for automated reconciliation. No vendor lock-in. You always own your data." },
+        { question: "I am pre-revenue. Do I still need book-keeping?", answer: "Yes. Maintaining clean books from Day Zero keeps you compliant, makes fundraising due diligence painless, and avoids penalties. Our pre-seed plan is built exactly for early-stage founders at an affordable monthly cost." },
+        { question: "Can you clean up a backlog of past months?", answer: "Absolutely. We offer one-time catch-up book-keeping to bring overdue books and pending returns up to date, then move you onto a regular monthly plan so you never fall behind again." },
+      ],
+      pricing: [
+        { name: "Pre-Seed", price: "₹2,999", period: "/month", desc: "For idea-stage and pre-revenue founders", features: ["Monthly book-keeping", "Bank reconciliation", "GST return filing", "Email support"], highlight: false, cta: "Get Started" },
+        { name: "Growth", price: "Contact Us", period: "", desc: "For revenue-generating startups", features: ["Everything in Pre-Seed", "TDS deduction & filing", "Advance tax computation", "Annual ITR filing", "Priority support"], highlight: true, badge: "Most Popular", cta: "Get a Quote" },
+        { name: "Catch-Up", price: "Custom", period: "", desc: "One-time backlog clean-up", features: ["Past-month book-keeping", "Pending GST & TDS returns", "Reconciliation & corrections", "Hand-off to monthly plan"], highlight: false, cta: "Book Clean-Up" },
+      ],
+      bottomCta: {
+        title: "Hand off your books and taxes for good.",
+        subtitle: "Stop worrying about deadlines and penalties. Get a dedicated team keeping your books clean and your filings on time.",
+        buttonLabel: "Start Book-keeping",
+      },
+      serviceCards: [
+        { iconName: "BookOpen", title: "Book-keeping & Reconciliation", desc: "Accurate, up-to-date books every month. We record every transaction and reconcile your bank and payment gateways so your numbers always tie out.", features: ["Monthly transaction recording", "Bank & gateway reconciliation", "Accounts payable & receivable", "Expense categorisation", "Monthly closing", "Real-time read-only access"] },
+        { iconName: "Receipt", title: "GST Compliance", desc: "Zero penalties, every filing on time. We handle your GST registration and returns end to end so you stay fully compliant.", features: ["GST registration", "GSTR-1 & GSTR-3B filing", "Input tax credit reconciliation", "E-invoicing setup", "GST advisory", "Annual GST return (GSTR-9)"] },
+        { iconName: "FileText", title: "Income Tax & TDS", desc: "Optimised, legally minimised, and always on time. We manage your direct-tax compliance from TDS to annual returns.", features: ["TDS deduction & filing", "Advance tax computation", "Annual income tax filing", "Tax planning & optimisation", "Startup exemptions (80-IAC)", "Notice & assessment support"] },
+        { iconName: "PieChart", title: "Reporting & ROC Compliance", desc: "Investor-ready financials and statutory compliance handled. We keep your reporting and MCA filings clean and current.", features: ["Monthly financial summary", "Profit & loss statements", "ROC / MCA annual filings", "Audit support", "Due-diligence ready books", "Director compliance"] },
       ],
     },
   },

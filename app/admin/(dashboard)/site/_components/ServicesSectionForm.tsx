@@ -4,15 +4,6 @@ import { useState } from "react";
 import type { ServiceCardCms, ServicesHeaderCms } from "@/lib/site-content-defaults";
 import { patchSite } from "./patchClient";
 
-const LABELS = [
-  "Service 1",
-  "Service 2",
-  "Service 3",
-  "Service 4",
-  "Service 5",
-  "Service 6",
-];
-
 export default function ServicesSectionForm({
   header,
   serviceCards,
@@ -21,7 +12,7 @@ export default function ServicesSectionForm({
   serviceCards: ServiceCardCms[];
 }) {
   const [svcHeader, setSvcHeader] = useState(header);
-  const [cards, setCards] = useState(() => structuredClone(serviceCards).slice(0, 6));
+  const [cards, setCards] = useState(() => structuredClone(serviceCards));
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState("");
@@ -30,6 +21,34 @@ export default function ServicesSectionForm({
     const next = [...cards];
     next[i] = { ...next[i], ...patch };
     setCards(next);
+  }
+
+  function addCard() {
+    setCards((prev) => [
+      ...prev,
+      {
+        n: String(prev.length + 1).padStart(2, "0"),
+        tag: "",
+        name: "",
+        desc: "",
+        href: "/services/bookkeeping",
+        price: "",
+      },
+    ]);
+  }
+
+  function removeCard(i: number) {
+    setCards((prev) => prev.filter((_, j) => j !== i));
+  }
+
+  function moveCard(i: number, dir: -1 | 1) {
+    setCards((prev) => {
+      const next = [...prev];
+      const j = i + dir;
+      if (j < 0 || j >= next.length) return prev;
+      [next[i], next[j]] = [next[j], next[i]];
+      return next;
+    });
   }
 
   async function onSave(e: React.FormEvent) {
@@ -50,7 +69,7 @@ export default function ServicesSectionForm({
   return (
     <form onSubmit={onSave}>
       <h1 className="admin-page-title">Home — services grid</h1>
-      <p className="admin-page-desc">The “What we do” block with six tiles. Link paths should match your site (e.g. /services/validation).</p>
+      <p className="admin-page-desc">The “What we do” block. Add, remove, and reorder service tiles. Link paths should match your site (e.g. /services/bookkeeping).</p>
 
       <div className="admin-card">
         <p className="admin-card__title">Section header</p>
@@ -93,8 +112,13 @@ export default function ServicesSectionForm({
 
       {cards.map((card, i) => (
         <details key={i} className="details-block" open={i === 0}>
-          <summary>{LABELS[i]} — {card.name || "Untitled"}</summary>
+          <summary>Service {i + 1} — {card.name || "Untitled"}</summary>
           <div className="details-block__body">
+            <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.75rem" }}>
+              <button type="button" className="admin-btn" onClick={() => moveCard(i, -1)} disabled={i === 0}>↑ Move up</button>
+              <button type="button" className="admin-btn" onClick={() => moveCard(i, 1)} disabled={i === cards.length - 1}>↓ Move down</button>
+              <button type="button" className="admin-btn" onClick={() => removeCard(i)} style={{ marginLeft: "auto" }}>Remove</button>
+            </div>
             <div className="admin-grid-2">
               <div className="admin-field">
                 <label className="admin-label">Number on card (e.g. 01)</label>
@@ -154,6 +178,8 @@ export default function ServicesSectionForm({
           </div>
         </details>
       ))}
+
+      <button type="button" className="admin-btn" onClick={addCard} style={{ marginBottom: "1rem" }}>+ Add service</button>
 
       <div className="admin-actions">
         <button type="submit" className="admin-btn admin-btn--primary" disabled={saving}>

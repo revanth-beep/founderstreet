@@ -727,7 +727,7 @@ export const defaultSiteContent: SiteContent = {
       { label: "Email", value: "hello@founderstreet.in", href: "mailto:hello@founderstreet.in" },
       { label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
       { label: "Office", value: "DLF Cyber City, Gurugram, Haryana 122002", href: "" },
-      { label: "Hours", value: "Monday–Saturday, 10 AM – 7 PM IST", href: "" },
+      { label: "Hours", value: "Monday–Saturday, 10:30 AM – 6:30 PM IST", href: "" },
     ],
     socialLinks: {
       linkedin: "https://linkedin.com",

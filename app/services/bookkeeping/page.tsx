@@ -87,7 +87,6 @@ export default async function BookkeepingPage() {
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Pricing</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>Flexible Pricing</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>Starting at <strong>&#8377;2,999/month</strong> for early-stage founders. Scale up as you grow.</p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.5rem", maxWidth: "56rem", margin: "0 auto" }}>

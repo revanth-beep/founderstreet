@@ -180,7 +180,7 @@ export default async function ValidationPage() {
                 lineHeight: 1.7,
               }}
             >
-              Answer 5 questions about your idea. We&apos;ll send a personalised sample SWOT report to your inbox instantly.
+              Answer 6 questions about your startup. We&apos;ll send a personalised sample SWOT report to your inbox instantly.
             </p>
           </div>
           <div style={{ maxWidth: "42rem", margin: "0 auto" }}>

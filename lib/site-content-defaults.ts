@@ -357,7 +357,7 @@ export const defaultSiteContent: SiteContent = {
     brandName: "Founderstreet",
     subsidiaryText: "by Northville Consulting Group",
     healthPromoTitle: "Test Your Idea, Free",
-    healthPromoSubtitle: "5 questions. Get a free SWOT report instantly.",
+    healthPromoSubtitle: "6 questions. Get a free SWOT report instantly.",
     healthCtaShort: "Test Your Idea",
     phone: "+91 98765 43210",
     whatsappUrl: "https://wa.me/919876543210",
@@ -582,7 +582,7 @@ export const defaultSiteContent: SiteContent = {
       badge: "Powered by AI",
       title: "Get a Free SWOT Snapshot",
       titleGradient: "of Your Idea",
-      subtitle: "Before you commit time and capital, stress-test your concept. Answer 5 questions and get a personalised SWOT report instantly, free.",
+      subtitle: "Before you commit time and capital, stress-test your concept. Answer 6 questions and get a personalised SWOT report instantly, free.",
       bullets: [
         "Identify your biggest risks before investors do",
         "Understand market sizing and competitive gaps",
@@ -812,7 +812,7 @@ export const defaultSiteContent: SiteContent = {
         { question: "Can this replace a formal market research firm?", answer: "For early-stage startups, yes. Traditional market research firms charge ₹5–15L for slower, more generic reports. We're purpose-built for Indian startup contexts and move at startup velocity." },
       ],
       pricing: [
-        { name: "SWOT Snapshot", price: "Free", desc: "5-question health check. Instant SWOT report emailed to you. No commitment.", features: ["SWOT summary", "Top 3 risks identified", "Founderstreet follow-up within 48 hrs"], highlight: false, cta: "Start Free" },
+        { name: "SWOT Snapshot", price: "Free", desc: "6-question health check. Instant SWOT report emailed to you. No commitment.", features: ["SWOT summary", "Top 3 risks identified", "Founderstreet follow-up within 48 hrs"], highlight: false, cta: "Start Free" },
         { name: "Full Validation Sprint", price: "₹14,999", period: "one-time", desc: "Complete market validation in 14 working days.", features: ["TAM/SAM/SOM model", "Competitor landscape", "Unit economics model", "60-min walkthrough call", "Editable PowerPoint + Excel"], highlight: true, badge: "Most Popular", cta: "Book Validation" },
         { name: "Strategy + Validation", price: "₹24,999", period: "one-time", desc: "Validation + GTM strategy + pitch-ready market slide.", features: ["Everything in Full Sprint", "Go-to-market strategy", "Investor-ready market slide", "Positioning recommendation"], highlight: false, cta: "Book Strategy Package" },
       ],

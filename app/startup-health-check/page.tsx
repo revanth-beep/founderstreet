@@ -4,7 +4,7 @@ import { CheckCircle2, ClipboardList, Mail, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Test Your Idea: Free SWOT Report | Founderstreet",
-  description: "Answer 5 questions about your startup idea. Get a free personalised SWOT analysis and market sizing report sent to your inbox instantly.",
+  description: "Answer 6 questions about your startup. Get a free personalised SWOT analysis and market sizing report sent to your inbox instantly.",
 };
 
 const what = [
@@ -59,7 +59,7 @@ export default function StartupHealthCheckPage() {
             5 Questions. Free SWOT Report.
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)" }}>
-            Answer 5 quick questions about your startup. In exchange for your email, we&apos;ll send a personalised SWOT analysis and market positioning snapshot, instantly.
+            Answer 6 quick questions about your startup. In exchange for your email, we&apos;ll send a personalised SWOT analysis and market positioning snapshot, instantly.
           </p>
         </div>
       </section>

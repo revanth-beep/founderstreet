@@ -1,23 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SECTOR_LABELS: Record<string, string> = {
-  b2b_saas: "B2B SaaS / Enterprise",
-  d2c: "D2C / Consumer Brand",
-  vertical_tech: "FinTech / EdTech / HealthTech",
-  marketplace: "Marketplace / Platform",
+const INDUSTRY_LABELS: Record<string, string> = {
+  consumer: "Consumer Products & Retail",
+  technology: "Technology & Software",
+  services: "Services & Marketplace",
+  other: "Healthcare, Education & Other",
+};
+
+const CUSTOMER_LABELS: Record<string, string> = {
+  b2c: "Individual consumers (B2C)",
+  b2b: "Other businesses (B2B)",
+  b2b2c: "Both consumers & businesses",
+  govt: "Government / Institutions",
 };
 
 const STAGE_LABELS: Record<string, string> = {
   idea: "Just an idea",
-  mvp: "Building MVP",
-  early_users: "Have early users",
-  revenue: "Generating revenue",
+  mvp: "Building the product",
+  early_users: "Launched, early customers",
+  revenue: "Generating steady revenue",
 };
 
 const CHALLENGE_LABELS: Record<string, string> = {
-  pmf: "Validating product-market fit",
+  pmf: "Validating the idea / market fit",
   build: "Building the product",
-  acquisition: "Acquiring first customers",
+  acquisition: "Acquiring customers",
   funding: "Raising funding",
 };
 
@@ -37,67 +44,87 @@ const TIMELINE_LABELS: Record<string, string> = {
 
 function buildSwotHtml(
   name: string,
+  description: string,
   answers: Record<string, string>
 ): string {
   const stage = STAGE_LABELS[answers.stage] ?? answers.stage ?? "N/A";
-  const sector = SECTOR_LABELS[answers.sector] ?? answers.sector ?? "N/A";
+  const industry = INDUSTRY_LABELS[answers.industry] ?? answers.industry ?? "N/A";
+  const customers = CUSTOMER_LABELS[answers.customers] ?? answers.customers ?? "N/A";
   const challenge = CHALLENGE_LABELS[answers.challenge] ?? answers.challenge ?? "N/A";
   const team = TEAM_LABELS[answers.team] ?? answers.team ?? "N/A";
   const timeline = TIMELINE_LABELS[answers.timeline] ?? answers.timeline ?? "N/A";
+  const whatYouDo = (description || "").trim();
 
-  // Generate contextual SWOT points based on answers
+  // Generate contextual SWOT points based on answers (industry-agnostic)
   const strengths: string[] = [];
   const weaknesses: string[] = [];
   const opportunities: string[] = [];
   const threats: string[] = [];
 
+  // Team
   if (answers.team === "two" || answers.team === "three_plus") {
     strengths.push("Multiple co-founders bring complementary skills and shared accountability.");
   } else if (answers.team === "team") {
-    strengths.push("Early team formation shows execution capability and investor confidence.");
+    strengths.push("An early team in place shows execution capability and gives investors confidence.");
   } else {
-    weaknesses.push("Solo founding increases execution risk — consider finding a co-founder.");
+    weaknesses.push("Solo founding increases execution risk. Consider finding a co-founder or early key hire.");
   }
 
+  // Stage
   if (answers.stage === "revenue") {
-    strengths.push("Revenue traction is your strongest signal — use it in every investor conversation.");
-    opportunities.push("With revenue proof, you are in a strong position to raise a seed round.");
+    strengths.push("Revenue traction is your strongest signal. Lead with it in every investor conversation.");
+    opportunities.push("With revenue proof, you are in a strong position to raise your next round.");
   } else if (answers.stage === "early_users") {
-    strengths.push("Early user adoption validates demand before heavy capital deployment.");
-    opportunities.push("Iterate fast on feedback to hit product-market fit before fundraising.");
+    strengths.push("Early customer adoption validates real demand before heavy capital is deployed.");
+    opportunities.push("Iterate fast on customer feedback to reach product-market fit before fundraising.");
   } else if (answers.stage === "mvp") {
-    weaknesses.push("No users yet — prioritise getting your first 10 paying customers before raising.");
-    opportunities.push("MVP stage is ideal for low-cost customer discovery.");
+    weaknesses.push("No paying customers yet. Prioritise your first 10 paying customers before raising.");
+    opportunities.push("Product-build stage is ideal for low-cost customer discovery and pre-orders.");
   } else {
-    weaknesses.push("Idea stage carries the highest execution risk with no market proof.");
-    opportunities.push("Validation workshops and landing-page tests can de-risk the idea cheaply.");
+    weaknesses.push("Idea stage carries the highest execution risk with no market proof yet.");
+    opportunities.push("Validation sprints and landing-page tests can de-risk the idea cheaply.");
   }
 
-  if (answers.sector === "b2b_saas") {
-    opportunities.push("B2B SaaS has strong unit economics and recurring revenue — attractive to investors.");
-    threats.push("Long B2B sales cycles can stretch your runway — plan for 3–6 month deal timelines.");
-  } else if (answers.sector === "d2c") {
-    opportunities.push("D2C brands can scale quickly with performance marketing and retail distribution.");
-    threats.push("Customer acquisition costs in D2C are rising — strong branding and retention are critical.");
-  } else if (answers.sector === "vertical_tech") {
-    opportunities.push("Vertical tech (FinTech/EdTech/HealthTech) attracts dedicated sector-focused VCs.");
-    threats.push("Regulatory compliance (RBI, DPDP Act) can be a barrier — factor this into your roadmap.");
-  } else if (answers.sector === "marketplace") {
-    weaknesses.push("Marketplace cold-start problem: both supply and demand need to be built simultaneously.");
-    opportunities.push("Once liquidity is achieved, marketplaces have strong network-effect moats.");
+  // Customer type
+  if (answers.customers === "b2b") {
+    opportunities.push("B2B models often have stronger unit economics and recurring revenue. Attractive to investors.");
+    threats.push("B2B sales cycles can be long. Plan for multi-month deal timelines and a clear pipeline.");
+  } else if (answers.customers === "b2c") {
+    threats.push("Customer acquisition costs are rising across consumer categories. Retention and brand are critical.");
+    opportunities.push("Strong B2C brands can scale quickly with the right performance-marketing and distribution mix.");
+  } else if (answers.customers === "b2b2c") {
+    weaknesses.push("Serving both consumers and businesses can split focus. Be clear on which side you win first.");
+  } else if (answers.customers === "govt") {
+    threats.push("Government and institutional sales involve long procurement cycles and compliance requirements.");
   }
 
+  // Industry-specific note
+  if (answers.industry === "other") {
+    threats.push("Regulated sectors (healthcare, education, finance) need compliance built into the roadmap early.");
+  } else if (answers.industry === "services") {
+    weaknesses.push("Service and marketplace models can be hard to scale without standardised processes or liquidity.");
+  }
+
+  // Challenge -> Founderstreet service match
   if (answers.challenge === "funding") {
     opportunities.push("Founderstreet can connect you with 25+ active angel investors and VC partners.");
   } else if (answers.challenge === "pmf") {
-    opportunities.push("Our Startup Validation service can help you test PMF with real customers in 2 weeks.");
+    opportunities.push("Our Startup Validation service can help you test market fit with real customers in 2 weeks.");
   } else if (answers.challenge === "acquisition") {
-    opportunities.push("Our marketing team specialises in early-stage D2C and B2B customer acquisition.");
+    opportunities.push("Our marketing team specialises in early-stage customer acquisition across B2C and B2B.");
+  } else if (answers.challenge === "build") {
+    opportunities.push("Our tech team can help you ship a focused first version without over-building.");
   }
 
+  // Timeline
   if (answers.timeline === "3m") {
-    threats.push("A 3-month fundraising timeline is aggressive — start warm introductions immediately.");
+    threats.push("A 3-month fundraising timeline is aggressive. Start warm introductions immediately.");
   }
+
+  // Market sizing note built from the founder's own description of the business
+  const marketNote = whatYouDo
+    ? `Because you described your startup as "${whatYouDo}", your market should be sized for that exact niche, not the broad category. Two businesses in the same industry can have very different addressable markets, so we size yours from the specific segment, geography, and customer you actually serve.`
+    : `Market size depends heavily on your exact niche, not just the broad industry. We size your TAM/SAM/SOM from the specific segment, geography, and customer you serve.`;
 
   const renderList = (items: string[], color: string) =>
     items.length
@@ -135,8 +162,10 @@ function buildSwotHtml(
                 <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#66BB3F;">Your Profile</p>
               </td></tr>
               ${[
+    ...(whatYouDo ? [["What You Do", whatYouDo]] : []),
     ["Stage", stage],
-    ["Sector", sector],
+    ["Industry", industry],
+    ["Customers", customers],
     ["Main Challenge", challenge],
     ["Team", team],
     ["Funding Timeline", timeline],
@@ -187,6 +216,15 @@ function buildSwotHtml(
                 </td>
               </tr>
             </table>
+          </td>
+        </tr>
+        <!-- Market Sizing Note -->
+        <tr>
+          <td style="padding:8px 40px 0;">
+            <div style="background:#F4F1E8;border-left:3px solid #66BB3F;border-radius:6px;padding:16px 18px;">
+              <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#1B4332;">On Market Sizing</p>
+              <p style="margin:0;font-size:13px;line-height:1.7;color:#5A5A5A;">${marketNote}</p>
+            </div>
           </td>
         </tr>
         <!-- CTA -->
@@ -242,10 +280,12 @@ async function resendSend(payload: Record<string, unknown>) {
 function buildLeadNotificationHtml(
   name: string,
   email: string,
+  description: string,
   answers: Record<string, string>
 ): string {
   const stage = STAGE_LABELS[answers.stage] ?? answers.stage ?? "N/A";
-  const sector = SECTOR_LABELS[answers.sector] ?? answers.sector ?? "N/A";
+  const industry = INDUSTRY_LABELS[answers.industry] ?? answers.industry ?? "N/A";
+  const customers = CUSTOMER_LABELS[answers.customers] ?? answers.customers ?? "N/A";
   const challenge = CHALLENGE_LABELS[answers.challenge] ?? answers.challenge ?? "N/A";
   const team = TEAM_LABELS[answers.team] ?? answers.team ?? "N/A";
   const timeline = TIMELINE_LABELS[answers.timeline] ?? answers.timeline ?? "N/A";
@@ -253,8 +293,10 @@ function buildLeadNotificationHtml(
   const rows = [
     ["Name", name],
     ["Email", email],
+    ["What They Do", (description || "").trim() || "N/A"],
     ["Stage", stage],
-    ["Sector", sector],
+    ["Industry", industry],
+    ["Customers", customers],
     ["Main Challenge", challenge],
     ["Team", team],
     ["Funding Timeline", timeline],
@@ -273,13 +315,13 @@ function buildLeadNotificationHtml(
   </div>`;
 }
 
-async function sendEmail(to: string, name: string, answers: Record<string, string>) {
+async function sendEmail(to: string, name: string, description: string, answers: Record<string, string>) {
   // 1. SWOT report to the person who filled the form
   await resendSend({
     from: FROM_ADDRESS,
     to: [to],
     subject: `${name}, here's your free Startup SWOT Report`,
-    html: buildSwotHtml(name, answers),
+    html: buildSwotHtml(name, description, answers),
     reply_to: LEADS_INBOX,
   });
 
@@ -289,7 +331,7 @@ async function sendEmail(to: string, name: string, answers: Record<string, strin
       from: FROM_ADDRESS,
       to: [LEADS_INBOX],
       subject: `New SWOT lead: ${name}`,
-      html: buildLeadNotificationHtml(name, to, answers),
+      html: buildLeadNotificationHtml(name, to, description, answers),
       reply_to: to,
     });
   } catch (e) {
@@ -299,13 +341,13 @@ async function sendEmail(to: string, name: string, answers: Record<string, strin
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, answers } = await request.json();
+    const { name, email, description, answers } = await request.json();
 
     if (!email || !name) {
       return NextResponse.json({ error: "Name and email required" }, { status: 400 });
     }
 
-    await sendEmail(email, name, answers ?? {});
+    await sendEmail(email, name, description ?? "", answers ?? {});
 
     return NextResponse.json({ success: true });
   } catch (error) {

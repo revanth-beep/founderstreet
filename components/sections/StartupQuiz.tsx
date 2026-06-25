@@ -9,28 +9,38 @@ const questions = [
     question: "What stage is your startup at?",
     options: [
       { label: "Just an idea", value: "idea" },
-      { label: "Building MVP", value: "mvp" },
-      { label: "Have early users", value: "early_users" },
-      { label: "Generating revenue", value: "revenue" },
+      { label: "Building the product", value: "mvp" },
+      { label: "Launched, early customers", value: "early_users" },
+      { label: "Generating steady revenue", value: "revenue" },
     ],
   },
   {
-    id: "sector",
-    question: "Which sector are you building in?",
+    id: "industry",
+    question: "Which industry best describes your startup?",
     options: [
-      { label: "B2B SaaS / Enterprise", value: "b2b_saas" },
-      { label: "D2C / Consumer Brand", value: "d2c" },
-      { label: "FinTech / EdTech / HealthTech", value: "vertical_tech" },
-      { label: "Marketplace / Platform", value: "marketplace" },
+      { label: "Consumer Products & Retail", value: "consumer" },
+      { label: "Technology & Software", value: "technology" },
+      { label: "Services & Marketplace", value: "services" },
+      { label: "Healthcare, Education & Other", value: "other" },
+    ],
+  },
+  {
+    id: "customers",
+    question: "Who are your primary customers?",
+    options: [
+      { label: "Individual consumers (B2C)", value: "b2c" },
+      { label: "Other businesses (B2B)", value: "b2b" },
+      { label: "Both consumers & businesses", value: "b2b2c" },
+      { label: "Government / Institutions", value: "govt" },
     ],
   },
   {
     id: "challenge",
     question: "What's your biggest challenge right now?",
     options: [
-      { label: "Validating product-market fit", value: "pmf" },
+      { label: "Validating the idea / market fit", value: "pmf" },
       { label: "Building the product", value: "build" },
-      { label: "Acquiring first customers", value: "acquisition" },
+      { label: "Acquiring customers", value: "acquisition" },
       { label: "Raising funding", value: "funding" },
     ],
   },
@@ -77,6 +87,7 @@ export default function StartupQuiz() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
   const q = questions[currentQ];
@@ -98,7 +109,7 @@ export default function StartupQuiz() {
       await fetch("/api/quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, answers }),
+        body: JSON.stringify({ name, email, description, answers }),
       });
     } catch {}
     setLoading(false);
@@ -151,7 +162,7 @@ export default function StartupQuiz() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1.5rem" }}>
           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#66BB3F" }}>All done!</span>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>5 / 5 questions</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0" }}>{questions.length} / {questions.length} questions</span>
         </div>
 
         <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.25rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.375rem" }}>
@@ -162,6 +173,10 @@ export default function StartupQuiz() {
         </p>
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          <input type="text" placeholder="In one line, what does your startup do? (e.g. skincare D2C brand, B2B logistics software)" value={description} onChange={e => setDescription(e.target.value)} required style={inputSt}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
+            onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
+          />
           <input type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required style={inputSt}
             onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
             onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}

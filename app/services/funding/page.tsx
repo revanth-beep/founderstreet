@@ -76,7 +76,7 @@ export default async function FundingPage() {
       </section>
 
       {/* Pricing strip */}
-      <section style={{ background: "#F0F0ED", borderTop: "1px solid #E0E0DC", borderBottom: "1px solid #E0E0DC", paddingBlock: "2.5rem" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
             {pricing.map(p => (
@@ -101,7 +101,7 @@ export default async function FundingPage() {
         </div>
       </section>
 
-      <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
+      <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "44rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>AI Investor Matchmaker</ServicePageEyebrow>

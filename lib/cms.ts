@@ -587,6 +587,250 @@ Source: <a href="https://seafund.in/article/what-venture-capitalists-look-for-in
     featured: false,
     status: "published",
   },
+  {
+    id: "editorial_top-10-indian-startup-investors-q1-2026",
+    slug: "top-10-indian-startup-investors-q1-2026",
+    title: "Meet The Top 10 Indian Startup Investors Of Q1 2026",
+    excerpt:
+      "Indian startup funding fell 26% YoY to $2.3 Bn in Q1 2026, the first quarter since 2022 with no $100 Mn+ round. Here are the most active investors, led by venture debt firms Stride Ventures and BlackSoil.",
+    content: `After a relatively stable 2025, expectations were that the Indian startup ecosystem would carry forward the momentum into 2026. However, the trend so far has remained uneven.
+
+In Q1 2026, the ecosystem entered a recalibration phase, with total funding falling 26% YoY to $2.3 Bn across 271 deals, down from $3.1 Bn in the same period last year, as per Inc42's Indian Tech Startup Funding Report Q1 2026. Even as overall funding fell, deal activity held up, supported by a higher number of smaller deals materialising.
+
+Notably, the quarter did not witness any $100 Mn-plus funding rounds materialise. This is the first such quarter since 2022. Meanwhile, the median ticket size rose to $3.3 Mn, even as overall investor participation saw a marginal decline, as investors increasingly prioritised unit economics, capital efficiency, and supporting existing portfolios rather than chasing aggressive expansion.
+
+A slowdown in funding comes on the back of overall market uncertainty, with a greater inclination towards early-stage bets. Late-stage investments dropped sharply by 56% YoY to $782 Mn, while early-stage funding rose 58% to $248 Mn.
+
+Ecommerce dominated the funding charts on a sectoral basis, attracting $536 Mn across 64 deals. Fintech funding trailed ecommerce at $374 Mn. Meanwhile, investments in AI shot up 73% YoY to $253 Mn, taking the sector to the third position. Geographically, Bengaluru continued to lead with $823 Mn across 89 deals, followed by Delhi NCR with $538 Mn from 74 deals and Mumbai with $402 Mn across 34 deals.
+
+Venture debt continued to be the flavour of the season, with more startups showing an inclination to avail debt rather than dilute their equity. As a result, venture debt firms Stride Ventures and BlackSoil continued to be the most active investors. Among VC firms, Peak XV Partners was the most active with 16 deals, while Accel, 3one4 Capital and Rainmatter also actively expanded their portfolios.
+
+# Most Active Investors of Q1 2026
+
+<table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.8125rem;"><tr><th style="text-align:left;border:1px solid #E0E0DC;padding:6px;background:#F0F0ED;">Organisation</th><th style="text-align:left;border:1px solid #E0E0DC;padding:6px;background:#F0F0ED;">Type</th><th style="text-align:left;border:1px solid #E0E0DC;padding:6px;background:#F0F0ED;">Deals</th></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Stride Ventures</td><td style="border:1px solid #E0E0DC;padding:6px;">Venture Debt Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">38</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">BlackSoil</td><td style="border:1px solid #E0E0DC;padding:6px;">Venture Debt Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">36</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Peak XV Partners</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">16</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Accel</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">13</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Finvolve</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">12</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">3one4 Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">11</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">InnoVen Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">Venture Debt Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">11</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Inflection Point Ventures</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">10</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Rainmatter</td><td style="border:1px solid #E0E0DC;padding:6px;">Corporate / CVC</td><td style="border:1px solid #E0E0DC;padding:6px;">10</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">India Accelerator</td><td style="border:1px solid #E0E0DC;padding:6px;">Accelerator / Incubator</td><td style="border:1px solid #E0E0DC;padding:6px;">10</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">ajvc</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">9</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">VCMint</td><td style="border:1px solid #E0E0DC;padding:6px;">Family Office</td><td style="border:1px solid #E0E0DC;padding:6px;">9</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Indian Silicon Valley Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">Angel Network / Syndicate</td><td style="border:1px solid #E0E0DC;padding:6px;">9</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">SucSEED Indovation Fund</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">8</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">IAN</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm / Angel Network</td><td style="border:1px solid #E0E0DC;padding:6px;">8</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Fireside Ventures</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">8</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Piper Serica</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">7</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">The Chennai Angels</td><td style="border:1px solid #E0E0DC;padding:6px;">Angel Network / Syndicate</td><td style="border:1px solid #E0E0DC;padding:6px;">7</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Venture Catalysts++</td><td style="border:1px solid #E0E0DC;padding:6px;">Angel Network / Syndicate</td><td style="border:1px solid #E0E0DC;padding:6px;">7</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">IvyCap Ventures</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">7</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Titan Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">7</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Antler</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">6</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Z47</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">6</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">Kae Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">6</td></tr>
+<tr><td style="border:1px solid #E0E0DC;padding:6px;">YourNest Venture Capital</td><td style="border:1px solid #E0E0DC;padding:6px;">VC Firm</td><td style="border:1px solid #E0E0DC;padding:6px;">5</td></tr></table>
+
+Note: This ranking is based on data consolidated from Inc42's Indian Tech Startup Funding Report Q1 2026, and deals recorded in the Inc42 database.
+
+# Stride Ventures
+
+Venture debt firm Stride Ventures continued to be the most active startup investor in the first quarter of 2026. The firm's deal count rose 41% YoY to 38 deals, with it backing Magicpin, Gully Labs, and Swish. The firm has also been expanding its global presence, partnering in February with Saudi Arabia's Public Investment Fund (PIF), with plans to deploy over $1 Bn globally across venture debt and credit strategies.
+
+This comes after a strong 2025, when the firm backed 121 startups. Since its inception in 2019, Stride Ventures has backed over 200 startups, including 20 unicorns such as Zepto, Ather Energy, Slice, BlueStone, Moneyview, and Spinny.
+
+# BlackSoil Capital
+
+Venture debt firm BlackSoil Capital made 36 investments during the quarter, securing the spot as the second most active investor, with notable deals including Midland and Rupeek. The firm expanded its portfolio following its merger with Caspian Debt and now manages a combined portfolio that has disbursed over Rs. 14,000 Cr ($1.6 Bn plus) to more than 550 companies. To date, BlackSoil has backed 11 unicorns, including Upstox, BlueStone, Spinny, Zetwerk, and OYO.
+
+# Peak XV Partners
+
+Early-stage-focused Peak XV was the most active VC firm and the third most active startup investor in Q1 2026, backing 16 startups including Agrani Labs, BambooBox, and C2i Semiconductors. After separating from Sequoia Capital in 2023, Peak XV announced three maiden funds during the quarter, India Seed, India Venture and APAC, with claims of closing commitments to the tune of $1.3 Bn. The firm entered 2026 with a confidence boost after earning big returns from early bets in 2025's IPO boom, raking in more than Rs. 2,480 Cr from the public issues of Groww, Pine Labs, Wakefit, and Urban Company.
+
+# Accel India
+
+Backing 13 startups during the quarter, Accel emerged as the fourth most active startup investor, with notable investments including Bounce, Dognosis, EtherealX, and Ferra. In March 2026, in partnership with Prosus, it launched its inaugural Atoms X cohort, backing six startups selected from more than 2,000 applications. Accel India currently manages about $650 Mn in fund size, with total commitments of over $3 Bn in India.
+
+# Finvolve
+
+India Accelerator's Finvolve invested in 12 startups including Dozee, IG Defence, and Satlabs Space Systems. Founded in 2022, Finvolve is a joint venture between India Accelerator and Finolutions, operating a multi-stage VC firm and B2B platform offering seed to growth-stage funding. To date it has made over 40 investments across deeptech, spacetech, clean energy, and fintech.
+
+# 3one4 Capital
+
+Early-stage firm 3one4 Capital backed 11 startups during the quarter including Elixiir Foods, Smalle, and Unbox Robotics. Founded in 2016 by Siddharth and Pranav Pai, it primarily backs early-stage startups across fintech, SaaS, AI, consumer internet, enterprise tech and deeptech. Since inception the firm has invested in more than 110 startups, with a portfolio that includes Licious, DarwinBox, Open, Kuku FM, and Jupiter.
+
+# InnoVen Capital
+
+Venture debt firm InnoVen Capital made 11 investments in the quarter, including Euler Motors and Infinite Uptime. Established in 2008, it was among the earliest venture debt firms in India. Over the years InnoVen has supported more than 200 startups in India and over 420 companies globally, deploying more than $1.9 Bn through over 770 debt transactions. Its India portfolio includes Swiggy, OYO, Myntra, boAt and Cars24.
+
+# India Accelerator
+
+India Accelerator grabbed the eighth spot, making 10 deals including Constems AI, Lightspeed Photonics, and Lawyered. Founded in 2017 and headquartered in Gurugram, it is a multi-stage, fund-led startup accelerator that supports early-stage ventures from pre-seed to Series A through acceleration programmes, mentorship and capital. It also operates Finvolve and IA Spaces, a network of coworking hubs across more than a dozen Indian cities.
+
+# Inflection Point Ventures
+
+VC firm Inflection Point Ventures made 10 investments including Constems-AI, Heliware, RoadGrid, and Ro. Founded in 2018 by Mitesh Shah, Ankur Mittal, and Vinay Bansal, IPV is an angel investing platform connecting a network of over 14,000 investors with early-to-mid-stage startups, providing both capital and mentorship while democratising angel investing through smaller ticket sizes.
+
+# Rainmatter
+
+Zerodha's VC arm Rainmatter backed 10 startups in the quarter, including Aquaairx, GalaxEye, and PadCare Labs. Since inception in 2016, Rainmatter has backed close to 200 startups. It runs as a perennial fund using Zerodha's own capital, taking a long-term route without pressure for quick exits. While it began with a strong focus on fintech, it has expanded into climate tech, D2C and health tech. Its portfolio includes smallcase, Ultrahuman, and Jupiter.
+
+Source: <a href="https://inc42.com/buzz/meet-the-top-10-indian-startup-investors-of-q1-2026/" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Inc42</a>`,
+    category: "Startups",
+    author: "Founderstreet Team",
+    authorRole: "Research Team",
+    tags: ["funding", "investors", "venture capital", "Q1 2026"],
+    publishedAt: "2026-04-10T00:00:00.000Z",
+    updatedAt: "2026-04-10T00:00:00.000Z",
+    readingTime: 12,
+    featured: false,
+    status: "published",
+  },
+  {
+    id: "editorial_indian-startups-funding-acquisitions-june-15-20",
+    slug: "funding-and-acquisitions-indian-startups-june-15-20",
+    title: "Funding and Acquisitions in Indian Startups This Week [June 15 - June 20]",
+    excerpt:
+      "23 Indian startups raised nearly $432 million across 21 disclosed deals this week, including a new AI unicorn in Sarvam, plus 10 key hires, 4 fund launches, one acquisition, and a shutdown.",
+    content: `This week, 23 Indian startups raised nearly $432 million across 21 disclosed deals, including 7 growth-stage and 14 early-stage rounds, while 2 startups did not disclose their funding details. The week also saw the emergence of a new unicorn, 10 key leadership hires, the launch of 4 new funds, one acquisition, and the shutdown of a startup. In contrast, 28 startups had collectively secured about $255.9 million in the previous week.
+
+# Growth-stage deals
+
+Growth-stage startups raised a total of $380.4 million across seven deals this week, led by AI startup Sarvam, which raised $234 million in the first close of its $300 million Series B round at a post-money valuation of $1.5 billion, becoming one of India's newest AI unicorns.
+
+Residential solar startup SolarSquare raised $53 million in a Series C round led by B Capital, with participation from existing investors Lightspeed, Elevation Capital, Lowercarbon Capital, Rainmatter, and Good Capital. Pet healthcare startup Vetic secured $40 million led by Bessemer Venture Partners, joined by existing backers Greenoaks Capital, Lachy Groom, and JSW Family Office.
+
+Clean-label nutrition brand TruNativ raised $30 million in a round led by OrbiMed Advisors, while digital entertainment startup Rusk Media secured Rs 100 crore ($10.6 million) in a Pre-Series C round led by Nazara Technologies, with participation from Info Edge Ventures, IvyCap Ventures, and Audacity VC. Biotech startup Zumutor Biologics and gourmet retail venture Foodstories also attracted fresh capital.
+
+# Early-stage deals
+
+Early-stage startups raised $51.36 million across 14 deals this week, led by AI verification and accountability platform Pramaana Labs, which raised $27 million in a seed round led by Khosla Ventures, with participation from Accel, Boldcap, Nexus Venture Partners, Premji Invest, and Unbound.
+
+Karo Sambhav raised $6 million in a pre-Series A round led by Rainmatter by Zerodha. ContraVault AI secured $3.1 million in a Pre-Series A round led by Chiratae Ventures, with participation from Titan Capital Winners Fund. CREST raised $3.1 million in a pre-seed round led by BEENEXT, and IHLD MedTech received a strategic investment from Singapore Exchange-listed UltraGreen.ai, including an initial $3 million commitment. Other startups that received funding included AutoVRse, Maya Research, and Speedioo.
+
+# City and segment-wise deals
+
+Bengaluru continued to lead the funding charts with 10 startup deals during the week, followed by Mumbai and Delhi-NCR with 5 deals each. Pune, Hyderabad, and Udaipur recorded one deal apiece. Segment-wise, AI startups led the week with 6 deals followed by healthtech with 3 deals. EV, marketing, energy, e-commerce, and media and entertainment also recorded funding activity.
+
+# Week-on-week funding trend
+
+On a weekly basis, startup funding surged 70.5% to $431.76 million, compared to around $253.34 million raised during the previous week. The average funding over the last eight weeks stands at around $211.61 million, with an average of 20 deals per week.
+
+# Key hirings and departures
+
+Bigbasket, the Tata Group-owned quick commerce platform, appointed Amit Nanda as CEO, succeeding long-time CEO Hari Menon. Trupeer AI appointed Raghu Subramanian as President and Chief Business Officer. Online higher education platform UNIVO appointed Nitin Golani as CEO, and Grip Invest elevated Ankit Dokania as CFO. Kris@Work elevated Ananta Joshi, Samanvith Reddy Balugari, and Sunil Chandra Angara as co-founders.
+
+# Mergers and acquisitions
+
+French beauty giant L'Oreal has agreed to acquire a majority stake in personal care startup Innovist, strengthening its footprint in India's beauty and personal care market. While deal terms were not disclosed, media reports had previously valued Innovist at $350-450 million (Rs 3,240-4,170 crore).
+
+# Fund launches
+
+Quadria Group-backed HealthQuad announced the first close of its third fund, HealthQuad Fund III, securing commitments of Rs 550 crore. Deeptech VC YourNest Venture Capital closed a Rs 400 crore continuation fund anchored by HDFC AMC, to support portfolio companies including Miko, Dozee, Exponent Energy, Twid, Opkey, and Thriwe. Atom XVII launched a Category II AIF targeting Rs 75 crore for India's consumer sector, and Ideabaaz and BeyondSeed launched IdeabaazBeyondSeed100, a Rs 100 crore startup investment initiative.
+
+# Shutdown
+
+Startup consulting and learning platform xto10x has shut down its HR tech product PeopleCues, ending its foray into employee engagement and performance management software due to a lack of desired growth, co-founder Neeraj Aggarwal confirmed.
+
+# News flash this week
+
+The National Stock Exchange (NSE) filed its DRHP for a long-awaited IPO, structured entirely as an offer for sale of 14.89 crore equity shares. Insurtech firm Turtlemint set the price band for its Rs 883 crore IPO at Rs 144-152 per share, valuing the company at around Rs 4,513 crore. Jio Platforms filed its DRHP for a fresh-issue-only IPO, with reports estimating it could raise Rs 30,000-40,000 crore. Walmart-backed PhonePe retained its UPI dominance in May with a 46.3% share by volume, followed by Google Pay at 32.8%.
+
+Source: <a href="https://entrackr.com/report/weekly-funding-report-weekly-funding-report/funding-and-acquisitions-in-indian-startups-this-week-june-15-june-20-12056007" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
+    category: "Startups",
+    author: "Founderstreet Team",
+    authorRole: "Research Team",
+    tags: ["weekly funding", "startups", "M&A", "fund launches"],
+    publishedAt: "2026-06-21T00:00:00.000Z",
+    updatedAt: "2026-06-21T00:00:00.000Z",
+    readingTime: 9,
+    featured: false,
+    status: "published",
+  },
+  {
+    id: "editorial_mojro-series-a-ai-logistics",
+    slug: "mojro-raises-5-5-million-series-a-ai-logistics",
+    title: "AI-Driven Logistics Firm Mojro Secures $5.5 Mn in Series A Funding Round",
+    excerpt:
+      "Logistics startup Mojro Technologies has closed its Series A at $5.5 million, led by IAN Alpha Fund and Dallas Venture Capital, to scale its AI-driven supply chain optimisation globally.",
+    content: `Mojro Technologies, a logistics company focused on artificial intelligence (AI)-driven supply chain optimisation, has closed its Series A funding round at $5.5 million. The round includes a previously announced $3 million investment led by IAN Alpha Fund with participation from 1Crowd, along with a $2.5 million extension fully funded by Dallas Venture Capital (DVC).
+
+The firm will use the capital to accelerate its global expansion and drive product innovation. The company said it enables enterprises to optimise route planning, improve fleet utilisation, and drive cost efficiencies at scale across increasingly complex, multi-node supply chains.
+
+According to The Business Research Company, the global AI in logistics market is expected to reach $38.68 billion in 2026, growing at a CAGR of 46.9%. This momentum is reflected in India, where the rise of quick commerce and e-commerce has driven the last-mile logistics market to an estimated $5.5 billion, with projections to reach $10 billion by 2030.
+
+Anchored by products such as PlanWyse and ExecuteWyse, Mojro enables multi-dimensional optimisation across routes, schedules, trips, drops, space, and weight. It is currently in use by enterprises across FMCG, dairy, food and beverage, third party logistics (3PL), and retail sectors. The company said the platform helps customers achieve up to 20% reduction in logistics costs while improving service levels and decision-making.
+
+Commenting on the funding, Kishan Aswath, co-founder and CEO of Mojro, said: "Our differentiated optimisation capabilities have delivered measurable results for enterprises across the US, India, and Southeast Asia, and this funding enables us to further scale that impact. We will continue to invest in expansion in foreign markets to build more resilient supply chains."
+
+Kiran Kalluri, partner at DVC, said: "As global supply chains grow increasingly intricate, Mojro stands at the forefront of transforming how businesses plan, optimise, and execute logistics operations." Key Venture served as the exclusive financial advisor for the transaction.
+
+Source: <a href="https://www.business-standard.com/companies/start-ups/mojro-technologies-raises-5-5-million-series-a-ai-logistics-126042800696_1.html" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Business Standard</a>`,
+    category: "Startups",
+    author: "Founderstreet Team",
+    authorRole: "Research Team",
+    tags: ["logistics", "AI", "Series A", "funding"],
+    publishedAt: "2026-04-28T00:00:00.000Z",
+    updatedAt: "2026-04-28T00:00:00.000Z",
+    readingTime: 3,
+    featured: false,
+    status: "published",
+  },
+  {
+    id: "editorial_uni-seoul-series-a",
+    slug: "uni-seoul-raises-rs-35-cr-series-a",
+    title: "Impulse Lifestyle Retail Brand Uni Seoul Raises Rs 35 Cr in Series A Round",
+    excerpt:
+      "Pune-based impulse lifestyle retail brand Uni Seoul has raised Rs 35 crore in Series A led by Riverwalk Holdings and Sauce, to grow from 15 stores to 500 retail touchpoints over five years.",
+    content: `Pune-based impulse lifestyle retail brand Uni Seoul has raised Rs 35 crore (around $3.7 million) in its Series A funding round led by Riverwalk Holdings and Sauce. The round also saw participation from Panthera Peak Ventures and a group of existing angel investors.
+
+Founded by Gaurav Karmani and Mohit Khurana, Uni Seoul operates in the impulse lifestyle retail segment, offering products across categories such as plush toys, home and living, stationery, bags, travel accessories, beauty and personal care, and gifting.
+
+The company plans to deploy the fresh proceeds towards expanding its offline retail footprint, strengthening supply chain capabilities, growing its private-label portfolio, and launching on quick commerce platforms. It aims to scale from 15 stores to more than 50 outlets in the near term while targeting 500 retail touchpoints over the next five years.
+
+Uni Seoul currently operates 15 stores across cities including Bengaluru, Mumbai, Pune, Hyderabad, Ahmedabad, Chennai, Kochi, and Nashik. The brand offers over 1,000 SKUs priced between Rs 99 and Rs 2,999. According to the company, India's gifting market was valued at approximately $75 billion in 2024, while the rapid expansion of quick commerce is creating new opportunities for impulse-driven lifestyle and gifting products.
+
+Commenting on the investment, co-founder Mohit Khurana said the company plans to scale its retail presence and expand into quick commerce as it looks to build a category-defining impulse lifestyle retail brand in India.
+
+Source: <a href="https://entrackr.com/snippets/impulse-lifestyle-retail-brand-uni-seoul-raises-rs-35-cr-in-series-a-round-12022701" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
+    category: "Startups",
+    author: "Founderstreet Team",
+    authorRole: "Research Team",
+    tags: ["retail", "D2C", "Series A", "funding"],
+    publishedAt: "2026-02-27T00:00:00.000Z",
+    updatedAt: "2026-02-27T00:00:00.000Z",
+    readingTime: 3,
+    featured: false,
+    status: "published",
+  },
+  {
+    id: "editorial_indian-snack-house-pre-seed",
+    slug: "indian-snack-house-pre-seed-titan-capital",
+    title: "D2C Brand Indian Snack House Raises Pre-Seed Funding Round Led by Titan Capital",
+    excerpt:
+      "Chennai-based clean-label D2C brand Indian Snack House has raised Rs 2.2 crore in a pre-seed round led by Titan Capital to expand cities, platforms, and its South Indian snack range.",
+    content: `D2C brand Indian Snack House has raised Rs 2.2 crore in a pre-seed funding round led by Titan Capital. The fresh funds will be utilised for expansion to more cities and online platforms, and to grow its product range, Indian Snack House said in a press release.
+
+Co-founded in 2023 by Rajakumaran and Anbarasan, Indian Snack House is a clean-label snack brand that aims to take authentic South Indian sweets and snacks to homes across India and the world. From treats like Tirunelveli Halwa and Srivilliputhur Palkova to products like Tuticorin Macaroons and Nagercoil Banana Chips, the brand brings recipes made without palm oil, preservatives, or artificial colours.
+
+The Chennai-based startup says it focuses on authenticity, quality, and accessibility, and aspires to build the go-to brand for South India's rich snacking heritage. The brand plans to add popular snacks from Kerala, Karnataka, Andhra Pradesh, and Telangana.
+
+Indian Snack House operates as an e-commerce business, delivering snacks directly to customers, sourced from various regions and prepared using traditional methods. It caters to a wide audience, including families and individuals looking for healthy and tasty snacking options. Since inception, the brand claims it has seen a growing customer base and strong demand, and is currently shipping over 1,00,000 packets every month.
+
+Source: <a href="https://entrackr.com/snippets/d2c-brand-indian-snack-house-raises-pre-seed-funding-round-led-by-titan-capital-9405715" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
+    category: "Startups",
+    author: "Founderstreet Team",
+    authorRole: "Research Team",
+    tags: ["D2C", "pre-seed", "snacks", "funding"],
+    publishedAt: "2026-01-20T00:00:00.000Z",
+    updatedAt: "2026-01-20T00:00:00.000Z",
+    readingTime: 2,
+    featured: false,
+    status: "published",
+  },
 ];
 
 function mergeEditorial(list: PostMeta[]): PostMeta[] {

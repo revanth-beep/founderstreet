@@ -546,7 +546,7 @@ export const defaultSiteContent: SiteContent = {
         "Most early-stage startups fail not because of bad ideas, but because of bad execution. We remove every operational, legal, and financial blocker before they slow you down.",
       reasons: [
         { iconName: "ShieldCheck", title: "Compliance-First", desc: "Every structure we build passes due diligence. Our playbooks are designed for investors, not just regulators." },
-        { iconName: "Zap", title: "Startup Velocity", desc: "Incorporation in 10 working days. Website in 4 days. Pitch deck in 5 days. We move fast without sacrificing rigour." },
+        { iconName: "Zap", title: "Startup Velocity", desc: "Incorporation in 15 working days. Website in 4 days. Pitch deck in 5 days. We move fast without sacrificing rigour." },
         { iconName: "Users2", title: "Embedded, Not Outsourced", desc: "We integrate directly with your team: Slack, Notion, weekly calls. You get a co-founder, not a vendor." },
         { iconName: "Target", title: "Outcome-Aligned", desc: "No retainers for mediocrity. Our model is built on milestone delivery: our incentives align with yours." },
       ],
@@ -584,7 +584,7 @@ export const defaultSiteContent: SiteContent = {
       title: "Answers for",
       titleGradient: "Founders",
       items: [
-        { q: "How long does company incorporation take?", a: "We get your company live in under 10 working days. The timeline covers Director Identification Numbers (DIN), Digital Signature Certificates (DSC), name reservation via MCA, MOA and AOA drafting, SPICe+ filing, and PAN and TAN registration. All filings handled by us." },
+        { q: "How long does company incorporation take?", a: "We get your company live in under 15 working days. The timeline covers Director Identification Numbers (DIN), Digital Signature Certificates (DSC), name reservation via MCA, MOA and AOA drafting, SPICe+ filing, and PAN and TAN registration. All filings handled by us." },
         { q: "What does the Virtual CFO service include?", a: "Virtual CFO covers monthly bookkeeping, GST and TDS compliance, payroll management, statutory filing (ITR, ROC), and strategic financial forecasting. You also get a dedicated CA, live financial dashboards, and investor-ready reporting. Pricing starts at ₹4,999/month." },
         { q: "How does the investor matching work?", a: "We maintain a curated list of 775+ vetted investors across VCs, Angels, Banks, Family Offices, and Grants with active investment mandates. After understanding your stage, sector, and funding requirement, we make warm introductions to the right investors and support the conversation through term sheet stage." },
         { q: "Do you work with idea-stage founders?", a: "Yes. Many of our clients come to us at Day Zero: pre-product, pre-revenue, and sometimes pre-team. Our validation and incorporation services are specifically designed for early-stage founders who need a structured foundation before building." },
@@ -879,7 +879,7 @@ export const defaultSiteContent: SiteContent = {
       ],
       bottomCta: {
         title: "Start your incorporation today",
-        subtitle: "Get your company live in 10 working days. We handle every filing; you focus on building your product.",
+        subtitle: "Get your company live in 15 working days. We handle every filing; you focus on building your product.",
         buttonLabel: "Start Incorporation",
       },
       steps: [

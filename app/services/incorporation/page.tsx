@@ -103,7 +103,7 @@ export default async function IncorporationPage() {
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
               <ServicePageEyebrow>What You Need to Get Started</ServicePageEyebrow>
               <h3 style={{ ...h2, fontSize: "clamp(1.25rem, 2vw, 1.625rem)", marginTop: "0.75rem" }}>
-                Gather these documents, book your kickoff call, and we will have your Certificate of Incorporation in under 10 days.
+                Gather these documents, book your kickoff call, and we will have your Certificate of Incorporation in under 15 days.
               </h3>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="checklist-grid">
@@ -210,7 +210,7 @@ export default async function IncorporationPage() {
             ))}
           </div>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center", marginTop: "1.5rem" }}>
-            All prices include government fees, professional charges, and post-incorporation setup. Delivered in under 10 working days.
+            All prices include government fees, professional charges, and post-incorporation setup. Delivered in under 15 working days.
           </p>
         </div>
       </section>

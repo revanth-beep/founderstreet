@@ -92,20 +92,6 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Cover image */}
-        {post.coverImage && (
-          <div className="container-custom" style={{ paddingBottom: 0 }}>
-            <div style={{ position: "relative", maxWidth: "900px", margin: "0 auto", aspectRatio: "16/7", borderRadius: "8px 8px 0 0", overflow: "hidden" }}>
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                fill
-                sizes="(max-width: 1280px) 100vw, 900px"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Content */}

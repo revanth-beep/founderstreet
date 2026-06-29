@@ -232,6 +232,13 @@ function mergeEditorial(list: PostMeta[]): PostMeta[] {
   return [...list, ...extras];
 }
 
+/** Older seeded sample articles we no longer want shown anywhere. */
+const HIDDEN_SLUGS = new Set([
+  "unit-economics-101-what-every-founder-must-know",
+  "private-limited-vs-llp-india-2025",
+  "pitch-deck-teardown-what-sequoia-wants-to-see",
+]);
+
 async function seedPostsIfEmpty(): Promise<void> {
   const sql = getSql();
   if (!sql) return;
@@ -276,7 +283,7 @@ export async function getAllPosts(status?: "draft" | "published"): Promise<PostM
     list = (rows as PostRow[]).map(rowToMeta);
   }
 
-  list = mergeEditorial(list);
+  list = mergeEditorial(list).filter((p) => !HIDDEN_SLUGS.has(p.slug));
   if (status) list = list.filter((p) => p.status === status);
   return list.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -284,6 +291,10 @@ export async function getAllPosts(status?: "draft" | "published"): Promise<PostM
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (HIDDEN_SLUGS.has(slug)) {
+    return EDITORIAL_POSTS.find((x) => x.slug === slug) ?? null;
+  }
+
   const sql = getSql();
   if (!(await ensureReady()) || !sql) {
     const p = sampleBlogPosts.find((x) => x.slug === slug)

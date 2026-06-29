@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
 import type { PostMeta } from "@/lib/cms";
 import type { SiteContent } from "@/lib/site-content-defaults";
-
-const PLACEHOLDER = "/og-image.png";
 
 type Props = {
   posts: PostMeta[];
@@ -27,8 +24,7 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
     ? allPosts
     : allPosts.filter((p) => p.category === activeCategory);
 
-  const featuredPost = allPosts.find((p) => p.featured);
-  const gridPosts = filtered.filter((p) => !p.featured || filtered.filter((fp) => fp.featured).indexOf(p) > 0);
+  const gridPosts = filtered;
 
   return (
     <>
@@ -115,57 +111,6 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
             ))}
           </div>
 
-          {/* Featured post — only shown when "All" or matching category */}
-          {featuredPost && (activeCategory === "All" || featuredPost.category === activeCategory) && (
-            <Link
-              href={`/resources/${featuredPost.slug}`}
-              style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden", textDecoration: "none", marginBottom: "2rem", transition: "box-shadow 0.3s ease" }}
-            >
-              <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0 }}>
-                {/* Cover */}
-                <div style={{ position: "relative", aspectRatio: "16/7", overflow: "hidden", background: "#F0F0ED" }}>
-                  <Image
-                    src={featuredPost.coverImage || PLACEHOLDER}
-                    alt={featuredPost.title}
-                    fill
-                    sizes="(max-width: 1280px) 100vw, 1280px"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)" }} />
-                  {/* Content overlay on desktop */}
-                  <div style={{ position: "absolute", inset: 0, padding: "2.5rem 3rem", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: "#66BB3F", color: "#fff", padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
-                        Featured
-                      </span>
-                      {categoryColors[featuredPost.category] && (
-                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: categoryColors[featuredPost.category].bg, color: categoryColors[featuredPost.category].color, border: `1px solid ${categoryColors[featuredPost.category].border}`, padding: "0.2rem 0.75rem", borderRadius: "999px" }}>
-                          {featuredPost.category}
-                        </span>
-                      )}
-                    </div>
-                    <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.375rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: "0.75rem", textShadow: "0 2px 12px rgba(0,0,0,0.4)" }}>
-                      {featuredPost.title}
-                    </h2>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.65, marginBottom: "1.25rem", maxWidth: "500px", textShadow: "0 1px 8px rgba(0,0,0,0.3)" }}>
-                      {featuredPost.excerpt}
-                    </p>
-                    <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.6)" }}>
-                        <Clock style={{ width: "12px", height: "12px" }} />
-                        {featuredPost.readingTime} min read
-                      </span>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.6)" }}>{featuredPost.author}</span>
-                      <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "#9FE670", marginLeft: "auto" }}>
-                        Read article <ArrowRight style={{ width: "14px", height: "14px" }} />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          )}
-
           {/* Posts grid */}
           {gridPosts.length > 0 ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.5rem" }}>
@@ -177,18 +122,8 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
                     href={`/resources/${post.slug}`}
                     style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "8px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
                   >
-                    {/* Cover */}
-                    <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
-                      <Image
-                        src={post.coverImage || PLACEHOLDER}
-                        alt={post.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 400px"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
                     {/* Body */}
-                    <div style={{ padding: "1.25rem 1.5rem 1.5rem" }}>
+                    <div style={{ padding: "1.5rem" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
                         {catStyle && (
                           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, background: catStyle.bg, color: catStyle.color, border: `1px solid ${catStyle.border}`, padding: "0.2rem 0.625rem", borderRadius: "999px" }}>

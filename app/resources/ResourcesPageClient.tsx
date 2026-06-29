@@ -14,15 +14,11 @@ type Props = {
   copy: SiteContent["resourcesPage"];
 };
 
-const categories = ["All", "Finance", "Legal", "Fundraising", "Marketing", "Tech", "Strategy"];
+const categories = ["All", "Funding", "Startups"];
 
 const categoryColors: Record<string, { bg: string; color: string; border: string }> = {
-  Finance:    { bg: "#EFF6FF", color: "#1D4ED8", border: "#BFDBFE" },
-  Legal:      { bg: "#F5F3FF", color: "#7C3AED", border: "#DDD6FE" },
-  Fundraising:{ bg: "#ECFDF5", color: "#059669", border: "#A7F3D0" },
-  Marketing:  { bg: "#FFF7ED", color: "#C2410C", border: "#FED7AA" },
-  Tech:       { bg: "#EEF2FF", color: "#4338CA", border: "#C7D2FE" },
-  Strategy:   { bg: "#F0FDFA", color: "#0F766E", border: "#99F6E4" },
+  Funding:   { bg: "#ECFDF5", color: "#059669", border: "#A7F3D0" },
+  Startups:  { bg: "#EFF6FF", color: "#1D4ED8", border: "#BFDBFE" },
 };
 
 export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {

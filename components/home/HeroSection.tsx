@@ -87,7 +87,7 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
             style={{
               opacity: 0,
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
+              fontSize: "clamp(2rem, 4vw, 3.5rem)",
               fontWeight: 800,
               lineHeight: 1.06,
               letterSpacing: "-0.025em",

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, ArrowLeft, BookOpen } from "lucide-react";
@@ -10,8 +9,6 @@ export const revalidate = 60;
 interface Props {
   params: Promise<{ slug: string }>;
 }
-
-const PLACEHOLDER = "/og-image.png";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -159,20 +156,14 @@ export default async function BlogPostPage({ params }: Props) {
                   href={`/resources/${p.slug}`}
                   style={{ display: "block", background: "#fff", border: "1px solid #E0E0DC", borderRadius: "6px", overflow: "hidden", textDecoration: "none", transition: "box-shadow 0.3s ease, border-color 0.2s ease" }}
                 >
-                  <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#F0F0ED" }}>
-                    <Image
-                      src={p.coverImage || PLACEHOLDER}
-                      alt={p.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ padding: "1rem 1.25rem" }}>
+                  <div style={{ padding: "1.25rem 1.5rem" }}>
                     <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, color: "#66BB3F" }}>{p.category}</span>
-                    <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, color: "#3d4246", fontSize: "0.9375rem", marginTop: "0.25rem", lineHeight: 1.4 }}>
+                    <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, color: "#3d4246", fontSize: "0.9375rem", marginTop: "0.35rem", lineHeight: 1.4 }}>
                       {p.title}
                     </h3>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#5A5A5A", lineHeight: 1.6, marginTop: "0.5rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                      {p.excerpt}
+                    </p>
                   </div>
                 </Link>
               ))}

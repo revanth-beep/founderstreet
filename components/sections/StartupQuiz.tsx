@@ -87,6 +87,7 @@ export default function StartupQuiz() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("+91 ");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -109,7 +110,7 @@ export default function StartupQuiz() {
       await fetch("/api/quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, description, answers }),
+        body: JSON.stringify({ name, email, phone, description, answers }),
       });
     } catch {}
     setLoading(false);
@@ -182,6 +183,10 @@ export default function StartupQuiz() {
             onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />
           <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required style={inputSt}
+            onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
+            onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
+          />
+          <input type="tel" placeholder="Phone number (with country code, e.g. +91 98765 43210)" value={phone} onChange={e => setPhone(e.target.value)} required pattern="\+[0-9\s\-]{7,}" title="Include your country code, e.g. +91 98765 43210" style={inputSt}
             onFocus={e => { (e.target as HTMLInputElement).style.borderColor = "#66BB3F"; }}
             onBlur={e => { (e.target as HTMLInputElement).style.borderColor = "#E0E0DC"; }}
           />

@@ -280,6 +280,7 @@ async function resendSend(payload: Record<string, unknown>) {
 function buildLeadNotificationHtml(
   name: string,
   email: string,
+  phone: string,
   description: string,
   answers: Record<string, string>
 ): string {
@@ -293,6 +294,7 @@ function buildLeadNotificationHtml(
   const rows = [
     ["Name", name],
     ["Email", email],
+    ["Phone", (phone || "").trim() || "N/A"],
     ["What They Do", (description || "").trim() || "N/A"],
     ["Stage", stage],
     ["Industry", industry],
@@ -315,14 +317,33 @@ function buildLeadNotificationHtml(
   </div>`;
 }
 
-async function sendEmail(to: string, name: string, description: string, answers: Record<string, string>) {
+// Plain-text version of the report. Including a text/plain alternative makes
+// the email look transactional (not marketing), which helps it land in the
+// primary inbox rather than the Promotions tab.
+function buildSwotText(name: string): string {
+  return `Hi ${name},
+
+Here is your free personalised Startup SWOT Report from Founderstreet.
+
+Open this email in an HTML-capable client to see your full Strengths, Weaknesses, Opportunities and Threats, plus a market-sizing note tailored to your startup.
+
+Want a deeper analysis? Reply to this email or book a free 30-minute discovery call at https://founderstreet.in/contact
+
+Founderstreet, by Northville Consulting Group.`;
+}
+
+async function sendEmail(to: string, name: string, phone: string, description: string, answers: Record<string, string>) {
   // 1. SWOT report to the person who filled the form
   await resendSend({
     from: FROM_ADDRESS,
     to: [to],
-    subject: `${name}, here's your free Startup SWOT Report`,
+    subject: `${name}, here is your Startup SWOT Report`,
     html: buildSwotHtml(name, description, answers),
+    text: buildSwotText(name),
     reply_to: LEADS_INBOX,
+    headers: {
+      "List-Unsubscribe": `<mailto:${LEADS_INBOX}?subject=unsubscribe>`,
+    },
   });
 
   // 2. Internal copy of the lead for follow-up (best-effort, never blocks the user)
@@ -331,7 +352,7 @@ async function sendEmail(to: string, name: string, description: string, answers:
       from: FROM_ADDRESS,
       to: [LEADS_INBOX],
       subject: `New SWOT lead: ${name}`,
-      html: buildLeadNotificationHtml(name, to, description, answers),
+      html: buildLeadNotificationHtml(name, to, phone, description, answers),
       reply_to: to,
     });
   } catch (e) {
@@ -341,13 +362,13 @@ async function sendEmail(to: string, name: string, description: string, answers:
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, description, answers } = await request.json();
+    const { name, email, phone, description, answers } = await request.json();
 
     if (!email || !name) {
       return NextResponse.json({ error: "Name and email required" }, { status: 400 });
     }
 
-    await sendEmail(email, name, description ?? "", answers ?? {});
+    await sendEmail(email, name, phone ?? "", description ?? "", answers ?? {});
 
     return NextResponse.json({ success: true });
   } catch (error) {

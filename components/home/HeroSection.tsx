@@ -98,7 +98,7 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
             {hero.titleBefore.split("\n").map((line, i) => (
               <span key={i}>
                 {i > 0 ? <br /> : null}
-                {line}
+                {line.replace(/-/g, "‑")}
               </span>
             ))}{" "}
             <span style={{
@@ -108,9 +108,9 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"
             }}>
-              {hero.titleAccent}
+              {hero.titleAccent.replace(/-/g, "‑")}
             </span>{" "}
-            {hero.titleAfter}
+            {hero.titleAfter.replace(/-/g, "‑")}
           </h1>
 
           {/* Subheadline */}

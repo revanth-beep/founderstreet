@@ -212,7 +212,7 @@ export default async function ValidationPage() {
       <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
-            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", marginTop: "1rem" }}>
               Simple, Transparent Pricing
             </h2>

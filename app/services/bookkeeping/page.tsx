@@ -85,7 +85,7 @@ export default async function BookkeepingPage() {
       <section style={{ background: "#F0F0ED", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
-            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>Flexible Pricing</h2>
           </div>
 

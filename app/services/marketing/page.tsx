@@ -137,13 +137,10 @@ export default async function MarketingPage() {
       <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
-            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", lineHeight: 1.2, marginTop: "1rem" }}>
               Simple, Outcome-Aligned Pricing
             </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              We grow when you grow. Pricing is customised to your stage and goals. No lock-in contracts.
-            </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
             {pricing.map(p => (

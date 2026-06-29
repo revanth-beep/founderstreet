@@ -186,11 +186,8 @@ export default async function IncorporationPage() {
       <section style={{ background: "#F7F7F5", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
-            <ServicePageEyebrow>Pricing</ServicePageEyebrow>
+            <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Incorporation Pricing</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              No hidden government fees. No surprise add-ons. What you see is what you pay.
-            </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>
             {pricing.map(p => (

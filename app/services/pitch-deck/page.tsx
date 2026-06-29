@@ -124,7 +124,7 @@ export default async function PitchDeckPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=${encodeURIComponent("Pitch Deck & Valuation")}&plan=${encodeURIComponent(plan.name)}`}
                   style={{
                     display: "block",
                     textAlign: "center",

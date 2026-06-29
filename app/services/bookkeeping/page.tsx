@@ -124,7 +124,7 @@ export default async function BookkeepingPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=${encodeURIComponent("Book-keeping & Taxation")}&plan=${encodeURIComponent(plan.name)}`}
                   style={{
                     display: "block",
                     textAlign: "center",

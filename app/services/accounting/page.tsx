@@ -125,7 +125,7 @@ export default async function AccountingPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=${encodeURIComponent("Accounting & Virtual CFO")}&plan=${encodeURIComponent(plan.name)}`}
                   style={{
                     display: "block",
                     textAlign: "center",

@@ -28,10 +28,43 @@ const h2 = {
   lineHeight: 1.2 as const,
 };
 
+const FUNDING_SERVICES = [
+  {
+    icon: Target,
+    title: "Systematic Investor Outreach",
+    desc: "We build a structured, targeted outreach system that gets your deck in front of investors who are actively writing cheques in your sector.",
+    features: ["Investor Mapping & Targeting", "Outreach Execution", "Live investor pipeline tracker"],
+  },
+  {
+    icon: BarChart3,
+    title: "Financial Projections",
+    desc: "Numbers that tell your story and hold up under scrutiny. We build a financial model that is credible, defensible, and built the way investors expect to see it.",
+    features: ["Revenue Model", "Cost & Burn Modelling", "Scenario Analysis", "Key Metrics Dashboard"],
+  },
+  {
+    icon: Search,
+    title: "Valuation Reports",
+    desc: "A valuation isn't just a number, it's an argument. We build a defensible valuation using the methods investors trust, so you never have to guess what your startup is worth.",
+    features: ["Comparable Company Analysis", "Discounted Cash Flow (DCF)", "Early-Stage Methods (Berkus & Scorecard)", "Valuation Report"],
+  },
+  {
+    icon: Shield,
+    title: "Startup Grant Applications",
+    desc: "The Indian government and state bodies have set aside thousands of crores for startups through grants, schemes, and incentive programmes. We identify what you qualify for and handle the entire application process.",
+    features: ["Grant Identification & Eligibility Screening", "Application Preparation", "Post-Application Support"],
+  },
+  {
+    icon: TrendingUp,
+    title: "Debt Funding",
+    desc: "Not every rupee of capital needs to cost you ownership. Debt funding lets you grow, bridge, or scale while keeping your cap table clean. We help you find the right debt product for your stage and structure it correctly.",
+    features: ["Debt Product Identification", "Lender Outreach & Matching", "Documentation & Due Diligence Support", "Structuring Advice"],
+  },
+];
+
 export default async function FundingPage() {
   const site = await getSiteContent();
   const cms = site.servicePages.funding;
-  const { hero, faq, pricing, bottomCta, coreServices, beyondAlgorithm } = cms;
+  const { hero, faq, pricing, bottomCta, beyondAlgorithm } = cms;
 
   return (
     <>
@@ -47,26 +80,34 @@ export default async function FundingPage() {
 
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1.5rem" }}>
-            {coreServices.map((service) => {
-              const Icon = SERVICE_ICON_MAP[service.iconName] ?? FileText;
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>What We Offer</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Everything Under One Roof</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "1.5rem" }}>
+            {FUNDING_SERVICES.map((service) => {
+              const Icon = service.icon;
               return (
-                <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "1.5rem" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
-                    <Icon size={20} color="#66BB3F" />
+                <div key={service.title} style={{ background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "8px", padding: "clamp(1.25rem, 3vw, 2rem)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.25rem" }}>
+                    <div style={{ width: "40px", height: "40px", borderRadius: "6px", background: "#E9F6E4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Icon size={20} color="#66BB3F" />
+                    </div>
+                    <div>
+                      <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246" }}>{service.title}</h3>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", marginTop: "0.35rem", lineHeight: 1.65 }}>{service.desc}</p>
+                    </div>
                   </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.125rem", color: "#3d4246", marginBottom: "0.5rem" }}>{service.title}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.65, marginBottom: "1.25rem" }}>{service.desc}</p>
                   <div style={{ borderTop: "1px solid #E0E0DC", paddingTop: "1rem" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.75rem" }}>Deliverables</p>
-                    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-                      {service.deliverables.map((d) => (
-                        <li key={d} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#5A5A5A" }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A0A0A0", marginBottom: "0.75rem" }}>What&apos;s included</p>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.35rem" }}>
+                      {service.features.map((f) => (
+                        <div key={f} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#5A5A5A" }}>
                           <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#66BB3F", flexShrink: 0 }} />
-                          {d}
-                        </li>
+                          {f}
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 </div>
               );

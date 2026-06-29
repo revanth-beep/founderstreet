@@ -44,7 +44,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
     { name: "Web & Tech Development", href: "/services/web-development", desc: "Scalable storefronts and platforms" },
     { name: "Pitch Deck & Valuation", href: "/services/pitch-deck", desc: "Investor-ready decks and defensible valuations" },
     { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
-    { name: "Co-working Space", href: "/contact", desc: "Get access to 1200+ co-working spaces across India" },
+    { name: "Co-working Space", href: "/services/coworking", desc: "Get access to 1200+ co-working spaces across India" },
   ];
 
   useEffect(() => {

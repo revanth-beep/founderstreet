@@ -187,7 +187,7 @@ export default async function IncorporationPage() {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Packages</ServicePageEyebrow>
-            <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Incorporation Pricing</h2>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Transparent Incorporation Packages</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>
             {pricing.map(p => (

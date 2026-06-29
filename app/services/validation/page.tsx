@@ -214,7 +214,7 @@ export default async function ValidationPage() {
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", marginTop: "1rem" }}>
-              Simple, Transparent Pricing
+              Simple, Transparent Packages
             </h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "52rem", margin: "0 auto" }}>

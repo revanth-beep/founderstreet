@@ -416,9 +416,9 @@ export const defaultSiteContent: SiteContent = {
   home: {
     hero: {
       eyebrow: "India's Startup Infrastructure Platform",
-      titleBefore: "The Unseen Engine\nBehind India's",
-      titleAccent: "Next Great",
-      titleAfter: "Startups.",
+      titleBefore: "Your Virtual",
+      titleAccent: "Co-Founder",
+      titleAfter: "for Compliance, Finance, Marketing and Fundraising.",
       subtitle:
         "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
       subtitleEmphasis: "You build the vision; we handle the execution.",

@@ -253,7 +253,7 @@ function buildSwotHtml(
 
 const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
 // Internal inbox that gets a copy of every SWOT lead for follow-up.
-const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hello@northvilleconsultinggroup.com";
+const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
 
 async function resendSend(payload: Record<string, unknown>) {
   const apiKey = process.env.RESEND_API_KEY;

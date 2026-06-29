@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
 // Inbox that receives co-working enquiries.
-const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hello@northvilleconsultinggroup.com";
+const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
 
 export async function POST(request: NextRequest) {
   try {

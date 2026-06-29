@@ -39,13 +39,13 @@ const FUNDING_SERVICES = [
     icon: BarChart3,
     title: "Financial Projections",
     desc: "Numbers that tell your story and hold up under scrutiny. We build a financial model that is credible, defensible, and built the way investors expect to see it.",
-    features: ["Revenue Model", "Cost & Burn Modelling", "Scenario Analysis", "Key Metrics Dashboard"],
+    features: ["Revenue Model", "Cost & Burn Modelling", "Scenario Analysis", "Discounted Cash Flow (DCF)", "Key Metrics Dashboard"],
   },
   {
     icon: Search,
     title: "Valuation Reports",
     desc: "A valuation isn't just a number, it's an argument. We build a defensible valuation using the methods investors trust, so you never have to guess what your startup is worth.",
-    features: ["Comparable Company Analysis", "Discounted Cash Flow (DCF)", "Early-Stage Methods (Berkus & Scorecard)", "Valuation Report"],
+    features: ["Comparable Company Analysis", "Early-Stage Methods (Berkus & Scorecard)", "Valuation Reports (As per Income Tax Act & Companies Act)"],
   },
   {
     icon: Shield,

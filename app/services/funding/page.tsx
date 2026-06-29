@@ -78,6 +78,10 @@ export default async function FundingPage() {
       {/* Pricing strip */}
       <section style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
+          <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Packages</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Simple, Transparent Packages</h2>
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>
             {pricing.map(p => (
               <div key={p.name} style={{ background: p.highlight ? "#66BB3F" : "#FFFFFF", border: p.highlight ? "none" : "1px solid #E0E0DC", borderRadius: "10px", padding: "1.5rem", boxShadow: p.highlight ? "0 0 40px rgba(102,187,63,0.3)" : "none" }}>

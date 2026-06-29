@@ -139,7 +139,7 @@ export default async function MarketingPage() {
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Packages</ServicePageEyebrow>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 700, color: "#3d4246", lineHeight: 1.2, marginTop: "1rem" }}>
-              Simple, Outcome-Aligned Packages
+              From brand to traffic. Pick where to begin.
             </h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "1.25rem", maxWidth: "56rem", margin: "0 auto" }}>

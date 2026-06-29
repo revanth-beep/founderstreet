@@ -86,7 +86,7 @@ export default async function PitchDeckPage() {
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "36rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Packages</ServicePageEyebrow>
-            <h2 style={{ ...h2, marginTop: "1rem" }}>Simple Packages</h2>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>One goal: walk into the room ready.</h2>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.5rem", maxWidth: "56rem", margin: "0 auto" }}>

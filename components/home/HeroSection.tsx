@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, ChevronDown } from "lucide-react";
 import type { HeroCms } from "@/lib/site-content-defaults";
 
 export default function HeroSection({ hero }: { hero: HeroCms }) {
@@ -220,10 +220,16 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
           Scroll
         </span>
         <div style={{
-          width: "1px", height: "40px",
+          width: "1px", height: "28px",
           background: "linear-gradient(to bottom, rgba(123,201,90,0.6), transparent)"
         }} />
+        <ChevronDown
+          size={22}
+          color="rgba(123,201,90,0.85)"
+          style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
+        />
       </div>
+      <style>{`@keyframes scrollBounce{0%,100%{transform:translateY(0);opacity:0.55}50%{transform:translateY(6px);opacity:1}}`}</style>
 
           </section>
   );

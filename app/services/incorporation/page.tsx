@@ -86,7 +86,7 @@ export default async function IncorporationPage() {
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
             <ServicePageEyebrow>Our Process</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>
-              Company Live in <span className="gradient-text">10 Working Days</span>
+              Company Live in <span className="gradient-text">15 Working Days</span>
             </h2>
           </div>
 

@@ -177,6 +177,61 @@ export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] 
 
 const sampleBlogPosts: BlogPost[] = SAMPLE_POSTS.map(sampleToBlogPost);
 
+/**
+ * Code-defined editorial articles. These are always merged into the post list
+ * (deduped by slug, so a DB post with the same slug takes precedence). This lets
+ * us publish curated articles without a database write.
+ */
+const EDITORIAL_POSTS: BlogPost[] = [
+  {
+    id: "editorial_indias-ipo-boom-vc-liquidity-2026",
+    slug: "how-will-indias-ipo-boom-reshape-venture-capital-liquidity-in-2026",
+    title: "How Will India's IPO Boom Reshape Venture Capital Liquidity in 2026?",
+    excerpt:
+      "India's 2025 IPO pipeline is set to drive liquidity upstream into private markets. Here is how public-market exits are reshaping VC underwriting, secondaries, and the rise of hybrid funds in 2026.",
+    content: `# Venture Capital, Liquidity and the IPO Feedback Loop
+
+The narrative for venture capital in 2026 is shifting from "markup" to "exit." The robust IPO pipeline established in 2025, where new-age tech companies saw strong investor appetite despite broader market flatness, is set to create a ripple effect throughout the private ecosystem.
+
+As we move into 2026, success in the public markets is actively de-risking early-stage bets.
+
+We expect the liquidity events at the top of the pyramid (IPOs) to drive capital upstream, reinvigorating the Series B and C funding landscapes.
+
+However, this is not a return to indiscriminate risk-taking. Public market investors are rewarding profitability, governance, and operational discipline, signals that are now feeding directly back into private valuation frameworks. As a result, venture capital underwriting is becoming more synchronised with public market expectations far earlier in a company's lifecycle.
+
+Timelines are not necessarily compressing. Building durable value takes time, and the "quick flip" mentality has been replaced by a focus on sustainable unit economics. Consequently, the secondary market is deepening, becoming a critical venue for liquidity rather than just a distress valve.
+
+On the technology front, we must look past the "AI bubble" rhetoric surrounding the Magnificent Seven and focus on the application layer.
+
+In India and Asia, the AI story for 2026 is not about building the next Large Language Model (LLM), but about the pragmatic integration of AI to strip out costs and boost productivity in traditional businesses.
+
+We are seeing portfolio companies across sectors, from ed-tech to consumer services, deploying AI to optimise tech spend, rationalize headcount, and automate non-essential functions. The winners will not be those who build AI, but those who deploy it fastest and cheapest.
+
+Furthermore, the structure of capital is evolving as the boundary between asset classes blurs. We are observing a crossover trend where public market strategies are increasingly incorporating private sleeves, giving rise to "hybrid funds."
+
+These vehicles bridge the illiquidity of traditional venture capital with the cash-flow needs of family offices by blending listed assets with private pre-IPO allocations. This structure is likely to become dominant in 2026, allowing investors to capture private market alpha while managing liquidity profiles through a single product solution.
+
+Source: <a href="https://www.lighthouse-canton.com/insights/how-will-indias-ipo-boom-reshape-venture-capital-liquidity-in-2026" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Lighthouse Canton</a>`,
+    category: "Funding",
+    author: "Founderstreet Team",
+    authorRole: "Investor Relations Team",
+    coverImage:
+      "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=630&fit=crop",
+    tags: ["venture capital", "IPO", "liquidity", "fundraising"],
+    publishedAt: "2026-01-15T00:00:00.000Z",
+    updatedAt: "2026-01-15T00:00:00.000Z",
+    readingTime: 6,
+    featured: false,
+    status: "published",
+  },
+];
+
+function mergeEditorial(list: PostMeta[]): PostMeta[] {
+  const slugs = new Set(list.map((p) => p.slug));
+  const extras = EDITORIAL_POSTS.filter((e) => !slugs.has(e.slug)).map(metaFromBlogPost);
+  return [...list, ...extras];
+}
+
 async function seedPostsIfEmpty(): Promise<void> {
   const sql = getSql();
   if (!sql) return;
@@ -211,31 +266,35 @@ async function ensureReady(): Promise<boolean> {
 
 export async function getAllPosts(status?: "draft" | "published"): Promise<PostMeta[]> {
   const sql = getSql();
+  let list: PostMeta[];
   if (!(await ensureReady()) || !sql) {
-    let list = sampleBlogPosts.map(metaFromBlogPost);
-    if (status) list = list.filter((p) => p.status === status);
-    return list.sort(
-      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
+    list = sampleBlogPosts.map(metaFromBlogPost);
+  } else {
+    const rows = status
+      ? await sql`SELECT * FROM cms_posts WHERE status = ${status} ORDER BY published_at DESC`
+      : await sql`SELECT * FROM cms_posts ORDER BY published_at DESC`;
+    list = (rows as PostRow[]).map(rowToMeta);
   }
 
-  const rows = status
-    ? await sql`SELECT * FROM cms_posts WHERE status = ${status} ORDER BY published_at DESC`
-    : await sql`SELECT * FROM cms_posts ORDER BY published_at DESC`;
-
-  return (rows as PostRow[]).map(rowToMeta);
+  list = mergeEditorial(list);
+  if (status) list = list.filter((p) => p.status === status);
+  return list.sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const sql = getSql();
   if (!(await ensureReady()) || !sql) {
-    const p = sampleBlogPosts.find((x) => x.slug === slug);
+    const p = sampleBlogPosts.find((x) => x.slug === slug)
+      ?? EDITORIAL_POSTS.find((x) => x.slug === slug);
     return p ?? null;
   }
 
   const rows = await sql`SELECT * FROM cms_posts WHERE slug = ${slug} LIMIT 1`;
   const r = rows[0] as PostRow | undefined;
-  return r ? rowToBlogPost(r) : null;
+  if (r) return rowToBlogPost(r);
+  return EDITORIAL_POSTS.find((x) => x.slug === slug) ?? null;
 }
 
 export async function createPost(

@@ -139,7 +139,7 @@ export default async function AccountingPage() {
                     color: plan.highlight ? "#66BB3F" : "#FFFFFF",
                   }}
                 >
-                  {plan.cta}
+                  Get Started
                 </Link>
               </div>
             ))}

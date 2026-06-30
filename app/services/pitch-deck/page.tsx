@@ -138,7 +138,7 @@ export default async function PitchDeckPage() {
                     color: plan.highlight ? "#66BB3F" : "#FFFFFF",
                   }}
                 >
-                  {plan.cta}
+                  Get Started
                 </Link>
               </div>
             ))}

@@ -133,16 +133,6 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.125rem" }}>
-      {(sourceService || sourcePlan) && (
-        <div style={{ background: "#E9F6E4", border: "1px solid #DEF3D4", borderRadius: "8px", padding: "0.75rem 1rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#66BB3F", marginBottom: "0.2rem" }}>
-            Your enquiry
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246" }}>
-            {sourceService}{sourcePlan ? ` — ${sourcePlan}` : ""}
-          </p>
-        </div>
-      )}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
         <div>
           <label style={labelStyle}>First Name *</label>

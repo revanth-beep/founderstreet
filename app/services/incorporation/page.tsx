@@ -209,9 +209,6 @@ export default async function IncorporationPage() {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center", marginTop: "1.5rem" }}>
-            All prices include government fees, professional charges, and post-incorporation setup. Delivered in under 15 working days.
-          </p>
         </div>
       </section>
 

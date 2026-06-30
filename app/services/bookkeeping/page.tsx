@@ -90,7 +90,7 @@ export default async function BookkeepingPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.5rem", maxWidth: "56rem", margin: "0 auto" }}>
-            {pricing.map((plan) => (
+            {pricing.map((plan, i) => (
               <div
                 key={plan.name}
                 style={{
@@ -124,7 +124,7 @@ export default async function BookkeepingPage() {
                   ))}
                 </ul>
                 <Link
-                  href={`/contact?service=${encodeURIComponent("Book-keeping & Taxation")}&plan=${encodeURIComponent(plan.name)}`}
+                  href={`/contact?service=${encodeURIComponent("Book-keeping & Taxation")}&plan=${encodeURIComponent(["Basic", "Medium", "High", "Premium"][i] ?? plan.name)}`}
                   style={{
                     display: "block",
                     textAlign: "center",

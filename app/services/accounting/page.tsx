@@ -91,7 +91,7 @@ export default async function AccountingPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.5rem", maxWidth: "56rem", margin: "0 auto" }}>
-            {pricing.map((plan) => (
+            {pricing.map((plan, i) => (
               <div
                 key={plan.name}
                 style={{
@@ -125,7 +125,7 @@ export default async function AccountingPage() {
                   ))}
                 </ul>
                 <Link
-                  href={`/contact?service=${encodeURIComponent("Accounting & Virtual CFO")}&plan=${encodeURIComponent(plan.name)}`}
+                  href={`/contact?service=${encodeURIComponent("Accounting & Virtual CFO")}&plan=${encodeURIComponent(["Basic", "Medium", "High", "Premium"][i] ?? plan.name)}`}
                   style={{
                     display: "block",
                     textAlign: "center",

@@ -783,7 +783,7 @@ export const defaultSiteContent: SiteContent = {
       },
       {
         heading: "Contact Us",
-        body: "For privacy-related inquiries, contact us at hello@northvilleconsultinggroup.com",
+        body: "For privacy-related inquiries, contact us at hi@founderstreet.in",
       },
     ],
   },
@@ -804,7 +804,7 @@ export const defaultSiteContent: SiteContent = {
       },
       {
         heading: "Contact",
-        body: "For queries, contact hello@northvilleconsultinggroup.com",
+        body: "For queries, contact hi@founderstreet.in",
       },
     ],
   },

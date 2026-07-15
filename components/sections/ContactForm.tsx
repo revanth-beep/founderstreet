@@ -15,6 +15,7 @@ const services = [
   "Co-working Spaces",
   "Web & Tech Development",
   "Investor Funding & Pitch Deck",
+  "Hire Talent",
   "Multiple Services",
   "Just Exploring",
 ];

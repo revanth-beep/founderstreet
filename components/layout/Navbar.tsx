@@ -21,6 +21,7 @@ function getNavIcon(href: string): React.ComponentType<{ size?: number; color?: 
   if (href.includes("web-development")) return Code2;
   if (href.includes("pitch-deck")) return Presentation;
   if (href.includes("funding")) return TrendingUp;
+  if (href.includes("hire-talent")) return Users;
   return MapPin;
 }
 
@@ -45,6 +46,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
     { name: "Pitch Deck & Valuation", href: "/services/pitch-deck", desc: "Investor-ready decks and defensible valuations" },
     { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
     { name: "Co-working Space", href: "/services/coworking", desc: "Get access to 1200+ co-working spaces across India" },
+    { name: "Hire Talent", href: "/services/hire-talent", desc: "Curated candidates from IIMs and India's top colleges" },
   ];
 
   useEffect(() => {

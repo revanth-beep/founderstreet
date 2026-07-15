@@ -20,6 +20,7 @@ const ITEMS: NavItem[] = [
   { type: "link", href: "/admin/site/home/health-check-block", label: "Health Check Block" },
   { type: "link", href: "/admin/site/home/why", label: "Why Founderstreet" },
   { type: "link", href: "/admin/site/home/stylework", label: "Stylework Perk" },
+  { type: "link", href: "/admin/site/home/hire-talent-perk", label: "Hire Talent Perk" },
   { type: "link", href: "/admin/site/home/process", label: "Process" },
   { type: "link", href: "/admin/site/home/partners", label: "Partners" },
   { type: "link", href: "/admin/site/home/founder-stories", label: "Founder stories" },

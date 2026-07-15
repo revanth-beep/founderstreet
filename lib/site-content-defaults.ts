@@ -189,6 +189,14 @@ export type StyleworkCms = {
   href: string;
 };
 
+export type HireTalentPerkCms = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
+  href: string;
+};
+
 export type HealthCheckBlockCms = {
   eyebrow: string;
   badge: string;
@@ -323,6 +331,7 @@ export type SiteContent = {
     cta: CtaSectionCms;
     faq: HomeFaqCms;
     stylework: StyleworkCms;
+    hireTalentPerk: HireTalentPerkCms;
     healthCheckBlock: HealthCheckBlockCms;
   };
   aboutPage: AboutPageCms;
@@ -376,6 +385,7 @@ export const defaultSiteContent: SiteContent = {
       { name: "Pitch Deck & Valuation", href: "/services/pitch-deck", desc: "Investor-ready decks and defensible valuations" },
       { name: "Investor Funding", href: "/services/funding", desc: "Pitch decks, projections & matchmaking" },
       { name: "Co-working Space", href: "/services/coworking", desc: "Get access to 1200+ co-working spaces across India" },
+      { name: "Hire Talent", href: "/services/hire-talent", desc: "Curated candidates from IIMs and India's top colleges" },
     ],
   },
   footer: {
@@ -597,7 +607,14 @@ export const defaultSiteContent: SiteContent = {
       title: "Priority co-working access for Founderstreet portfolio companies",
       description: "Because Founderstreet operates as your infrastructure layer, portfolio companies receive priority onboarding and discounted desk and cabin rates at Stylework co-working locations across India.",
       buttonLabel: "Explore Ecosystem Perks",
-      href: "/contact",
+      href: "/services/coworking",
+    },
+    hireTalentPerk: {
+      eyebrow: "Hire Talent",
+      title: "Hire from India's best campuses, without the hiring grind",
+      description: "Get direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent.",
+      buttonLabel: "Post Your Requirement",
+      href: "/services/hire-talent",
     },
     healthCheckBlock: {
       eyebrow: "Start Here",

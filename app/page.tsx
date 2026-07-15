@@ -24,7 +24,7 @@ export default async function HomePage() {
       <ServicesSection header={site.home.services} serviceCards={site.home.serviceCards} />
       <TestYourIdeaBlock cms={site.home.healthCheckBlock} />
       <WhySection cms={site.home.why} />
-      <StyleworkPerks cms={site.home.stylework} />
+      <StyleworkPerks cms={site.home.stylework} hireTalent={site.home.hireTalentPerk} />
       <ProcessSection cms={site.home.process} />
       <PartnerMarquee data={site.home.partnerMarquee} />
       <TestimonialsSection data={site.home.founderStories} />

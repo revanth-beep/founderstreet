@@ -8,6 +8,8 @@ interface ServiceHeroProps {
   subtitle: string;
   ctaText?: string;
   ctaHref?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryHref?: string;
   icon: LucideIcon;
   stats?: { value: string; label: string }[];
 }
@@ -19,6 +21,8 @@ export default function ServiceHero({
   subtitle,
   ctaText = "Get Started",
   ctaHref = "/contact",
+  ctaSecondaryText,
+  ctaSecondaryHref,
   icon: Icon,
   stats,
 }: ServiceHeroProps) {
@@ -123,6 +127,28 @@ export default function ServiceHero({
               {ctaText}
               <ArrowRight size={15} />
             </Link>
+            {ctaSecondaryText && ctaSecondaryHref && (
+              <Link
+                href={ctaSecondaryHref}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8125rem 1.75rem",
+                  background: "transparent",
+                  color: "#FFFFFF",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.9rem",
+                  fontWeight: 600,
+                  border: "1.5px solid rgba(255,255,255,0.25)",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                {ctaSecondaryText}
+              </Link>
+            )}
           </div>
 
           {/* Stats */}

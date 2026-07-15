@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
-// Inbox that receives hire-talent requirement submissions.
-const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
+// Inboxes that receive hire-talent requirement submissions.
+const LEADS_INBOX = ["hi@founderstreet.in", "ab@founderstreet.in"];
 
 const REQUIRED_FIELDS = [
   "companyName", "industry", "contactName", "workEmail", "phone",
@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         from: FROM_ADDRESS,
-        to: [LEADS_INBOX],
-        subject: `New Hire Talent requirement: ${body.companyName} — ${body.roleTitle}`,
+        to: LEADS_INBOX,
+        subject: `New Hire Talent requirement: ${body.companyName} (${body.roleTitle})`,
         html,
         reply_to: String(body.workEmail).trim(),
       }),

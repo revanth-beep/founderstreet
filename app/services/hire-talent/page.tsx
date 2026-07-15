@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Users, ArrowRight, ShieldCheck, Target, CheckCircle2 } from "lucide-react";
+import { Users } from "lucide-react";
 import ServiceHero from "@/components/ui/ServiceHero";
 import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
+import HireTalentForm from "@/components/sections/HireTalentForm";
 
 export const metadata: Metadata = {
   title: "Hire Talent | Founderstreet",
   description:
     "Founderstreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent.",
 };
-
-const CONTACT_HREF = `/contact?service=${encodeURIComponent("Hire Talent")}`;
 
 const h2 = {
   fontFamily: "'Playfair Display', Georgia, serif" as const,
@@ -22,17 +20,14 @@ const h2 = {
 
 const WHY_REASONS = [
   {
-    icon: ShieldCheck,
     title: "Verified college partnerships",
     desc: "Direct pipelines into IIMs and top undergraduate and postgraduate institutions across India.",
   },
   {
-    icon: Target,
     title: "Matched, not mass-applied",
-    desc: "Every candidate is scored against your role on specialization, skills, and where relevant, prior work experience.",
+    desc: "Every candidate is scored against your role on specialization, skills, and, where relevant, prior work experience.",
   },
   {
-    icon: CheckCircle2,
     title: "You review, you decide",
     desc: "We send a shortlist with the reasoning behind each match. You run the interviews and make the call.",
   },
@@ -42,7 +37,7 @@ const STEPS = [
   {
     step: "01",
     title: "Post your requirement",
-    desc: "Tell us the role, stipend, and candidate criteria. It takes about five minutes.",
+    desc: "Fill out the form below with role, stipend, and candidate criteria.",
   },
   {
     step: "02",
@@ -57,7 +52,7 @@ const STEPS = [
   {
     step: "04",
     title: "You interview and hire",
-    desc: "Receive a ranked shortlist with match rationale. You take it from there.",
+    desc: "Receive a ranked shortlist with match rationale: you take it from there.",
   },
 ];
 
@@ -72,7 +67,7 @@ export default function HireTalentPage() {
         titleHighlight="Without the Hiring Grind"
         subtitle="Founderstreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent, not just keywords."
         ctaText="Post Your Requirement"
-        ctaHref={CONTACT_HREF}
+        ctaHref="#requirement-form"
         ctaSecondaryText="See How It Works"
         ctaSecondaryHref="#how-it-works"
         icon={Users}
@@ -92,7 +87,7 @@ export default function HireTalentPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1.25rem", maxWidth: "60rem", margin: "0 auto" }}>
-            {WHY_REASONS.map((r) => (
+            {WHY_REASONS.map((r, i) => (
               <div
                 key={r.title}
                 className="card"
@@ -105,8 +100,11 @@ export default function HireTalentPage() {
                   borderRadius: "8px",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginBottom: "1rem",
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontWeight: 700, fontSize: "1.0625rem",
+                  color: "#66BB3F",
                 }}>
-                  <r.icon size={18} color="#66BB3F" />
+                  {i + 1}
                 </div>
                 <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.0625rem", fontWeight: 700, color: "#3d4246", marginBottom: "0.5rem" }}>
                   {r.title}
@@ -127,7 +125,7 @@ export default function HireTalentPage() {
             <ServicePageEyebrow>How It Works</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>From open role to shortlist</h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              Tell us what you need once. We handle the sourcing, screening, and college coordination.
+              Tell us what you need once: we handle the sourcing, screening, and college coordination.
             </p>
           </div>
 
@@ -169,19 +167,22 @@ export default function HireTalentPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section style={{ background: "linear-gradient(135deg, #66BB3F 0%, #56AD32 100%)", paddingBlock: "clamp(4rem, 8vw, 5.5rem)", textAlign: "center" }}>
+      {/* Post a Requirement */}
+      <section id="requirement-form" style={{ background: "#FAFAFA", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
-          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2rem)", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>
-            Ready to build your team?
-          </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "rgba(255,255,255,0.72)", maxWidth: "28rem", margin: "0 auto 2rem", lineHeight: 1.7 }}>
-            Tell us about the role you&apos;re hiring for. Our team will confirm your shortlist timeline once we receive your requirement.
-          </p>
-          <Link href={CONTACT_HREF} className="btn-white">
-            Post Your Requirement
-            <ArrowRight size={16} />
-          </Link>
+          <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
+            <ServicePageEyebrow>Post a Requirement</ServicePageEyebrow>
+            <h2 style={{ ...h2, marginTop: "1rem" }}>Tell us who you&apos;re looking for</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
+              The more specific you are, the better your shortlist. This takes about five minutes.
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", marginTop: "0.75rem" }}>
+              * indicates a required field. All other fields are optional or conditional as noted.
+            </p>
+          </div>
+          <div style={{ maxWidth: "44rem", margin: "0 auto", background: "#FFFFFF", border: "1px solid #E0E0DC", borderRadius: "12px", padding: "clamp(1.5rem, 4vw, 2.5rem)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <HireTalentForm />
+          </div>
         </div>
       </section>
     </>

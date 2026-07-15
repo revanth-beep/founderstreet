@@ -488,6 +488,9 @@ a { text-decoration: none; color: inherit; }
 /* Test Your Idea / health check block */
 @media (min-width: 1024px) { .tyi-grid { grid-template-columns: 1fr 1fr !important; gap: 5rem !important; } }
 
+/* Hire Talent requirement form */
+@media (min-width: 640px) { .ht-grid-2 { grid-template-columns: 1fr 1fr !important; } }
+
 /* Resources teaser strip */
 @media (min-width: 768px)  { .res-grid { grid-template-columns: repeat(3,1fr) !important; } }
 

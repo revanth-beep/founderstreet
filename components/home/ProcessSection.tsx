@@ -114,7 +114,7 @@ export default function ProcessSection({ cms }: { cms: ProcessSectionCms }) {
                 {/* Progress indicator */}
                 <div style={{
                   height: "3px", borderRadius: "99px",
-                  background: "#F0F0ED", marginTop: "0.5rem"
+                  background: "#F0F0ED", marginTop: "auto", paddingTop: "0px"
                 }}>
                   <div style={{
                     height: "100%", borderRadius: "99px",

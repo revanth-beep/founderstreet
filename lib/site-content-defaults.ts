@@ -621,7 +621,7 @@ export const defaultSiteContent: SiteContent = {
       badge: "Powered by AI",
       title: "Get a Free SWOT Snapshot",
       titleGradient: "of Your Idea",
-      subtitle: "Before you commit time and capital, stress-test your concept. Answer 6 questions and get a personalised SWOT report instantly, free.",
+      subtitle: "Before you commit time and capital, stress-test your concept. Answer 6 questions and get a personalised SWOT report instantly for free.",
       bullets: [
         "Identify your biggest risks before investors do",
         "Understand market sizing and competitive gaps",

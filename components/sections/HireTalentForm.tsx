@@ -3,17 +3,8 @@
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
-const DEPARTMENTS = [
-  "Marketing & Growth", "Finance", "Operations", "Technology / Engineering",
-  "Product", "Sales & Business Development", "Human Resources", "Design", "Legal", "Other",
-];
-const ROLE_TYPES = ["Internship", "Internship with PPO potential", "Full-time (entry-level)"];
-const QUALIFICATIONS = ["Undergraduate", "Postgraduate", "Either"];
-const WORK_EXPERIENCE = ["None (fresher/student only)", "0-1 yrs", "1-3 yrs", "3+ yrs", "Open to either"];
-const COLLEGE_TIERS = ["Tier 1 B Schools", "Other B schools", "IITs / NITs / BITS", "Tier 1 undergrad colleges", "Open to all colleges"];
 const WORK_MODES = ["On-site", "Hybrid", "Remote"];
 const DURATIONS = ["Less than 2 months", "2-3 months", "3-6 months", "6+ months", "Full-time / permanent"];
-const PPO_OPTIONS = ["Yes", "No", "Depends on performance"];
 
 const inputSt: React.CSSProperties = {
   width: "100%",
@@ -81,15 +72,13 @@ function Field({ label, required, hint, children }: { label: string; required?: 
   );
 }
 
-function Select({ name, required, value, onChange, options, placeholder }: {
-  name: string; required?: boolean; value?: string; onChange?: (v: string) => void; options: string[]; placeholder: string;
+function Select({ name, required, options, placeholder }: {
+  name: string; required?: boolean; options: string[]; placeholder: string;
 }) {
   return (
     <select
       name={name}
       required={required}
-      value={value}
-      onChange={onChange ? (e) => onChange(e.target.value) : undefined}
       style={{ ...inputSt, appearance: "none", cursor: "pointer" }}
       onFocus={focusIn}
       onBlur={focusOut}
@@ -103,15 +92,8 @@ function Select({ name, required, value, onChange, options, placeholder }: {
 const grid2: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr", gap: "1.25rem" };
 
 export default function HireTalentForm() {
-  const [department, setDepartment] = useState("");
-  const [roleType, setRoleType] = useState("");
-  const [preferredColleges, setPreferredColleges] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorDetail, setErrorDetail] = useState("");
-
-  function toggleCollege(tier: string) {
-    setPreferredColleges((prev) => prev.includes(tier) ? prev.filter((t) => t !== tier) : [...prev, tier]);
-  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -120,7 +102,6 @@ export default function HireTalentForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const payload = Object.fromEntries(fd.entries());
-    payload.preferredColleges = preferredColleges.join(", ");
 
     try {
       const res = await fetch("/api/hire-talent", {
@@ -131,17 +112,14 @@ export default function HireTalentForm() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setStatus("error");
-        setErrorDetail(typeof data.error === "string" ? data.error : "Something went wrong. Please try again or email hello@founderstreet.in.");
+        setErrorDetail(typeof data.error === "string" ? data.error : "Something went wrong. Please try again or email hi@founderstreet.in.");
         return;
       }
       setStatus("success");
       form.reset();
-      setDepartment("");
-      setRoleType("");
-      setPreferredColleges([]);
     } catch {
       setStatus("error");
-      setErrorDetail("Network error. Please check your connection or email hello@founderstreet.in.");
+      setErrorDetail("Network error. Please check your connection or email hi@founderstreet.in.");
     }
   }
 
@@ -155,7 +133,7 @@ export default function HireTalentForm() {
           We&apos;ve received your requirement!
         </h3>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A" }}>
-          Our team will confirm your shortlist timeline once we receive your requirement.
+          Our team will reach out to collect the finer details and confirm your shortlist timeline.
         </p>
       </div>
     );
@@ -194,97 +172,6 @@ export default function HireTalentForm() {
         </div>
       </div>
 
-      {/* Role Details */}
-      <div>
-        <p style={groupHeadSt}>Role Details</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Role title" required>
-              <input type="text" name="roleTitle" required placeholder="e.g., Growth Marketing Intern" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="Department / function" required>
-              <Select name="department" required value={department} onChange={setDepartment} options={DEPARTMENTS} placeholder="Select a department…" />
-            </Field>
-          </div>
-          {department === "Other" && (
-            <Field label="Please specify department" required>
-              <input type="text" name="departmentOther" required style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          )}
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Number of openings" required>
-              <input type="number" name="numOpenings" min={1} required style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="Role type" required>
-              <Select name="roleType" required value={roleType} onChange={setRoleType} options={ROLE_TYPES} placeholder="Select role type…" />
-            </Field>
-          </div>
-        </div>
-      </div>
-
-      {/* Candidate Requirements */}
-      <div>
-        <p style={groupHeadSt}>Candidate Requirements</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Qualification required" required>
-              <Select name="qualification" required options={QUALIFICATIONS} placeholder="Select qualification…" />
-            </Field>
-            <Field label="Preferred stream / specialization" required>
-              <input type="text" name="preferredStream" required placeholder="e.g., BBA/B.Com, MBA-Marketing, B.Tech CSE" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          </div>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Work experience required" required>
-              <Select name="workExperience" required options={WORK_EXPERIENCE} placeholder="Select experience level…" />
-            </Field>
-            <Field label="Preferred prior experience domain" required hint="If applicable, e.g., Digital marketing, Investment banking">
-              <input type="text" name="priorExperienceDomain" required placeholder="e.g., Digital marketing, Investment banking" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          </div>
-
-          <Field label="Preferred colleges" required hint="Select all that apply">
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem" }}>
-              {COLLEGE_TIERS.map((tier) => {
-                const active = preferredColleges.includes(tier);
-                return (
-                  <button
-                    type="button"
-                    key={tier}
-                    onClick={() => toggleCollege(tier)}
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: "0.4rem",
-                      fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: 600,
-                      padding: "0.5rem 0.875rem", borderRadius: "999px", cursor: "pointer",
-                      border: active ? "1.5px solid #66BB3F" : "1.5px solid #E0E0DC",
-                      background: active ? "#E9F6E4" : "#FFFFFF",
-                      color: active ? "#3a5c42" : "#5A5A5A",
-                      transition: "all 0.2s ease",
-                    }}
-                  >
-                    {active && <CheckCircle2 size={14} color="#66BB3F" />}
-                    {tier}
-                  </button>
-                );
-              })}
-            </div>
-          </Field>
-
-          <Field label="Specific colleges / institutes" hint="Optional. Name them if you have a preference, e.g., IIM Ahmedabad, XLRI, SRCC">
-            <input type="text" name="specificColleges" placeholder="e.g., IIM Ahmedabad, XLRI, SRCC" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-          </Field>
-
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Must-have skills / tools" required>
-              <input type="text" name="mustHaveSkills" required placeholder="e.g., Excel, SQL, Figma, financial modeling" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="Nice-to-have skills" hint="Optional">
-              <input type="text" name="niceToHaveSkills" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          </div>
-        </div>
-      </div>
-
       {/* Location & Duration */}
       <div>
         <p style={groupHeadSt}>Location &amp; Duration</p>
@@ -318,34 +205,6 @@ export default function HireTalentForm() {
         </div>
       </div>
 
-      {/* Compensation */}
-      <div>
-        <p style={groupHeadSt}>Compensation</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Stipend range (monthly, Rs.)" required>
-              <input type="text" name="stipendRange" required placeholder="e.g., Rs.15,000-Rs.25,000" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="PPO (pre-placement offer) potential" required>
-              <Select name="ppoPotential" required options={PPO_OPTIONS} placeholder="Select…" />
-            </Field>
-          </div>
-          {roleType === "Full-time (entry-level)" && (
-            <Field label="CTC range" required hint="Since this is a full-time role">
-              <input type="text" name="ctcRange" required placeholder="e.g., Rs.6-8 LPA" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          )}
-        </div>
-      </div>
-
-      {/* Screening & Notes */}
-      <div>
-        <p style={groupHeadSt}>Screening &amp; Notes</p>
-        <Field label="Additional requirements or notes" hint="Optional">
-          <textarea name="notes" rows={4} style={{ ...inputSt, resize: "vertical" as const }} onFocus={focusIn as unknown as React.FocusEventHandler<HTMLTextAreaElement>} onBlur={focusOut as unknown as React.FocusEventHandler<HTMLTextAreaElement>} />
-        </Field>
-      </div>
-
       {status === "error" && (
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#E5484D", lineHeight: 1.5 }}>
           {errorDetail}
@@ -365,7 +224,7 @@ export default function HireTalentForm() {
           }
         </button>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#A0A0A0", textAlign: "center", marginTop: "0.875rem" }}>
-          Our team will confirm your shortlist timeline once we receive your requirement.
+          Share the basics now. Our team will reach out to collect the rest and confirm your shortlist timeline.
         </p>
       </div>
     </form>

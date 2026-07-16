@@ -6,10 +6,7 @@ const LEADS_INBOX = ["hi@founderstreet.in", "ab@founderstreet.in"];
 
 const REQUIRED_FIELDS = [
   "companyName", "industry", "contactName", "workEmail", "phone",
-  "roleTitle", "department", "numOpenings", "roleType",
-  "qualification", "preferredStream", "workExperience", "preferredColleges", "mustHaveSkills",
   "workMode", "location", "duration", "startDate", "deadline",
-  "stipendRange", "ppoPotential",
 ];
 
 const FIELD_LABELS: Record<string, string> = {
@@ -83,7 +80,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         from: FROM_ADDRESS,
         to: LEADS_INBOX,
-        subject: `New Hire Talent requirement: ${body.companyName} (${body.roleTitle})`,
+        subject: `New Hire Talent requirement: ${body.companyName}`,
         html,
         reply_to: String(body.workEmail).trim(),
       }),

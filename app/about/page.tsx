@@ -292,7 +292,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
           >
             {teamMembers.map((member) => (
               <div key={member.name} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div style={{ position: "relative", aspectRatio: "1/1", overflow: "hidden", borderRadius: "10px", background: "#F0F0ED" }} className="team-img-wrap">
+                <div style={{ position: "relative", width: "100%", paddingTop: "100%", overflow: "hidden", borderRadius: "10px", background: "#F0F0ED" }} className="team-img-wrap">
                   <Image
                     src={member.image}
                     alt={member.name}

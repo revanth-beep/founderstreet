@@ -6,7 +6,6 @@ const LEADS_INBOX = ["hi@founderstreet.in", "ab@founderstreet.in"];
 
 const REQUIRED_FIELDS = [
   "companyName", "industry", "contactName", "workEmail", "phone",
-  "workMode", "location", "duration", "startDate", "deadline",
 ];
 
 const FIELD_LABELS: Record<string, string> = {

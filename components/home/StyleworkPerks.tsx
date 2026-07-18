@@ -6,7 +6,7 @@ import type { StyleworkCms, HireTalentPerkCms } from "@/lib/site-content-default
 
 type Perk = StyleworkCms | HireTalentPerkCms;
 
-function PerkBanner({ cms, icon: Icon }: { cms: Perk; icon: LucideIcon }) {
+function PerkBanner({ cms, icon: Icon, href }: { cms: Perk; icon: LucideIcon; href: string }) {
   return (
     <div style={{
       background: "#3d4246",
@@ -55,7 +55,7 @@ function PerkBanner({ cms, icon: Icon }: { cms: Perk; icon: LucideIcon }) {
       </div>
 
       <Link
-        href={cms.href}
+        href={href}
         style={{
           display: "inline-flex", alignItems: "center", gap: "0.5rem",
           padding: "0.75rem 1.375rem",
@@ -84,8 +84,8 @@ export default function StyleworkPerks({ cms, hireTalent }: { cms: StyleworkCms;
     <div style={{ background: "#FFFFFF", paddingInline: "clamp(1rem, 5vw, 2rem)", paddingBottom: "clamp(2rem, 4vw, 3rem)" }}>
       <div className="container-custom">
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem" }}>
-          <PerkBanner cms={cms} icon={MapPin} />
-          <PerkBanner cms={hireTalent} icon={Users} />
+          <PerkBanner cms={cms} icon={MapPin} href="/services/coworking" />
+          <PerkBanner cms={hireTalent} icon={Users} href="/services/hire-talent" />
         </div>
       </div>
     </div>

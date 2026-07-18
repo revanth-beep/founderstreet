@@ -24,12 +24,12 @@ const WHY_REASONS = [
     desc: "Direct pipelines into IIMs and top undergraduate and postgraduate institutions across India.",
   },
   {
-    title: "Matched, not mass-applied",
-    desc: "Every candidate is scored against your role on specialization, skills, and, where relevant, prior work experience.",
+    title: "Curated pools, not mass applications",
+    desc: "Colleges put forward candidates from their network who match your role on specialization, skills, and, where relevant, prior work experience.",
   },
   {
     title: "You review, you decide",
-    desc: "We send a shortlist with the reasoning behind each match. You run the interviews and make the call.",
+    desc: "We send a shortlist. You run the interviews and make the call.",
   },
 ];
 
@@ -37,7 +37,7 @@ const STEPS = [
   {
     step: "01",
     title: "Post your requirement",
-    desc: "Fill out the form below with role, stipend, and candidate criteria.",
+    desc: "Share your company and contact details below. We will send you the full role brief form right after.",
   },
   {
     step: "02",
@@ -82,7 +82,7 @@ export default function HireTalentPage() {
               A talent pipeline most startups can&apos;t build on their own
             </h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "#5A5A5A", marginTop: "0.75rem", lineHeight: 1.7 }}>
-              College placement access typically takes years of relationship-building. We&apos;ve already done it, so you get the shortlist without the groundwork.
+              College internships and placements typically take years of relationship-building. We&apos;ve already done it, so you get the shortlist without the groundwork.
             </p>
           </div>
 

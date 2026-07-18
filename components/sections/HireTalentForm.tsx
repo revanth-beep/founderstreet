@@ -3,9 +3,6 @@
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
-const WORK_MODES = ["On-site", "Hybrid", "Remote"];
-const DURATIONS = ["Less than 2 months", "2-3 months", "3-6 months", "6+ months", "Full-time / permanent"];
-
 const inputSt: React.CSSProperties = {
   width: "100%",
   padding: "0.75rem 1rem",
@@ -69,23 +66,6 @@ function Field({ label, required, hint, children }: { label: string; required?: 
       {children}
       {hint && <p style={helpSt}>{hint}</p>}
     </div>
-  );
-}
-
-function Select({ name, required, options, placeholder }: {
-  name: string; required?: boolean; options: string[]; placeholder: string;
-}) {
-  return (
-    <select
-      name={name}
-      required={required}
-      style={{ ...inputSt, appearance: "none", cursor: "pointer" }}
-      onFocus={focusIn}
-      onBlur={focusOut}
-    >
-      <option value="">{placeholder}</option>
-      {options.map((o) => <option key={o} value={o}>{o}</option>)}
-    </select>
   );
 }
 
@@ -167,39 +147,6 @@ export default function HireTalentForm() {
             </Field>
             <Field label="Company website" hint="Optional">
               <input type="text" name="companyWebsite" style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-          </div>
-        </div>
-      </div>
-
-      {/* Location & Duration */}
-      <div>
-        <p style={groupHeadSt}>Location &amp; Duration</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          <Field label="Work mode" required>
-            <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-              {WORK_MODES.map((mode) => (
-                <label key={mode} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#3d4246", cursor: "pointer" }}>
-                  <input type="radio" name="workMode" value={mode} required style={{ accentColor: "#66BB3F", width: "16px", height: "16px" }} />
-                  {mode}
-                </label>
-              ))}
-            </div>
-          </Field>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Location (city)" required>
-              <input type="text" name="location" required style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="Internship / role duration" required>
-              <Select name="duration" required options={DURATIONS} placeholder="Select duration…" />
-            </Field>
-          </div>
-          <div style={grid2} className="ht-grid-2">
-            <Field label="Preferred start date" required>
-              <input type="date" name="startDate" required style={inputSt} onFocus={focusIn} onBlur={focusOut} />
-            </Field>
-            <Field label="Deadline to fill this role" required>
-              <input type="date" name="deadline" required style={inputSt} onFocus={focusIn} onBlur={focusOut} />
             </Field>
           </div>
         </div>

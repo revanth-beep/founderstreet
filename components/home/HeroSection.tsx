@@ -76,9 +76,12 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
 
           {/* Eyebrow */}
           <div className="hero-eyebrow" style={{ marginBottom: "1.75rem", opacity: 0 }}>
-            <span className="label-tag-dark">
+            <span className="label-tag-dark" style={{ fontSize: "0.9375rem", fontWeight: 800, letterSpacing: "0.06em" }}>
               {hero.eyebrow}
             </span>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)", marginTop: "0.55rem" }}>
+              by Northville Consulting Group
+            </p>
           </div>
 
           {/* Headline */}

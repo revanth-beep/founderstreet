@@ -33,8 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase,
     title: {
-      default: "Founderstreet: One Stop for Startup Founders",
-      template: "%s | Founderstreet",
+      default: "FounderStreet: One Stop for Startup Founders",
+      template: "%s | FounderStreet",
     },
     description:
       "From Day Zero to Series A, we provide elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding support to help founders launch and scale.",
@@ -50,15 +50,15 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "en_IN",
       url: siteUrlCanonical,
-      siteName: "Founderstreet",
-      title: "Founderstreet: One Stop for Startup Founders",
+      siteName: "FounderStreet",
+      title: "FounderStreet: One Stop for Startup Founders",
       description:
         "Elite expertise in Compliance, Accounting, Marketing, Strategy, and Investor funding for Indian founders.",
       images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Founderstreet",
+      title: "FounderStreet",
       description: "One stop for startup founders. Compliance, Accounting, Marketing, Strategy, and Investor funding.",
     },
     robots: { index: true, follow: true },

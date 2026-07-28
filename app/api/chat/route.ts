@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const SYSTEM_PROMPT = `You are Founder AI, an intelligent assistant for Founderstreet, India's startup infrastructure platform.
+const SYSTEM_PROMPT = `You are Founder AI, an intelligent assistant for FounderStreet, India's startup infrastructure platform.
 
 Your role is to:
 1. Answer questions about startups, company incorporation, accounting, marketing, fundraising, and tech development in the Indian context
 2. Provide knowledgeable, concise, and actionable advice
-3. Educate founders about Founderstreet's specific services when relevant
+3. Educate founders about FounderStreet's specific services when relevant
 4. Always end responses with a relevant call-to-action to book a call or explore a service
 
-Founderstreet's core services:
+FounderStreet's core services:
 - Test Your Idea: Market sizing, SWOT analysis, unit economics modelling
 - Company Incorporation: Pvt Ltd, LLP formation in under 10 days. Includes DIN, DSC, MOA, AOA, trademark
 - Accounting & Virtual CFO: Bookkeeping, GST, payroll, fundraising financial models
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || "";
 
       let response =
-        "Great question! I can help with that. Founderstreet specialises in exactly this area. Would you like to book a free 30-minute call with our team to get personalised guidance?";
+        "Great question! I can help with that. FounderStreet specialises in exactly this area. Would you like to book a free 30-minute call with our team to get personalised guidance?";
 
       if (lastMessage.includes("llp") || lastMessage.includes("pvt ltd") || lastMessage.includes("private limited")) {
         response =

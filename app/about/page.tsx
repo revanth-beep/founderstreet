@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: m.title || "About Us",
     description:
       m.description ||
-      "Founderstreet is the unseen engine behind India's next great startups. Learn about our mission, team, and values.",
+      "FounderStreet is the unseen engine behind India's next great startups. Learn about our mission, team, and values.",
   };
 }
 

@@ -105,9 +105,9 @@ function buildSwotHtml(
     weaknesses.push("Service and marketplace models can be hard to scale without standardised processes or liquidity.");
   }
 
-  // Challenge -> Founderstreet service match
+  // Challenge -> FounderStreet service match
   if (answers.challenge === "funding") {
-    opportunities.push("Founderstreet can connect you with 25+ active angel investors and VC partners.");
+    opportunities.push("FounderStreet can connect you with 25+ active angel investors and VC partners.");
   } else if (answers.challenge === "pmf") {
     opportunities.push("Our Startup Validation service can help you test market fit with real customers in 2 weeks.");
   } else if (answers.challenge === "acquisition") {
@@ -133,7 +133,7 @@ function buildSwotHtml(
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your SWOT Report — Founderstreet</title></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your SWOT Report — FounderStreet</title></head>
 <body style="margin:0;padding:0;background:#F5F5F3;font-family:'Helvetica Neue',Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F5F3;padding:40px 0;">
     <tr><td align="center">
@@ -141,7 +141,7 @@ function buildSwotHtml(
         <!-- Header -->
         <tr>
           <td style="background:#1B4332;padding:32px 40px;text-align:center;">
-            <p style="margin:0 0 4px;color:#66BB3F;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Founderstreet · by Northville Consulting Group</p>
+            <p style="margin:0 0 4px;color:#66BB3F;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">FounderStreet · by Northville Consulting Group</p>
             <h1 style="margin:0;color:#FFFFFF;font-size:26px;font-weight:700;line-height:1.2;">Your Free Startup SWOT Report</h1>
           </td>
         </tr>
@@ -240,7 +240,7 @@ function buildSwotHtml(
         <!-- Footer -->
         <tr>
           <td style="padding:20px 40px;border-top:1px solid #EBEBEB;text-align:center;">
-            <p style="margin:0;font-size:12px;color:#A0A0A0;">© ${new Date().getFullYear()} Founderstreet · Northville Consulting Group. All rights reserved.</p>
+            <p style="margin:0;font-size:12px;color:#A0A0A0;">© ${new Date().getFullYear()} FounderStreet · Northville Consulting Group. All rights reserved.</p>
             <p style="margin:4px 0 0;font-size:12px;color:#A0A0A0;">You received this because you completed our Startup Health Check quiz.</p>
           </td>
         </tr>
@@ -251,7 +251,7 @@ function buildSwotHtml(
 </html>`;
 }
 
-const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
+const FROM_ADDRESS = "FounderStreet <hi@founderstreet.in>";
 // Internal inbox that gets a copy of every SWOT lead for follow-up.
 const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
 
@@ -323,13 +323,13 @@ function buildLeadNotificationHtml(
 function buildSwotText(name: string): string {
   return `Hi ${name},
 
-Here is your free personalised Startup SWOT Report from Founderstreet.
+Here is your free personalised Startup SWOT Report from FounderStreet.
 
 Open this email in an HTML-capable client to see your full Strengths, Weaknesses, Opportunities and Threats, plus a market-sizing note tailored to your startup.
 
 Want a deeper analysis? Reply to this email or book a free 30-minute discovery call at https://founderstreet.in/contact
 
-Founderstreet, by Northville Consulting Group.`;
+FounderStreet, by Northville Consulting Group.`;
 }
 
 async function sendEmail(to: string, name: string, phone: string, description: string, answers: Record<string, string>) {

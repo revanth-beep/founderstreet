@@ -4,8 +4,8 @@ import { getSiteContent } from "@/lib/site-content";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Founderstreet",
-  description: "Founderstreet's terms of service.",
+  title: "Terms of Service | FounderStreet",
+  description: "FounderStreet's terms of service.",
 };
 
 function renderBody(text: string) {

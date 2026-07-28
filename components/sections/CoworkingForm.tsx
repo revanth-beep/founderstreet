@@ -78,7 +78,7 @@ export default function CoworkingForm() {
           Thank you! We&apos;ve received your requirement.
         </h3>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: "#5A5A5A" }}>
-          Our team will get in touch with you shortly with exclusive Sylework pricing for Founderstreet clients.
+          Our team will get in touch with you shortly with exclusive Sylework pricing for FounderStreet clients.
         </p>
       </div>
     );

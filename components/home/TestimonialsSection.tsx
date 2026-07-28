@@ -10,12 +10,12 @@ function clampRating(n: number): number {
   return Math.min(5, Math.max(1, Math.round(n)));
 }
 
-// Testimonials should reference the Founderstreet brand, not the parent group.
+// Testimonials should reference the FounderStreet brand, not the parent group.
 function fixBrand(s: string): string {
   return String(s || "")
-    .replace(/Northville Consulting Group/gi, "Founderstreet")
-    .replace(/Northville Consulting/gi, "Founderstreet")
-    .replace(/Northville/gi, "Founderstreet");
+    .replace(/Northville Consulting Group/gi, "FounderStreet")
+    .replace(/Northville Consulting/gi, "FounderStreet")
+    .replace(/Northville/gi, "FounderStreet");
 }
 
 export default function TestimonialsSection({ data }: { data: FounderStoriesCms }) {

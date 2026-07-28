@@ -23,7 +23,7 @@ const WELCOME_MESSAGE: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hi! I'm Founder AI, powered by Founderstreet's knowledge base. I can help you with questions about company incorporation, fundraising, accounting, marketing, and more. What's on your mind?",
+    "Hi! I'm Founder AI, powered by FounderStreet's knowledge base. I can help you with questions about company incorporation, fundraising, accounting, marketing, and more. What's on your mind?",
   timestamp: new Date(),
 };
 

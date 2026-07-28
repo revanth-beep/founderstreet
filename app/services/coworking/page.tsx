@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import CoworkingForm from "@/components/sections/CoworkingForm";
 
 export const metadata: Metadata = {
-  title: "Co-working Spaces | Founderstreet",
-  description: "In collaboration with Sylework, Founderstreet clients get exclusive prices on co-working spaces. Share your requirement and our team will get in touch.",
+  title: "Co-working Spaces | FounderStreet",
+  description: "In collaboration with Sylework, FounderStreet clients get exclusive prices on co-working spaces. Share your requirement and our team will get in touch.",
 };
 
 export default function CoworkingPage() {
@@ -15,10 +15,10 @@ export default function CoworkingPage() {
             Co-working Spaces
           </span>
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3.25rem)", fontWeight: 800, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: "640px" }}>
-            Exclusive co-working pricing for Founderstreet clients.
+            Exclusive co-working pricing for FounderStreet clients.
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", color: "rgba(255,255,255,0.6)", maxWidth: "560px", lineHeight: 1.75 }}>
-            In collaboration with Sylework, we offer exclusive prices for Founderstreet clients. Kindly share your requirements in the box below and we&apos;ll get in touch.
+            In collaboration with Sylework, we offer exclusive prices for FounderStreet clients. Kindly share your requirements in the box below and we&apos;ll get in touch.
           </p>
         </div>
       </section>

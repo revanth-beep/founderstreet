@@ -60,7 +60,7 @@ export default function Footer({ cms, logoUrl }: { cms: SiteContent["footer"]; l
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={logoUrl || cms.logoUrl || "/logos/logo-icon-color.png"}
-                alt="Founderstreet"
+                alt="FounderStreet"
                 style={{ height: "44px", width: "auto", flexShrink: 0 }}
               />
               <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>

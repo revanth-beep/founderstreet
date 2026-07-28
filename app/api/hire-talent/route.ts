@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
+const FROM_ADDRESS = "FounderStreet <hi@founderstreet.in>";
 // Inboxes that receive hire-talent requirement submissions.
 const LEADS_INBOX = ["hi@founderstreet.in", "ab@founderstreet.in"];
 

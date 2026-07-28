@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createContactSubmission } from "@/lib/contact-submissions";
 
-const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
+const FROM_ADDRESS = "FounderStreet <hi@founderstreet.in>";
 const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
 
 function bad(msg: string, status = 400) {

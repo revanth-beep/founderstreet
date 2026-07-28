@@ -365,7 +365,7 @@ export type SiteContent = {
 export const defaultSiteContent: SiteContent = {
   favicon: "",
   nav: {
-    brandName: "Founderstreet",
+    brandName: "FounderStreet",
     subsidiaryText: "by Northville Consulting Group",
     healthPromoTitle: "Test Your Idea, Free",
     healthPromoSubtitle: "6 questions. Get a free SWOT report instantly.",
@@ -389,14 +389,14 @@ export const defaultSiteContent: SiteContent = {
     ],
   },
   footer: {
-    brandName: "Founderstreet",
+    brandName: "FounderStreet",
     subsidiaryText: "by Northville Consulting Group",
     description:
       "The unseen engine behind India's next great startups. From Day Zero to Pre-Seed.",
     newsletterTitle: "Get the Founder's Edge.",
     newsletterSubtitle:
       "Weekly breakdown on unit economics, pitch tear-downs, and growth tactics.",
-    copyrightTemplate: "© {year} Founderstreet by Northville Consulting LLP. All rights reserved.",
+    copyrightTemplate: "© {year} FounderStreet by Northville Consulting LLP. All rights reserved.",
     logoUrl: "/logos/logo-icon-color.png",
     socialLinks: {
       linkedin: "https://www.linkedin.com/company/founderstreet-in/",
@@ -542,14 +542,14 @@ export const defaultSiteContent: SiteContent = {
           sector: "Media & Entertainment",
           avatar: "/team/placeholder.svg",
           quote:
-            "The team at Founderstreet has been incredibly professional and significantly helped us organise our accounting system. We now rely on them for comprehensive bookkeeping, financial analysis, and taxation including GST, TDS, and ITR filing. They've streamlined our operations and given us complete peace of mind.",
+            "The team at FounderStreet has been incredibly professional and significantly helped us organise our accounting system. We now rely on them for comprehensive bookkeeping, financial analysis, and taxation including GST, TDS, and ITR filing. They've streamlined our operations and given us complete peace of mind.",
           result: "Full-service accounting partnership",
           rating: 5,
         },
       ],
     },
     why: {
-      eyebrow: "Why Founderstreet",
+      eyebrow: "Why FounderStreet",
       title: "The Infrastructure Layer",
       titleGradient: "Investors Expect",
       subtitle:
@@ -604,8 +604,8 @@ export const defaultSiteContent: SiteContent = {
     },
     stylework: {
       eyebrow: "Exclusive Ecosystem Perk",
-      title: "Priority co-working access for Founderstreet portfolio companies",
-      description: "Because Founderstreet operates as your infrastructure layer, portfolio companies receive priority onboarding and discounted desk and cabin rates at Stylework co-working locations across India.",
+      title: "Priority co-working access for FounderStreet portfolio companies",
+      description: "Because FounderStreet operates as your infrastructure layer, portfolio companies receive priority onboarding and discounted desk and cabin rates at Stylework co-working locations across India.",
       buttonLabel: "Explore Ecosystem Perks",
       href: "/services/coworking",
     },
@@ -635,14 +635,14 @@ export const defaultSiteContent: SiteContent = {
     metadata: {
       title: "About Us",
       description:
-        "Founderstreet is the unseen engine behind India's next great startups. Learn about our mission, team, and values.",
+        "FounderStreet is the unseen engine behind India's next great startups. Learn about our mission, team, and values.",
     },
     hero: {
-      eyebrow: "About Founderstreet",
+      eyebrow: "About FounderStreet",
       titleLine1: "We're the team that builds the scaffolding",
       titleAccent: "while you build the skyscraper.",
       lead:
-        "Founderstreet was born from frustration. Three ex-founders who had each wasted critical early months on company registration, CAC spreadsheets, and pitch deck revisions instead of building product and acquiring customers.",
+        "FounderStreet was born from frustration. Three ex-founders who had each wasted critical early months on company registration, CAC spreadsheets, and pitch deck revisions instead of building product and acquiring customers.",
     },
     story: {
       label: "Our Story",
@@ -651,7 +651,7 @@ export const defaultSiteContent: SiteContent = {
       paragraphs: [
         "In 2021, our founding team was building three separate startups across different sectors. Each of us hit the same wall: the operational overhead of building a company in India was eating into our time to build the actual product.",
         "Incorporation took 6 weeks instead of 10 days. The CA we hired didn't understand startup equity or ESOP accounting. Our pitch deck looked like a school project. And we had no idea who the right investors were for our stage.",
-        "So we built Founderstreet: the infrastructure layer we wished existed. Today, we've helped 150+ startups across India launch, scale, and raise over ₹40Cr in funding.",
+        "So we built FounderStreet: the infrastructure layer we wished existed. Today, we've helped 150+ startups across India launch, scale, and raise over ₹40Cr in funding.",
       ],
       stats: [
         { value: "2021", label: "Founded" },
@@ -722,12 +722,12 @@ export const defaultSiteContent: SiteContent = {
   },
   teamPage: {
     metadata: {
-      title: "Our Team: Founderstreet by Northville Consulting Group",
+      title: "Our Team: FounderStreet by Northville Consulting Group",
       description:
-        "Meet the consultants, strategists, and operators behind Founderstreet by Northville Consulting Group.",
+        "Meet the consultants, strategists, and operators behind FounderStreet by Northville Consulting Group.",
     },
     hero: {
-      eyebrow: "Founderstreet by Northville Consulting Group",
+      eyebrow: "FounderStreet by Northville Consulting Group",
       title: "The People Behind the Platform",
       subtitle:
         "Chartered Accountants, MBAs, ex-bankers, and growth operators working as one team to build India's next great startups.",
@@ -755,7 +755,7 @@ export const defaultSiteContent: SiteContent = {
   contactPage: {
     meta: {
       title: "Contact Us",
-      description: "Book a free 30-minute discovery call with Founderstreet. Talk to our team about your startup.",
+      description: "Book a free 30-minute discovery call with FounderStreet. Talk to our team about your startup.",
     },
     hero: {
       eyebrow: "Get in Touch",
@@ -788,7 +788,7 @@ export const defaultSiteContent: SiteContent = {
     sections: [
       {
         heading: "",
-        body: "Founderstreet (\"we\", \"us\", or \"our\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use our services.",
+        body: "FounderStreet (\"we\", \"us\", or \"our\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you use our services.",
       },
       {
         heading: "Information We Collect",
@@ -809,11 +809,11 @@ export const defaultSiteContent: SiteContent = {
     sections: [
       {
         heading: "",
-        body: "By using Founderstreet's services, you agree to these Terms of Service. Please read them carefully before engaging our services.",
+        body: "By using FounderStreet's services, you agree to these Terms of Service. Please read them carefully before engaging our services.",
       },
       {
         heading: "Services",
-        body: "Founderstreet provides startup infrastructure services including company incorporation, accounting, marketing, web development, and fundraising support. All services are subject to a separate engagement agreement.",
+        body: "FounderStreet provides startup infrastructure services including company incorporation, accounting, marketing, web development, and fundraising support. All services are subject to a separate engagement agreement.",
       },
       {
         heading: "Payment",
@@ -851,7 +851,7 @@ export const defaultSiteContent: SiteContent = {
         { question: "Can this replace a formal market research firm?", answer: "For early-stage startups, yes. Traditional market research firms charge ₹5–15L for slower, more generic reports. We're purpose-built for Indian startup contexts and move at startup velocity." },
       ],
       pricing: [
-        { name: "SWOT Snapshot", price: "Free", desc: "6-question health check. Instant SWOT report emailed to you. No commitment.", features: ["SWOT summary", "Top 3 risks identified", "Founderstreet follow-up within 48 hrs"], highlight: false, cta: "Start Free" },
+        { name: "SWOT Snapshot", price: "Free", desc: "6-question health check. Instant SWOT report emailed to you. No commitment.", features: ["SWOT summary", "Top 3 risks identified", "FounderStreet follow-up within 48 hrs"], highlight: false, cta: "Start Free" },
         { name: "Full Validation Sprint", price: "₹14,999", period: "one-time", desc: "Complete market validation in 14 working days.", features: ["TAM/SAM/SOM model", "Competitor landscape", "Unit economics model", "60-min walkthrough call", "Editable PowerPoint + Excel"], highlight: true, badge: "Most Popular", cta: "Book Validation" },
         { name: "Strategy + Validation", price: "₹24,999", period: "one-time", desc: "Validation + GTM strategy + pitch-ready market slide.", features: ["Everything in Full Sprint", "Go-to-market strategy", "Investor-ready market slide", "Positioning recommendation"], highlight: false, cta: "Book Strategy Package" },
       ],

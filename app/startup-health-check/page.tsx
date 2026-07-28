@@ -3,7 +3,7 @@ import StartupQuiz from "@/components/sections/StartupQuiz";
 import { CheckCircle2, ClipboardList, Mail, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Test Your Idea: Free SWOT Report | Founderstreet",
+  title: "Test Your Idea: Free SWOT Report | FounderStreet",
   description: "Answer 6 questions about your startup. Get a free personalised SWOT analysis and market sizing report sent to your inbox instantly.",
 };
 
@@ -26,7 +26,7 @@ const what = [
   {
     icon: Mail,
     title: "Follow-up from Our Team",
-    desc: "A consultant from Founderstreet will review your answers and reach out within 48 hours.",
+    desc: "A consultant from FounderStreet will review your answers and reach out within 48 hours.",
   },
 ];
 

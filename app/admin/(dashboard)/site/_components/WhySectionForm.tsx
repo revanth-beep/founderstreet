@@ -53,7 +53,7 @@ export default function WhySectionForm({ initial }: { initial: WhySectionCms }) 
 
   return (
     <form onSubmit={onSave}>
-      <h1 className="admin-page-title">Home — Why Founderstreet</h1>
+      <h1 className="admin-page-title">Home — Why FounderStreet</h1>
       <p className="admin-page-desc">Edit the reason cards and comparison table in the Why section.</p>
 
       <div className="admin-card">
@@ -109,7 +109,7 @@ export default function WhySectionForm({ initial }: { initial: WhySectionCms }) 
 
       <div className="admin-card">
         <p className="admin-card__title">Comparison table rows</p>
-        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Columns: Feature | Traditional CA | Founderstreet</p>
+        <p className="admin-hint" style={{ marginBottom: "1rem" }}>Columns: Feature | Traditional CA | FounderStreet</p>
         {data.comparison.map((row, i) => (
           <div key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", alignItems: "flex-end" }}>
             <div className="admin-field" style={{ flex: 1, margin: 0 }}>
@@ -121,7 +121,7 @@ export default function WhySectionForm({ initial }: { initial: WhySectionCms }) 
               <input className="admin-input" value={row.them} onChange={e => setRow(i, "them", e.target.value)} />
             </div>
             <div className="admin-field" style={{ flex: 1, margin: 0 }}>
-              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>Founderstreet</label>
+              <label className="admin-label" style={{ fontSize: "0.6875rem" }}>FounderStreet</label>
               <input className="admin-input" value={row.us} onChange={e => setRow(i, "us", e.target.value)} />
             </div>
             <button type="button" className="admin-btn" style={{ marginBottom: "0.125rem" }} onClick={() => removeRow(i)}>Remove</button>

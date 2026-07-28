@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const FROM_ADDRESS = "Founderstreet <hi@founderstreet.in>";
+const FROM_ADDRESS = "FounderStreet <hi@founderstreet.in>";
 // Inbox that receives co-working enquiries.
 const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
 
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     const esc = (s: string) => String(s).replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const html = `<div style="font-family:Arial,sans-serif;max-width:560px;">
       <h2 style="color:#1B4332;">New Co-working Space Enquiry</h2>
-      <p style="color:#5A5A5A;">A Founderstreet client has shared a co-working requirement (Sylework collaboration).</p>
+      <p style="color:#5A5A5A;">A FounderStreet client has shared a co-working requirement (Sylework collaboration).</p>
       <table style="border-collapse:collapse;width:100%;font-size:14px;">
         <tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;color:#3d4246;">Name</td><td style="padding:8px 12px;border:1px solid #E0E0DC;color:#5A5A5A;">${esc(name)}</td></tr>
         <tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;color:#3d4246;">Contact No.</td><td style="padding:8px 12px;border:1px solid #E0E0DC;color:#5A5A5A;">${esc(contact)}</td></tr>

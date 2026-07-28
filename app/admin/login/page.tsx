@@ -42,10 +42,10 @@ export default function AdminLoginPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logos/logo-color.png"
-          alt="Founderstreet"
+          alt="FounderStreet"
           style={{ height: "80px", width: "auto", display: "block", margin: "0 auto 1.25rem" }}
         />
-        <h1 className="admin-login-card__title">Founderstreet CMS</h1>
+        <h1 className="admin-login-card__title">FounderStreet CMS</h1>
         <p className="admin-login-card__lead">Sign in with your admin password.</p>
         <form onSubmit={onSubmit}>
           <div className="admin-field">

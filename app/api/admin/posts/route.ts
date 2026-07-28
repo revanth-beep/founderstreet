@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
       excerpt: String(data.excerpt ?? ""),
       content: String(data.content),
       category: String(data.category ?? "Strategy"),
-      author: String(data.author ?? "Founderstreet Team"),
+      author: String(data.author ?? "FounderStreet Team"),
       authorRole: String(data.authorRole ?? "Editorial"),
       coverImage: data.coverImage ? String(data.coverImage) : undefined,
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],

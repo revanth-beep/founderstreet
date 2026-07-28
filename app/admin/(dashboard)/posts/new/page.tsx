@@ -19,7 +19,7 @@ export default function NewPostPage() {
     excerpt: "",
     content: "",
     category: "Finance",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Editorial",
     coverImage: "",
     tags: "",

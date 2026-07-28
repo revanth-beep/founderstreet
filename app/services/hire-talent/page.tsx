@@ -5,9 +5,9 @@ import ServicePageEyebrow from "@/components/services/ServicePageEyebrow";
 import HireTalentForm from "@/components/sections/HireTalentForm";
 
 export const metadata: Metadata = {
-  title: "Hire Talent | Founderstreet",
+  title: "Hire Talent | FounderStreet",
   description:
-    "Founderstreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent.",
+    "FounderStreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent.",
 };
 
 const h2 = {
@@ -65,7 +65,7 @@ export default function HireTalentPage() {
         label="Hire Talent"
         title="Hire From India's Best Campuses,"
         titleHighlight="Without the Hiring Grind"
-        subtitle="Founderstreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent, not just keywords."
+        subtitle="FounderStreet gives your startup direct access to a curated database of students and young professionals from IIMs and India's top colleges, matched to your open roles by function, specialization, and intent, not just keywords."
         ctaText="Post Your Requirement"
         ctaHref="#requirement-form"
         ctaSecondaryText="See How It Works"
@@ -73,11 +73,11 @@ export default function HireTalentPage() {
         icon={Users}
       />
 
-      {/* Why Founderstreet */}
+      {/* Why FounderStreet */}
       <section style={{ background: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
         <div className="container-custom">
           <div style={{ textAlign: "center", maxWidth: "40rem", margin: "0 auto 3rem" }}>
-            <ServicePageEyebrow>Why Founderstreet</ServicePageEyebrow>
+            <ServicePageEyebrow>Why FounderStreet</ServicePageEyebrow>
             <h2 style={{ ...h2, marginTop: "1rem" }}>
               A talent pipeline most startups can&apos;t build on their own
             </h2>

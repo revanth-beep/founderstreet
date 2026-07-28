@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./admin-panel.css";
 
 export const metadata: Metadata = {
-  title: { default: "CMS Admin", template: "%s | Founderstreet Admin" },
+  title: { default: "CMS Admin", template: "%s | FounderStreet Admin" },
   robots: { index: false, follow: false },
 };
 

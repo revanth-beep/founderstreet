@@ -157,7 +157,7 @@ export default async function AccountingPage() {
       </section>
 
       <CaseStudyBanner
-        quote="The team at Founderstreet has been incredibly professional and significantly helped us organise our accounting system."
+        quote="The team at FounderStreet has been incredibly professional and significantly helped us organise our accounting system."
         company="706 Pictures, Film Production"
       />
 

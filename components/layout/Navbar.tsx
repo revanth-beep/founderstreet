@@ -74,7 +74,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={nav.logoUrl || "/logos/logo-icon-color.png"}
-              alt="Founderstreet"
+              alt="FounderStreet"
               style={{
                 height: `${nav.logoSize || 44}px`,
                 width: "auto",
@@ -332,7 +332,7 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 1.5rem", borderBottom: "1px solid #F0F0ED" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={nav.logoUrl || "/logos/logo-icon-color.png"} alt="Founderstreet" style={{ height: `${Math.max(32, (nav.logoSize || 44) - 6)}px`, width: "auto", flexShrink: 0 }} />
+            <img src={nav.logoUrl || "/logos/logo-icon-color.png"} alt="FounderStreet" style={{ height: `${Math.max(32, (nav.logoSize || 44) - 6)}px`, width: "auto", flexShrink: 0 }} />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.25 }}>
               <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#3d4246", fontSize: "1rem" }}>{nav.brandName}</span>
               {nav.logoTagline && (

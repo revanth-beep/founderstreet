@@ -132,7 +132,7 @@ export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] 
       "Before any investor writes a cheque, they will scrutinise your unit economics. Here's the complete framework to get it right.",
     content: `# Unit Economics 101\n\nUnit economics is the direct revenue and costs associated with a particular business model expressed on a per unit basis...`,
     category: "Finance",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Virtual CFO Team",
     coverImage:
       "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=630&fit=crop",
@@ -148,7 +148,7 @@ export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] 
       "Choosing the wrong entity structure can cost you your next funding round. Here's exactly which one to pick and why.",
     content: `# Pvt Ltd vs LLP: Which is Right for Your Startup?\n\nThe entity structure you choose at inception can determine whether investors will fund you...`,
     category: "Legal",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Incorporation Team",
     coverImage:
       "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1200&h=630&fit=crop",
@@ -164,7 +164,7 @@ export const SAMPLE_POSTS: Omit<BlogPost, "id" | "publishedAt" | "updatedAt">[] 
       "We've reviewed 200+ pitch decks. Here are the exact slides that make investors lean forward—and the mistakes that get you passed over.",
     content: `# What VCs Actually Want to See in Your Pitch Deck\n\nMost pitch decks follow a template. The ones that raise capital tell a story...`,
     category: "Fundraising",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Investor Relations Team",
     coverImage:
       "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=630&fit=crop",
@@ -213,7 +213,7 @@ These vehicles bridge the illiquidity of traditional venture capital with the ca
 
 Source: <a href="https://www.lighthouse-canton.com/insights/how-will-indias-ipo-boom-reshape-venture-capital-liquidity-in-2026" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Lighthouse Canton</a>`,
     category: "Funding",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Investor Relations Team",
     coverImage:
       "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=630&fit=crop",
@@ -316,7 +316,7 @@ India's investment banking market in 2026 is a dynamic, fast-evolving space, ful
 
 Source: <a href="https://www.jobaajlearnings.com/blog/how-indian-investment-banking-market-is-evolving-in-2026" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Jobaaj Learnings</a>`,
     category: "Funding",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Investor Relations Team",
     tags: ["investment banking", "fintech", "IPO", "M&A", "ESG"],
     publishedAt: "2026-02-01T00:00:00.000Z",
@@ -479,7 +479,7 @@ Most valuation mistakes are judgment errors, not calculation errors. The pattern
 
 Source: <a href="https://www.dealplexus.com/blog/startup-valuation-before-fundraising" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">DealPlexus</a>`,
     category: "Funding",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Investor Relations Team",
     tags: ["valuation", "fundraising", "cap table", "ESOP", "angel tax"],
     publishedAt: "2026-02-10T00:00:00.000Z",
@@ -578,7 +578,7 @@ To secure VC funding in India, founders must present defensible, scalable, and e
 
 Source: <a href="https://seafund.in/article/what-venture-capitalists-look-for-in-deeptech-and-ai-startups-in-india-2026/" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Seafund</a>`,
     category: "Funding",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Investor Relations Team",
     tags: ["deeptech", "AI", "venture capital", "fundraising"],
     publishedAt: "2026-02-20T00:00:00.000Z",
@@ -680,7 +680,7 @@ Zerodha's VC arm Rainmatter backed 10 startups in the quarter, including Aquaair
 
 Source: <a href="https://inc42.com/buzz/meet-the-top-10-indian-startup-investors-of-q1-2026/" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Inc42</a>`,
     category: "Startups",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Research Team",
     tags: ["funding", "investors", "venture capital", "Q1 2026"],
     publishedAt: "2026-04-10T00:00:00.000Z",
@@ -741,7 +741,7 @@ The National Stock Exchange (NSE) filed its DRHP for a long-awaited IPO, structu
 
 Source: <a href="https://entrackr.com/report/weekly-funding-report-weekly-funding-report/funding-and-acquisitions-in-indian-startups-this-week-june-15-june-20-12056007" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
     category: "Startups",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Research Team",
     tags: ["weekly funding", "startups", "M&A", "fund launches"],
     publishedAt: "2026-06-21T00:00:00.000Z",
@@ -770,7 +770,7 @@ Kiran Kalluri, partner at DVC, said: "As global supply chains grow increasingly 
 
 Source: <a href="https://www.business-standard.com/companies/start-ups/mojro-technologies-raises-5-5-million-series-a-ai-logistics-126042800696_1.html" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Business Standard</a>`,
     category: "Startups",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Research Team",
     tags: ["logistics", "AI", "Series A", "funding"],
     publishedAt: "2026-04-28T00:00:00.000Z",
@@ -797,7 +797,7 @@ Commenting on the investment, co-founder Mohit Khurana said the company plans to
 
 Source: <a href="https://entrackr.com/snippets/impulse-lifestyle-retail-brand-uni-seoul-raises-rs-35-cr-in-series-a-round-12022701" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
     category: "Startups",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Research Team",
     tags: ["retail", "D2C", "Series A", "funding"],
     publishedAt: "2026-02-27T00:00:00.000Z",
@@ -822,7 +822,7 @@ Indian Snack House operates as an e-commerce business, delivering snacks directl
 
 Source: <a href="https://entrackr.com/snippets/d2c-brand-indian-snack-house-raises-pre-seed-funding-round-led-by-titan-capital-9405715" target="_blank" rel="noopener noreferrer" style="color:#66BB3F;font-weight:600;text-decoration:underline;">Entrackr</a>`,
     category: "Startups",
-    author: "Founderstreet Team",
+    author: "FounderStreet Team",
     authorRole: "Research Team",
     tags: ["D2C", "pre-seed", "snacks", "funding"],
     publishedAt: "2026-01-20T00:00:00.000Z",

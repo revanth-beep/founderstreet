@@ -66,7 +66,7 @@ export default function WhySection({ cms }: { cms: WhySectionCms }) {
                   Traditional CA
                 </span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9FE670", textAlign: "center" as const }}>
-                  Founderstreet
+                  FounderStreet
                 </span>
               </div>
               {cms.comparison.map((row, i) => (

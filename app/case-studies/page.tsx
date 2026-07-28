@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Founderstreet",
-  description: "Real results for Indian startups. See how Founderstreet helped founders launch, scale, and raise funding.",
+  title: "Case Studies | FounderStreet",
+  description: "Real results for Indian startups. See how FounderStreet helped founders launch, scale, and raise funding.",
 };
 
 const caseStudies = [
@@ -14,7 +14,7 @@ const caseStudies = [
     challenge: "A fast-growing film production company with no structured accounting system. GST filings were manual, TDS was inconsistent, and the team had no financial visibility.",
     services: ["Accounting & Virtual CFO", "GST & Tax Compliance", "Investor Reporting"],
     result: "Full-service accounting partnership. GST, TDS, and ITR compliance fully handled. Monthly financial reporting implemented. Zero penalties.",
-    quote: "The team at Founderstreet has been incredibly professional and significantly helped us organise our accounting system.",
+    quote: "The team at FounderStreet has been incredibly professional and significantly helped us organise our accounting system.",
     quoteAuthor: "706 Pictures",
     metrics: [{ value: "₹0", label: "Penalties" }, { value: "100%", label: "Filing accuracy" }, { value: "48hrs", label: "Monthly close" }],
     color: "#3d4246",
@@ -77,7 +77,7 @@ export default function CaseStudiesPage() {
             Real Founders. Real Results.
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", color: "rgba(255,255,255,0.6)", maxWidth: "480px", lineHeight: 1.75 }}>
-            How Founderstreet helped Indian founders launch, scale, and raise.
+            How FounderStreet helped Indian founders launch, scale, and raise.
           </p>
         </div>
       </section>

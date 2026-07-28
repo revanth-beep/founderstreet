@@ -14,7 +14,7 @@ export default async function AdminDashboard() {
         <div>
           <h1 className="admin-page-title">Dashboard</h1>
           <p className="admin-page-desc" style={{ marginBottom: 0 }}>
-            Manage Founderstreet content, blog posts, and website copy.
+            Manage FounderStreet content, blog posts, and website copy.
           </p>
         </div>
         <Link href="/admin/posts/new" className="admin-btn admin-btn--primary">

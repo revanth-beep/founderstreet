@@ -4,8 +4,8 @@ import { getSiteContent } from "@/lib/site-content";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Founderstreet",
-  description: "Founderstreet's privacy policy.",
+  title: "Privacy Policy | FounderStreet",
+  description: "FounderStreet's privacy policy.",
 };
 
 function renderBody(text: string) {

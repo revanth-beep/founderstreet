@@ -83,7 +83,7 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
               href="https://northvilleconsultinggroup.com/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(255,255,255,0.45)", marginTop: "0.55rem", textDecoration: "underline", textUnderlineOffset: "3px", transition: "color 0.2s ease" }}
+              style={{ display: "block", width: "fit-content", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(255,255,255,0.45)", marginTop: "0.55rem", textDecoration: "underline", textUnderlineOffset: "3px", transition: "color 0.2s ease" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
             >

@@ -116,16 +116,28 @@ export async function POST(request: NextRequest) {
       reply_to: LEADS_INBOX,
     });
 
-    // Internal lead copy (best-effort)
+    // Internal lead copy WITH the generated deck attached (best-effort)
     try {
       await resendSend({
         from: FROM_ADDRESS,
         to: [LEADS_INBOX],
-        subject: `New AI pitch deck lead: ${name}`,
-        html: `<div style="font-family:Arial,sans-serif;">
-          <h3>New AI Pitch Deck request</h3>
-          <p>Name: ${name}<br/>Email: ${email}<br/>Phone: ${phone}<br/>Company: ${companyName || "N/A"}<br/>Industry: ${industry || "N/A"}<br/>Format: ${deckFormat || "N/A"} (${format})</p>
+        subject: `New AI pitch deck lead: ${name} (${deck.companyName || "startup"})`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:560px;">
+          <h3 style="color:#1B4332;">New AI Pitch Deck lead</h3>
+          <p style="color:#5A5A5A;">The generated deck is attached to this email.</p>
+          <table style="border-collapse:collapse;width:100%;font-size:14px;">
+            ${[
+              ["Name", name],
+              ["Email", email],
+              ["Phone", phone],
+              ["Company", companyName || "N/A"],
+              ["Industry", industry || "N/A"],
+              ["Deck purpose", deckFormat || "N/A"],
+              ["Theme / font / format", `${theme.name} / ${font.name} / ${format}`],
+            ].map(([k, v]) => `<tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;color:#3d4246;white-space:nowrap;">${String(k).replace(/</g, "")}</td><td style="padding:8px 12px;border:1px solid #E0E0DC;color:#5A5A5A;">${String(v).replace(/</g, "")}</td></tr>`).join("")}
+          </table>
         </div>`,
+        attachments,
         reply_to: email,
       });
     } catch (e) {

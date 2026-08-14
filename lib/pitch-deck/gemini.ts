@@ -24,7 +24,7 @@ export type GenerateInput = {
   pdfBase64?: string; // when the upload was a PDF, hand it straight to Gemini
 };
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-2.5-flash";
 
 function buildPrompt(input: GenerateInput): string {
   return `You are a top-tier venture pitch consultant at a firm that has prepared decks for companies that raised from Sequoia, Accel and Peak XV. Create a compelling, investor-ready pitch deck OUTLINE for the startup described below.

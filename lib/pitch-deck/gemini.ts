@@ -1,5 +1,6 @@
 // Calls Google Gemini (free tier) to turn a founder's raw pitch material into
 // a structured, investor-ready deck outline.
+import { getConfig } from "@/lib/app-config";
 
 export type Slide = {
   title: string;
@@ -53,8 +54,9 @@ Return ONLY valid JSON in exactly this shape:
 }
 
 export async function generateDeckContent(input: GenerateInput): Promise<DeckContent> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error("GEMINI_API_KEY is not configured on the server.");
+  // Prefer the Vercel env var; fall back to the key saved in the admin panel (DB).
+  const apiKey = process.env.GEMINI_API_KEY || (await getConfig("gemini_api_key"));
+  if (!apiKey) throw new Error("No Gemini API key configured. Add it in Admin → Settings.");
 
   const parts: Record<string, unknown>[] = [{ text: buildPrompt(input) }];
   if (input.pdfBase64) {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, FileText, LogOut, Globe, Inbox } from "lucide-react";
+import { LayoutDashboard, FileText, LogOut, Globe, Inbox, KeyRound } from "lucide-react";
 
 export default function AdminSidebar() {
   const router = useRouter();
@@ -40,6 +40,7 @@ export default function AdminSidebar() {
           { icon: Inbox, name: "Contact form", href: "/admin/contact-submissions" },
           { icon: FileText, name: "Blog posts", href: "/admin/posts" },
           { icon: Globe, name: "Website pages", href: "/admin/site" },
+          { icon: KeyRound, name: "Settings & Keys", href: "/admin/settings" },
         ].map(({ icon: Icon, name, href }) => (
           <Link key={href} href={href} className="admin-sidenav__link">
             <Icon style={{ width: 17, height: 17, opacity: 0.9 }} />

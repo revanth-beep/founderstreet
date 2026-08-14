@@ -24,7 +24,8 @@ export type GenerateInput = {
   pdfBase64?: string; // when the upload was a PDF, hand it straight to Gemini
 };
 
-const MODEL = "gemini-2.5-flash";
+// Models this key can actually call, in preference order (with fallback).
+const MODELS = ["gemini-3-flash-preview", "gemini-flash-lite-latest", "gemini-flash-latest"];
 
 function buildPrompt(input: GenerateInput): string {
   return `You are a top-tier venture pitch consultant at a firm that has prepared decks for companies that raised from Sequoia, Accel and Peak XV. Create a compelling, investor-ready pitch deck OUTLINE for the startup described below.
@@ -63,24 +64,27 @@ export async function generateDeckContent(input: GenerateInput): Promise<DeckCon
     parts.push({ inlineData: { mimeType: "application/pdf", data: input.pdfBase64 } });
   }
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts }],
-      generationConfig: { responseMimeType: "application/json", temperature: 0.6, maxOutputTokens: 4096 },
-    }),
+  const requestBody = JSON.stringify({
+    contents: [{ role: "user", parts }],
+    generationConfig: { responseMimeType: "application/json", temperature: 0.6, maxOutputTokens: 4096 },
   });
 
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Gemini error ${res.status}: ${err.slice(0, 500)}`);
+  let data: { candidates?: { content?: { parts?: { text?: string }[] } }[] } | null = null;
+  let lastErr = "";
+  for (const model of MODELS) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: requestBody,
+    });
+    if (res.ok) {
+      data = (await res.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
+      break;
+    }
+    lastErr = `${res.status}: ${(await res.text()).slice(0, 300)}`;
   }
-
-  const data = (await res.json()) as {
-    candidates?: { content?: { parts?: { text?: string }[] } }[];
-  };
+  if (!data) throw new Error(`Gemini error ${lastErr}`);
   const raw = data.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
 
   let parsed: DeckContent;

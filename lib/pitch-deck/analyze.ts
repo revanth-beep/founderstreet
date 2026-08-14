@@ -66,12 +66,13 @@ export async function analyzeDeck(pdfBase64: string | undefined, extractedText: 
     generationConfig: { responseMimeType: "application/json", temperature: 0.3, maxOutputTokens: 4096 },
   });
 
-  let data: { candidates?: { content?: { parts?: { text?: string }[] } }[] } | null = null;
+  type GeminiResponse = { candidates?: { content?: { parts?: { text?: string }[] } }[] };
+  let data: GeminiResponse | null = null;
   let lastErr = "";
   for (const model of MODELS) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
     const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: requestBody });
-    if (res.ok) { data = (await res.json()) as typeof data; break; }
+    if (res.ok) { data = (await res.json()) as GeminiResponse; break; }
     lastErr = `${res.status}: ${(await res.text()).slice(0, 300)}`;
   }
   if (!data) throw new Error(`Gemini error ${lastErr}`);

@@ -41,16 +41,22 @@ export default async function ContactPage() {
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(123,201,90,0.35), transparent)" }} />
         </div>
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ maxWidth: "680px" }}>
-            <span style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1.25rem" }}>
-              {cms.hero.eyebrow}
-            </span>
-            <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1.25rem" }}>
-              {cms.hero.title}
-            </h1>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: "540px" }}>
-              {cms.hero.subtitle}
-            </p>
+          <div className="hero-split">
+            <div className="hero-split__text">
+              <span style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670", marginBottom: "1.25rem" }}>
+                {cms.hero.eyebrow}
+              </span>
+              <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1.25rem" }}>
+                {cms.hero.title}
+              </h1>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: "540px" }}>
+                {cms.hero.subtitle}
+              </p>
+            </div>
+            <div className="hero-split__media">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/visuals/contact-hero.jpg" alt="Founders in a discovery call with the FounderStreet team" />
+            </div>
           </div>
         </div>
       </section>

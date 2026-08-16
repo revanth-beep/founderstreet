@@ -82,56 +82,62 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
         </div>
 
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ maxWidth: "780px" }}>
-            <span
-              style={{
-                display: "block",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.6875rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#9FE670",
-                marginBottom: "1.25rem",
-              }}
-            >
-              {about.hero.eyebrow}
-            </span>
-            <h1
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(2.25rem, 4.5vw, 4rem)",
-                fontWeight: 800,
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "#FFFFFF",
-                marginBottom: "1.25rem",
-              }}
-            >
-              {about.hero.titleLine1}{" "}
-              <em
+          <div className="hero-split">
+            <div className="hero-split__text">
+              <span
                 style={{
-                  fontStyle: "italic",
-                  background: "linear-gradient(135deg, #9FE670, #CEEAB8)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  display: "block",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.6875rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "#9FE670",
+                  marginBottom: "1.25rem",
                 }}
               >
-                {about.hero.titleAccent}
-              </em>
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)",
-                lineHeight: 1.75,
-                color: "rgba(255,255,255,0.6)",
-                maxWidth: "580px",
-              }}
-            >
-              {about.hero.lead}
-            </p>
+                {about.hero.eyebrow}
+              </span>
+              <h1
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(2.25rem, 4.5vw, 4rem)",
+                  fontWeight: 800,
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.02em",
+                  color: "#FFFFFF",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                {about.hero.titleLine1}{" "}
+                <em
+                  style={{
+                    fontStyle: "italic",
+                    background: "linear-gradient(135deg, #9FE670, #CEEAB8)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {about.hero.titleAccent}
+                </em>
+              </h1>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)",
+                  lineHeight: 1.75,
+                  color: "rgba(255,255,255,0.6)",
+                  maxWidth: "580px",
+                }}
+              >
+                {about.hero.lead}
+              </p>
+            </div>
+            <div className="hero-split__media">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/visuals/about-hero.jpg" alt="The FounderStreet workspace" />
+            </div>
           </div>
         </div>
       </section>

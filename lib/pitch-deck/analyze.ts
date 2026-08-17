@@ -54,12 +54,66 @@ function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)));
 }
 
+// Inline data must stay well under Gemini's ~20MB request limit; larger decks
+// are uploaded to the Files API and referenced by URI instead.
+const INLINE_LIMIT_BYTES = 15 * 1024 * 1024;
+
+async function uploadPdfToGemini(base64: string, apiKey: string): Promise<string> {
+  const buffer = Buffer.from(base64, "base64");
+  const numBytes = buffer.length;
+
+  // 1. Start a resumable upload session.
+  const start = await fetch(`https://generativelanguage.googleapis.com/upload/v1beta/files?key=${encodeURIComponent(apiKey)}`, {
+    method: "POST",
+    headers: {
+      "X-Goog-Upload-Protocol": "resumable",
+      "X-Goog-Upload-Command": "start",
+      "X-Goog-Upload-Header-Content-Length": String(numBytes),
+      "X-Goog-Upload-Header-Content-Type": "application/pdf",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ file: { display_name: "pitch-deck" } }),
+  });
+  const uploadUrl = start.headers.get("x-goog-upload-url");
+  if (!uploadUrl) throw new Error(`Deck upload could not start (${start.status}).`);
+
+  // 2. Upload the bytes and finalize.
+  const up = await fetch(uploadUrl, {
+    method: "POST",
+    headers: { "X-Goog-Upload-Offset": "0", "X-Goog-Upload-Command": "upload, finalize" },
+    body: buffer,
+  });
+  type FileInfo = { file?: { uri?: string; name?: string; state?: string } };
+  const upJson = (await up.json()) as FileInfo;
+  let file = upJson.file;
+  if (!file?.uri || !file?.name) throw new Error("Deck upload for analysis failed.");
+
+  // 3. Wait until the file is processed and ACTIVE.
+  let state = file.state;
+  for (let i = 0; i < 12 && state === "PROCESSING"; i++) {
+    await new Promise((r) => setTimeout(r, 1500));
+    const chk = await fetch(`https://generativelanguage.googleapis.com/v1beta/${file.name}?key=${encodeURIComponent(apiKey)}`);
+    file = (await chk.json()) as FileInfo["file"];
+    state = file?.state;
+  }
+  if (state === "FAILED" || !file?.uri) throw new Error("The analyzer could not process this PDF. Please try a standard PDF export.");
+  return file.uri;
+}
+
 export async function analyzeDeck(pdfBase64: string | undefined, extractedText: string): Promise<DeckAnalysis> {
   const apiKey = process.env.GEMINI_API_KEY || (await getConfig("gemini_api_key"));
   if (!apiKey) throw new Error("No Gemini API key configured. Add it in Admin → Settings.");
 
   const parts: Record<string, unknown>[] = [{ text: buildPrompt(extractedText) }];
-  if (pdfBase64) parts.push({ inlineData: { mimeType: "application/pdf", data: pdfBase64 } });
+  if (pdfBase64) {
+    const bytes = Math.floor((pdfBase64.length * 3) / 4);
+    if (bytes > INLINE_LIMIT_BYTES) {
+      const fileUri = await uploadPdfToGemini(pdfBase64, apiKey);
+      parts.push({ fileData: { mimeType: "application/pdf", fileUri } });
+    } else {
+      parts.push({ inlineData: { mimeType: "application/pdf", data: pdfBase64 } });
+    }
+  }
 
   const requestBody = JSON.stringify({
     contents: [{ role: "user", parts }],

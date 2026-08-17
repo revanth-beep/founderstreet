@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Loader2, Upload, Check, X } from "lucide-react";
+import { upload } from "@vercel/blob/client";
+import { ArrowRight, Loader2, Upload, Check, X, ShieldCheck } from "lucide-react";
 
 type Category = { name: string; score: number; max: number; note: string };
 type SlideCheck = { name: string; present: boolean; note: string };
@@ -25,15 +26,6 @@ const labelSt: React.CSSProperties = {
   letterSpacing: "0.08em", textTransform: "uppercase", color: "#787878", marginBottom: "0.5rem",
 };
 function Req() { return <span style={{ color: "#E5484D" }}> *</span>; }
-
-function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload = () => resolve(String(r.result).split(",")[1] || "");
-    r.onerror = reject;
-    r.readAsDataURL(file);
-  });
-}
 
 function scoreColor(pct: number): string {
   if (pct >= 75) return "#66BB3F";
@@ -58,7 +50,7 @@ export default function PitchDeckAnalyzerForm() {
 
   function onFile(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0] || null;
-    if (f && f.size > 3 * 1024 * 1024) { setError("File is too large. Please upload a PDF under 3 MB."); return; }
+    if (f && f.size > 100 * 1024 * 1024) { setError("File is too large. Please upload a PDF under 100 MB."); return; }
     setError(""); setFile(f); setFileName(f ? f.name : "");
   }
 
@@ -67,18 +59,23 @@ export default function PitchDeckAnalyzerForm() {
     if (!file) { setError("Please upload your pitch deck (PDF)."); return; }
     setStatus("loading"); setError("");
     try {
-      const filePayload = { name: file.name, type: file.type, base64: await fileToBase64(file) };
+      // Upload the deck straight to temporary storage (no request-size limit).
+      const blob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/pitch-deck/upload",
+        contentType: file.type || undefined,
+      });
       const res = await fetch("/api/pitch-deck", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, file: filePayload }),
+        body: JSON.stringify({ name, email, phone, blobUrl: blob.url, fileName: file.name, fileType: file.type }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) { setStatus("error"); setError(typeof data.error === "string" ? data.error : "Something went wrong."); return; }
       setAnalysis(data.analysis as Analysis);
       setStatus("idle");
     } catch {
-      setStatus("error"); setError("Network error. Please try again.");
+      setStatus("error"); setError("Upload failed. Please check your connection and try again.");
     }
   }
 
@@ -174,7 +171,7 @@ export default function PitchDeckAnalyzerForm() {
         <div><label style={labelSt}>Email address<Req /></label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputSt} placeholder="you@company.com" /></div>
         <div>
-          <label style={labelSt}>Upload your pitch deck (PDF · under 3 MB)<Req /></label>
+          <label style={labelSt}>Upload your pitch deck (PDF · up to 100 MB)<Req /></label>
           <label style={{ ...inputSt, display: "flex", alignItems: "center", gap: "0.6rem", cursor: "pointer", color: fileName ? "#3d4246" : "#A0A0A0" }}>
             <Upload size={16} color="#66BB3F" />
             {fileName || "Choose your deck (PDF)"}
@@ -189,9 +186,12 @@ export default function PitchDeckAnalyzerForm() {
             ? <><Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} /> Analyzing your deck…</>
             : <>Analyze My Pitch Deck, Free <ArrowRight size={16} /></>}
         </button>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#A0A0A0", textAlign: "center" }}>
-          We review your deck for spelling, grammar, design, readability and the 16-slide investor structure.
-        </p>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", padding: "0.75rem 0.875rem", background: "#F4FAF0", border: "1px solid #E0F0D6", borderRadius: "8px" }}>
+          <ShieldCheck size={15} color="#66BB3F" style={{ flexShrink: 0, marginTop: "0.1rem" }} />
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#5A5A5A", lineHeight: 1.55, margin: 0 }}>
+            Your deck is held in secure, temporary storage only for the analysis and deleted straight after. We never share, sell or reuse your idea. Your confidentiality is fully protected.
+          </p>
+        </div>
       </form>
     </div>
   );

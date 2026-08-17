@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import mammoth from "mammoth";
+import { del } from "@vercel/blob";
 import { analyzeDeck } from "@/lib/pitch-deck/analyze";
 
 export const runtime = "nodejs";
@@ -41,12 +42,15 @@ async function resendSend(payload: Record<string, unknown>) {
 }
 
 export async function POST(request: NextRequest) {
+  let blobUrl = "";
   try {
     const body = await request.json();
     const name = String(body.name ?? "").trim();
     const email = String(body.email ?? "").trim();
     const phone = String(body.phone ?? "").trim();
-    const file = (body.file ?? null) as UploadFile;
+    blobUrl = String(body.blobUrl ?? "").trim();
+    const fileName = String(body.fileName ?? "pitch-deck").trim();
+    const fileType = String(body.fileType ?? "").trim();
 
     if (!name || !email || !phone) {
       return NextResponse.json({ error: "Name, email and phone are required." }, { status: 400 });
@@ -54,15 +58,29 @@ export async function POST(request: NextRequest) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
     }
-    if (!file || !file.base64) {
+    if (!blobUrl) {
       return NextResponse.json({ error: "Please upload your pitch deck (PDF)." }, { status: 400 });
     }
 
+    // Pull the uploaded deck back from temporary Blob storage.
+    const dl = await fetch(blobUrl);
+    if (!dl.ok) {
+      return NextResponse.json({ error: "We couldn't read your upload. Please try again." }, { status: 400 });
+    }
+    const base64 = Buffer.from(await dl.arrayBuffer()).toString("base64");
+    const file: UploadFile = { name: fileName, type: fileType, base64 };
+
     // 1. Send the lead details (and the uploaded deck) to the team inbox.
     try {
-      const attachments = file.base64
-        ? [{ filename: (file.name || "pitch-deck").replace(/[^a-z0-9._-]+/gi, "_"), content: file.base64 }]
+      // Resend caps total email size ~40 MB; only attach decks that comfortably fit.
+      const canAttach = file.base64 && file.base64.length < 25_000_000;
+      const fileMb = file.base64 ? (file.base64.length * 3) / 4 / (1024 * 1024) : 0;
+      const attachments = canAttach
+        ? [{ filename: (file.name || "pitch-deck").replace(/[^a-z0-9._-]+/gi, "_"), content: file.base64 as string }]
         : [];
+      const attachNote = canAttach
+        ? "Their uploaded deck is attached."
+        : `Their deck (~${fileMb.toFixed(0)} MB) was too large to attach. Reach out to request it directly.`;
       const esc = (s: string) => String(s).replace(/</g, "&lt;");
       await resendSend({
         from: FROM_ADDRESS,
@@ -70,7 +88,7 @@ export async function POST(request: NextRequest) {
         subject: `New Pitch Deck Analyzer lead: ${name}`,
         html: `<div style="font-family:Arial,sans-serif;max-width:520px;">
           <h3 style="color:#1B4332;">New Pitch Deck Analyzer lead</h3>
-          <p style="color:#5A5A5A;">Their uploaded deck is attached.</p>
+          <p style="color:#5A5A5A;">${attachNote}</p>
           <table style="border-collapse:collapse;width:100%;font-size:14px;">
             <tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;">Name</td><td style="padding:8px 12px;border:1px solid #E0E0DC;">${esc(name)}</td></tr>
             <tr><td style="padding:8px 12px;border:1px solid #E0E0DC;font-weight:600;">Email</td><td style="padding:8px 12px;border:1px solid #E0E0DC;">${esc(email)}</td></tr>
@@ -93,5 +111,10 @@ export async function POST(request: NextRequest) {
     console.error("Pitch deck analysis error:", e);
     const msg = e instanceof Error ? e.message : "Something went wrong";
     return NextResponse.json({ error: msg }, { status: 500 });
+  } finally {
+    // The uploaded deck is temporary only — remove it from storage once processed.
+    if (blobUrl) {
+      try { await del(blobUrl); } catch (e) { console.error("Blob cleanup failed:", e); }
+    }
   }
 }

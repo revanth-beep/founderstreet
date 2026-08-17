@@ -1,10 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import mammoth from "mammoth";
 import { del } from "@vercel/blob";
+import { PDFDocument } from "pdf-lib";
 import { analyzeDeck } from "@/lib/pitch-deck/analyze";
 
+const MAX_DECK_PAGES = 30;
+
+// A pitch deck is short. If someone uploads a very long PDF, keep only the
+// leading slides so the analysis stays fast and on-point.
+async function capPdfPages(base64: string): Promise<string> {
+  try {
+    const src = await PDFDocument.load(Buffer.from(base64, "base64"), { ignoreEncryption: true });
+    if (src.getPageCount() <= MAX_DECK_PAGES) return base64;
+    const out = await PDFDocument.create();
+    const pages = await out.copyPages(src, Array.from({ length: MAX_DECK_PAGES }, (_, i) => i));
+    pages.forEach((p) => out.addPage(p));
+    return Buffer.from(await out.save()).toString("base64");
+  } catch {
+    return base64; // if it can't be parsed, hand the original to the analyzer
+  }
+}
+
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 const FROM_ADDRESS = "FounderStreet <hi@founderstreet.in>";
 const LEADS_INBOX = process.env.LEADS_INBOX_EMAIL || "hi@founderstreet.in";
@@ -16,7 +34,7 @@ async function extractFromFile(file: UploadFile): Promise<{ pdfBase64?: string; 
   const type = (file.type || "").toLowerCase();
   const name = (file.name || "").toLowerCase();
   try {
-    if (type.includes("pdf") || name.endsWith(".pdf")) return { pdfBase64: file.base64, text: "" };
+    if (type.includes("pdf") || name.endsWith(".pdf")) return { pdfBase64: await capPdfPages(file.base64), text: "" };
     if (type.includes("wordprocessingml") || name.endsWith(".docx")) {
       const result = await mammoth.extractRawText({ buffer: Buffer.from(file.base64, "base64") });
       return { text: result.value || "" };

@@ -31,8 +31,9 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
       {/* Hero */}
       <section style={{
         position: "relative",
-        background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
-        paddingTop: "8rem", paddingBottom: "5rem",
+        backgroundImage: "linear-gradient(150deg, rgba(30,34,36,0.86) 0%, rgba(40,46,48,0.8) 45%, rgba(28,44,32,0.85) 100%), url('/visuals/resources-hero.jpg')",
+        backgroundSize: "cover", backgroundPosition: "center",
+        paddingTop: "9rem", paddingBottom: "7rem",
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
@@ -43,38 +44,32 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
         </div>
 
         <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
-          <div className="hero-split">
-            <div className="hero-split__text">
-              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.5rem" }}>
-                <div style={{ width: "44px", height: "44px", background: "rgba(123,201,90,0.2)", border: "1px solid rgba(123,201,90,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <BookOpen size={20} color="#9FE670" />
-                </div>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670" }}>
-                  {copy.eyebrow}
-                </span>
+          <div style={{ maxWidth: "680px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.5rem" }}>
+              <div style={{ width: "44px", height: "44px", background: "rgba(123,201,90,0.2)", border: "1px solid rgba(123,201,90,0.3)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <BookOpen size={20} color="#9FE670" />
               </div>
-              <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem" }}>
-                {copy.title}
-              </h1>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: "520px" }}>
-                {copy.subtitle}
-              </p>
-              <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem", flexWrap: "wrap" }}>
-                {[
-                  { value: `${allPosts.length}+`, label: copy.statArticlesLabel },
-                  { value: "6", label: copy.statCategoriesLabel },
-                  { value: copy.statReadersValue, label: copy.statReadersLabel },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "#FFFFFF", lineHeight: 1 }}>{s.value}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", marginTop: "0.25rem" }}>{s.label}</p>
-                  </div>
-                ))}
-              </div>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670" }}>
+                {copy.eyebrow}
+              </span>
             </div>
-            <div className="hero-split__media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/visuals/resources-hero.jpg" alt="Founder resources and frameworks" />
+            <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem", textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}>
+              {copy.title}
+            </h1>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9375rem, 1.25vw, 1.125rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.78)", maxWidth: "520px" }}>
+              {copy.subtitle}
+            </p>
+            <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem", flexWrap: "wrap" }}>
+              {[
+                { value: `${allPosts.length}+`, label: copy.statArticlesLabel },
+                { value: "6", label: copy.statCategoriesLabel },
+                { value: copy.statReadersValue, label: copy.statReadersLabel },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.5rem", fontWeight: 700, color: "#FFFFFF", lineHeight: 1 }}>{s.value}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.55)", marginTop: "0.25rem" }}>{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ export default function CTASection({ cms }: { cms: CtaSectionCms }) {
     <section
       style={{
         backgroundImage: "linear-gradient(135deg, rgba(27,67,50,0.86) 0%, rgba(40,46,48,0.82) 100%), url('/visuals/cta-hero.jpg')",
-        backgroundSize: "cover", backgroundPosition: "center",
+        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
         position: "relative", overflow: "hidden",
       }}
       className="section-padding"

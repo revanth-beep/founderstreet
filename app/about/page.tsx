@@ -42,8 +42,10 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
         style={{
           position: "relative",
           backgroundImage: "linear-gradient(150deg, rgba(30,34,36,0.86) 0%, rgba(40,46,48,0.8) 45%, rgba(28,44,32,0.85) 100%), url('/visuals/about-hero.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
+          backgroundColor: "#14231b",
           paddingTop: "9rem",
           paddingBottom: "7rem",
           overflow: "hidden",

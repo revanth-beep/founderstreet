@@ -32,7 +32,7 @@ export default function ResourcesPageClient({ posts: allPosts, copy }: Props) {
       <section style={{
         position: "relative",
         backgroundImage: "linear-gradient(150deg, rgba(30,34,36,0.86) 0%, rgba(40,46,48,0.8) 45%, rgba(28,44,32,0.85) 100%), url('/visuals/resources-hero.jpg')",
-        backgroundSize: "cover", backgroundPosition: "center",
+        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
         paddingTop: "9rem", paddingBottom: "7rem",
         overflow: "hidden",
       }}>

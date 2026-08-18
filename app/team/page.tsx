@@ -24,7 +24,7 @@ export default async function TeamPage() {
       <section style={{
         position: "relative",
         backgroundImage: "linear-gradient(150deg, rgba(20,40,28,0.84) 0%, rgba(27,67,50,0.8) 50%, rgba(20,40,28,0.88) 100%), url('/visuals/team-hero.jpg')",
-        backgroundSize: "cover", backgroundPosition: "center",
+        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
         paddingTop: "9rem", paddingBottom: "7rem",
       }}>
         <div className="container-custom" style={{ textAlign: "center" }}>
@@ -108,7 +108,7 @@ export default async function TeamPage() {
       <section style={{
         position: "relative",
         backgroundImage: "linear-gradient(150deg, rgba(20,40,28,0.85) 0%, rgba(27,67,50,0.82) 50%, rgba(20,40,28,0.9) 100%), url('/visuals/team-workspace.jpg')",
-        backgroundSize: "cover", backgroundPosition: "center",
+        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
         padding: "6rem 0",
       }}>
         <div className="container-custom" style={{ textAlign: "center" }}>

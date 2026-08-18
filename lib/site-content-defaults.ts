@@ -649,9 +649,9 @@ export const defaultSiteContent: SiteContent = {
       titleLine1: "Built by Founders,",
       titleGradient: "for Founders",
       paragraphs: [
-        "In 2021, our founding team was building three separate startups across different sectors. Each of us hit the same wall: the operational overhead of building a company in India was eating into our time to build the actual product.",
-        "Incorporation took 6 weeks instead of 10 days. The CA we hired didn't understand startup equity or ESOP accounting. Our pitch deck looked like a school project. And we had no idea who the right investors were for our stage.",
-        "So we built FounderStreet: the infrastructure layer we wished existed. Today, we've helped 150+ startups across India launch, scale, and raise over ₹40Cr in funding.",
+        "In 2024, our founding team was building three separate startups across different sectors. Each of us hit the same wall: the operational overhead of building a company in India was eating into our time to build the actual product.",
+        "Incorporation took 8 weeks instead of the promised 10 days. The CA we hired didn't understand startup equity or ESOP accounting. Our compliance was ignored and the web developer charged us 60K for a simple template website. Our pitch deck looked like a school project. And we had no idea who the right investors were for our stage.",
+        "Understanding these pain points, we built FounderStreet: the infrastructure layer we wished existed back then. Today, we've helped 80+ startups across India launch, scale, or raise funding.",
       ],
       stats: [
         { value: "2021", label: "Founded" },

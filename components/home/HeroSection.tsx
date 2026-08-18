@@ -87,7 +87,7 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
             >
-              by Northville Consulting Group
+              by The Northville Consulting Group
             </a>
           </div>
 

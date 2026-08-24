@@ -284,6 +284,25 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               <MessageCircle size={13} />
               WhatsApp
             </a>
+            <Link
+              href="/services/ai-pitch-deck"
+              style={{
+                display: "flex", alignItems: "center", gap: "5px",
+                padding: "0.6rem 1.1rem",
+                background: "transparent",
+                border: `1.5px solid ${solid ? "#CEEAB8" : "rgba(102,187,63,0.4)"}`,
+                borderRadius: "6px",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.8125rem",
+                color: solid ? "#56AD32" : "#9FE670",
+                textDecoration: "none",
+                whiteSpace: "nowrap" as const,
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = solid ? "#F1FAEC" : "rgba(102,187,63,0.12)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+            >
+              AI Pitch Deck
+            </Link>
             <Link href="/contact" className="btn-primary" style={{ fontSize: "0.8125rem", padding: "0.6rem 1.25rem" }}>
               Pitch Your Idea
               <ArrowRight size={14} />
@@ -433,6 +452,21 @@ function NavbarContent({ solid, nav }: NavbarContentProps) {
               <Phone size={14} />
               {nav.phone}
             </a>
+            <Link
+              href="/services/ai-pitch-deck"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                width: "100%", padding: "0.7rem 1rem",
+                background: "transparent",
+                border: "1.5px solid #CEEAB8",
+                borderRadius: "6px",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem",
+                color: "#56AD32", textDecoration: "none",
+              }}
+            >
+              AI Pitch Deck
+            </Link>
             <Link href="/contact" className="btn-primary" style={{ width: "100%", justifyContent: "center" }} onClick={() => setMobileOpen(false)}>
               Pitch Your Idea <ArrowRight size={15} />
             </Link>

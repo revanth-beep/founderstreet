@@ -85,19 +85,21 @@ async function uploadPdfToGemini(base64: string, apiKey: string): Promise<string
   });
   type FileInfo = { file?: { uri?: string; name?: string; state?: string } };
   const upJson = (await up.json()) as FileInfo;
-  let file = upJson.file;
+  const file = upJson.file;
   if (!file?.uri || !file?.name) throw new Error("Deck upload for analysis failed.");
+  const fileName = file.name;
+  const fileUri = file.uri;
 
   // 3. Wait until the file is processed and ACTIVE.
   let state = file.state;
   for (let i = 0; i < 12 && state === "PROCESSING"; i++) {
     await new Promise((r) => setTimeout(r, 1500));
-    const chk = await fetch(`https://generativelanguage.googleapis.com/v1beta/${file.name}?key=${encodeURIComponent(apiKey)}`);
-    file = (await chk.json()) as FileInfo["file"];
-    state = file?.state;
+    const chk = await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(apiKey)}`);
+    const cj = (await chk.json()) as FileInfo["file"];
+    state = cj?.state;
   }
-  if (state === "FAILED" || !file?.uri) throw new Error("The analyzer could not process this PDF. Please try a standard PDF export.");
-  return file.uri;
+  if (state === "FAILED") throw new Error("The analyzer could not process this PDF. Please try a standard PDF export.");
+  return fileUri;
 }
 
 export async function analyzeDeck(pdfBase64: string | undefined, extractedText: string): Promise<DeckAnalysis> {

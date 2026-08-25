@@ -23,11 +23,12 @@ export default async function TeamPage() {
       {/* Hero */}
       <section style={{
         position: "relative",
-        backgroundImage: "linear-gradient(150deg, rgba(20,40,28,0.84) 0%, rgba(27,67,50,0.8) 50%, rgba(20,40,28,0.88) 100%), url('/visuals/team-hero.jpg')",
-        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
+        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/team-hero.jpg')",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#101c15",
         paddingTop: "9rem", paddingBottom: "7rem",
       }}>
-        <div className="container-custom" style={{ textAlign: "center" }}>
+        <div className="container-custom">
+          <div style={{ maxWidth: "620px" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.75rem", fontWeight: 600,
@@ -49,10 +50,11 @@ export default async function TeamPage() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.0625rem", lineHeight: 1.7,
             color: "rgba(255,255,255,0.78)",
-            maxWidth: "600px", margin: "0 auto",
+            maxWidth: "600px",
           }}>
             {hero.subtitle}
           </p>
+          </div>
         </div>
       </section>
 
@@ -107,11 +109,12 @@ export default async function TeamPage() {
       {/* Bottom CTA */}
       <section style={{
         position: "relative",
-        backgroundImage: "linear-gradient(150deg, rgba(20,40,28,0.85) 0%, rgba(27,67,50,0.82) 50%, rgba(20,40,28,0.9) 100%), url('/visuals/team-workspace.jpg')",
-        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
+        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/team-workspace.jpg')",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#101c15",
         padding: "6rem 0",
       }}>
-        <div className="container-custom" style={{ textAlign: "center" }}>
+        <div className="container-custom">
+          <div style={{ maxWidth: "560px" }}>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
@@ -125,13 +128,14 @@ export default async function TeamPage() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1rem", lineHeight: 1.7,
             color: "rgba(255,255,255,0.78)",
-            maxWidth: "480px", margin: "0 auto 2rem",
+            maxWidth: "480px", marginBottom: "2rem",
           }}>
             Book a free 30-minute discovery call and let's figure out exactly how we can help you move faster.
           </p>
           <Link href="/contact" className="btn-white" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
             Book a Free Call <ArrowRight size={15} />
           </Link>
+          </div>
         </div>
       </section>
     </>

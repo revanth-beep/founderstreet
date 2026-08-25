@@ -31,11 +31,11 @@ export default function ServiceHero({
   const sectionStyle: React.CSSProperties = bgImage
     ? {
         position: "relative",
-        backgroundImage: `linear-gradient(150deg, rgba(18,32,24,0.9) 0%, rgba(18,32,24,0.72) 50%, rgba(18,32,24,0.55) 100%), url('${bgImage}')`,
-        backgroundSize: "contain",
+        backgroundImage: `linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('${bgImage}')`,
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundColor: "#12201a",
+        backgroundPosition: "right center",
+        backgroundColor: "#101c15",
         paddingTop: "8rem",
         paddingBottom: "5rem",
         overflow: "hidden",

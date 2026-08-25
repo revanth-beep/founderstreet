@@ -8,8 +8,8 @@ export default function CTASection({ cms }: { cms: CtaSectionCms }) {
   return (
     <section
       style={{
-        backgroundImage: "linear-gradient(135deg, rgba(20,35,27,0.82) 0%, rgba(20,35,27,0.62) 100%), url('/visuals/cta-handshake.png')",
-        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#12201a",
+        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/cta-handshake.png')",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#101c15",
         position: "relative", overflow: "hidden",
       }}
       className="section-padding"
@@ -31,7 +31,7 @@ export default function CTASection({ cms }: { cms: CtaSectionCms }) {
       }} />
 
       <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
-        <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
+        <div style={{ textAlign: "left", maxWidth: "600px" }}>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(2rem, 4vw, 3.25rem)",
@@ -47,12 +47,12 @@ export default function CTASection({ cms }: { cms: CtaSectionCms }) {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.0625rem", lineHeight: 1.7,
             color: "rgba(255,255,255,0.8)",
-            maxWidth: "520px", margin: "0 auto 2.5rem"
+            maxWidth: "520px", marginBottom: "2.5rem"
           }}>
             {cms.subtitle}
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", justifyContent: "center" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", justifyContent: "flex-start" }}>
             <Link href={cms.primaryHref} className="btn-white">
               <CalendarCheck size={16} />
               {cms.primaryLabel}

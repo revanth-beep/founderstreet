@@ -41,11 +41,11 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
       <section
         style={{
           position: "relative",
-          backgroundImage: "linear-gradient(150deg, rgba(30,34,36,0.86) 0%, rgba(40,46,48,0.8) 45%, rgba(28,44,32,0.85) 100%), url('/visuals/about-hero.jpg')",
-          backgroundSize: "contain",
+          backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/about-hero.jpg')",
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundColor: "#14231b",
+          backgroundPosition: "right center",
+          backgroundColor: "#101c15",
           paddingTop: "9rem",
           paddingBottom: "7rem",
           overflow: "hidden",

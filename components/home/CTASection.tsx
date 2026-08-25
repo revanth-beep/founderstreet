@@ -8,8 +8,8 @@ export default function CTASection({ cms }: { cms: CtaSectionCms }) {
   return (
     <section
       style={{
-        backgroundImage: "linear-gradient(135deg, rgba(27,67,50,0.86) 0%, rgba(40,46,48,0.82) 100%), url('/visuals/cta-hero.jpg')",
-        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#14231b",
+        backgroundImage: "linear-gradient(135deg, rgba(20,35,27,0.82) 0%, rgba(20,35,27,0.62) 100%), url('/visuals/cta-handshake.png')",
+        backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#12201a",
         position: "relative", overflow: "hidden",
       }}
       className="section-padding"

@@ -34,6 +34,7 @@ export default async function PitchDeckPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/pitchdeck-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

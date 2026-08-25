@@ -28,6 +28,7 @@ export default async function ValidationPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/validation-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

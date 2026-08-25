@@ -62,6 +62,7 @@ export default function HireTalentPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/hiretalent-hero.png"
         label="Hire Talent"
         title="Hire From India's Best Campuses,"
         titleHighlight="Without the Hiring Grind"

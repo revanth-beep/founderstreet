@@ -12,6 +12,7 @@ interface ServiceHeroProps {
   ctaSecondaryHref?: string;
   icon: LucideIcon;
   stats?: { value: string; label: string }[];
+  bgImage?: string;
 }
 
 export default function ServiceHero({
@@ -25,15 +26,29 @@ export default function ServiceHero({
   ctaSecondaryHref,
   icon: Icon,
   stats,
+  bgImage,
 }: ServiceHeroProps) {
+  const sectionStyle: React.CSSProperties = bgImage
+    ? {
+        position: "relative",
+        backgroundImage: `linear-gradient(150deg, rgba(18,32,24,0.9) 0%, rgba(18,32,24,0.72) 50%, rgba(18,32,24,0.55) 100%), url('${bgImage}')`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundColor: "#12201a",
+        paddingTop: "8rem",
+        paddingBottom: "5rem",
+        overflow: "hidden",
+      }
+    : {
+        position: "relative",
+        background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
+        paddingTop: "8rem",
+        paddingBottom: "5rem",
+        overflow: "hidden",
+      };
   return (
-    <section style={{
-      position: "relative",
-      background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)",
-      paddingTop: "8rem",
-      paddingBottom: "5rem",
-      overflow: "hidden",
-    }}>
+    <section style={sectionStyle}>
       {/* Ambient glows */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
         <div style={{

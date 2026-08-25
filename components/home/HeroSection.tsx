@@ -30,7 +30,13 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
 
   return (
     <section
-      style={{ background: "linear-gradient(160deg, #3d4246 0%, #4A5056 40%, #3d5240 100%)" }}
+      style={{
+        backgroundImage: "linear-gradient(150deg, rgba(18,32,24,0.9) 0%, rgba(18,32,24,0.7) 50%, rgba(18,32,24,0.5) 100%), url('/visuals/home-hero.png')",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundColor: "#12201a",
+      }}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
       {/* Ambient blobs */}

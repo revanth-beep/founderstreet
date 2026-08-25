@@ -34,6 +34,7 @@ export default async function MarketingPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/marketing-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

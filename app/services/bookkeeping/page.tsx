@@ -34,6 +34,7 @@ export default async function BookkeepingPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/bookkeeping-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

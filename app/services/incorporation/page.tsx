@@ -56,6 +56,7 @@ export default async function IncorporationPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/incorporation-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

@@ -69,6 +69,7 @@ export default async function FundingPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/funding-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

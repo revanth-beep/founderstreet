@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 export default function CoworkingPage() {
   return (
     <>
-      <section style={{ background: "linear-gradient(160deg, #3d4246 0%, #4A5056 45%, #3d5240 100%)", paddingTop: "8rem", paddingBottom: "5rem" }}>
+      <section style={{
+        position: "relative",
+        backgroundImage: "linear-gradient(90deg, rgba(18,42,28,0.92) 0%, rgba(20,48,32,0.78) 40%, rgba(27,67,50,0.5) 70%, rgba(27,67,50,0.38) 100%), url('/visuals/coworking-hero.png')",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#122a1c",
+        paddingTop: "8rem", paddingBottom: "5rem",
+      }}>
         <div className="container-custom">
           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9FE670", display: "block", marginBottom: "1rem" }}>
             Co-working Spaces

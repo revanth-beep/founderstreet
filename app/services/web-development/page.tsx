@@ -35,6 +35,7 @@ export default async function WebDevPage() {
   return (
     <>
       <ServiceHero
+        bgImage="/visuals/webdev-hero.png"
         label={hero.label}
         title={hero.title}
         titleHighlight={hero.titleHighlight}

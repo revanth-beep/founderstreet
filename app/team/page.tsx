@@ -109,8 +109,8 @@ export default async function TeamPage() {
       {/* Bottom CTA */}
       <section style={{
         position: "relative",
-        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/team-workspace.jpg')",
-        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#101c15",
+        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.88) 0%, rgba(16,28,21,0.55) 40%, rgba(16,28,21,0.25) 70%, rgba(16,28,21,0.08) 100%), url('/visuals/team-workspace.jpg')",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#101c15",
         padding: "6rem 0",
       }}>
         <div className="container-custom">

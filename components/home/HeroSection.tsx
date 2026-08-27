@@ -31,11 +31,11 @@ export default function HeroSection({ hero }: { hero: HeroCms }) {
   return (
     <section
       style={{
-        backgroundImage: "linear-gradient(180deg, rgba(16,28,21,0.92) 0%, rgba(16,28,21,0.45) 14%, transparent 30%), linear-gradient(90deg, rgba(16,28,21,0.9) 0%, rgba(16,28,21,0.62) 45%, rgba(16,28,21,0.2) 100%), url('/visuals/home-hero.png')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "left bottom",
-        backgroundColor: "#101c15",
+        backgroundImage: "linear-gradient(180deg, #0f1c14 0%, rgba(15,28,20,0.85) 9%, rgba(15,28,20,0.3) 20%, transparent 33%), linear-gradient(90deg, rgba(15,28,20,0.9) 0%, rgba(15,28,20,0.55) 48%, rgba(15,28,20,0.12) 100%), url('/visuals/home-hero.png')",
+        backgroundSize: "100% 100%, 100% 100%, contain",
+        backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+        backgroundPosition: "center top, center, center bottom",
+        backgroundColor: "#0f1c14",
       }}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >

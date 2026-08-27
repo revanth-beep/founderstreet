@@ -41,11 +41,11 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
       <section
         style={{
           position: "relative",
-          backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 35%, rgba(16,28,21,0.55) 65%, rgba(16,28,21,0.2) 100%), url('/visuals/about-hero.jpg')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "right center",
-          backgroundColor: "#101c15",
+          backgroundImage: "linear-gradient(90deg, rgba(15,28,20,0.95) 0%, rgba(15,28,20,0.78) 38%, rgba(15,28,20,0.28) 66%, rgba(15,28,20,0) 100%), url('/visuals/about-hero.jpg')",
+          backgroundSize: "100% 100%, contain",
+          backgroundRepeat: "no-repeat, no-repeat",
+          backgroundPosition: "center, center right",
+          backgroundColor: "#0f1c14",
           paddingTop: "9rem",
           paddingBottom: "7rem",
           overflow: "hidden",
@@ -344,7 +344,7 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
 
       <section
         className="section-padding"
-        style={{ backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.93) 0%, rgba(18,42,28,0.74) 42%, rgba(27,67,50,0.42) 72%, rgba(27,67,50,0.28) 100%), url('/visuals/about-cta.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#122a1c", position: "relative", overflow: "hidden" }}
+        style={{ backgroundImage: "linear-gradient(90deg, rgba(15,28,20,0.95) 0%, rgba(15,28,20,0.78) 38%, rgba(15,28,20,0.28) 66%, rgba(15,28,20,0) 100%), url('/visuals/about-cta.png')", backgroundSize: "100% 100%, contain", backgroundRepeat: "no-repeat, no-repeat", backgroundPosition: "center, center right", backgroundColor: "#0f1c14", position: "relative", overflow: "hidden" }}
       >
         <div className="container-custom" style={{ textAlign: "left", position: "relative", zIndex: 1 }}>
           <h2

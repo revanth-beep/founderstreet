@@ -11,8 +11,8 @@ export default function CoworkingPage() {
     <>
       <section style={{
         position: "relative",
-        backgroundImage: "linear-gradient(90deg, rgba(18,42,28,0.92) 0%, rgba(20,48,32,0.78) 40%, rgba(27,67,50,0.5) 70%, rgba(27,67,50,0.38) 100%), url('/visuals/coworking-hero.png')",
-        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#122a1c",
+        backgroundImage: "linear-gradient(90deg, rgba(15,28,20,0.95) 0%, rgba(18,42,28,0.8) 38%, rgba(27,67,50,0.35) 66%, rgba(27,67,50,0.1) 100%), url('/visuals/coworking-hero.png')",
+        backgroundSize: "100% 100%, contain", backgroundRepeat: "no-repeat, no-repeat", backgroundPosition: "center, center right", backgroundColor: "#0f1c14",
         paddingTop: "8rem", paddingBottom: "5rem",
       }}>
         <div className="container-custom">

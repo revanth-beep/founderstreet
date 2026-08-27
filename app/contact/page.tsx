@@ -31,8 +31,8 @@ export default async function ContactPage() {
       {/* Hero */}
       <section style={{
         position: "relative",
-        backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.96) 0%, rgba(16,28,21,0.9) 40%, rgba(16,28,21,0.5) 68%, rgba(16,28,21,0.15) 100%), url('/visuals/contact-hero.jpg')",
-        backgroundSize: "100% 100%, auto 150%", backgroundRepeat: "no-repeat, no-repeat", backgroundPosition: "center, right center", backgroundColor: "#101c15",
+        backgroundImage: "linear-gradient(90deg, rgba(15,28,20,0.95) 0%, rgba(15,28,20,0.78) 38%, rgba(15,28,20,0.28) 66%, rgba(15,28,20,0) 100%), url('/visuals/contact-hero.jpg')",
+        backgroundSize: "100% 100%, contain", backgroundRepeat: "no-repeat, no-repeat", backgroundPosition: "center, center right", backgroundColor: "#0f1c14",
         paddingTop: "9rem", paddingBottom: "7rem",
         overflow: "hidden",
       }}>

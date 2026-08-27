@@ -110,7 +110,7 @@ export default async function TeamPage() {
       <section style={{
         position: "relative",
         backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.88) 0%, rgba(16,28,21,0.55) 40%, rgba(16,28,21,0.25) 70%, rgba(16,28,21,0.08) 100%), url('/visuals/team-workspace.jpg')",
-        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundColor: "#101c15",
+        backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom", backgroundColor: "#101c15",
         padding: "6rem 0",
       }}>
         <div className="container-custom">

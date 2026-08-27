@@ -96,11 +96,11 @@ export default function TestimonialsSection({ data }: { data: FounderStoriesCms 
             <blockquote
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
-                fontWeight: 500,
-                fontStyle: "normal",
-                lineHeight: 1.6,
-                color: "rgba(255,255,255,0.92)",
+                fontSize: "clamp(0.9375rem, 1.5vw, 1.1875rem)",
+                fontWeight: 300,
+                fontStyle: "italic",
+                lineHeight: 1.7,
+                color: "rgba(255,255,255,0.85)",
                 marginBottom: "2rem",
               }}
             >

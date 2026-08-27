@@ -344,10 +344,9 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
 
       <section
         className="section-padding"
-        style={{ background: "linear-gradient(135deg, #66BB3F 0%, #4A5056 100%)", position: "relative", overflow: "hidden" }}
+        style={{ backgroundImage: "linear-gradient(90deg, rgba(16,28,21,0.93) 0%, rgba(18,42,28,0.74) 42%, rgba(27,67,50,0.42) 72%, rgba(27,67,50,0.28) 100%), url('/visuals/about-cta.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "right center", backgroundColor: "#122a1c", position: "relative", overflow: "hidden" }}
       >
-        <div className="dot-grid-dark" style={{ position: "absolute", inset: 0, opacity: 0.4 }} />
-        <div className="container-custom" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
+        <div className="container-custom" style={{ textAlign: "left", position: "relative", zIndex: 1 }}>
           <h2
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
@@ -365,9 +364,9 @@ function AboutPageView({ about }: { about: AboutPageCms }) {
               fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
+              color: "rgba(255,255,255,0.72)",
               maxWidth: "480px",
-              margin: "0 auto 2rem",
+              margin: "0 0 2rem",
             }}
           >
             {about.cta.subtitle}
